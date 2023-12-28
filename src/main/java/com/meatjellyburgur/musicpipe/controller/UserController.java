@@ -1,5 +1,6 @@
 package com.meatjellyburgur.musicpipe.controller;
 
+import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.repository.UserMapper;
 import com.meatjellyburgur.musicpipe.service.UserService;
@@ -28,12 +29,12 @@ public class UserController {
 
     // 회원가입 처리
     @PostMapping("/sign-up")
-    public String signUp(){ // 파라미터로 회원가입 DTO 만들어야함
-
+    public String signUp(SignUpRequestDTO dto){ // 파라미터로 회원가입 DTO 만들어야함
 
         log.info("/members/sign-up Post");
+        boolean flag = userService.join(dto);
 
-        return "";
+        return flag ? "성공했습니다" : "실패했습니다";
     }
 
 
