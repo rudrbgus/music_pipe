@@ -106,11 +106,11 @@
     <span class="entypo-user inputUserIcon">
            <i class="fa fa-user"></i>
          </span>
-    <input type="text" class="user" placeholder="user-email"/>
+    <input type="text" class="user" name="email" placeholder="user-email"/>
     <span class="entypo-key inputPassIcon">
            <i class="fa fa-key"></i>
          </span>
-    <input type="password" class="pass"placeholder="password"/>
+    <input type="password" class="pass" name="password" placeholder="password"/>
 </form>
 
 <script>
