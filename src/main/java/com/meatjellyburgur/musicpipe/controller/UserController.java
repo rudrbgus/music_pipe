@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 @RequestMapping("/user")
 @Slf4j
@@ -52,13 +55,16 @@ public class UserController {
 
     // 로그인 검증 요청
     @PostMapping("/sign-in")
-    public String signIn(SignInRequestDTO dto){
+    public String signIn(SignInRequestDTO dto, HttpServletResponse response, HttpServletRequest request){
         log.info("/members/sign-in POST!!");
-        SigninResult result = userService.authenticate(dto);
+        SigninResult result = userService.authenticate(dto, request, response);
         log.info("로그인 결과: {}", result);
 
         if(result == SigninResult.SUCCESS){
             return "/";
+
+            // 세션으로 로그인 유지
+            userService.maintainLoginState(request.getSession(), dto.getEmail());
         }
 
         return "/User/sign-in";

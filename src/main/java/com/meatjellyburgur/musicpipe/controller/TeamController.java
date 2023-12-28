@@ -39,7 +39,7 @@ public class TeamController {
     ) {
 
         //
-        TeamListResponseDTO teamList= teamService.getList();
+        //TeamListResponseDTO teamList= teamService.getList();
 
         return null;
     }

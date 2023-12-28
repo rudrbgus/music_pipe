@@ -9,6 +9,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import static com.meatjellyburgur.musicpipe.service.SigninResult.*;
 
 @Service
@@ -30,7 +34,7 @@ public class UserService {
     }
 
     // 로그인 검증 처라
-    public SigninResult authenticate(SignInRequestDTO dto) {
+    public SigninResult authenticate(SignInRequestDTO dto, HttpServletRequest request, HttpServletResponse response) {
         User foundUser = getUser(dto.getEmail());
         System.out.println(dto.getEmail());
         // 회원가입 안한 상태
@@ -47,5 +51,9 @@ public class UserService {
         // 자동 로그인 처리
 
         return SUCCESS;
+    }
+
+    public void maintainLoginState(HttpSession session, String email) {
+        session.setAttribute();
     }
 }
