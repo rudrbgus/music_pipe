@@ -1,5 +1,6 @@
 package com.meatjellyburgur.musicpipe.dto.response;
 
+import com.meatjellyburgur.musicpipe.common.PageMaker;
 import lombok.*;
 
 import java.util.List;
