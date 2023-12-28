@@ -30,14 +30,17 @@ public class TeamController {
 
     // 팀 단일 조회
     //이름 또는 아이디로 조회하게
-//    /team/findOne/type/keyword
+    ///team/findOne/type/keyword
     // 팀 목록조회 -> 페이징 처리
     @GetMapping("/findOne/{type}/{keyWord}")
     public ResponseEntity<?> findOneTeam(
             @PathVariable String type,
             @PathVariable String keyWord
     ) {
+
+        //
         TeamListResponseDTO teamList= teamService.getList();
 
+        return null;
     }
 }

@@ -27,6 +27,11 @@
         where team_id=#{teamId}
     </select>
 
+    <select id="count" resultType="int">
+        select count(*)
+        from team
+    </select>
+
 
 
 <!--    2. 팀 단일 조회-->
