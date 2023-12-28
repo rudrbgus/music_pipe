@@ -1,5 +1,6 @@
 package com.meatjellyburgur.musicpipe.controller;
 
+import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.repository.UserMapper;
 import com.meatjellyburgur.musicpipe.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -60,8 +61,10 @@ public class UserController {
 
     // 개인 정보 요청
     @GetMapping("/")
-    public String detail(int userId){
-        userService.getOne(userId);
+    public String detail(String email){
+        User findUser = userService.getOne(email);
+
+        // 여기서 모델에 담아서 보내야됨.
         return "";
     }
 
