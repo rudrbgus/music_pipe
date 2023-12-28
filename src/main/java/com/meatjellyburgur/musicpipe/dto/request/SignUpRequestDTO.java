@@ -30,7 +30,6 @@ public class SignUpRequestDTO {
     @NotBlank
     private int age;
 
-    @Null
     private String gender;
 
 
