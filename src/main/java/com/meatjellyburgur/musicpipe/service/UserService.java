@@ -15,7 +15,6 @@ public class UserService {
     private final UserMapper userMapper;
     private final PasswordEncoder encoder;
 
-
     public User getOne(String email) {
         // 여기서 찾기
         User user = userMapper.findUser(email);

@@ -30,11 +30,10 @@ public class UserController {
     // 회원가입 처리
     @PostMapping("/sign-up")
     public String signUp(SignUpRequestDTO dto){ // 파라미터로 회원가입 DTO 만들어야함
-
         log.info("/members/sign-up Post");
         boolean flag = userService.join(dto);
-
-        return flag ? "성공했습니다" : "실패했습니다";
+        log.info("회원가입에 " + (flag?"성공했습니다":"실패했습니다"));
+        return "/index.jsp";
     }
 
 

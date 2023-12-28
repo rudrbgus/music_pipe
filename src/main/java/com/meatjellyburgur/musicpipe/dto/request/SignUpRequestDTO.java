@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Null;
+import javax.validation.constraints.Size;
 
 @Setter @Getter @ToString @EqualsAndHashCode
 @NoArgsConstructor
@@ -19,9 +20,11 @@ public class SignUpRequestDTO {
     private String email;
 
     @NotBlank
+    @Size(min = 2 , max = 12)
     private String nickname;
 
     @NotBlank
+    @Size(min = 6 , max = 150)
     private String password;
 
     @NotBlank
