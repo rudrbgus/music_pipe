@@ -18,9 +18,10 @@
         ,#{email},#{sex})
     </insert>
 
-    <select id="findMember" resultType="user">
+    <select id="findUser" resultType="user">
         select
         user_id, password, nickname,age, email,sex,regdate, team_id
+        from user
         where email = #{email}
 
     </select>
@@ -28,7 +29,7 @@
     <select id="isDuplicate" resultType="boolean">
 
         select count(*)
-        from tbl_member
+        from user
 
         <if test="type == 'nickname'">
             where nickname=#{keyword}
