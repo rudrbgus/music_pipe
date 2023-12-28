@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 public class TeamListResponseDTO {
     private int count;
-    //private PageMaker pageInfo;
+    private PageMaker pageInfo;
     private List<TeamDetailResponseDTO> teamDetailList;
 
 }
