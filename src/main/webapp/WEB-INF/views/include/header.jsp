@@ -41,7 +41,7 @@
             <li><a href="#"></a></li>
 <%--            <c:if test="${not empty login}">
                 <li><a href="#">My Page</a></li>
-                <li><a href="/members/sign-out">Sign Out</a></li>
+                <li><a href="/user/sign-out">Sign Out</a></li>
             </c:if>--%>
         </ul>
     </nav>
