@@ -5,6 +5,7 @@ import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.service.SigninResult;
 import com.meatjellyburgur.musicpipe.service.UserService;
+import com.meatjellyburgur.musicpipe.util.SignInUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/user")
@@ -47,7 +49,7 @@ public class UserController {
 
     // 로그인 양식 요청
     @GetMapping("/sign-in")
-    public String signIn(String s){ // 세션 받아야함 파라미터로
+    public String signIn(){ // 세션 받아야함 파라미터로
         log.info("/members/sign-in GET!!");
 
         return "/User/sign-in";
@@ -61,10 +63,12 @@ public class UserController {
         log.info("로그인 결과: {}", result);
 
         if(result == SigninResult.SUCCESS){
-            return "/";
+
 
             // 세션으로 로그인 유지
             userService.maintainLoginState(request.getSession(), dto.getEmail());
+
+            return "redirect:/";
         }
 
         return "/User/sign-in";
