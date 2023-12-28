@@ -20,4 +20,5 @@ public interface TeamMapper {
    Team findOneTeamById(int teamId);
 
 
+    int count();
 }
