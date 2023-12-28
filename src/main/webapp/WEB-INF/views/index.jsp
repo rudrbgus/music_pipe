@@ -93,6 +93,58 @@
             margin-left: auto;
             margin-right: auto;
         }
+        /* 프레젠테이션 프로필 이미지 div */
+        .presentation_profile_image {
+            width: 200px;
+            height: 200px;
+
+            /* 아이템을 수평, 수직 가운데 정렬하는 코드 */
+            display: flex;
+            flex-direction: column;
+            /* 방향을 row로 바꾸면 한 줄로 나온다! */
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 프레젠테이션 프로필 이미지 캔버스 */
+        .presentation_profile_image_canvas {
+            background-color: grey;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        /* 프레젠테이션 프로필 이름 div */
+        .presentation_profile_name {
+            background-color: orangered;
+            width: 64px;
+            height: 16px;
+            font-size: 8px;
+            text-align: center;
+            color: #dbdbdb;
+        }
+
+        /* 프로필 이미지 테두리 div */
+        .presentation_profile_image_border {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            /* 원 안에 그라디언트 속성을 넣으려면 먼저 투명을 해야함 */
+            border: 2px solid transparent;
+            background-image: linear-gradient(#fff, #fff),
+            linear-gradient(to right, red 0%, orange 100%);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            position: absolute;
+        }
+
+
+        .profile_love {
+            background-image: url("https://pbs.twimg.com/profile_images/794909411789574144/aabzetJx_400x400.jpg");
+            background-size: cover;
+            background-position: center;
+        }
 
     </style>
 
@@ -100,7 +152,18 @@
 <body>
 <%@include file="include/header.jsp"%>
 <div class="story_div">
-
+    <!--                    6. 프레젠테이션 프로필 div -->
+    <div class="presentation_profile">
+        <!--                    7. 프로필 이미지 묶음 div -->
+        <div class="presentation_profile_image">
+            <!--                            8. 프로필 테두리 div-->
+            <div class="presentation_profile_image_border"></div>
+            <!--                            8. 프로필 이미지 div -->
+            <div class="presentation_profile_image_canvas profile_love"></div>
+        </div>
+        <!--                    7. 프로필 이름 a-->
+        <a class="presentation_profile_name">Migdracios</a>
+    </div>
 </div>
 <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="true" space-between="30"
                   loop="true">
