@@ -1,5 +1,6 @@
 package com.meatjellyburgur.musicpipe.controller;
 
+import com.meatjellyburgur.musicpipe.repository.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import javax.websocket.Session;
 @Slf4j
 @RequiredArgsConstructor
 public class UserController {
+    private  final UserMapper userMapper;
     /*
         해야 될 것
         1. 회원가입
