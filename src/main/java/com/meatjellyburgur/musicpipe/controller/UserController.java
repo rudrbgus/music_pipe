@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.websocket.Session;
 
 @Controller
-@RequestMapping("/members")
+@RequestMapping("/user")
 @Slf4j
 @RequiredArgsConstructor
 public class UserController {
@@ -43,7 +43,7 @@ public class UserController {
     public String signIn(String s){ // 세션 받아야함 파라미터로
         log.info("/members/sign-in GET!!");
 
-        return "";
+        return "/User/sign-in";
     }
 
     // 로그인 검증 요청
