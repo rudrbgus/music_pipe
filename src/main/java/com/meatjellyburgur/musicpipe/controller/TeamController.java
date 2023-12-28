@@ -44,11 +44,12 @@ public class TeamController {
             @PathVariable String keyWord,
             @PathVariable int pageNo
     ) {
-
+        
         Page page = new Page();
         page.setPageNo(pageNo);
         page.setAmount(5);
         TeamListResponseDTO findteamListResponseDTO = teamService.getListByKeyWord(page,type,keyWord);
+
 
        return ResponseEntity.ok().body(findteamListResponseDTO);
     }

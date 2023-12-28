@@ -30,11 +30,12 @@ public class TeamService {
         int count=teamMapper.count();
 
 
-        return TeamListResponseDTO.builder()
-                .count(count)
-                .teamDetailList(allTeamList)
-                .pageInfo(new PageMaker(page,count))
-                .build();
+//        return TeamListResponseDTO.builder()
+//                .count(count)
+//                .teamDetailList(allTeamList)
+//                .pageInfo(new PageMaker(page,count))
+//                .build();
+        return null;
     }
 
     //키워드별 단일조회

@@ -46,7 +46,7 @@ public class PageMaker {
          */
         // 공식: (올림 (현재 사용자가 위치한 페이지넘버 / 한 화면에 보여줄 페이지 수)) * 한 화면에 보여줄 페이지 수
 
-        this.end = (int) Math.ceil((double) page.getPageNo() / PAGE_COUNT) * PAGE_COUNT;
+        //this.end = (int) Math.ceil((double) page.getPageNo() / PAGE_COUNT) * PAGE_COUNT;
 
 
 
@@ -80,7 +80,7 @@ public class PageMaker {
             ex)  237 / 10 => 23.7  => 올림 24
          */
 
-        this.finalPage = (int) Math.ceil((double) totalCount / page.getAmount());
+        //this.finalPage = (int) Math.ceil((double) totalCount / page.getAmount());
 
         // 마지막 페이지 구간에서 end값을 finalPage값으로 변경
         if (this.finalPage < this.end)
