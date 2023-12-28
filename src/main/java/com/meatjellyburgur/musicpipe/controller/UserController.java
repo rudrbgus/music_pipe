@@ -1,6 +1,7 @@
 package com.meatjellyburgur.musicpipe.controller;
 
 import com.meatjellyburgur.musicpipe.repository.UserMapper;
+import com.meatjellyburgur.musicpipe.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,7 @@ import javax.websocket.Session;
 @Slf4j
 @RequiredArgsConstructor
 public class UserController {
-    private  final UserMapper userMapper;
+    private  final UserService userService;
     /*
         해야 될 것
         1. 회원가입
@@ -52,5 +53,16 @@ public class UserController {
     }
 
     // 로그아웃 요청 처리
+
+
+
+
+
+    // 개인 정보 요청
+    @GetMapping("/")
+    public String detail(int userId){
+        userService.getOne(userId);
+        return "";
+    }
 
 }
