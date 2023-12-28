@@ -33,6 +33,5 @@
         <mapper resource="mappers/PositionMapper.xml"/>
         <mapper resource="mappers/SubmitBoardMapper.xml"/>
         <mapper resource="mappers/TeamMemberInfoMapper.xml"/>
-
     </mappers>
 </configuration>
