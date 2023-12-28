@@ -35,7 +35,12 @@ public class UserController {
         log.info("회원가입에 " + (flag?"성공했습니다":"실패했습니다"));
         return "/index.jsp";
     }
-
+    // 회원 가입 양식 요청
+    @GetMapping("/sign-up")
+    public String signUp(){
+        log.info("/members/sign-up Get");
+        return "/User/sign-up";
+    }
 
     // 로그인 양식 요청
     @GetMapping("/sign-in")
