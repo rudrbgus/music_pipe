@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class TeamService {
     private final TeamMapper teamMapper;
+    //전체 조회
     public TeamListResponseDTO getList(Page page) {
         List<TeamDetailResponseDTO> allTeamList = teamMapper.findAllTeam()
                 .stream()
@@ -36,6 +37,7 @@ public class TeamService {
                 .build();
     }
 
+    //키워드별 단일조회
     public TeamListResponseDTO getListByKeyWord(Page page, String type, String keyWord) {
 
         /**

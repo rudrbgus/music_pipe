@@ -14,24 +14,8 @@
         select team_id,team_name from team
     </select>
 
-    <select id="findTeamByName" resultType="team">
-        select team_id,team_name
-        from team
-        where team_name like concat('%',#{teamName},'%')
 
-    </select>
-
-    <select id="findOneTeamById" resultType="team">
-        select team_id,team_name
-        from team
-        where team_id=#{teamId}
-    </select>
-
-    <select id="count" resultType="int">
-        select count(*)
-        from team
-    </select>
-
+    <!--    2. 팀 단일 조회-->
     <select id="findTeamByKeyword" resultType="team">
         select *
         from team
@@ -43,9 +27,28 @@
         </if>
     </select>
 
+<!--    <select id="findTeamByName" resultType="team">-->
+<!--        select team_id,team_name-->
+<!--        from team-->
+<!--        where team_name like concat('%',#{teamName},'%')-->
+
+<!--    </select>-->
+
+<!--    <select id="findOneTeamById" resultType="team">-->
+<!--        select team_id,team_name-->
+<!--        from team-->
+<!--        where team_id=#{teamId}-->
+<!--    </select>-->
+
+    <select id="count" resultType="int">
+        select count(*)
+        from team
+    </select>
 
 
-<!--    2. 팀 단일 조회-->
+
+
+
 
 
 
