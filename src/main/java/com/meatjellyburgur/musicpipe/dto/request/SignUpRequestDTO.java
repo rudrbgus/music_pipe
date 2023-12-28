@@ -11,7 +11,6 @@ import javax.validation.constraints.Null;
 @Setter @Getter @ToString @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Builder
 public class SignUpRequestDTO {
 
