@@ -1,0 +1,25 @@
+package com.meatjellyburgur.musicpipe.service;
+
+import com.meatjellyburgur.musicpipe.dto.response.TeamDetailResponseDTO;
+import com.meatjellyburgur.musicpipe.dto.response.TeamListResponseDTO;
+import com.meatjellyburgur.musicpipe.entity.Team;
+import com.meatjellyburgur.musicpipe.repository.TeamMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class TeamService {
+    private final TeamMapper teamMapper;
+    public TeamListResponseDTO getList() {
+        List<TeamDetailResponseDTO> allTeamList = teamMapper.findAllTeam()
+                .stream()
+                .map(TeamDetailResponseDTO::new)
+                .collect(Collectors.toList());
+    }
+}
