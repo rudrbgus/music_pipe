@@ -1,6 +1,9 @@
 package com.meatjellyburgur.musicpipe.controller;
 
+import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
+import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.repository.UserMapper;
+import com.meatjellyburgur.musicpipe.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -15,7 +18,7 @@ import javax.websocket.Session;
 @Slf4j
 @RequiredArgsConstructor
 public class UserController {
-    private  final UserMapper userMapper;
+    private  final UserService userService;
     /*
         해야 될 것
         1. 회원가입
@@ -26,12 +29,12 @@ public class UserController {
 
     // 회원가입 처리
     @PostMapping("/sign-up")
-    public String signUp(){ // 파라미터로 회원가입 DTO 만들어야함
-
+    public String signUp(SignUpRequestDTO dto){ // 파라미터로 회원가입 DTO 만들어야함
 
         log.info("/members/sign-up Post");
+        boolean flag = userService.join(dto);
 
-        return "";
+        return flag ? "성공했습니다" : "실패했습니다";
     }
 
 
@@ -52,5 +55,18 @@ public class UserController {
     }
 
     // 로그아웃 요청 처리
+
+
+
+
+
+    // 개인 정보 요청
+    @GetMapping("/")
+    public String detail(String email){
+        User findUser = userService.getOne(email);
+
+        // 여기서 모델에 담아서 보내야됨.
+        return "";
+    }
 
 }
