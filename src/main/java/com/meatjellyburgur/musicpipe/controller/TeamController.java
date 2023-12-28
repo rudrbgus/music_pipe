@@ -29,9 +29,9 @@ public class TeamController {
         Page page = new Page();
         page.setPageNo(pageNo);
         page.setAmount(5);
-        TeamListResponseDTO teamListResponseDTO = teamService.getList(page);
+        TeamListResponseDTO allteamListResponseDTO = teamService.getList(page);
 
-        return ResponseEntity.ok().body(teamListResponseDTO);
+        return ResponseEntity.ok().body(allteamListResponseDTO);
     }
 
     // 팀 단일 조회
@@ -45,6 +45,11 @@ public class TeamController {
             @PathVariable int pageNo
     ) {
 
-       return null;
+        Page page = new Page();
+        page.setPageNo(pageNo);
+        page.setAmount(5);
+        TeamListResponseDTO findteamListResponseDTO = teamService.getListByKeyWord(page,type,keyWord);
+
+       return ResponseEntity.ok().body(findteamListResponseDTO);
     }
 }

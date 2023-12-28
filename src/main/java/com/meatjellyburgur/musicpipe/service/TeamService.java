@@ -35,4 +35,26 @@ public class TeamService {
                 .pageInfo(new PageMaker(page,count))
                 .build();
     }
+
+    public TeamListResponseDTO getListByKeyWord(Page page, String type, String keyWord) {
+
+        /**
+         * type=team_name(api name) 이면 이름으로 검색
+         * type=team_id(api name) 이면 아이디로 검색
+         */
+
+        List<TeamDetailResponseDTO> findTeamList = teamMapper.findTeamByKeyword(type, keyWord)
+                .stream()
+                .map(TeamDetailResponseDTO::new)
+                .collect(Collectors.toList());
+
+
+        int count=findTeamList.size();
+
+        return TeamListResponseDTO.builder()
+                .count(count)
+                .teamDetailList(findTeamList)
+                .pageInfo(new PageMaker(page,count))
+                .build();
+    }
 }
