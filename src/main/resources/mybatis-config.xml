@@ -8,9 +8,10 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     <!--    엔터티 클래스 별칭 설정하기-->
+
+
     <typeAliases>
-
-
+        <typeAlias type="com.meatjellyburgur.musicpipe.entity.User" alias="user" />
     </typeAliases>
 
     <!--   sqld을 적어둔 xml 파일의 위치를 설정-->

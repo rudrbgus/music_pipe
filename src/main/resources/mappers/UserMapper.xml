@@ -8,6 +8,7 @@
 <!--    //        insert  into  user-->
 <!--    //                (password, nickname, age, email, sex)-->
 <!--    //        values ("111","aaa",13,"aaa@naver.ocm","Female");-->
+<!--     user_id, password, nickname,age, email,sex,regdate, team_id-->
 
     <insert id="save">
         INSERT INTO user
@@ -16,6 +17,30 @@
         (#{password},#{nickname},#{age}
         ,#{email},#{sex})
     </insert>
+
+    <select id="findMember" resultType="user">
+        select
+        user_id, password, nickname,age, email,sex,regdate, team_id
+        where email = #{email}
+
+    </select>
+
+    <select id="isDuplicate" resultType="boolean">
+
+        select count(*)
+        from tbl_member
+
+        <if test="type == 'nickname'">
+            where nickname=#{keyword}
+        </if>
+
+
+        <if test="type== 'email'">
+            where email=#{keyword}
+        </if>
+
+    </select>
+
 
 
 
