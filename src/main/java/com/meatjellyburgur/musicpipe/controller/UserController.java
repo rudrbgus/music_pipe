@@ -101,7 +101,9 @@ public class UserController {
     // 팀 아이디 주면 해당하는 팀 번호를 가진 유저리스트 보내줌 (동기처리)
     @PostMapping("/team")
     public List<User> findUserByTeamId(int teamId){
+        log.info("/user/team Post !!");
         List<User> allUserByTeamId = userService.findAllUserByTeamId(teamId);
+        System.out.println(allUserByTeamId);
         return allUserByTeamId;
     }
 
