@@ -115,6 +115,14 @@
 
 <script>
 
+    const serverMessage = '${result}';
+    console.log('msg: ' + serverMessage);
+
+    if (serverMessage === 'NO_ACC') {
+        alert('회원가입부터 하세요~~ 제발~~');
+    } else if (serverMessage === 'NO_PW') {
+        alert('비밀번호가 틀렸어~~');
+    }
     $(".user").focusin(function(){
         $(".inputUserIcon").css("color", "#e74c3c");
     }).focusout(function(){

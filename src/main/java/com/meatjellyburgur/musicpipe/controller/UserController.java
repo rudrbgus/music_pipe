@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,10 +61,11 @@ public class UserController {
 
     // 로그인 검증 요청
     @PostMapping("/sign-in")
-    public String signIn(SignInRequestDTO dto, HttpServletResponse response, HttpServletRequest request){
+    public String signIn(SignInRequestDTO dto, HttpServletResponse response, HttpServletRequest request, RedirectAttributes ra){
         log.info("/user/sign-in POST!!");
         SigninResult result = userService.authenticate(dto, request, response);
         log.info("로그인 결과: {}", result);
+        ra.addFlashAttribute("result", result);
 
         if(result == SigninResult.SUCCESS){
 
@@ -73,8 +75,7 @@ public class UserController {
 
             return "redirect:/";
         }
-        request.setAttribute("result", result);
-    //        response.sendRedirect("/user/sign-in");
+
         return "redirect:/user/sign-in";
     }
 
