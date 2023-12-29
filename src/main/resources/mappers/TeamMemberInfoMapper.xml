@@ -9,13 +9,11 @@
 <!--    //                (password, nickname, age, email, sex)-->
 <!--    //        values ("111","aaa",13,"aaa@naver.ocm","Female");-->
 
-    <insert id="save">
-        INSERT INTO user
-        (password, nickname, age, email, sex)
-        VALUES
-        (#{password},#{nickname},#{age}
-        ,#{email},#{sex})
-    </insert>
+    <select id="findAllTeamMember" resultType="teammemberinfo">
+        select *
+        from team_member_info
+        where team_id=#{teamId}
+    </select>
 
 
 
