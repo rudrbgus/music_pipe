@@ -11,4 +11,6 @@ public interface PersonalAbilityMapper {
 
     List<PersonalAbility> findAll();
 
+    PersonalAbility findOne(int userId);
+
 }

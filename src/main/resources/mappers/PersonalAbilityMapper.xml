@@ -17,4 +17,11 @@
             personal_ability
     </select>
 
+    <select id="findOne" resultType="personalability">
+        select
+        user_id, equipment_id, ability
+        from personal_ability
+        WHERE user_id=#{userId}
+    </select>
+
 </mapper>

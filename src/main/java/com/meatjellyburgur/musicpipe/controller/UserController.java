@@ -3,6 +3,7 @@ package com.meatjellyburgur.musicpipe.controller;
 import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
 import com.meatjellyburgur.musicpipe.entity.User;
+import com.meatjellyburgur.musicpipe.service.InstrumentService;
 import com.meatjellyburgur.musicpipe.service.SigninResult;
 import com.meatjellyburgur.musicpipe.service.UserService;
 import com.meatjellyburgur.musicpipe.util.SignInUtils;
@@ -25,6 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
     private  final UserService userService;
+    private final InstrumentService instrumentService;
     /*
         해야 될 것
         1. 회원가입
@@ -80,9 +82,18 @@ public class UserController {
 
 
     // 개인 정보 요청
-    @GetMapping("/")
+    @PostMapping("/detail")
     public String detail(String email){
+        log.info("/user/detail POST!!");
+        log.info("유저가 준 이메일 : {}", email);
         User findUser = userService.getUser(email);
+        if(findUser == null){
+            log.info("유저를 찾지 못했습니다..");
+        }
+        int userId = findUser.getUserId();
+        instrumentService.getPersonalAbility(userId);
+
+
 
         // 여기서 모델에 담아서 보내야됨.
         return "";
