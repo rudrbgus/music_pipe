@@ -1,5 +1,6 @@
 package com.meatjellyburgur.musicpipe.entity;
 
+import com.meatjellyburgur.musicpipe.dto.request.BoardWriteRequestDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -18,6 +19,12 @@ public class EmployBoard {
     private String content;//내용
     private int viewCount; // 조회수
     private LocalDateTime regDateTime; // 작성일자시간
+
+    public EmployBoard(BoardWriteRequestDTO dto) {
+        this.title=dto.getTitle();
+        this.content=dto.getContent();
+        this.regDateTime=LocalDateTime.now();
+    }
 
 
 }
