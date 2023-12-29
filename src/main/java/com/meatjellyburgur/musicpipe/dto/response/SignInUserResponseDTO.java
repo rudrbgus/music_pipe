@@ -10,6 +10,7 @@ import lombok.*;
 @EqualsAndHashCode
 @Builder
 public class SignInUserResponseDTO {
+    private int userId;
     private String email;
     private String nickname;
     private String gender;

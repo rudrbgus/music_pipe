@@ -19,6 +19,7 @@ public class EmployBoardService {
     private final EmployBoardMapper employBoardMapper;
 
     //목록조회 중간ㅓ리
+
     public List<BoardListResponseDTO> getList(Search page){
         return employBoardMapper.findAll(page)
                 .stream()
@@ -52,4 +53,5 @@ public class EmployBoardService {
     public int getCount(Search search){
         return  employBoardMapper.count(search);
     }
+
 }

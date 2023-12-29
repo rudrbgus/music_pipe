@@ -115,6 +115,14 @@
 
 <script>
 
+    const serverMessage = '${result}';
+    console.log('msg: ' + serverMessage);
+
+    if (serverMessage === 'NO_ACC') {
+        alert('아이디가 존재하지 않습니다');
+    } else if (serverMessage === 'NO_PW') {
+        alert('비밀번호가 일치하지 않습니다.');
+    }
     $(".user").focusin(function(){
         $(".inputUserIcon").css("color", "#e74c3c");
     }).focusout(function(){
