@@ -19,10 +19,10 @@
     </insert>
 
     <select id="findUser" resultType="user">
-        select
-        user_id, password, nickname,age, email,sex,regdate, team_id
-        from user
-        where email = #{email}
+        SELECT
+            user_id, password, nickname, age, email,sex, regdate, team_id
+        FROM user
+        WHERE email = #{email}
 
     </select>
 

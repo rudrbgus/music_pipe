@@ -10,10 +10,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 public class InstrumentService {
-    private PersonalAbilityMapper mapper;
+    private final PersonalAbilityMapper mapper;
 
-    public void getPersonalAbility(int userId){
+    public PersonalAbility getPersonalAbility(int userId){
         PersonalAbility one = mapper.findOne(userId);
-        System.out.println(one);
+        return one;
+
     }
 }

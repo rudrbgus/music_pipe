@@ -2,6 +2,7 @@ package com.meatjellyburgur.musicpipe.controller;
 
 import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
+import com.meatjellyburgur.musicpipe.entity.PersonalAbility;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.service.InstrumentService;
 import com.meatjellyburgur.musicpipe.service.SigninResult;
@@ -87,12 +88,11 @@ public class UserController {
         log.info("/user/detail POST!!");
         log.info("유저가 준 이메일 : {}", email);
         User findUser = userService.getUser(email);
-        if(findUser == null){
-            log.info("유저를 찾지 못했습니다..");
-        }
-        int userId = findUser.getUserId();
-        instrumentService.getPersonalAbility(userId);
+        log.info("유저 아이디: " + findUser.getUserId());
 
+        PersonalAbility personalAbility = instrumentService.getPersonalAbility(findUser.getUserId());
+
+        System.out.println(personalAbility);
 
 
         // 여기서 모델에 담아서 보내야됨.
