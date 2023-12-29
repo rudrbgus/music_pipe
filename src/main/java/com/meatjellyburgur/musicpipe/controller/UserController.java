@@ -73,8 +73,9 @@ public class UserController {
 
             return "redirect:/";
         }
-
-        return "/User/sign-in";
+        request.setAttribute("result", result);
+    //        response.sendRedirect("/user/sign-in");
+        return "redirect:/user/sign-in";
     }
 
     // 로그아웃 요청 처리
