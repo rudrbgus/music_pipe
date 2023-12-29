@@ -103,6 +103,7 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<?> duplicate(String type, String keyword) {
         boolean duplicate = userService.duplicate(type, keyword);
+        log.info(duplicate+"");
         return ResponseEntity.ok().body(duplicate);
     }
 
