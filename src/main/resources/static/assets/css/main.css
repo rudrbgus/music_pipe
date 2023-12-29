@@ -216,4 +216,16 @@ button {
     width: 100%;
     height: 300px;
 }
+.box {
+    display: flex; /* 가로 정렬을 위해 flex 사용 */
+    align-items: center; /* 수직 중앙 정렬 */
+}
+
+.radiobtn {
+    /*margin-right: 10px; !* 각 라디오 버튼 간의 간격 설정 (원하는 간격으로 조절) *!*/
+    color: white;text-align: left;
+}
+label.radiobtn {
+    margin-right: 150px;
+}
 
