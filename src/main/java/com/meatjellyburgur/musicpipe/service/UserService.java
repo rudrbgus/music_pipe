@@ -66,4 +66,9 @@ public class UserService {
         session.setAttribute(SignInUtils.LOGIN_KEY, dto);
         session.setMaxInactiveInterval(60 * 60);
     }
+
+    public boolean duplicate(String type, String keyword) {
+        boolean duplicate = userMapper.isDuplicate(type, keyword);
+        return duplicate;
+    }
 }

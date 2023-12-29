@@ -8,6 +8,7 @@ import com.meatjellyburgur.musicpipe.service.UserService;
 import com.meatjellyburgur.musicpipe.util.SignInUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -87,6 +88,14 @@ public class UserController {
 
         // 여기서 모델에 담아서 보내야됨.
         return "";
+    }
+
+
+    // 회원가입 중복 검사
+    @PostMapping("/check")
+    public ResponseEntity<?> duplicate(String type, String keyword){
+        boolean duplicate = userService.duplicate(type, keyword);
+        return ResponseEntity.ok().body(duplicate);
     }
 
 }
