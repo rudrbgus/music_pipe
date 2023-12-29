@@ -63,6 +63,7 @@ public class UserService {
     public void maintainLoginState(HttpSession session, String email) {
         User user = getUser(email);
         SignInUserResponseDTO dto = SignInUserResponseDTO.builder()
+                .userId(user.getUserId())
                 .age(user.getAge())
                 .email(user.getEmail())
                 .gender(user.getSex())
