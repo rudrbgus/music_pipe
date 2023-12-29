@@ -20,4 +20,11 @@
         limit #{pageStart},#{amount}
     </select>
 
+    <insert id="save">
+        insert into employboard
+        (title,content,user_id)
+        values
+        (#{title},#{content},#{userId})
+    </insert>
+
 </mapper>
