@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.util.List;
+
 import static com.meatjellyburgur.musicpipe.service.SigninResult.*;
 
 @Service
@@ -24,12 +26,14 @@ public class UserService {
     private final UserMapper userMapper;
     private final PasswordEncoder encoder;
 
+    // 이메일 주면 해당하는 유저 보내줌
     public User getUser(String email) {
         // 여기서 찾기
         User user = userMapper.findUser(email);
         return user;
     }
 
+    // 회원가입
     public boolean join(SignUpRequestDTO dto) {
         return userMapper.save(dto.toEntity(encoder));
 
@@ -55,6 +59,7 @@ public class UserService {
         return SUCCESS;
     }
 
+    // 유저 클라이언트에 session에 dto 넣어줌
     public void maintainLoginState(HttpSession session, String email) {
         User user = getUser(email);
         SignInUserResponseDTO dto = SignInUserResponseDTO.builder()
@@ -67,8 +72,13 @@ public class UserService {
         session.setMaxInactiveInterval(60 * 60);
     }
 
+    // 이메일, 아이디 중복검사
     public boolean duplicate(String type, String keyword) {
         boolean duplicate = userMapper.isDuplicate(type, keyword);
         return duplicate;
+    }
+
+    public List<User> findAllUserByTeamId(int teamId){
+        return userMapper.findUseByTeamId(teamId);
     }
 }

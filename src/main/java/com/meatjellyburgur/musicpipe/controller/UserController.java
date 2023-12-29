@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -78,9 +79,6 @@ public class UserController {
     // 로그아웃 요청 처리
 
 
-
-
-
     // 개인 정보 요청
     @GetMapping("/")
     public String detail(String email){
@@ -93,9 +91,19 @@ public class UserController {
 
     // 회원가입 중복 검사
     @PostMapping("/check")
-    public ResponseEntity<?> duplicate(String type, String keyword){
+    public ResponseEntity<?> duplicate(String type, String keyword) {
         boolean duplicate = userService.duplicate(type, keyword);
         return ResponseEntity.ok().body(duplicate);
     }
+
+
+
+    // 팀 아이디 주면 해당하는 팀 번호를 가진 유저리스트 보내줌 (동기처리)
+    @PostMapping("/team")
+    public List<User> findUserByTeamId(int teamId){
+        List<User> allUserByTeamId = userService.findAllUserByTeamId(teamId);
+        return allUserByTeamId;
+    }
+
 
 }
