@@ -12,9 +12,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,7 +38,7 @@ public class UserController {
     // 회원가입 처리
     @PostMapping("/sign-up")
     public String signUp(SignUpRequestDTO dto){ // 파라미터로 회원가입 DTO 만들어야함
-        log.info("/members/sign-up Post");
+        log.info("/user/sign-up Post");
         boolean flag = userService.join(dto);
         log.info("회원가입에 " + (flag?"성공했습니다":"실패했습니다"));
         return "/index";
@@ -47,7 +46,7 @@ public class UserController {
     // 회원 가입 양식 요청
     @GetMapping("/sign-up")
     public String signUp(){
-        log.info("/members/sign-up Get");
+        log.info("/user/sign-up Get");
 
         return "/User/sign-up";
     }
@@ -55,17 +54,18 @@ public class UserController {
     // 로그인 양식 요청
     @GetMapping("/sign-in")
     public String signIn(){ // 세션 받아야함 파라미터로
-        log.info("/members/sign-in GET!!");
+        log.info("/user/sign-in GET!!");
 
         return "/User/sign-in";
     }
 
     // 로그인 검증 요청
     @PostMapping("/sign-in")
-    public String signIn(SignInRequestDTO dto, HttpServletResponse response, HttpServletRequest request){
-        log.info("/members/sign-in POST!!");
+    public String signIn(SignInRequestDTO dto, HttpServletResponse response, HttpServletRequest request, RedirectAttributes ra){
+        log.info("/user/sign-in POST!!");
         SigninResult result = userService.authenticate(dto, request, response);
         log.info("로그인 결과: {}", result);
+        ra.addFlashAttribute("result", result);
 
         if(result == SigninResult.SUCCESS){
 
@@ -76,7 +76,7 @@ public class UserController {
             return "redirect:/";
         }
 
-        return "/User/sign-in";
+        return "redirect:/user/sign-in";
     }
 
     // 로그아웃 요청 처리
@@ -101,9 +101,11 @@ public class UserController {
 
 
     // 회원가입 중복 검사
-    @PostMapping("/check")
+    @GetMapping("/check")
+    @ResponseBody
     public ResponseEntity<?> duplicate(String type, String keyword) {
         boolean duplicate = userService.duplicate(type, keyword);
+        log.info(duplicate+"");
         return ResponseEntity.ok().body(duplicate);
     }
 

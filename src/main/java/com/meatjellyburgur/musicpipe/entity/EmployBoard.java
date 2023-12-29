@@ -1,6 +1,9 @@
 package com.meatjellyburgur.musicpipe.entity;
 
+import com.meatjellyburgur.musicpipe.dto.request.BoardWriteRequestDTO;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Setter @Getter
 @ToString @EqualsAndHashCode
@@ -12,6 +15,16 @@ public class EmployBoard {
     private int user_id;
     private String place;
     private int on_off;
+    private String title;
+    private String content;//내용
+    private int viewCount; // 조회수
+    private LocalDateTime regDateTime; // 작성일자시간
+
+    public EmployBoard(BoardWriteRequestDTO dto) {
+        this.title=dto.getTitle();
+        this.content=dto.getContent();
+        this.regDateTime=LocalDateTime.now();
+    }
 
 
 }
