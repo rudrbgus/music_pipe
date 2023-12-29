@@ -2,12 +2,15 @@ package com.meatjellyburgur.musicpipe.controller;
 
 import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
+import com.meatjellyburgur.musicpipe.entity.PersonalAbility;
 import com.meatjellyburgur.musicpipe.entity.User;
+import com.meatjellyburgur.musicpipe.service.InstrumentService;
 import com.meatjellyburgur.musicpipe.service.SigninResult;
 import com.meatjellyburgur.musicpipe.service.UserService;
 import com.meatjellyburgur.musicpipe.util.SignInUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -23,6 +27,7 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class UserController {
     private  final UserService userService;
+    private final InstrumentService instrumentService;
     /*
         해야 될 것
         1. 회원가입
@@ -77,16 +82,41 @@ public class UserController {
     // 로그아웃 요청 처리
 
 
-
-
-
     // 개인 정보 요청
-    @GetMapping("/")
+    @PostMapping("/detail")
     public String detail(String email){
+        log.info("/user/detail POST!!");
+        log.info("유저가 준 이메일 : {}", email);
         User findUser = userService.getUser(email);
+        log.info("유저 아이디: " + findUser.getUserId());
+
+        PersonalAbility personalAbility = instrumentService.getPersonalAbility(findUser.getUserId());
+
+        System.out.println(personalAbility);
+
 
         // 여기서 모델에 담아서 보내야됨.
         return "";
     }
+
+
+    // 회원가입 중복 검사
+    @PostMapping("/check")
+    public ResponseEntity<?> duplicate(String type, String keyword) {
+        boolean duplicate = userService.duplicate(type, keyword);
+        return ResponseEntity.ok().body(duplicate);
+    }
+
+
+
+    // 팀 아이디 주면 해당하는 팀 번호를 가진 유저리스트 보내줌 (동기처리)
+    @PostMapping("/team")
+    public List<User> findUserByTeamId(int teamId){
+        log.info("/user/team Post !!");
+        List<User> allUserByTeamId = userService.findAllUserByTeamId(teamId);
+        System.out.println(allUserByTeamId);
+        return allUserByTeamId;
+    }
+
 
 }

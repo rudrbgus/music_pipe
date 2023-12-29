@@ -9,9 +9,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PersonalAbility {
-    private int user_id;
-    private  int equipment_id;
+public class PersonalAbility{
+    private int userId;
+    private int equipmentId;
     private String ability;
 
 

@@ -5,6 +5,8 @@ import com.meatjellyburgur.musicpipe.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 
 @Mapper
 public interface UserMapper {
@@ -24,6 +26,8 @@ public interface UserMapper {
      */
 
     boolean isDuplicate(@Param("type") String type, @Param("keyword") String keyword);
+
+    List<User> findUseByTeamId(int teamId);
 
 
 }
