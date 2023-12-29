@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.meatjellyburgur.musicpipe.repository.EmployBoardMapper">
+
+
+    <select id="findAll" resultType="employboard">
+        select * from employboard
+        <if test="type == 'position'">
+            select E.board_id,E.on_off,E.place,P.position
+            from employ_board E
+            inner  join need_equipment N
+            on N.position_id=#{position_id} and N.board_id=E.board_id
+            inner  join position P
+            on P.position_id=#{position_id}
+        </if>
+
+        order by board_no desc
+        limit #{pageStart},#{amount}
+    </select>
+
+</mapper>
