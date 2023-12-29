@@ -4,14 +4,17 @@
 
 <mapper namespace="com.meatjellyburgur.musicpipe.repository.PersonalAbilityMapper">
     <insert id="save">
-        INSERT into personal_ability
+        INSERT INTO personal_ability
             (user_id, equipment_id, ability)
         VALUES
             (#{userId}, #{equipmentId}, #{ability})
     </insert>
 
-    <select id="findAll" resultType="">
-
+    <select id="findAll" resultType="personalability">
+        select
+            user_id, equipment_id, ability
+        from
+            personal_ability
     </select>
 
 </mapper>

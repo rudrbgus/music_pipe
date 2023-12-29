@@ -1,9 +1,14 @@
 package com.meatjellyburgur.musicpipe.repository;
 
+import com.meatjellyburgur.musicpipe.entity.PersonalAbility;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,14 +19,24 @@ class PersonalAbilityMapperTest {
     PersonalAbilityMapper mapper;
 
 
+    @Transactional
+    @Rollback
     @Test
-    @DisplayName("값이 넣어질 것이다 ")
-    void () {
+    @DisplayName("1개의 값을 넣으면 1개가 조회된다")
+    void saveTestAndFindAllTest() {
         //given
-
+        PersonalAbility build = PersonalAbility.builder().userId(11)
+                .equipmentId(3)
+                .ability("고수")
+                .build();
         //when
+        mapper.save(build);
+
 
         //then
+        List<PersonalAbility> all = mapper.findAll();
+
+        assertEquals(1, all.size());
     }
 
 
