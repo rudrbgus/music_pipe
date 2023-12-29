@@ -2,21 +2,26 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.meatjellyburgur.musicpipe.repository.UserMapper">
-
-
-<!--    //        insert  into  user-->
-<!--    //                (password, nickname, age, email, sex)-->
-<!--    //        values ("111","aaa",13,"aaa@naver.ocm","Female");-->
-
+<mapper namespace="com.meatjellyburgur.musicpipe.repository.PersonalAbilityMapper">
     <insert id="save">
-        INSERT INTO user
-        (password, nickname, age, email, sex)
+        INSERT INTO personal_ability
+            (user_id, equipment_id, ability)
         VALUES
-        (#{password},#{nickname},#{age}
-        ,#{email},#{sex})
+            (#{userId}, #{equipmentId}, #{ability})
     </insert>
 
+    <select id="findAll" resultType="personalability">
+        select
+            user_id, equipment_id, ability
+        from
+            personal_ability
+    </select>
 
+    <select id="findOne" resultType="personalability">
+        select
+        user_id, equipment_id, ability
+        from personal_ability
+        WHERE user_id=#{userId}
+    </select>
 
 </mapper>

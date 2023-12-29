@@ -16,9 +16,9 @@ public interface TeamMapper {
     List<Team> findAllTeam();
 
 
-//    List<Team> findTeamByName(String teamName);
-//
-//   Team findOneTeamById(int teamId);
+    List<Team> findTeamByName(String teamName);
+
+    Team findOneTeamById(int teamId);
 
 
     int count();
