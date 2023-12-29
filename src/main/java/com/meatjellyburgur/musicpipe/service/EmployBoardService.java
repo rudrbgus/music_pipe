@@ -17,10 +17,10 @@ public class EmployBoardService {
     private final EmployBoardMapper employBoardMapper;
 
     //목록조회 중간ㅓ리
-    public List<BoardListResponseDTO> getList(Search page){
-        return boardRepositoty.findAll(page)
-                .stream()
-                .map(BoardListResponseDTO::new)
-                .collect(Collectors.toList());
-    }
+//    public List<BoardListResponseDTO> getList(Search page){
+//        return employBoardMapper.findAll(page)
+//                .stream()
+//                .map(BoardListResponseDTO::new)
+//                .collect(Collectors.toList());
+    //}
 }

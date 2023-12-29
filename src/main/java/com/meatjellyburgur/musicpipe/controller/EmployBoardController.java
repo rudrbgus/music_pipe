@@ -2,6 +2,7 @@ package com.meatjellyburgur.musicpipe.controller;
 
 import com.meatjellyburgur.musicpipe.common.PageMaker;
 import com.meatjellyburgur.musicpipe.common.Search;
+import com.meatjellyburgur.musicpipe.dto.response.BoardListResponseDTO;
 import com.meatjellyburgur.musicpipe.service.EmployBoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,13 +28,13 @@ public class EmployBoardController {
     //@ModelAttribute("s")  프론트에서 검색 페이지 조건 보내주는 api 밧
     @GetMapping("/list")
     public String list(@ModelAttribute("s") Search page, Model model){
-        List<BoardListResponseDTO> dtoList = employBoardService.getList(page);
+        //List<BoardListResponseDTO> dtoList = employBoardService.getList(page);
         //페이징 계산 알고리즘 적용
-        PageMaker pageMaker = new PageMaker(page, employBoardService.getCount(page));
+        //PageMaker pageMaker = new PageMaker(page, employBoardService.getCount(page));
         log.info("/board/list GET!");
         log.debug("pageNo{},amount{}",page.getPageNo(),page.getAmount());
-        model.addAttribute("bList",dtoList);
-        model.addAttribute("maker",pageMaker);
+        //model.addAttribute("bList",dtoList);
+        //model.addAttribute("maker",pageMaker);
         //model.addAttribute("s",page);
         return "chap05/list";
     }

@@ -137,7 +137,7 @@
 
 <script>
     // 입력값 검증 통과 여부 배열
-    const checkResultList = [true, false, false, false, false];
+    const checkResultList = [false, false, false, false, false];
     // 이메일 검사 정규표현식
     const emailPattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 
@@ -160,9 +160,10 @@
                 = '<b style="color: red;">[이메일 형식을 지켜주세요~]</b>';
             checkResultList[0] = false;
         } else {
-            fetch(`/user/check?type=email&keyword=${emailValue}`)
+            fetch('/user/check?type=email&keyword='+emailValue)
                 .then(res => res.json())
                 .then(flag => {
+                    console.log(flag);
                     if (flag) { // 중복
                         $emailInput.style.borderColor = 'red';
                         document.getElementById('emailChk').innerHTML
