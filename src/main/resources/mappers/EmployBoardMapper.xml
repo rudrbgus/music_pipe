@@ -6,25 +6,43 @@
 
 
     <select id="findAll" resultType="employboard">
-        select * from employboard
+        select * from employ_board
         <if test="type == 'position'">
             select E.board_id,E.on_off,E.place,P.position
             from employ_board E
             inner  join need_equipment N
-            on N.position_id=#{position_id} and N.board_id=E.board_id
+            on N.position_id=#{positionId} and N.board_id=E.board_id
             inner  join position P
-            on P.position_id=#{position_id}
+            on P.position_id=#{positionId}
         </if>
 
-        order by board_no desc
+        order by board_id desc
         limit #{pageStart},#{amount}
     </select>
-
+<!--    INSERT INTO music_pipe_db.employ_board (user_id, place, on_off, title, content, view_count, reg_date) VALUES (null, null, null, null, null, DEFAULT, DEFAULT)-->
     <insert id="save">
-        insert into employboard
-        (title,content,user_id)
-        values
-        (#{title},#{content},#{userId})
+        insert into employ_board
+        (user_id, place, on_off, title, content)
+        VALUES (#{userId},#{place},#{onOff}, #{title}, #{content})
     </insert>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM employ_board
+<!--        <if test="type == 'title'">-->
+<!--            where title like concat('%',#{keyword},'%')-->
+
+<!--        </if>-->
+<!--        <if test="type == 'content'">-->
+<!--            where content like concat('%',#{keyword},'%')-->
+
+<!--        </if>-->
+<!--        <if test="type == 'tc'">-->
+<!--            where title like concat('%',#{keyword},'%')-->
+<!--            or content like concat('%',#{keyword},'%')-->
+
+<!--        </if>-->
+
+    </select>
+
 
 </mapper>

@@ -38,14 +38,14 @@ public class EmployBoardController {
 //    }
     @GetMapping("/list")
     public String list(@ModelAttribute("s") Search page, Model model){
-        //List<BoardListResponseDTO> dtoList = employBoardService.getList(page);
+        List<BoardListResponseDTO> dtoList = employBoardService.getList(page);
         //페이징 계산 알고리즘 적용
-        //PageMaker pageMaker = new PageMaker(page, employBoardService.getCount(page));
+        PageMaker pageMaker = new PageMaker(page, employBoardService.getCount(page));
         log.info("/board/list GET!");
         log.debug("pageNo{},amount{}",page.getPageNo(),page.getAmount());
-        //model.addAttribute("bList",dtoList);
-        //model.addAttribute("maker",pageMaker);
-        //model.addAttribute("s",page);
+        model.addAttribute("bList",dtoList);
+        model.addAttribute("maker",pageMaker);
+        model.addAttribute("s",page);
         return "board/together";
     }
 

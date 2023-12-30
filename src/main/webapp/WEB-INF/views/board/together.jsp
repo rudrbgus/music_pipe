@@ -38,19 +38,20 @@
 
     <div class="card-container">
 
-        <c:forEach var="b" items=""><%--게시글 리스트 --%>
+        <c:forEach var="b" items="${bList}"><%--게시글 리스트 --%>
             <div class="card-wrapper">
-                <section class="card" data-bno="<%-- 게시글 번호 --%>">
+                <section class="card" data-bno="${b.boardId}">
                     <div class="card-title-wrapper">
-                        <h2 class="card-title"><%-- 제목 --%></h2>
+                        <h2 class="card-title">${b.title}<%-- 제목 --%></h2>
                         <div class="time-wrapper">
                             <div class="time">
                                 <i class="far fa-clock"></i>
-                                    <%-- 생성 날짜 --%>
+                                    ${b.regDateTime} <%-- 생성 날짜 --%>
                             </div>
                         </div>
                     </div>
                     <div class="card-content">
+                            ${b.content}
                             <%-- 악기 아이콘 --%>
                     </div>
                 </section>
@@ -62,36 +63,36 @@
     <div class="bottom-section">
 
 <%--        <!-- 페이지 버튼 영역 -->--%>
-<%--        <nav aria-label="Page navigation example">--%>
-<%--            <ul class="pagination pagination-lg pagination-custom">--%>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination pagination-lg pagination-custom">
 
-<%--                <c:if test="${maker.page.pageNo != 1}">--%>
-<%--                    <li class="page-item"><a class="page-link" href="/board/list?pageNo=1&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&lt;&lt;</a></li>--%>
-<%--                </c:if>--%>
+                <c:if test="${maker.page.pageNo != 1}">
+                    <li class="page-item"><a class="page-link" href="/board/list?pageNo=1&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&lt;&lt;</a></li>
+                </c:if>
 
-<%--                <c:if test="${maker.prev}">--%>
-<%--                    <li class="page-item"><a class="page-link" href="/board/list?pageNo=${maker.begin - 1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">prev</a>--%>
-<%--                    </li>--%>
-<%--                </c:if>--%>
+                <c:if test="${maker.prev}">
+                    <li class="page-item"><a class="page-link" href="/board/list?pageNo=${maker.begin - 1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">prev</a>
+                    </li>
+                </c:if>
 
-<%--                <c:forEach var="i" begin="${maker.begin}" end="${maker.end}" step="1">--%>
-<%--                    <li data-page-num="${i}" class="page-item">--%>
-<%--                        <a class="page-link" href="/board/list?pageNo=${i}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">${i}</a>--%>
-<%--                    </li>--%>
-<%--                </c:forEach>--%>
+                <c:forEach var="i" begin="${maker.begin}" end="${maker.end}" step="1">
+                    <li data-page-num="${i}" class="page-item">
+                        <a class="page-link" href="/board/list?pageNo=${i}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">${i}</a>
+                    </li>
+                </c:forEach>
 
 
-<%--                <c:if test="${maker.next}">--%>
-<%--                    <li class="page-item"><a class="page-link" href="/board/list?pageNo=${maker.end + 1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">next</a></li>--%>
-<%--                </c:if>--%>
+                <c:if test="${maker.next}">
+                    <li class="page-item"><a class="page-link" href="/board/list?pageNo=${maker.end + 1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">next</a></li>
+                </c:if>
 
-<%--                <c:if test="${maker.page.pageNo != maker.finalPage}">--%>
-<%--                    <li class="page-item"><a class="page-link" href="/board/list?pageNo=${maker.finalPage}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&gt;&gt;</a>--%>
-<%--                    </li>--%>
-<%--                </c:if>--%>
+                <c:if test="${maker.page.pageNo != maker.finalPage}">
+                    <li class="page-item"><a class="page-link" href="/board/list?pageNo=${maker.finalPage}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&gt;&gt;</a>
+                    </li>
+                </c:if>
 
-<%--            </ul>--%>
-<%--        </nav>--%>
+            </ul>
+        </nav>
 
     </div>
 </div>
