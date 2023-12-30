@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+import static com.meatjellyburgur.musicpipe.util.SignInUtils.*;
+
 @Controller
 @RequestMapping("/user")
 @Slf4j
@@ -29,9 +31,9 @@ public class UserController {
     private final InstrumentService instrumentService;
     /*
         해야 될 것
-        1. 회원가입
-        2. 회원 이메일 , 닉네임 중복 검증 요청
-        3. 로그인 요청
+        1. 회원가입 (○)
+        2. 회원 이메일 , 닉네임 중복 검증 요청 (○)
+        3. 로그인 요청 (○)
         3. 로그아웃 요청 처리
      */
 
@@ -79,7 +81,7 @@ public class UserController {
         return "redirect:/user/sign-in";
     }
 
-    // 로그아웃 요청 처리
+
 
 
     // 개인 정보 요청
@@ -120,5 +122,35 @@ public class UserController {
         return allUserByTeamId;
     }
 
+    // 로그아웃 요청 처리
+    @GetMapping("/sign-out")
+    public String signOut(
+            HttpServletRequest request
+            , HttpServletResponse response
+            // HttpSession session
+    ) {
+        // 세션 얻기
+        HttpSession session = request.getSession();
+
+        // 로그인 상태인지 확인
+        if (isLogin(session)) {
+
+            // 자동 로그인 상태인지도 확인
+//            if (SignInUtils.(request)) {
+//                // 쿠키를 삭제해주고 디비데이터도 원래대로 돌려놓는다.
+//                memberService.autoLoginClear(request, response);
+//            }
+
+            // 세션에서 로그인 정보 기록 삭제
+            session.removeAttribute(LOGIN_KEY);
+
+            // 세션을 초기화(RESET)
+            session.invalidate();
+
+            return "redirect:/";
+        }
+        return "redirect:/members/sign-in";
+
+    }
 
 }
