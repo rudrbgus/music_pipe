@@ -3,6 +3,7 @@ package com.meatjellyburgur.musicpipe.service;
 import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
+import com.meatjellyburgur.musicpipe.entity.PersonalAbility;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.repository.PersonalAbilityMapper;
 import com.meatjellyburgur.musicpipe.repository.UserMapper;
@@ -86,7 +87,7 @@ public class UserService {
     }
 
     public void findAllUserByInstrumentId(int equipmentId) {
-        mapper.findAll()
-        return
+        mapper.findOne(equipmentId);
+
     }
 }

@@ -24,4 +24,11 @@
         WHERE user_id=#{userId}
     </select>
 
+    <select id="findUserByEquipmentId" resultType="personalability">
+        SELECT
+            user_id, equipment_id, ability
+        FROM personal_ability
+        WHERE equipment_id = #{equipmentId}
+    </select>
+
 </mapper>

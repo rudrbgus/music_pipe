@@ -5,6 +5,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.beans.Transient;
 
 import static com.meatjellyburgur.musicpipe.entity.Sex.Female;
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,6 +33,23 @@ class UserMapperTest {
         boolean flag = mapper.save(user);
         assertTrue(flag);
     }
+
+    @Test
+    @DisplayName("User 100개를 넣으면 100개가 조회된다")
+    void saveAllTest(){
+        for (int i = 0; i < 100; i++) {
+            User male = User.builder()
+                    .sex("Male")
+                    .age(i)
+                    .email("test" + i + "@naver.com")
+                    .nickname("test" + i)
+                    .password("1234")
+                    .build();
+            mapper.save(male);
+        }
+        assertEquals(100, mapper.findUseByTeamId(0).size());
+    }
+
 
     @Test
     @DisplayName("db에 있는 이메일을 입력하면, user 정보가 나온다")

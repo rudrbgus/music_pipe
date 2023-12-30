@@ -23,8 +23,9 @@
             user_id, password, nickname, age, email,sex, regdate, team_id
         FROM user
         WHERE email = #{email}
-
     </select>
+
+
 
     <select id="isDuplicate" resultType="boolean">
 
