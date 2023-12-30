@@ -11,12 +11,12 @@
             </a>
         </h1>
 
-        <div class="search">
-            <input type="text" class="form-control" name="keyword" value="${s.keyword}">
+        <form action="/user/list" class="search" method="POST">
+            <input type="text" class="form-control" name="equipmentId">
             <button class="btn btn-primary" type="submit">
                 <i class="fas fa-search"></i>
             </button>
-        </div>
+        </form>
 
         <a href="#" class="menu-open">
             <span class="lnr lnr-menu"></span>

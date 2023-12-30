@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -156,6 +157,14 @@ public class UserController {
         List<User> allUserByTeamId = userService.findAllUserByTeamId(teamId);
         System.out.println(allUserByTeamId);
         return allUserByTeamId;
+    }
+
+    @PostMapping("/list")
+    public String showList(int equipmentId, Model model){
+        log.info("/user/list Post!!!");
+        List<User> allUserByInstrumentId = userService.findAllUserByInstrumentId(equipmentId);
+        model.addAttribute("user", allUserByInstrumentId);
+        return "/User/user-list";
     }
 
 }
