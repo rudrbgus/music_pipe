@@ -2,6 +2,7 @@ package com.meatjellyburgur.musicpipe.controller;
 
 import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
+import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
 import com.meatjellyburgur.musicpipe.entity.PersonalAbility;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.service.InstrumentService;
@@ -112,20 +113,20 @@ public class UserController {
 
 
     // 개인 정보 요청
-    @PostMapping("/detail")
+    @RequestMapping("/detail")
     public String detail(String email){
-        log.info("/user/detail POST!!");
-        log.info("유저가 준 이메일 : {}", email);
-        User findUser = userService.getUser(email);
-        log.info("유저 아이디: " + findUser.getUserId());
-
-        PersonalAbility personalAbility = instrumentService.getPersonalAbility(findUser.getUserId());
-
-        System.out.println(personalAbility);
+//        log.info("/user/detail POST!!");
+//        log.info("유저가 준 이메일 : {}", email);
+//        User findUser = userService.getUser(email);
+//        log.info("유저 아이디: " + findUser.getUserId());
+//
+//        PersonalAbility personalAbility = instrumentService.getPersonalAbility(findUser.getUserId());
+//
+//        System.out.println(personalAbility);
 
 
         // 여기서 모델에 담아서 보내야됨.
-        return "";
+        return "/board/write";
     }
 
 
@@ -140,13 +141,7 @@ public class UserController {
 
 
 
-    // 악기 주면 해당 악기 가진 사람 리스트 보내줌
-    @PostMapping("/instrument")
-    public List<User> findUserByInstrument(int equipmentId){
-        log.info("/user/instrument Post!!");
 
-        return userService.findAllUserByInstrumentId(equipmentId);
-    }
 
 
 
@@ -159,11 +154,13 @@ public class UserController {
         return allUserByTeamId;
     }
 
+    // 악기 주면 해당 악기 가진 사람 리스트 보내줌
     @PostMapping("/list")
     public String showList(int equipmentId, Model model){
         log.info("/user/list Post!!!");
-        List<User> allUserByInstrumentId = userService.findAllUserByInstrumentId(equipmentId);
-        model.addAttribute("user", allUserByInstrumentId);
+        log.info("insturmentId :"+ equipmentId);
+        List<FindUserResponseDTO> allUserByInstrumentId = userService.findAllUserByInstrumentId(equipmentId);
+        model.addAttribute("userList", allUserByInstrumentId);
         return "/User/user-list";
     }
 

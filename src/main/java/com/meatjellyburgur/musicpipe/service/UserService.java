@@ -2,6 +2,7 @@ package com.meatjellyburgur.musicpipe.service;
 
 import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
+import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
 import com.meatjellyburgur.musicpipe.entity.PersonalAbility;
 import com.meatjellyburgur.musicpipe.entity.User;
@@ -87,13 +88,20 @@ public class UserService {
         return userMapper.findUseByTeamId(teamId);
     }
 
-    public List<User> findAllUserByInstrumentId(int equipmentId) {
+    public List<FindUserResponseDTO> findAllUserByInstrumentId(int equipmentId) {
         List<Integer> userIdByEquipmentId = personalAbilityMapper.findUserIdByEquipmentId(equipmentId);
-        List<User> users = new ArrayList<>();
+        List<FindUserResponseDTO> users = new ArrayList<>();
         for(int i:userIdByEquipmentId){
             User userByUserId = userMapper.findUserByUserId(i);
             if(userByUserId!=null){
-                users.add(userByUserId);
+                FindUserResponseDTO build = FindUserResponseDTO.builder()
+                        .teamId(userByUserId.getTeamId())
+                        .sex(userByUserId.getSex())
+                        .regDate(userByUserId.getRegdate())
+                        .age(userByUserId.getAge())
+                        .nickname(userByUserId.getNickname())
+                        .build();
+                users.add(build);
             }
         }
         return users;
