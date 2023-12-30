@@ -50,6 +50,17 @@ class UserMapperTest {
         assertEquals(100, mapper.findUseByTeamId(0).size());
     }
 
+    @Test
+    @DisplayName("유저아이디 202을 주면 유저를 찾아내고 그 유저 닉네임이 test0 이다")
+    void findUserByUserId(){
+        //given
+        int userId = 202;
+        // when
+        User userByUserId = mapper.findUserByUserId(userId);
+
+        System.out.println(userByUserId);
+        assertEquals("test0", userByUserId.getNickname());
+    }
 
     @Test
     @DisplayName("db에 있는 이메일을 입력하면, user 정보가 나온다")

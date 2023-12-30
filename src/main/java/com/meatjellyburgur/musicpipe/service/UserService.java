@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.meatjellyburgur.musicpipe.service.SigninResult.*;
@@ -26,7 +27,7 @@ import static com.meatjellyburgur.musicpipe.service.SigninResult.*;
 @RequiredArgsConstructor
 public class UserService {
     private final UserMapper userMapper;
-    private final PersonalAbilityMapper mapper;
+    private final PersonalAbilityMapper personalAbilityMapper;
     private final PasswordEncoder encoder;
 
     // 이메일 주면 해당하는 유저 보내줌
@@ -86,8 +87,15 @@ public class UserService {
         return userMapper.findUseByTeamId(teamId);
     }
 
-    public void findAllUserByInstrumentId(int equipmentId) {
-        mapper.findOne(equipmentId);
-
+    public List<User> findAllUserByInstrumentId(int equipmentId) {
+        List<Integer> userIdByEquipmentId = personalAbilityMapper.findUserIdByEquipmentId(equipmentId);
+        List<User> users = new ArrayList<>();
+        for(int i:userIdByEquipmentId){
+            User userByUserId = userMapper.findUserByUserId(i);
+            if(userByUserId!=null){
+                users.add(userByUserId);
+            }
+        }
+        return users;
     }
 }

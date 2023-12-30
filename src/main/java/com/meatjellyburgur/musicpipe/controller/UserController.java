@@ -144,9 +144,7 @@ public class UserController {
     public List<User> findUserByInstrument(int equipmentId){
         log.info("/user/instrument Post!!");
 
-        userService.findAllUserByInstrumentId(equipmentId);
-
-        return null;
+        return userService.findAllUserByInstrumentId(equipmentId);
     }
 
 

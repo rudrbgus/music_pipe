@@ -25,6 +25,13 @@
         WHERE email = #{email}
     </select>
 
+    <select id="findUserByUserId" resultType="user">
+        SELECT
+        user_id, password, nickname, age, email,sex, regdate, team_id
+        FROM user
+        WHERE user_id = #{userId}
+    </select>
+
 
 
     <select id="isDuplicate" resultType="boolean">
