@@ -71,7 +71,6 @@ public class UserController {
 
         if(result == SigninResult.SUCCESS){
 
-
             // 세션으로 로그인 유지
             userService.maintainLoginState(request.getSession(), dto.getEmail());
 
@@ -81,7 +80,34 @@ public class UserController {
         return "redirect:/user/sign-in";
     }
 
+    // 로그아웃 요청 처리
+    @GetMapping("/sign-out")
+    public String signOut(
+            HttpServletRequest request
+            , HttpServletResponse response
+            // HttpSession session
+    ) {
+        // 세션 얻기
+        HttpSession session = request.getSession();
 
+        // 로그인 상태인지 확인
+        if (isLogin(session)) {
+            // 자동 로그인 상태인지도 확인
+//            if (SignInUtils.(request)) {
+//                // 쿠키를 삭제해주고 디비데이터도 원래대로 돌려놓는다.
+//                memberService.autoLoginClear(request, response);
+//            }
+
+            // 세션에서 로그인 정보 기록 삭제
+            session.removeAttribute(LOGIN_KEY);
+
+            // 세션을 초기화(RESET)
+            session.invalidate();
+
+            return "redirect:/";
+        }
+        return "redirect:/members/sign-in";
+    }
 
 
     // 개인 정보 요청
@@ -102,13 +128,25 @@ public class UserController {
     }
 
 
-    // 회원가입 중복 검사
+    // 회원가입 중복 검사 -> 비동기 처리
     @GetMapping("/check")
     @ResponseBody
     public ResponseEntity<?> duplicate(String type, String keyword) {
         boolean duplicate = userService.duplicate(type, keyword);
         log.info(duplicate+"");
         return ResponseEntity.ok().body(duplicate);
+    }
+
+
+
+    // 악기 주면 해당 악기 가진 사람 리스트 보내줌
+    @PostMapping("/instrument")
+    public List<User> findUserByInstrument(int equipmentId){
+        log.info("/user/instrument Post!!");
+
+        userService.findAllUserByInstrumentId(equipmentId);
+
+        return null;
     }
 
 
@@ -120,37 +158,6 @@ public class UserController {
         List<User> allUserByTeamId = userService.findAllUserByTeamId(teamId);
         System.out.println(allUserByTeamId);
         return allUserByTeamId;
-    }
-
-    // 로그아웃 요청 처리
-    @GetMapping("/sign-out")
-    public String signOut(
-            HttpServletRequest request
-            , HttpServletResponse response
-            // HttpSession session
-    ) {
-        // 세션 얻기
-        HttpSession session = request.getSession();
-
-        // 로그인 상태인지 확인
-        if (isLogin(session)) {
-
-            // 자동 로그인 상태인지도 확인
-//            if (SignInUtils.(request)) {
-//                // 쿠키를 삭제해주고 디비데이터도 원래대로 돌려놓는다.
-//                memberService.autoLoginClear(request, response);
-//            }
-
-            // 세션에서 로그인 정보 기록 삭제
-            session.removeAttribute(LOGIN_KEY);
-
-            // 세션을 초기화(RESET)
-            session.invalidate();
-
-            return "redirect:/";
-        }
-        return "redirect:/members/sign-in";
-
     }
 
 }

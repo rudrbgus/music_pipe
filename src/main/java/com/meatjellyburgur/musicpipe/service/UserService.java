@@ -4,6 +4,7 @@ import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
 import com.meatjellyburgur.musicpipe.entity.User;
+import com.meatjellyburgur.musicpipe.repository.PersonalAbilityMapper;
 import com.meatjellyburgur.musicpipe.repository.UserMapper;
 import com.meatjellyburgur.musicpipe.util.SignInUtils;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ import static com.meatjellyburgur.musicpipe.service.SigninResult.*;
 @RequiredArgsConstructor
 public class UserService {
     private final UserMapper userMapper;
+    private final PersonalAbilityMapper mapper;
     private final PasswordEncoder encoder;
 
     // 이메일 주면 해당하는 유저 보내줌
@@ -81,5 +83,10 @@ public class UserService {
 
     public List<User> findAllUserByTeamId(int teamId){
         return userMapper.findUseByTeamId(teamId);
+    }
+
+    public void findAllUserByInstrumentId(int equipmentId) {
+        mapper.findAll()
+        return
     }
 }
