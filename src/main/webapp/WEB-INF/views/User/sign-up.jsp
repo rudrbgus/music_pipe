@@ -32,7 +32,7 @@
         }
 
         body {
-            background: #272125;
+            background: #777777;
             font-family: 'Roboto', sans-serif;
             padding-top: 150px;
             overflow: hidden;
@@ -112,11 +112,11 @@
             font-size: 13px;
         }
         .select input[type=radio]+label{
-            background-color: #fff;
-            color: #333;
+            background-color: #000;
+            color: #ffffff;
         }
         .select input[type=radio]:checked+label{
-            background-color: #333;
+            background-color: #e74c3c;
             color: #fff;
         }
 
@@ -161,6 +161,7 @@
                 value='female'>
         <label for="female" class="radiobtn">여성</label>
     </div>
+    <span id="sexChk"></span>
     <%--    <input name="sex" type="String" class="sex" placeholder="gender" />--%>
     <button type="button" value="sign-up" id="signup-btn">sign-up</button>
 </form>
@@ -259,10 +260,22 @@
                 = '<b style="color: red;">[이름은 한글 6글자 영어 12글자까지 허용입니다.]</b>';
             checkResultList[2] = false;
         } else {
-            $nameInput.style.borderColor = 'skyblue';
-            document.getElementById('nicknameChk').innerHTML
-                = '<b style="color: skyblue;">[사용가능한 이름입니다.]</b>';
-            checkResultList[2] = true;
+            fetch('/user/check?type=nickname&keyword='+nameValue)
+                .then(res => res.json())
+                .then(flag => {
+                    console.log(flag);
+                    if (flag) { // 중복
+                        $emailInput.style.borderColor = 'red';
+                        document.getElementById('nicknameChk').innerHTML
+                            = '<b style="color: red;">[이름이 중복되었습니다.]</b>';
+                        checkResultList[2] = false;
+                    } else {
+                        $emailInput.style.borderColor = 'skyblue';
+                        document.getElementById('nicknameChk').innerHTML
+                            = '<b style="color: skyblue;">[사용가능한 이름입니다.]</b>';
+                        checkResultList[2] = true;
+                    }
+                });
         }
     };
     const agePattern=/^[0-9]{1,2}$/;
@@ -286,6 +299,14 @@
             checkResultList[3] = true;
         }
     };
+    const $male = document.getElementById("male");
+    const $female = document.getElementById("female");
+    $male.onclick=e=>{
+        checkResultList[4] = true;
+    }
+    $female.onclick=e=>{
+        checkResultList[4] = true;
+    }
 
     // 회원가입 버튼 클릭 이벤트
     document.getElementById('signup-btn').onclick = e => {
@@ -301,14 +322,7 @@
         }
     };
 
-    const $male = document.getElementById("male");
-    const $female = document.getElementById("female");
-    $male.onclick=e=>{
-        checkResultList[4] = true;
-    }
-    $female.onclick=e=>{
-        checkResultList[4] = true;
-    }
+
 
 
 

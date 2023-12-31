@@ -2192,3 +2192,52 @@ input, select, textarea {
 			}
 
 		}
+.txt_view {
+	overflow:hidden;
+	position:relative;
+	border:1px solid #444;
+	background-color:#fff;
+	box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+}
+.actionTxtType8 {
+	padding:71px 0 0;
+	text-align:center;
+}
+.actionTxtType8 .txt {
+	font-size:60px;
+	line-height:75px;
+	color:#35352f;
+	font-weight:700;
+	text-transform:uppercase;
+}
+.actionTxtType8 .txt span {
+	white-space:pre-line;
+	position:relative;
+	letter-spacing:7px;
+	transition:text-shadow .5s;
+	-webkit-transition:text-shadow .5s;
+	-moz-transition:text-shadow .5s;
+}
+.actionTxtType8 .txt span.gap {
+	margin-right:15px;
+}
+.actionTxtType8 .txt > span:before{
+	position:absolute;
+	left:0;
+	content:attr(data-content);
+	color:#7acdc2;
+	overflow:hidden;
+	width:0%;
+	transition:width .8s .6s;
+	-webkit-transition:width .8s .6s;
+	-moz-transition:width .8s .6s;
+}
+.actionTxtType8:hover .txt span {
+	color:#3da89a;
+	text-shadow:-1px -1px 5px #fff,1px 1px 1px #666,2px 2px 1px #666,3px 3px 1px #666,4px 4px 1px #666,5px 5px 1px #666,6px 6px 1px #caf0eb,7px 7px 1px #666,8px 8px 1px #666,9px 9px 1px #666,10px 10px 1px #666;
+}
+.actionTxtType8:hover .txt > span:before {
+	width:50%;
+}

@@ -18,16 +18,20 @@
 <%@include file="include/header.jsp"%>
 
 
+
+
+
 <!-- Wrapper-->
 <div id="wrapper">
 
     <!-- Nav -->
     <nav id="nav">
         <a href="#" class="icon solid fa-home"><span>Home</span></a>
-        <a href="#work" class="icon solid fa-folder"><span>Work</span></a>
-        <a href="#contact" class="icon solid fa-envelope"><span>Contact</span></a>
-        <a href="https://twitter.com/ajlkn" class="icon brands fa-twitter"><span>Twitter</span></a>
+        <a href="#work" class="icon solid fa-sharp fa-regular fa-camera-retro"><span>Contact</span></a>
+        <a href="#contact" class="icon solid fa-sharp fa-light fa-users"><span>Find a group</span></a>
+        <a href="https://www.instagram.com/" class="icon brands fa-instagram"><span>Instagram</span></a>
     </nav>
+
 
     <!-- Main -->
     <div id="main">
@@ -35,8 +39,32 @@
         <!-- Me -->
         <article id="home" class="panel intro">
             <div class="header">
-                <h1>Jane Doe</h1>
-                <p>Senior Astral Projectionist</p>
+                <div class="txt_view actionTxtType8">
+    <span class="txt">
+        <span data-content="M">M</span>
+<span data-content="u">u</span>
+<span data-content="s">s</span>
+<span data-content="i">i</span>
+<span data-content="c" class="gap">c</span>
+
+        <span data-content="p">p</span>
+<span data-content="i">i</span>
+<span data-content="p">p</span>
+<span data-content="e">e</span>
+
+        <br /><br/>
+<%--		<span data-content="한">한</span>--%>
+<%--<span data-content="o">o</span>--%>
+<%--<span data-content="l">l</span>--%>
+<%--<span data-content="o">o</span>--%>
+<%--<span data-content="r" class="gap">r</span>--%>
+<%--<span data-content="f">f</span>--%>
+<%--<span data-content="i">i</span>--%>
+<%--<span data-content="l">l</span>--%>
+<%--<span data-content="l">l</span>--%>
+
+	</span>
+                </div>
             </div>
             <a href="#work" class="jumplink pic">
                 <span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>

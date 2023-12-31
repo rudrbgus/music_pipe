@@ -45,7 +45,7 @@ public class UserController {
         log.info("/user/sign-up Post");
         boolean flag = userService.join(dto);
         log.info("회원가입에 " + (flag?"성공했습니다":"실패했습니다"));
-        return "/index";
+        return "redirect:/";
     }
     // 회원 가입 양식 요청
     @GetMapping("/sign-up")
