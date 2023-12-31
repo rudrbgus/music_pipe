@@ -8,12 +8,12 @@
     <select id="findAll" resultType="employboard">
         select * from employ_board
         <if test="type == 'position'">
-            select E.board_id,E.on_off,E.place,P.position
+            select E.board_id,E.on_off,E.place
             from employ_board E
             inner  join need_equipment N
-            on N.position_id=#{positionId} and N.board_id=E.board_id
+            on N.position_id=#{keyword} and N.board_id=E.board_id
             inner  join position P
-            on P.position_id=#{positionId}
+            on P.position_id=#{keyword}
         </if>
 
         order by board_id desc
@@ -28,10 +28,15 @@
 
     <select id="count" resultType="int">
         SELECT COUNT(*) FROM employ_board
-<!--        <if test="type == 'title'">-->
-<!--            where title like concat('%',#{keyword},'%')-->
+        <if test="type == 'positon'">
+            select E.board_id,E.on_off,E.place
+            from employ_board E
+            inner  join need_equipment N
+            on N.position_id=#{keyword} and N.board_id=E.board_id
+            inner  join position P
+            on P.position_id=#{keyword}
 
-<!--        </if>-->
+        </if>
 <!--        <if test="type == 'content'">-->
 <!--            where content like concat('%',#{keyword},'%')-->
 

@@ -29,9 +29,10 @@
                     <i class="fas fa-search"></i>
                 </button>
 
+            </form>
                 <button class="add-btn">새 글 쓰기</button>
 
-            </form>
+
         </div>
     </div>
 
@@ -55,6 +56,12 @@
                             <%-- 악기 아이콘 --%>
                     </div>
                 </section>
+                <div class="card-btn-group">
+                    <button class="del-btn" data-href="/board/delete?bno=${b.boardId}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
             </div>
         </c:forEach>
     </div>
@@ -162,12 +169,14 @@
   //========== 게시물 목록 스크립트 ============//
 
   function removeDown(e) {
+
     if (!e.target.matches('.card-container *')) return;
     const $targetCard = e.target.closest('.card-wrapper');
     $targetCard?.removeAttribute('id', 'card-down');
   }
 
   function removeHover(e) {
+
     if (!e.target.matches('.card-container *')) return;
     const $targetCard = e.target.closest('.card');
     $targetCard?.classList.remove('card-hover');
@@ -178,7 +187,7 @@
 
 
   $cardContainer.onmouseover = e => {
-
+      console.log('리무브호버 발동')
     if (!e.target.matches('.card-container *')) return;
 
     const $targetCard = e.target.closest('.card');
@@ -203,6 +212,7 @@
 
   // write button event
   document.querySelector('.add-btn').onclick = e => {
+      console.log('새글쓰기 이벤투')
     window.location.href = '/board/write';
   };
 
@@ -231,19 +241,20 @@
 
 
   // 검색조건 셀렉트박스 옵션타입 고정하기
-  function fixSearchOption() {
-    // 셀렉트박스에 option태그들을 전부 가져옴
-    const $options = [...document.getElementById('search-type').children];
+  <%--function fixSearchOption() {--%>
+  <%--  // 셀렉트박스에 option태그들을 전부 가져옴--%>
+  <%--    console.log('fixSearchOption')--%>
+  <%--  const $options = [...document.getElementById('search-type').children];--%>
 
-    $options.forEach($opt => {
-      if ($opt.value === '${s.type}') {
-        $opt.setAttribute('selected', 'selected');
-      }
-    });
-  }
+  <%--  $options.forEach($opt => {--%>
+  <%--    if ($opt.value === '${s.type}') {--%>
+  <%--      $opt.setAttribute('selected', 'selected');--%>
+  <%--    }--%>
+  <%--  });--%>
+  <%--}--%>
 
   appendPageActive();
-  fixSearchOption();
+  // fixSearchOption();
 
 
 </script>
