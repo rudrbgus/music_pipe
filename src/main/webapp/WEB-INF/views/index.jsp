@@ -6,6 +6,13 @@
     <meta charset="UTF-8">
     <title>Web Study</title>
     <%@include file="include/static-head.jsp"%>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        input,
+        textarea{
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 <%@include file="include/header.jsp"%>
