@@ -67,113 +67,137 @@
             margin: 0;
             padding: 0;
         }
-
-        swiper-container {
-            width: 80%;
-            height: 65%;
-        }
-
-        swiper-slide {
-            text-align: center;
-            font-size: 18px;
-            background: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        swiper-slide img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        swiper-container {
-            margin-left: auto;
-            margin-right: auto;
-        }
-        /* 프레젠테이션 프로필 이미지 div */
-        .presentation_profile_image {
-            width: 200px;
-            height: 200px;
-
-            /* 아이템을 수평, 수직 가운데 정렬하는 코드 */
-            display: flex;
-            flex-direction: column;
-            /* 방향을 row로 바꾸면 한 줄로 나온다! */
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* 프레젠테이션 프로필 이미지 캔버스 */
-        .presentation_profile_image_canvas {
-            background-color: grey;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            position: absolute;
-        }
-
-        /* 프레젠테이션 프로필 이름 div */
-        .presentation_profile_name {
-            background-color: orangered;
-            width: 64px;
-            height: 16px;
-            font-size: 8px;
-            text-align: center;
-            color: #dbdbdb;
-        }
-
-        /* 프로필 이미지 테두리 div */
-        .presentation_profile_image_border {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            /* 원 안에 그라디언트 속성을 넣으려면 먼저 투명을 해야함 */
-            border: 2px solid transparent;
-            background-image: linear-gradient(#fff, #fff),
-            linear-gradient(to right, red 0%, orange 100%);
-            background-origin: border-box;
-            background-clip: content-box, border-box;
-            position: absolute;
-        }
-
-
-        .profile_love {
-            background-image: url("https://pbs.twimg.com/profile_images/794909411789574144/aabzetJx_400x400.jpg");
-            background-size: cover;
-            background-position: center;
-        }
-
     </style>
 
 </head>
 <body>
 <%@include file="include/header.jsp"%>
-<div class="story_div">
-    <!--                    6. 프레젠테이션 프로필 div -->
-    <div class="presentation_profile">
-        <!--                    7. 프로필 이미지 묶음 div -->
-        <div class="presentation_profile_image">
-            <!--                            8. 프로필 테두리 div-->
-            <div class="presentation_profile_image_border"></div>
-            <!--                            8. 프로필 이미지 div -->
-            <div class="presentation_profile_image_canvas profile_love"></div>
-        </div>
-        <!--                    7. 프로필 이름 a-->
-        <a class="presentation_profile_name">Migdracios</a>
-    </div>
-</div>
-<swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="true" space-between="30"
-                  loop="true">
-    <swiper-slide><img src="/assets/img/ban.jpg"></swiper-slide>
-    <swiper-slide><img src="/assets/img/bus.jpg"></swiper-slide>
-    <swiper-slide><img src="/assets/img/oke.jpg"></swiper-slide>
-    <swiper-slide><img src="/assets/img/sing.jpg"></swiper-slide>
-</swiper-container>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+
+<!-- Wrapper-->
+<div id="wrapper">
+
+    <!-- Nav -->
+    <nav id="nav">
+        <a href="#" class="icon solid fa-home"><span>Home</span></a>
+        <a href="#work" class="icon solid fa-folder"><span>Work</span></a>
+        <a href="#contact" class="icon solid fa-envelope"><span>Contact</span></a>
+        <a href="https://twitter.com/ajlkn" class="icon brands fa-twitter"><span>Twitter</span></a>
+    </nav>
+
+    <!-- Main -->
+    <div id="main">
+
+        <!-- Me -->
+        <article id="home" class="panel intro">
+            <header>
+                <h1>Jane Doe</h1>
+                <p>Senior Astral Projectionist</p>
+            </header>
+            <a href="#work" class="jumplink pic">
+                <span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
+                <img src="assets/img/me.jpg" alt="" />
+            </a>
+        </article>
+
+        <!-- Work -->
+        <article id="work" class="panel">
+            <header>
+                <h2>Work</h2>
+            </header>
+            <p>
+                Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit.
+                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
+                luctus elit eget interdum.
+            </p>
+            <section>
+                <div class="row">
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="assets/img/pic01.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="assets/img/pic02.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="assets/img/pic03.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="assets/img/pic04.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="assets/img/pic05.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="assets/img/pic06.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="assets/img/pic07.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="assets/img/pic08.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="assets/img/pic09.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="assets/img/pic10.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="assets/img/pic11.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="assets/img/pic12.jpg" alt=""></a>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <!-- Contact -->
+        <article id="contact" class="panel">
+            <header>
+                <h2>Contact Me</h2>
+            </header>
+            <form action="#" method="post">
+                <div>
+                    <div class="row">
+                        <div class="col-6 col-12-medium">
+                            <input type="text" name="name" placeholder="Name" />
+                        </div>
+                        <div class="col-6 col-12-medium">
+                            <input type="text" name="email" placeholder="Email" />
+                        </div>
+                        <div class="col-12">
+                            <input type="text" name="subject" placeholder="Subject" />
+                        </div>
+                        <div class="col-12">
+                            <textarea name="message" placeholder="Message" rows="6"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <input type="submit" value="Send Message" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </article>
+
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+        <ul class="copyright">
+            <li>&copy; Untitled.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
 
 </body>
 </html>
