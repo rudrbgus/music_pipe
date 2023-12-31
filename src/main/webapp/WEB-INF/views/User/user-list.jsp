@@ -6,20 +6,23 @@
 
 <head>
     <%@ include file="../include/static-head.jsp" %>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
 
 
     <style>
         @import url(http://weloveiconfonts.com/api/?family=entypo);
         @import url(https://fonts.googleapis.com/css?family=Roboto);
 
-        .user-card-container{
+        .user-card-container {
             width: 60%;
             height: 100%;
         }
-        .user-card-container .user-card{
+
+        .user-card-container .user-card {
             width: 100%;
             display: flex;
             border: 1px black;
@@ -28,22 +31,25 @@
     </style>
 </head>
 <body>
-<%--    <c:forEach var="user" items="${userList}"><div class="user-card">${user}</c:forEach>--%>
-<div class="card mb-3" style="max-width: 100%;">
-    <div class="row g-0">
-        <div class="col-md-4">
-            <img src="..." class="img-fluid rounded-start" alt="...">
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+<c:forEach var="user" items="${userList}">
+<div class="user-card">
+    <div class="card-container" style="display:flex; justify-content:center;">
+        <div class="card mb-3" style="width: 60%">
+            <div class="row g-0">
+                <div class="col-md-3">
+                    <img src="..." class="img-fluid rounded-start" alt="...">
+                    <p class="nickname">${user.nickname}</p>
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <p class="card-text">자기소개: 저는${user.age}살이고요 성별은 ${user.sex}입니다 저는 ${user.teamId}의 팀입니다</p>
+                        <div>악기</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+    </c:forEach>
 
 
 </body>
