@@ -6,69 +6,6 @@
     <meta charset="UTF-8">
     <title>Web Study</title>
     <%@include file="include/static-head.jsp"%>
-    <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
-    />
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-
-    <style>
-        body{
-            /*background-color: #3fe2ff;*/
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100%;
-        }
-        .main_container {
-            margin: 150px auto;
-            width: 80%;
-        }
-        .main_container .new_together_icon{
-            margin-bottom: 80px;
-            display: flex;
-            justify-content: space-around;
-            align-content: center;
-
-        }
-        .main_container .new_together_icon .icon_box{
-            width: 200px;
-            height: 200px;
-        }
-        .main_container .new_together_icon .icon_box .icon_img{
-            border-radius: 15%;
-        }
-        .main_container .new_together_icon .icon_box .icon_nikname{
-            font-size: 3rem;
-        }
-
-        .slide_item_duplicate {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            left: 0px;
-            width: 100%;
-            height: 300px;
-            flex-shrink: 0;
-            transition: left 0.15s;
-        }
-        html,
-        body {
-            position: relative;
-            height: 100%;
-        }
-
-        body {
-            background: #eee;
-            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-            font-size: 14px;
-            color: #000;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
-
 </head>
 <body>
 <%@include file="include/header.jsp"%>
@@ -90,10 +27,10 @@
 
         <!-- Me -->
         <article id="home" class="panel intro">
-            <header>
+            <div class="header">
                 <h1>Jane Doe</h1>
                 <p>Senior Astral Projectionist</p>
-            </header>
+            </div>
             <a href="#work" class="jumplink pic">
                 <span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
                 <img src="assets/img/me.jpg" alt="" />
@@ -102,9 +39,9 @@
 
         <!-- Work -->
         <article id="work" class="panel">
-            <header>
+            <div class="header">
                 <h2>Work</h2>
-            </header>
+            </div>
             <p>
                 Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit.
                 Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
@@ -154,9 +91,9 @@
 
         <!-- Contact -->
         <article id="contact" class="panel">
-            <header>
+            <div class="header">
                 <h2>Contact Me</h2>
-            </header>
+            </div>
             <form action="#" method="post">
                 <div>
                     <div class="row">
@@ -185,7 +122,7 @@
     <!-- Footer -->
     <div id="footer">
         <ul class="copyright">
-            <li>&copy; Untitled.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            <li>&copy; Untitled.</li><li>from: <a href="#">MeatJellyBuger</a></li>
         </ul>
     </div>
 
