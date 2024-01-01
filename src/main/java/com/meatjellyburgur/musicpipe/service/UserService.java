@@ -1,5 +1,6 @@
 package com.meatjellyburgur.musicpipe.service;
 
+import com.meatjellyburgur.musicpipe.dto.request.AutoLoginDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
@@ -13,15 +14,19 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.WebUtils;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.meatjellyburgur.musicpipe.service.SigninResult.*;
+import static com.meatjellyburgur.musicpipe.util.SignInUtils.*;
 
 @Service
 @Slf4j
@@ -60,9 +65,24 @@ public class UserService {
         }
 
         // 자동 로그인 처리
+        if(dto.isAutoLogin()){
+            String sessionId = request.getSession().getId();
+            Cookie autoLogin = new Cookie("autoLogin", sessionId);
+            autoLogin.setPath("/");
+            int limitTime = 60 * 60 * 24 * 90;
+            autoLogin.setMaxAge(limitTime);
+            response.addCookie(autoLogin);
+            userMapper.saveAutoLogin(AutoLoginDTO.builder()
+                            .sessionId(sessionId)
+                            .limitTime(LocalDateTime.now().plusDays(90))
+                            .userId(userMapper.findUser(dto.getEmail()).getUserId())
+                    .build());
+        }
+        
 
         return SUCCESS;
     }
+    
 
     // 유저 클라이언트에 session에 dto 넣어줌
     public void maintainLoginState(HttpSession session, String email) {
@@ -74,7 +94,7 @@ public class UserService {
                 .gender(user.getSex())
                 .nickname(user.getNickname())
                 .build();
-        session.setAttribute(SignInUtils.LOGIN_KEY, dto);
+        session.setAttribute(LOGIN_KEY, dto);
         session.setMaxInactiveInterval(60 * 60);
     }
 
@@ -105,5 +125,28 @@ public class UserService {
             }
         }
         return users;
+    }
+
+    public void autoLoginClear(HttpServletRequest request, HttpServletResponse response) {
+        // 1. 자동로그인 쿠키를 가져온다
+        Cookie c = WebUtils.getCookie(request, AUTO_LOGIN_COOKIE);
+
+        // 2. 쿠키를 삭제한다
+        // -> 쿠키의 수명을 0초로 설정하여 다시 클라이언트에 전송
+        if (c != null) {
+            c.setMaxAge(0);
+            c.setPath("/");
+            response.addCookie(c);
+
+            // 3. 데이터베이스에서도 세션아이디와 만료시간을 제거한다.
+            userMapper.saveAutoLogin(
+                    AutoLoginDTO.builder()
+                            .sessionId("none")
+                            .limitTime(LocalDateTime.now())
+                            .userId(getCurrentLoginUserId(request.getSession()))
+                            .build()
+            );
+        }
+
     }
 }

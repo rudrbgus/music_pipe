@@ -56,6 +56,11 @@
         WHERE team_id = #{teamId}
     </select>
 
+    <update id="saveAutoLogin">
+        UPDATE user
+        SET session_id =#{sessionId}, limit_time = #{limitTime}
+        WHERE user_id = #{userId}
+    </update>
 
 
 

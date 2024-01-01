@@ -72,7 +72,6 @@ public class UserController {
         ra.addFlashAttribute("result", result);
 
         if(result == SigninResult.SUCCESS){
-
             // 세션으로 로그인 유지
             userService.maintainLoginState(request.getSession(), dto.getEmail());
 
@@ -94,11 +93,11 @@ public class UserController {
 
         // 로그인 상태인지 확인
         if (isLogin(session)) {
-            // 자동 로그인 상태인지도 확인
-//            if (SignInUtils.(request)) {
-//                // 쿠키를 삭제해주고 디비데이터도 원래대로 돌려놓는다.
-//                memberService.autoLoginClear(request, response);
-//            }
+             //자동 로그인 상태인지도 확인
+            if (SignInUtils.isLogin(request.getSession())) {
+                // 쿠키를 삭제해주고 디비데이터도 원래대로 돌려놓는다.
+                userService.autoLoginClear(request, response);
+            }
 
             // 세션에서 로그인 정보 기록 삭제
             session.removeAttribute(LOGIN_KEY);
