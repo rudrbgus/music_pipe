@@ -21,6 +21,8 @@ public interface UserMapper {
 
     User findUserByUserId(int userId);
 
+    User findUserByCookie(String sessionId);
+
 
 
     boolean isDuplicate(@Param("type") String type, @Param("keyword") String keyword);
