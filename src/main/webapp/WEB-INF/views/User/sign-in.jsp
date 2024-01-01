@@ -30,7 +30,7 @@
         }
 
         body {
-            background: #272125;
+            background: #DAA394;
             font-family: 'Roboto', sans-serif;
         }
 
@@ -95,6 +95,41 @@
         input:focus::-webkit-input-placeholder {
             color: #e74c3c;
         }
+        input[type="checkbox"]{
+            display: none;
+        }
+        input[type="checkbox"] + label{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border:3px solid #707070;
+            position: relative;
+            text-align: center;
+        }
+        input[id="check1"]:checked + label::after{
+            content:'✔';
+            font-size: 25px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            position: absolute;
+            left:-2px;
+            top: -7px;
+        }
+        .checkBoxDiv{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .checkboxText {
+            margin-left: 10px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -111,6 +146,11 @@
            <i class="fa fa-key"></i>
          </span>
     <input type="password" class="pass" name="password" placeholder="password"/>
+    <div class="checkBoxDiv">
+        <input type="checkbox" id="check1">
+        <label for="check1"></label>
+        <div class="checkboxText"> 자동 로그인</div>
+    </div>
 </form>
 
 <script>

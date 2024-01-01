@@ -120,6 +120,8 @@
             color: #fff;
         }
 
+
+
     </style>
 </head>
 <body>
@@ -162,7 +164,9 @@
         <label for="female" class="radiobtn">여성</label>
     </div>
     <span id="sexChk"></span>
-    <%--    <input name="sex" type="String" class="sex" placeholder="gender" />--%>
+
+
+<%--    <input name="sex" type="String" class="sex" placeholder="gender" />--%>
     <button type="button" value="sign-up" id="signup-btn">sign-up</button>
 </form>
 
