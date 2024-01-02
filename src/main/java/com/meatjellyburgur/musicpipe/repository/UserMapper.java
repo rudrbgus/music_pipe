@@ -27,6 +27,8 @@ public interface UserMapper {
 
     List<User> findUseByTeamId(int teamId);
 
+    boolean changeProfileImagePath(int userId, String path);
+
 
 
 }

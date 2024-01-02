@@ -24,5 +24,6 @@ public class User {
     private int teamId;
     private String sessionId;
     private LocalDateTime limitTime;
+    private String profile_image_path;
 
 }
