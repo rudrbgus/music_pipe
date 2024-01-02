@@ -6,6 +6,7 @@ import com.meatjellyburgur.musicpipe.common.Search;
 import com.meatjellyburgur.musicpipe.dto.request.BoardWriteRequestDTO;
 
 import com.meatjellyburgur.musicpipe.dto.response.BoardListResponseDTO;
+import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
 import com.meatjellyburgur.musicpipe.service.EmployBoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -62,10 +63,12 @@ public class EmployBoardController {
         System.out.println("/board/write :post!"+dto);
 
         //세션에서 user_id 가져오기
-        int userId = (int) session.getAttribute("user_id");
+        SignInUserResponseDTO login = (SignInUserResponseDTO) session.getAttribute("login");
+        int userId = login.getUserId();
+        log.info("userId {}",userId);
         dto.setUserId(userId);
         employBoardService.register(dto);
-        return "redirect:/board/together";
+        return "redirect:/board/list";
 
     }
 
