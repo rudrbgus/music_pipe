@@ -23,8 +23,6 @@ public interface UserMapper {
 
     User findUserByCookie(String sessionId);
 
-
-
     boolean isDuplicate(@Param("type") String type, @Param("keyword") String keyword);
 
     List<User> findUseByTeamId(int teamId);
