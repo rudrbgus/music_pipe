@@ -65,7 +65,9 @@ public class UserService {
         }
 
         // 자동 로그인 처리
+        System.out.println("dto: "+ dto.toString());
         if(dto.isAutoLogin()){
+            System.out.println("시작함?");
             String sessionId = request.getSession().getId();
             Cookie autoLogin = new Cookie("autoLogin", sessionId);
             autoLogin.setPath("/");
@@ -77,6 +79,7 @@ public class UserService {
                             .limitTime(LocalDateTime.now().plusDays(90))
                             .userId(userMapper.findUser(dto.getEmail()).getUserId())
                     .build());
+            System.out.println("사용자 이름: " + userMapper.findUser(dto.getEmail()).getUserId());
         }
         
 

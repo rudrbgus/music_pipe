@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -74,8 +75,12 @@ public class UserController {
             // 세션으로 로그인 유지
             userService.maintainLoginState(request.getSession(), dto.getEmail());
 
+
+
             return "redirect:/";
         }
+
+
 
         return "redirect:/user/sign-in";
     }

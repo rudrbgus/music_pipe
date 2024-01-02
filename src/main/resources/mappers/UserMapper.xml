@@ -20,14 +20,14 @@
 
     <select id="findUser" resultType="user">
         SELECT
-            user_id, password, nickname, age, email,sex, regdate, team_id, session_id, limit_time
+            user_id, password, nickname, age, email,sex, regdate, team_id, session_id, limit_time, profile_image_path
         FROM user
         WHERE email = #{email}
     </select>
 
     <select id="findUserByUserId" resultType="user">
         SELECT
-            user_id, password, nickname, age, email,sex, regdate, team_id, session_id, limit_time
+            user_id, password, nickname, age, email,sex, regdate, team_id, session_id, limit_time, limit_time, profile_image_path
         FROM user
         WHERE user_id = #{userId}
     </select>
