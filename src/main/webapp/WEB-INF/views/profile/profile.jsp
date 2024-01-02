@@ -186,9 +186,9 @@
             <button class="profile_img_change">프로필 이미지 변경</button>
         </div>
         <div class="profile_text">
-            <div class="profile_nickname">닉네임 : </div>
-            <div class="profile_email">이메일 : </div>
-            <div class="profile_team">소속 팀 : </div>
+            <div class="profile_nickname">닉네임 : \${nickName}</div>
+            <div class="profile_email">이메일 : \${email}</div>
+            <div class="profile_team">소속 팀 : \${teamName}</div>
             <div class="profile_instrument">악기
                 <div class="profile_instrument_checkBox_container">
                     <div class="checkbox-wrapper">
