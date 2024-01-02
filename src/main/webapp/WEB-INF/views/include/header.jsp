@@ -170,8 +170,12 @@
             <span class="lnr lnr-menu"></span>
         </a>
 
+        <c:if test="${empty login}">
         <a href="/user/sign-in">Login</a>
-
+        </c:if>
+        <c:if test="${not empty login}">
+            <a href="/user/sign-out">LogOut</a>
+        </c:if>
 <%--        <c:if test="${not empty login}">--%>
 <%--            <a href="#"><img src="${login.profile_img}"></a>--%>
 <%--            <p>${login.profile_nikname}</p>--%>

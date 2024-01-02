@@ -160,7 +160,7 @@
 <%--         </span>--%>
     <input type="password" class="pass" name="password" placeholder="password"/>
     <div class="checkBoxDiv">
-        <input type="checkbox" id="check1">
+        <input type="checkbox" id="check1" name="autoLogin">
         <label for="check1"></label>
         <div class="checkboxText"> 자동 로그인</div>
     </div>
