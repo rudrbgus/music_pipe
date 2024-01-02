@@ -49,9 +49,8 @@
         margin-top: 0px;
         padding-top: 0px;
         height: 20px;
-
-        /*position: absolute;*/
     }
+
     header .inner-header .intro-text {
         /* background: greenyellow; */
         flex: 4;
@@ -118,12 +117,35 @@
     }
     header .inner-header #search .btn-primary{
         height: 35px;
-        margin-top: 15px;
+        margin-top: 20px;
     }
     header .inner-header #search .form-control{
+        margin-top: 20px;
         height: 35px;
         width: 150px;
     }
+
+    @media ( max-width: 1600px ) {
+        header .inner-header #search{
+            margin-left: 1000px;
+        }
+    }
+    @media ( max-width: 1450px ) {
+        header .inner-header #search{
+            margin-left: 850px;
+        }
+    }
+    @media ( max-width: 1300px ) {
+        header .inner-header #search{
+            margin-left: 700px;
+        }
+    }
+    @media ( max-width: 1000px ) {
+        header .inner-header #search{
+            margin-left: 400px;
+        }
+    }
+
 </style>
 </html>
 
