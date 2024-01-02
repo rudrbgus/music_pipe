@@ -12,7 +12,7 @@ public class PageMaker {
     private int begin, end, finalPage;  // finalPage : 보정된 end
 
     // 이전, 다음 버튼 활성화 여부
-    private boolean prev, next;
+    private boolean prev, next,last;
 
     // 현재 페이지 정보
     private Page page;
@@ -29,6 +29,8 @@ public class PageMaker {
 
     // 한 화면에 보여질 페이지 수
     private static final int PAGE_COUNT = 10;
+    //맨첫번째 페이지
+    private static final int FIRST_PAGE=1;
 
     // 페이지 생성에 필요한 데이터를 만드는 알고리즘
     private void makePageInfo() {
@@ -46,7 +48,7 @@ public class PageMaker {
          */
         // 공식: (올림 (현재 사용자가 위치한 페이지넘버 / 한 화면에 보여줄 페이지 수)) * 한 화면에 보여줄 페이지 수
 
-        //this.end = (int) Math.ceil((double) page.getPageNo() / PAGE_COUNT) * PAGE_COUNT;
+        this.end = (int) Math.ceil((double) page.getPageNo() / PAGE_COUNT) * PAGE_COUNT;
 
 
 
@@ -80,7 +82,7 @@ public class PageMaker {
             ex)  237 / 10 => 23.7  => 올림 24
          */
 
-        //this.finalPage = (int) Math.ceil((double) totalCount / page.getAmount());
+        this.finalPage = (int) Math.ceil((double) totalCount / page.getAmount());
 
         // 마지막 페이지 구간에서 end값을 finalPage값으로 변경
         if (this.finalPage < this.end)
@@ -88,5 +90,7 @@ public class PageMaker {
 
         // 4. next활성화 여부 - 마지막 페이지구간에서만 비활성화
         this.next = this.end < this.finalPage;
+        //5.맨 마지막 보여주는 버튼- 마지막 구간에서만 활성화
+        this.last=this.end<this.finalPage;
     }
 }

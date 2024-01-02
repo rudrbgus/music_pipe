@@ -11,20 +11,31 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class EmployBoard {
-    private  int board_id;
-    private int user_id;
+    private  int boardId;
+    private int userId;
     private String place;
-    private int on_off;
+    private int onOff;
     private String title;
     private String content;//내용
     private int viewCount; // 조회수
-    private LocalDateTime regDateTime; // 작성일자시간
+    private LocalDateTime regdate; // 작성일자시간
 
     public EmployBoard(BoardWriteRequestDTO dto) {
         this.title=dto.getTitle();
         this.content=dto.getContent();
-        this.regDateTime=LocalDateTime.now();
+        this.regdate=LocalDateTime.now();
     }
+    public EmployBoard(int userId,String title, String content,String place,int onOff) {
+        this.userId=userId;
+        this.title = title;
+        this.content = content;
+        this.place=place;
+        this.onOff=onOff;
+
+
+    }
+
+
 
 
 }

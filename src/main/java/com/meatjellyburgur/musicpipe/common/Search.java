@@ -16,4 +16,5 @@ public class Search extends Page {
         this.type = "";
         this.keyword = "";
     }
+
 }
