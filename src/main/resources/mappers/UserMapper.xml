@@ -66,5 +66,11 @@
         WHERE session_id = #{sessionId}
     </select>
 
+    <update id="changeProfileImagePath">
+        update user
+        SET profile_image_path = #{path}
+        WHERE user_id = #{userId}
+    </update>
+
 
 </mapper>

@@ -8,12 +8,15 @@ import com.meatjellyburgur.musicpipe.service.InstrumentService;
 import com.meatjellyburgur.musicpipe.service.SigninResult;
 import com.meatjellyburgur.musicpipe.service.UserService;
 import com.meatjellyburgur.musicpipe.util.SignInUtils;
+import com.meatjellyburgur.musicpipe.util.upload.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.Cookie;
@@ -31,6 +34,9 @@ import static com.meatjellyburgur.musicpipe.util.SignInUtils.*;
 public class UserController {
     private  final UserService userService;
     private final InstrumentService instrumentService;
+
+    @Value("${file.upload.root-path}")
+    private String rootPath;
     /*
         해야 될 것
         1. 회원가입 (○)
@@ -172,5 +178,14 @@ public class UserController {
         model.addAttribute(LOGIN_KEY, session.getAttribute(LOGIN_KEY));
         return "/profile/profile";
     }
+    @PostMapping("/profile")
+    public void modifyProfile(MultipartFile thumbnail, HttpSession session){
+        String savedPath = FileUtil.uploadFile(thumbnail, rootPath);
+        boolean flag = userService.changeProfileImagePath(savedPath, session);
+        System.out.println("파일 저장: " + flag);
+    }
+
+
+
 
 }

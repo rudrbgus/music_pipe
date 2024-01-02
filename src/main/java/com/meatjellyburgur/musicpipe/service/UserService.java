@@ -67,7 +67,6 @@ public class UserService {
         // 자동 로그인 처리
         System.out.println("dto: "+ dto.toString());
         if(dto.isAutoLogin()){
-            System.out.println("시작함?");
             String sessionId = request.getSession().getId();
             Cookie autoLogin = new Cookie("autoLogin", sessionId);
             autoLogin.setPath("/");
@@ -151,5 +150,10 @@ public class UserService {
             );
         }
 
+    }
+
+    public boolean changeProfileImagePath(String savedPath, HttpSession session) {
+        SignInUserResponseDTO dto= (SignInUserResponseDTO)session.getAttribute(LOGIN_KEY);
+        return userMapper.changeProfileImagePath(dto.getUserId(), savedPath);
     }
 }
