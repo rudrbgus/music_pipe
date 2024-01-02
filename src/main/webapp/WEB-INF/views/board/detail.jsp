@@ -115,9 +115,9 @@
     <h1>게시물 내용 </h1>
     <h2># 작성일자:</h2>
     <label for="title">제목</label>
-    <input type="text" id="title" name="title" value="$" readonly>
+    <input type="text" id="title" name="title" value="${b.title}" readonly>
     <label for="content">내용</label>
-    <div id="content"></div>
+    <div id="content">${b.content}</div>
     <div class="buttons">
         <button class="list-btn" type="button" onclick="">목록</button>
     </div>
