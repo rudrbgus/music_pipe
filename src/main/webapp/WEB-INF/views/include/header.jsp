@@ -185,7 +185,7 @@
         </a>
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">together</a></li>
+            <li><a href="/board/list">together</a></li>
             <li><a href="/user/sign-up">sign-up</a></li>
 <%--            <c:if test="${not empty login}">
                 <li><a href="#">My Page</a></li>

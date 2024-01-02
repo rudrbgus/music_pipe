@@ -28,7 +28,7 @@
             border: 3px solid #000;
             margin: 0 auto;
             margin-top: 180px;
-            background: #fff;
+            background: #e4e4e4;
         }
         .profile_main_container .profile_container{
             /* background: #eee; */
@@ -82,7 +82,8 @@
             height: 2rem;
             margin-bottom: 10px;
         }
-        .profile_main_container .profile_container .profile_text .profile_instrument{
+        .profile_main_container .profile_container .profile_text .profile_instrument,
+        #modal .modal_container .profile_instrument_recruitCheckBox_container{
             width: 400px;
             height: 4rem;
             margin-bottom: 15px;
@@ -92,14 +93,16 @@
             width: 380px;
             height: 3rem;
         }
-        .profile_main_container .profile_container .profile_text .profile_instrument .profile_instrument_checkBox_container .checkbox-wrapper {
+        .profile_main_container .profile_container .profile_text .profile_instrument .profile_instrument_checkBox_container .checkbox-wrapper ,
+        #modal .modal_container .profile_instrument_recruitCheckBox_container .checkbox-recruit{
             margin-top: 5px;
             box-sizing: border-box;
             font-size: 1rem;
             display: flex;
         }
 
-        .profile_main_container .profile_container .profile_text .profile_instrument .profile_instrument_checkBox_container .checkbox-wrapper input {
+        .profile_main_container .profile_container .profile_text .profile_instrument .profile_instrument_checkBox_container .checkbox-wrapper input ,
+        #modal .modal_container .profile_instrument_recruitCheckBox_container .checkbox-recruit input{
             margin-right: 0.5rem;
         }
         .profile_main_container .profile_container .profile_text .profile_instrument_skill{
@@ -116,7 +119,7 @@
             gap: 10px;
         }
 
-        .profile_main_container .profile_container .profile_text .profile_instrument_skill .profile_instrument_skill_container .skill-item {
+        .profile_main_container .profile_container .profile_text .profile_instrument_skill .profile_instrument_skill_container {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -160,6 +163,26 @@
         .profile_main_container .board_container .my_writing_list .my_writing_item{
             padding-left: 10px;
             margin-top: 5px;
+        }
+
+        #modal{
+            width: 800px;
+            height: 500px;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            background: #777;
+            position: fixed;
+            z-index: 2000;
+            right: 50%;
+            top: 50%;
+        }
+        #modal .modal_container{
+            width: 700px;
+            height: 400px;
+        }
+        #modal .on {
+            right: 0;
         }
 
 
@@ -227,6 +250,52 @@
             <span>내가 신청한 글 목록</span>
             <li class="apply_writing_item">제목 : 작성날짜 : </li>
         </ul>
+    </div>
+</div>
+<div class="modal" id="modal">
+    <div class="modal_container">
+        <form name="createTeam" method="post" id="createTeamForm">
+            <h3>팀생성</h3>
+            <div class="teamNameContainer">
+                팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName" />
+            </div>
+            <div class="teamInstrumentContainer">
+                모집 : <div class="profile_instrument_recruitCheckBox_container">
+                    <div class="checkbox-recruit">
+                        <input type="checkbox" id="recruitCheckbox1">
+                        <label for="checkbox1">보컬</label>
+
+                        <input type="checkbox" id="recruitCheckbox2">
+                        <label for="checkbox2">피아노</label>
+
+                        <input type="checkbox" id="recruitCheckbox3">
+                        <label for="checkbox3">키보드</label>
+
+                        <input type="checkbox" id="recruitCheckbox4">
+                        <label for="checkbox4">어쿠스틱</label>
+
+                        <input type="checkbox" id="recruitCheckbox5">
+                        <label for="checkbox5">일렉</label>
+                    </div>
+
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="recruitCheckbox6">
+                        <label for="checkbox6">베이스</label>
+
+                        <input type="checkbox" id="recruitCheckbox7">
+                        <label for="checkbox7">드럼</label>
+
+                        <input type="checkbox" id="recruitCheckbox8">
+                        <label for="checkbox8">클래식 악기</label>
+
+                        <input type="checkbox" id="recruitCheckbox9">
+                        <label for="checkbox9">기타 악기</label>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" value="create_team" id="create_team_btn">팀 생성</button>
+        </form>
     </div>
 </div>
 
