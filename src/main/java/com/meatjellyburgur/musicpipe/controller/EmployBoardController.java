@@ -5,16 +5,15 @@ import com.meatjellyburgur.musicpipe.common.Search;
 
 import com.meatjellyburgur.musicpipe.dto.request.BoardWriteRequestDTO;
 
+import com.meatjellyburgur.musicpipe.dto.response.BoardDetailResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.BoardListResponseDTO;
+import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
 import com.meatjellyburgur.musicpipe.service.EmployBoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -62,11 +61,31 @@ public class EmployBoardController {
         System.out.println("/board/write :post!"+dto);
 
         //세션에서 user_id 가져오기
-        int userId = (int) session.getAttribute("user_id");
+        SignInUserResponseDTO login = (SignInUserResponseDTO) session.getAttribute("login");
+        int userId = login.getUserId();
+        log.info("userId {}",userId);
         dto.setUserId(userId);
         employBoardService.register(dto);
-        return "redirect:/board/together";
+        return "redirect:/board/list";
 
+    }
+
+    // 4. 글 삭제 요청 (/board/delete : GET)
+    @GetMapping("/delete")
+    //bno->list.jsp가 보낸것
+    public String delete(@RequestParam("bno") int boardNo) {
+        System.out.println("/board/delete : GET");
+        employBoardService.delete(boardNo);
+        return "redirect:/board/list";
+    }
+    // 5. 글 상세보기 요청 (/board/detail : GET)
+    @GetMapping("/detail")
+    public String detail(int bno,@ModelAttribute("s") Search search, Model model) {
+        System.out.println("/board/detail : GET");
+        BoardDetailResponseDTO detail = employBoardService.getDetail(bno);
+        model.addAttribute("b", detail);
+
+        return "board/detail";
     }
 
 

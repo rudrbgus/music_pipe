@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 //DB에 처리할때 사용하는 =>  테이블구조랑 똑같이 만들어야함
 public class User {
+
+//     user_id, password, nickname, age, email,sex, regdate, team_id, session_id, limit_time
     private int userId;
     private String password;
     private String nickname;
@@ -22,5 +24,6 @@ public class User {
     private int teamId;
     private String sessionId;
     private LocalDateTime limitTime;
+    private String profile_image_path;
 
 }

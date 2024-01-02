@@ -13,7 +13,7 @@ public interface EmployBoardMapper {
     List<EmployBoard> findAll(Search page);
 
     //상세조회
-    EmployBoard findOne(int boardNo);
+    EmployBoard findOne(int boardId);
 
     //게시물 등록
     boolean save(EmployBoard board);
@@ -23,7 +23,7 @@ public interface EmployBoardMapper {
 
     //조회수 상승 기능 처리
     //추가로
-    void updateViewCount(int boardNo);
+    void updateViewCount(int boardId);
 
     //총게시물수 구하기
     int count(Search search);
