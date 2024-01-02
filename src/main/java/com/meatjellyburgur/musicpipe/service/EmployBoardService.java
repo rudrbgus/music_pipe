@@ -37,7 +37,7 @@ public class EmployBoardService {
     //글쓰기 중간처리
     public void register(BoardWriteRequestDTO dto) {
         //dto를 엔터티로 변환
-
+        log.info("{}",dto);
         EmployBoard board = new EmployBoard(dto);
         employBoardMapper.save(board);
 
