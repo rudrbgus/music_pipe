@@ -174,8 +174,7 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String showProfile(HttpSession session, Model model){
-        model.addAttribute(LOGIN_KEY, session.getAttribute(LOGIN_KEY));
+    public String showProfile(HttpSession session){
         return "/profile/profile";
     }
     @PostMapping("/profile")

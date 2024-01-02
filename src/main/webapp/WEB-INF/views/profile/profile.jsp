@@ -171,7 +171,20 @@
             padding-left: 10px;
             margin-top: 5px;
         }
-
+        .upload-box {
+            width: 150px;
+            height: 150px;
+            border: 3px dashed orange;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: red;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        #img-input {
+            display: none;
+        }
 
 
     </style>
@@ -181,14 +194,18 @@
 <%@include file="../include/header.jsp"%>
 <div class="profile_main_container">
     <div class="profile_container">
-        <div class="profile_img_box">
-            <div class="profile_img"></div>
-            <button class="profile_img_change">프로필 이미지 변경</button>
-        </div>
+        <div class="upload-box">파일 첨부</div>
+
+        <form action="/user/profile" method="post" enctype="multipart/form-data">
+            <input id="img-input" type="file" name="thumbnail" accept="image/*">
+            <button type="submit">전송</button>
+        </form>
         <div class="profile_text">
-            <div class="profile_nickname">닉네임 : </div>
-            <div class="profile_email">이메일 : </div>
-            <div class="profile_team">소속 팀 : </div>
+            <c:if test="${login != null}">
+                <div class="profile_nickname">닉네임 : ${login.nickname} </div>
+                <div class="profile_email">이메일 : ${login.email} </div>
+                <div class="profile_team">소속 팀 : ${login.nickname} </div>
+            </c:if>
             <div class="profile_instrument">악기
                 <div class="profile_instrument_checkBox_container">
                     <div class="checkbox-wrapper">
@@ -293,6 +310,14 @@
                 skillContainer.appendChild(skillDiv);
             });
         }
+        const $box = document.querySelector('.upload-box');
+        const $input = document.getElementById('img-input');
+
+        $box.onclick = e => {
+            $input.click();
+        };
+
+
     });
 </script>
 

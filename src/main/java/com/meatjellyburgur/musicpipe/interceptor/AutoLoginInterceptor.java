@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
 
+import static com.meatjellyburgur.musicpipe.util.SignInUtils.*;
+
 @Configuration
 @RequiredArgsConstructor
 public class AutoLoginInterceptor implements HandlerInterceptor {
@@ -23,13 +25,12 @@ public class AutoLoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 유저한테 자동로그인 쿠키가 있는지 확인
-        Cookie cookie = WebUtils.getCookie(request, SignInUtils.AUTO_LOGIN_COOKIE);
-        if(cookie != null){
-            String sessionId = cookie.getValue();
-
+        Cookie cookie = WebUtils.getCookie(request, AUTO_LOGIN_COOKIE);
+        String sessionId = cookie.getValue();
+        if(cookie.getValue() != null){
             User user = userMapper.findUserByCookie(sessionId);
 
-            if(user!= null && LocalDateTime.now().isBefore(user.getLimitTime())){
+            if(user != null && LocalDateTime.now().isBefore(user.getLimitTime())){
                 userService.maintainLoginState(request.getSession(), user.getEmail());
             }
         }

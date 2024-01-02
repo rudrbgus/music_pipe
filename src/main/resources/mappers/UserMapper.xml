@@ -27,7 +27,7 @@
 
     <select id="findUserByUserId" resultType="user">
         SELECT
-            user_id, password, nickname, age, email,sex, regdate, team_id, session_id, limit_time, limit_time, profile_image_path
+            user_id, password, nickname, age, email,sex, regdate, team_id, session_id, limit_time, profile_image_path
         FROM user
         WHERE user_id = #{userId}
     </select>
@@ -48,7 +48,7 @@
 
     <select id="findUseByTeamId" resultType="user">
         SELECT
-            user_id, password, nickname,age, email,sex,regdate, team_id
+            user_id, password, nickname,age, email,sex,regdate, team_id, session_id, limit_time, profile_image_path
         FROM user
         WHERE team_id = #{teamId}
     </select>
@@ -60,9 +60,9 @@
     </update>
 
     <select id="findUserByCookie" resultType="user">
-        select
-            user_id,  nickname, age, email, sex, regdate, team_id, session_id, limit_time
-        from user
+        SELECT
+        user_id, password, nickname,age, email,sex,regdate, team_id, session_id, limit_time, profile_image_path
+        FROM user
         WHERE session_id = #{sessionId}
     </select>
 

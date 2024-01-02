@@ -39,8 +39,7 @@ public class UserService {
     // 이메일 주면 해당하는 유저 보내줌
     public User getUser(String email) {
         // 여기서 찾기
-        User user = userMapper.findUser(email);
-        return user;
+        return userMapper.findUser(email);
     }
 
     // 회원가입
@@ -68,7 +67,7 @@ public class UserService {
         System.out.println("dto: "+ dto.toString());
         if(dto.isAutoLogin()){
             String sessionId = request.getSession().getId();
-            Cookie autoLogin = new Cookie("autoLogin", sessionId);
+            Cookie autoLogin = new Cookie(AUTO_LOGIN_COOKIE, sessionId);
             autoLogin.setPath("/");
             int limitTime = 60 * 60 * 24 * 90;
             autoLogin.setMaxAge(limitTime);
