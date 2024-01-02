@@ -239,6 +239,8 @@
         </ul>
     </div>
 </div>
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Get the checkbox container and listen for checkbox changes

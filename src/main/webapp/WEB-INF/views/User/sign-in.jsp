@@ -10,6 +10,13 @@
     <style>
         @import url(http://weloveiconfonts.com/api/?family=entypo);
         @import url(https://fonts.googleapis.com/css?family=Roboto);
+        /*@import url(https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css);*/
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
 
         /* zocial */
         [class*='entypo-']:before {
@@ -30,7 +37,7 @@
         }
 
         body {
-            background: #272125;
+            background: #DAA394;
             font-family: 'Roboto', sans-serif;
         }
 
@@ -74,16 +81,18 @@
         }
 
 
-        .inputUserIcon {
+        .inputUserIcon ,
+        .fa-user{
             position: absolute;
-            top: 386px;
+            top: 376px;
             right: 80px;
             color: white;
         }
 
-        .inputPassIcon {
+        .inputPassIcon ,
+        .fa-key{
             position: absolute;
-            top: 456px;
+            top: 446px;
             right: 80px;
             color: white;
         }
@@ -95,6 +104,41 @@
         input:focus::-webkit-input-placeholder {
             color: #e74c3c;
         }
+        input[type="checkbox"]{
+            display: none;
+        }
+        input[type="checkbox"] + label{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border:3px solid #707070;
+            position: relative;
+            text-align: center;
+        }
+        input[id="check1"]:checked + label::after{
+            content:'✔';
+            font-size: 25px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            position: absolute;
+            left:-2px;
+            top: -7px;
+        }
+        .checkBoxDiv{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .checkboxText {
+            margin-left: 10px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -102,15 +146,24 @@
 
 <form action="/user/sign-in" name="signIn" method="post" id="signInForm">
     <h2><span class="entypo-login"><i class="fa fa-sign-in"></i></span> Login</h2>
-    <button type="submit" class="submit"><span class="entypo-lock"><i class="fa fa-lock"></i></span></button>
-    <span class="entypo-user inputUserIcon">
+    <button type="submit" class="submit">
+<%--        <span class="entypo-lock">--%>
+            <i class="fa fa-lock"></i>
+<%--        </span>--%>
+    </button>
+<%--    <span class="entypo-user inputUserIcon">--%>
            <i class="fa fa-user"></i>
-         </span>
+<%--         </span>--%>
     <input type="text" class="user" name="email" placeholder="user-email"/>
-    <span class="entypo-key inputPassIcon">
+<%--    <span class="entypo-key inputPassIcon">--%>
            <i class="fa fa-key"></i>
-         </span>
+<%--         </span>--%>
     <input type="password" class="pass" name="password" placeholder="password"/>
+    <div class="checkBoxDiv">
+        <input type="checkbox" id="check1">
+        <label for="check1"></label>
+        <div class="checkboxText"> 자동 로그인</div>
+    </div>
 </form>
 
 <script>

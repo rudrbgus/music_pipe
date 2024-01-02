@@ -13,4 +13,6 @@ public interface PersonalAbilityMapper {
 
     PersonalAbility findOne(int userId);
 
+    List<Integer> findUserIdByEquipmentId(int equipmentId);
+
 }

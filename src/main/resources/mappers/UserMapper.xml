@@ -20,21 +20,26 @@
 
     <select id="findUser" resultType="user">
         SELECT
-            user_id, password, nickname, age, email,sex, regdate, team_id
+            user_id, password, nickname, age, email,sex, regdate, team_id, session_id, limit_time
         FROM user
         WHERE email = #{email}
-
     </select>
 
-    <select id="isDuplicate" resultType="boolean">
+    <select id="findUserByUserId" resultType="user">
+        SELECT
+            user_id, password, nickname, age, email,sex, regdate, team_id, session_id, limit_time
+        FROM user
+        WHERE user_id = #{userId}
+    </select>
 
+
+
+    <select id="isDuplicate" resultType="boolean">
         select count(*)
         from user
-
         <if test="type == 'nickname'">
             where nickname=#{keyword}
         </if>
-
 
         <if test="type== 'email'">
             where email=#{keyword}
@@ -48,7 +53,18 @@
         WHERE team_id = #{teamId}
     </select>
 
+    <update id="saveAutoLogin">
+        UPDATE user
+        SET session_id =#{sessionId}, limit_time = #{limitTime}
+        WHERE user_id = #{userId}
+    </update>
 
+    <select id="findUserByCookie" resultType="user">
+        select
+            user_id,  nickname, age, email, sex, regdate, team_id, session_id, limit_time
+        from user
+        WHERE session_id = #{sessionId}
+    </select>
 
 
 </mapper>

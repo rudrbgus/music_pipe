@@ -2,6 +2,7 @@ package com.meatjellyburgur.musicpipe.entity;
 
 
 import lombok.*;
+import org.apache.tomcat.jni.Local;
 
 import java.time.LocalDateTime;
 
@@ -19,5 +20,7 @@ public class User {
     private String sex;
     private LocalDateTime regdate;
     private int teamId;
+    private String sessionId;
+    private LocalDateTime limitTime;
 
 }

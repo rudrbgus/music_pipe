@@ -1,6 +1,9 @@
 package com.meatjellyburgur.musicpipe.dto.response;
 
 import com.meatjellyburgur.musicpipe.entity.EmployBoard;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -8,6 +11,9 @@ import java.time.format.DateTimeFormatter;
 import static com.meatjellyburgur.musicpipe.dto.response.onOff.*;
 
 //응답해서 프론트로 보내주는 DTO
+@Getter
+@ToString
+@EqualsAndHashCode
 public class BoardListResponseDTO {
     private  int boardId; //게시글 번호
     private int userId; //게시글쓴 유저번호
@@ -19,13 +25,13 @@ public class BoardListResponseDTO {
     private String regDateTime; // 작성일자시간
 
     public BoardListResponseDTO(EmployBoard employBoard) {
-        this.boardId=employBoard.getBoard_id();
-        this.userId=employBoard.getUser_id();
+        this.boardId=employBoard.getBoardId();
+        this.userId=employBoard.getUserId();
         this.place=employBoard.getPlace();
-        this.onoff=changeOnOff(employBoard.getOn_off());
+        this.onoff=changeOnOff(employBoard.getOnOff());
         this.content= makeShortContent(employBoard.getContent());
         this.title=makeShortTitle(employBoard.getTitle());
-        this.regDateTime=makePrettierDateString(employBoard.getRegDateTime());
+        this.regDateTime=makePrettierDateString(employBoard.getRegdate());
     }
 
     //온라인 오프라인 여부에 따라 라벨로 (온라인/오프라인) 보여주는것
