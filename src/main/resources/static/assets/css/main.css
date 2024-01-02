@@ -59,7 +59,10 @@ mark {
 	background-color: transparent;
 	color: inherit;
 }
-
+a {
+	color: inherit;
+	text-decoration: none;
+}
 input::-moz-focus-inner {
 	border: 0;
 	padding: 0;

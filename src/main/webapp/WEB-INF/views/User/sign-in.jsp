@@ -10,6 +10,13 @@
     <style>
         @import url(http://weloveiconfonts.com/api/?family=entypo);
         @import url(https://fonts.googleapis.com/css?family=Roboto);
+        /*@import url(https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css);*/
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
 
         /* zocial */
         [class*='entypo-']:before {
@@ -74,16 +81,18 @@
         }
 
 
-        .inputUserIcon {
+        .inputUserIcon ,
+        .fa-user{
             position: absolute;
-            top: 386px;
+            top: 376px;
             right: 80px;
             color: white;
         }
 
-        .inputPassIcon {
+        .inputPassIcon ,
+        .fa-key{
             position: absolute;
-            top: 456px;
+            top: 446px;
             right: 80px;
             color: white;
         }
@@ -137,14 +146,18 @@
 
 <form action="/user/sign-in" name="signIn" method="post" id="signInForm">
     <h2><span class="entypo-login"><i class="fa fa-sign-in"></i></span> Login</h2>
-    <button type="submit" class="submit"><span class="entypo-lock"><i class="fa fa-lock"></i></span></button>
-    <span class="entypo-user inputUserIcon">
+    <button type="submit" class="submit">
+<%--        <span class="entypo-lock">--%>
+            <i class="fa fa-lock"></i>
+<%--        </span>--%>
+    </button>
+<%--    <span class="entypo-user inputUserIcon">--%>
            <i class="fa fa-user"></i>
-         </span>
+<%--         </span>--%>
     <input type="text" class="user" name="email" placeholder="user-email"/>
-    <span class="entypo-key inputPassIcon">
+<%--    <span class="entypo-key inputPassIcon">--%>
            <i class="fa fa-key"></i>
-         </span>
+<%--         </span>--%>
     <input type="password" class="pass" name="password" placeholder="password"/>
     <div class="checkBoxDiv">
         <input type="checkbox" id="check1">

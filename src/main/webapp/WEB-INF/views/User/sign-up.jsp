@@ -10,6 +10,10 @@
     <style>
         @import url(http://weloveiconfonts.com/api/?family=entypo);
         @import url(https://fonts.googleapis.com/css?family=Roboto);
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
         [class*='entypo-']:before {
             font-family: 'entypo', sans-serif;
@@ -38,7 +42,7 @@
             overflow: hidden;
         }
 
-        form {
+        #signUpForm {
             /*position: relative;*/
             flex-wrap: wrap;
             margin: 50px auto;
@@ -69,9 +73,9 @@
             color: #e74c3c;
         }
 
-        button {
+        #signup-btn{
             float: left;
-            margin-top: 50px;
+            margin-top: 30px;
             margin-left: 140px;
             height: 50px;
             width: 150px;
@@ -118,6 +122,12 @@
         .select input[type=radio]:checked+label{
             background-color: #e74c3c;
             color: #fff;
+        }
+
+        #search input,
+        header .inner-header #search button{
+            /*margin-top: 0px;*/
+            padding-top: 0px;
         }
 
 
