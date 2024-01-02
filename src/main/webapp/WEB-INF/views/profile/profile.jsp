@@ -7,17 +7,7 @@
     <title>Web Study</title>
 <%@include file="../include/static-head.jsp"%>
     <style>
-        /* 리셋 css포함시키기 */
-        @import url(https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css);
 
-        * {
-            box-sizing: border-box;
-        }
-        .clearfix::after {
-            content: '';
-            display: block;
-            clear: both;
-        }
         a {
             color: inherit;
             text-decoration: none;
@@ -25,7 +15,7 @@
 
 
         body{
-            /*background:  url("/assets/img/bus.jpg");*/
+            background: #DAA394;
         }
 
         span{
@@ -182,7 +172,7 @@
 <div class="profile_main_container">
     <div class="profile_container">
         <div class="profile_img_box">
-            <div class="profile_img"></div>
+            <div class="profile_img">\${profileImg}</div>
             <button class="profile_img_change">프로필 이미지 변경</button>
         </div>
         <div class="profile_text">
