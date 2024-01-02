@@ -124,10 +124,11 @@
             color: #fff;
         }
 
-        #search input,
-        header .inner-header #search button{
-            /*margin-top: 0px;*/
+        body header .inner-header #search button,
+        body header .inner-header #search input{
+            margin-top: 0px;
             padding-top: 0px;
+            height: 0px;
         }
 
 
