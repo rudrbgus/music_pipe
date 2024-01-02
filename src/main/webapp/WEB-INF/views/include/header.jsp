@@ -27,6 +27,8 @@
         align-items: center;
         font-weight: 700;
         color: #000000;
+
+        /*position: relative;*/
     }
     header .inner-header .logo {
         width: 200px;
@@ -37,13 +39,18 @@
     header .inner-header .logo a img {
         height: 100px;
     }
-    header .inner-header .search{
+    header .inner-header #search{
         margin-left: 1350px;
-        width: 300px;
+        width: 350px;
         display: flex;
         justify-content: center;
         align-content: center;
         flex-direction: row;
+        margin-top: 0px;
+        padding-top: 0px;
+        height: 20px;
+
+        /*position: absolute;*/
     }
     header .inner-header .intro-text {
         /* background: greenyellow; */
@@ -109,6 +116,14 @@
         /*background: transparent;*/
         cursor: pointer;
     }
+    header .inner-header #search .btn-primary{
+        height: 35px;
+        margin-top: 15px;
+    }
+    header .inner-header #search .form-control{
+        height: 35px;
+        width: 150px;
+    }
 </style>
 </html>
 
@@ -122,7 +137,7 @@
             </a>
         </h1>
 
-        <form action="/user/list" class="search" method="POST">
+        <form action="/user/list" id="search" method="POST">
             <input type="text" class="form-control" name="equipmentId">
             <button class="btn btn-primary" type="submit">
                 <i class="fas fa-search"></i>
@@ -149,7 +164,7 @@
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">together</a></li>
-            <li><a href="user/sign-up">sign-up</a></li>
+            <li><a href="/user/sign-up">sign-up</a></li>
 <%--            <c:if test="${not empty login}">
                 <li><a href="#">My Page</a></li>
                 <li><a href="/user/sign-out">Sign Out</a></li>
