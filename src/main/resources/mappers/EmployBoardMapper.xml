@@ -48,6 +48,30 @@
 <!--        </if>-->
 
     </select>
+    <select id="findOne" resultType="employboard">
+        select
+        E.board_id, E.user_id,
+        E.place,E.on_off,
+        E.title,E.content,
+        E.view_count,E.reg_date
+        from employ_board E
+        join user U
+        on E.user_id=U.user_id
+        where E.board_id=#{boardId}
+
+    </select>
+
+<!--    updateViewCount-->
+<update id="updateViewCount">
+    update employ_board
+    set view_count= view_count+1
+    where board_id=#{boardId}
+</update>
+
+    <delete id="deleteByNo">
+        delete from employ_board
+        where board_id=#{boardId}
+    </delete>
 
 
 </mapper>

@@ -21,6 +21,7 @@ public class EmployBoard {
     private LocalDateTime regdate; // 작성일자시간
 
     public EmployBoard(BoardWriteRequestDTO dto) {
+        this.userId= dto.getUserId();
         this.title=dto.getTitle();
         this.content=dto.getContent();
         this.regdate=LocalDateTime.now();
