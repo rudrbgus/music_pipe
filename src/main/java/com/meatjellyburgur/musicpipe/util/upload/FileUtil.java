@@ -36,8 +36,7 @@ public class FileUtil {
             e.printStackTrace();
         }
 
-        // full-path : D:/abcd/uploade/2024/01/02/ㄱㄷㅈㄱㅈㄷㄱㅈㄷㄱㅈㄷㄱㅈㄷㄱ_고양이.jpg
-        // return-path: 2024/01/02/ㄱㄷㅈㄱㅈㄷㄱㅈㄷㄱㅈㄷㄱㅈㄷㄱ_고양이.jpg
+
         return fullPath.substring(rootPath.length());
     }
 
@@ -53,6 +52,10 @@ public class FileUtil {
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
+
+        // 루트 경로가 있는지 확인
+        File root = new File(rootPath);
+        if(!root.exists()) root.mkdirs();
 
         String[] dateInfo = {year+"", len2(month), len2(day)};
         String directoryPath = rootPath;
