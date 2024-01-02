@@ -10,6 +10,10 @@
     <style>
         @import url(http://weloveiconfonts.com/api/?family=entypo);
         @import url(https://fonts.googleapis.com/css?family=Roboto);
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
         [class*='entypo-']:before {
             font-family: 'entypo', sans-serif;
@@ -26,19 +30,21 @@
         h2 {
             color: rgba(255, 255, 255, 0.8);
             /* margin-left: 12px; */
-            margin-right: 115px;
             display: flex;
             align-content: center;
             justify-content: center;
         }
 
         body {
-            background: #272125;
+            background: #777777;
             font-family: 'Roboto', sans-serif;
+            padding-top: 150px;
+            overflow: hidden;
         }
 
-        form {
-            position: relative;
+        #signUpForm {
+            /*position: relative;*/
+            flex-wrap: wrap;
             margin: 50px auto;
             width: 550px;
             height: auto;
@@ -67,9 +73,9 @@
             color: #e74c3c;
         }
 
-        button {
+        #signup-btn{
             float: left;
-            margin-top: 50px;
+            margin-top: 30px;
             margin-left: 140px;
             height: 50px;
             width: 150px;
@@ -89,6 +95,43 @@
         input:focus::-webkit-input-placeholder {
             color: #e74c3c;
         }
+        .box{
+            display: flex;
+        }
+        .select {
+            padding: 15px 10px;
+        }
+        .select input[type=radio]{
+            display: none;
+        }
+        .select input[type=radio]+label{
+            width: 200px;
+            display: inline-block;
+            cursor: pointer;
+            height: 48px;
+            line-height: 48px; /* 높이와 동일하게 설정하여 텍스트를 세로 가운데로 정렬 */
+            border: 1px solid #333;
+            text-align: center;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .select input[type=radio]+label{
+            background-color: #000;
+            color: #ffffff;
+        }
+        .select input[type=radio]:checked+label{
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        #search input,
+        header .inner-header #search button{
+            /*margin-top: 0px;*/
+            padding-top: 0px;
+        }
+
+
+
     </style>
 </head>
 <body>
@@ -116,22 +159,24 @@
     <span id="nicknameChk"></span>
     <input name="age" type="int" class="age" placeholder="age" id="user_age" />
     <span id="ageChk"></span>
-    <div class="box">
+    <div class="select">
         <input
-                id="femail"
-                type='radio'
-                name='gender'
-                value='female'/>
-        <label for='femail' class="radiobtn">여성</label>
-
+                id="male"
+                type="radio"
+                name="gender"
+                value='male'>
+        <label for="male" class="radiobtn">남성</label>
         <input
-                id="mail"
-                type='radio'
-                name='gender'
-                value='male'/>
-        <label for='mail' class="radiobtn">남성</label>
+                id="female"
+                type="radio"
+                name="gender"
+                value='female'>
+        <label for="female" class="radiobtn">여성</label>
     </div>
-    <%--    <input name="sex" type="String" class="sex" placeholder="gender" />--%>
+    <span id="sexChk"></span>
+
+
+<%--    <input name="sex" type="String" class="sex" placeholder="gender" />--%>
     <button type="button" value="sign-up" id="signup-btn">sign-up</button>
 </form>
 
@@ -229,10 +274,22 @@
                 = '<b style="color: red;">[이름은 한글 6글자 영어 12글자까지 허용입니다.]</b>';
             checkResultList[2] = false;
         } else {
-            $nameInput.style.borderColor = 'skyblue';
-            document.getElementById('nicknameChk').innerHTML
-                = '<b style="color: skyblue;">[사용가능한 이름입니다.]</b>';
-            checkResultList[2] = true;
+            fetch('/user/check?type=nickname&keyword='+nameValue)
+                .then(res => res.json())
+                .then(flag => {
+                    console.log(flag);
+                    if (flag) { // 중복
+                        $emailInput.style.borderColor = 'red';
+                        document.getElementById('nicknameChk').innerHTML
+                            = '<b style="color: red;">[이름이 중복되었습니다.]</b>';
+                        checkResultList[2] = false;
+                    } else {
+                        $emailInput.style.borderColor = 'skyblue';
+                        document.getElementById('nicknameChk').innerHTML
+                            = '<b style="color: skyblue;">[사용가능한 이름입니다.]</b>';
+                        checkResultList[2] = true;
+                    }
+                });
         }
     };
     const agePattern=/^[0-9]{1,2}$/;
@@ -256,6 +313,14 @@
             checkResultList[3] = true;
         }
     };
+    const $male = document.getElementById("male");
+    const $female = document.getElementById("female");
+    $male.onclick=e=>{
+        checkResultList[4] = true;
+    }
+    $female.onclick=e=>{
+        checkResultList[4] = true;
+    }
 
     // 회원가입 버튼 클릭 이벤트
     document.getElementById('signup-btn').onclick = e => {
@@ -271,14 +336,7 @@
         }
     };
 
-    const $mail = document.getElementById("mail");
-    const $femail = document.getElementById("femail");
-    $mail.onclick=e=>{
-        checkResultList[4] = true;
-    }
-    $femail.onclick=e=>{
-        checkResultList[4] = true;
-    }
+
 
 
 
