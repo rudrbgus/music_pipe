@@ -19,24 +19,26 @@ class PersonalAbilityMapperTest {
     PersonalAbilityMapper mapper;
 
 
-    @Transactional
-    @Rollback
+
     @Test
-    @DisplayName("1개의 값을 넣으면 1개가 조회된다")
+    @DisplayName("10개의 값을 넣으면 10개가 조회된다")
     void saveTestAndFindAllTest() {
         //given
-        PersonalAbility build = PersonalAbility.builder().userId(11)
-                .equipmentId(3)
-                .ability("고수")
-                .build();
-        //when
-        mapper.save(build);
 
+        //when
+        for (int i = 0; i < 10; i++) {
+            PersonalAbility build = PersonalAbility.builder()
+                    .userId(i)
+                    .ability("고수")
+                    .equipmentId(1)
+                    .build();
+            mapper.save(build);
+        }
 
         //then
         List<PersonalAbility> all = mapper.findAll();
 
-        assertEquals(1, all.size());
+        assertEquals(10, all.size());
     }
 
     @Test
@@ -51,5 +53,16 @@ class PersonalAbilityMapperTest {
         assertNotNull(one);
     }
 
+    @Test
+    @DisplayName("악기를 주면 유저아이디를 뱉어")
+    void findUserIdByInstrumentIdTest(){
+        // given
+        int instrumentId = 1;
+        //when
+        List<Integer> userId = mapper.findUserIdByEquipmentId(instrumentId);
+        //then
+        assertEquals(10, userId.size());
+
+    }
 
 }
