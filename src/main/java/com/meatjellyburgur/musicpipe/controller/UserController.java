@@ -162,4 +162,9 @@ public class UserController {
         return "/User/user-list";
     }
 
+    @GetMapping("/profile")
+    public String showProfile(){
+        return "/profile/profile";
+    }
+
 }
