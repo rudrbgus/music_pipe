@@ -68,5 +68,10 @@
     where board_id=#{boardId}
 </update>
 
+    <delete id="deleteByNo">
+        delete from employ_board
+        where board_id=#{boardId}
+    </delete>
+
 
 </mapper>
