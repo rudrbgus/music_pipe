@@ -226,12 +226,12 @@
     <div class="profile_container">
         <!-- 프로필 사진 -->
         <div class="profile-box">
-            <c:if test="${login == null || login.profileImagePath == null}">
+            <c:if test="${login == null || user.profileImagePath == null}">
                 <img src="/assets/img/anonymous.jpg" alt="프사">
             </c:if>
 
-            <c:if test="${login != null && login.profileImagePath != null}">
-                <img src="/local${login.profileImagePath}" alt="프사">
+            <c:if test="${login != null && user.profileImagePath != null}">
+                <img src="/local${user.profileImagePath}" alt="프사">
             </c:if>
         </div>
 
@@ -242,10 +242,10 @@
             <button type="submit">전송</button>
         </form>
         <div class="profile_text">
-            <c:if test="${login != null}">
-                <div class="profile_nickname">닉네임 : ${login.nickname} </div>
-                <div class="profile_email">이메일 : ${login.email} </div>
-                <div class="profile_team">소속 팀 : ${login.nickname} <button class="creative_team_btn">팀 생성</button> </div>
+            <c:if test="${user != null}">
+                <div class="profile_nickname">닉네임 : ${user.nickname} </div>
+                <div class="profile_email">이메일 : ${user.email} </div>
+                <div class="profile_team">소속 팀 : ${user.nickname} <button class="creative_team_btn">팀 생성</button> </div>
             </c:if>
             <div class="profile_instrument">악기
                 <div class="profile_instrument_checkBox_container">

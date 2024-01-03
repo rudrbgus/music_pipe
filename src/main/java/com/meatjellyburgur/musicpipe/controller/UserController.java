@@ -3,6 +3,7 @@ package com.meatjellyburgur.musicpipe.controller;
 import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
+import com.meatjellyburgur.musicpipe.dto.response.UserProfileResponseDTO;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.service.InstrumentService;
 import com.meatjellyburgur.musicpipe.service.SigninResult;
@@ -172,16 +173,26 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String showProfile(HttpSession session){
+    public String showProfile(String email, Model model){
+        log.debug("user/profile POST!!!");
+        User user = userService.getUser(email);
+        UserProfileResponseDTO dto = UserProfileResponseDTO.builder()
+                .sex(user.getSex())
+                .team_id(user.getTeamId())
+                .profileImagePath(user.getProfileImagePath())
+                .email(user.getEmail())
+                .nickname(user.getNickname())
+                .build();
+        model.addAttribute("user", dto);
         return "/profile/profile";
     }
 
-    @PostMapping("/profile")
+    @PostMapping("/addProfileImage")
     public String modifyProfile(MultipartFile thumbnail, HttpSession session){
         String savedPath = FileUtil.uploadFile(thumbnail, rootPath);
         boolean flag = userService.changeProfileImagePath(savedPath, session);
         System.out.println("파일 저장: " + flag);
-        return "redirect:/";
+        return "redirect:/user/profile";
     }
 
 
