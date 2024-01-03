@@ -164,12 +164,11 @@ public class UserController {
 
     // 악기 주면 해당 악기 가진 사람 리스트 보내줌
     @PostMapping("/list")
-    public String showList(int equipmentId, Model model){
+    public ResponseEntity<?> showList(int equipmentId, Model model){
         log.info("/user/list Post!!!");
         log.info("insturmentId :"+ equipmentId);
         List<FindUserResponseDTO> allUserByInstrumentId = userService.findAllUserByInstrumentId(equipmentId);
-        model.addAttribute("userList", allUserByInstrumentId);
-        return "/User/user-list";
+        return ResponseEntity.ok().body(allUserByInstrumentId);
     }
 
     @GetMapping("/profile")

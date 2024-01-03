@@ -15,4 +15,5 @@ public class SignInUserResponseDTO {
     private String nickname;
     private String gender;
     private int age;
+    private String profileImagePath;
 }
