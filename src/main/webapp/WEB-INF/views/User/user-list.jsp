@@ -12,324 +12,189 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <style>
         /*@import url(http://weloveiconfonts.com/api/?family=entypo);*/
         /*@import url(https://fonts.googleapis.com/css?family=Roboto);*/
-        /* Cards */
-        .main-cont {
-            background-color: #DAA394;
-            padding: 0;
-            margin: 0;
-            top: -215px;
-        }
 
-        .news-row {
-            margin: 0;
-        }
-
-        .news-block {
-            margin: auto;
-            padding: 0;
-            background-color: #F2F2F2;
-            max-width: 1600px;
-            min-width: 100px;
-            /*border: 20px solid black;*/
-            /*border-image-slice: 1;*/
-            transition: all 0.6s ease;
-            animation: blockAppear 0.6s ease-in-out;
-            border-radius: 10px;
-        }
-
-        .underlay {
-            padding: 0;
-            max-height: 350px;
-            max-width: 340px;
-            /*background-color: #f5d682;*/
-            /*border: 1px solid black;*/
-            margin: 30px;
-            /*box-shadow: 1px 1px 3px 1px #dadce0;*/
-            border-radius: 10px;
-
-
-        }
-
-        .card {
-            margin: 0;
-            width: 340px;
-            max-height: 350px;
-            max-width: 340px;
-            background-color: transparent;
-            border: 20px solid rgb(0,0,0,0.1);
-            border-image-slice: 1;
-            transition: transform 0.6s ease;
-            animation: blockAppear 0.6s ease-in-out;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-        }
-        .test{
-            background-color: white;
-        }
-
-        @keyframes blockAppear {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            40% {
-                opacity: 0;
-                transform: translateY(20px);
-                box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15), 0 1px 0 rgba(0, 0, 0, 0.15);
-            }
-            80% {
-                opacity: 1;
-                transform: translateY(-5px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-                box-shadow: none;
-            }
-        }
-
-        .card:hover {
-            z-index: 999;
-            max-height: 800px;
-            width: 400px;
-            max-width: 400px;
-            border: none;
-            border-right: 60px solid transparent;
-            /*border-bottom: 20px solid transparent;*/
-            margin-right: -20px;
-            transform: translate(-30px, -50px);
-        }
-
-        .card:before {
-            box-shadow: none;
-            display: block;
-            content: "";
-            position: absolute;
-            width: 100%;
-            max-width: 400px;
-            height: 10%;
-            transition: box-shadow 0.6s ease;
-        }
-
-        .card:hover:before {
-            max-width: 340px;
-            box-shadow: 60px 60px 20px RGBA(142, 142, 142, 0.6);
-        }
-
-        .card:hover .card-img-top {
-            background: no-repeat center center/cover;
-            width: 100%;
-            height: 140px;
-        }
-
-        .card:hover .card-block {
-            width: 337px;
-            background-color: white;
-        }
-
-        .card-title{
-            text-align: center;
-        }
-        .card:hover .card-title {
-            text-align: center;
-            color: white;
-        }
-
-        .card:hover .card-text {
-            color: white;
-        }
-
-        .card-block {
-            background-color: transparent;
-            background-color: white;
-            background-repeat: no-repeat;
-        }
-
-        .card-text {
-            display: none;
-        }
-
-        .card-img-top {
-            width: 300px;
-            height: 250px;
-            background-color: #fff;
-            transition: height 0.8s ease;
-        }
-
-        @media (max-width: 1120px) {
-            .bar-cont {
-                width: 100%;
-            }
-            .news-block {
-                max-width: 720px;
-            }
-            .card:hover {
-                margin-right: -20px;
-            }
-            .card:hover .card-block {
-                width: 300px;
-            }
-        }
-
-        @media (max-width: 800px) {
-            .news-block {
-                min-width: 380px;
-            }
-            .card:hover {
-                border-left: 20px solid transparent;
-                margin-right: -40px;
-                /*transform: translate(0, -50px);*/
-            }
-            .card:hover:before {
-                box-shadow: 0px 60px 40px RGBA(142, 142, 142, 0.5);
-            }
-            .card:hover .card-block {
-                width: 300px;
-            }
-        }
-
-        @media (max-width: 580px) {
-            .news-block {
-                max-width: 380px;
-            }
-        }
         @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap");
-        /* 공통사용 스타일 시작*/
-        * {
-            font-family: "Noto Sans KR", sans-serif;
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        :root {
+            --clr-dark: rgb(13, 17, 19);
+            --clr-light: #fff;
+            --clr-secondary: #0a84ff;
+        }
+        body {
+            font-family: sans-serif;
+            background: var(--clr-dark);
+            color: var(--clr-light);
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
             margin: 0;
-            padding: 0;
-            text-decoration: none;
-            color: black;
         }
         img {
-            box-shadow: 1px 2px 5px rgba(0, 0, 0, 1);
-            transition: all 0.4s, transform 0.2s;
-            object-fit: cover;
-            border-radius: 10px;
+            max-width: 100%;
         }
-        hr{
-            border : solid 2px brown;
+        .btn {
+            cursor: pointer;
+            padding: 0.5em 1em;
+            border: 0;
+            background: var(--clr-secondary);
+            color: var(--clr-light);
+            font-weight: bold;
+            border-radius: 12px;
         }
-        img:hover {
-            transform: scale(1.05);
+        .game {
+            position: relative;
+            width: 12rem;
         }
-        a:hover p{
-            color: brown;
-        }
-        a:hover {
-            color: brown;
-        }
-        .select > p {
-
-            padding-bottom: 10px;
-            padding-left: 10px;
-            padding-right: 10px;
-            width: auto;
-            color: brown;
-        }
-        .select > div > p {
-
-            padding-bottom: 10px;
-            padding-left: 10px;
-            padding-right: 10px;
-            width: auto;
-            color: brown;
-        }
-        /* 공통사용 스타일끝*/
-
-        body {
+        .streamers {
             display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-content: center;
-            background-color: #DAA394;
+            text-align: center;
+            img {
+                width: 2rem;
+                height: 2rem;
+                border-radius: 50%;
+            }
         }
-        .form {
+        .front {
+            transition: 200ms;
+            & > img {
+                border-radius: 12px;
+            }
+            .name {
+                margin: 0.75em 0;
+            }
+            .status {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .streamers img {
+                border: 1px solid var(--clr-dark);
+                &:nth-child(1) {
+                    z-index: 1;
+                    transform: translateX(15px);
+                }
+                &:nth-child(2) {
+                    transform: translateX(10px);
+                }
+            }
+        }
+
+        .back {
+            position: absolute;
+            top: 56%;
+            left: 0;
+            right: 0;
+            opacity: 0;
             display: flex;
             flex-direction: column;
-            width: 100%;
-        }
-        .top_nav {
             align-items: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /*margin: 10px;*/
-            /*margin-bottom: 50px;*/
+            gap: 1em;
+            .streaming-info {
+                columns: 2;
+                column-rule: 1px solid rgba(255, 255, 255, 0.6);
+            }
+            .game-stat {
+                font-size: 1.2rem;
+                text-align: center;
+                span {
+                    display: block;
+                    font-size: 0.8rem;
+                }
+            }
+            .streamers {
+                display: flex;
+            }
         }
-        .top_nav p {
-            text-align: center;
-            display: inline-block;
-            font-size: 18px;
-            font-weight: bold;
-            vertical-align: middle;
-        }
-        .top_nav a {
-            width: 200px;
-            padding: 10px;
-        }
-        h3 {
-            font-size: 25px;
-        }
-
-        /*상단 로그줄 구현끝*/
-
-        /*유저 게시판 리스트 구현시작*/
-        .free_notice_board{
-            font-size:40px;
-            display: flex;
-            justify-content: center;
-        }
-        .free_notice_board {
-
-        }
-        .sign_ui{
-            display:inline-flex;
-            padding-top:30px;
-            padding-left:30px;
-        }
-        .sign{
-            padding-left:10px;
-            font-size:20px;
-            list-style:none;
-            text-align:center;
-        }
-
-        .free_notice_board > ul{
-            list-style:none;
-            display:flex;
-        }
-
-        .free_notice_board > ul > li{
-            /*padding:19px;*/
-        }
-        .free_notice_board > ul > li:nth-child(2){
-            /*text-align:right;*/
-        }
-        table.user_board{
-            margin:10px;
-        }
-
-
-        /*채팅창용 시작*/
-        .draggable {
+        .backgroundWrapper {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 500px;
-            height: 500px;
-            background-color: lightgray;
-            cursor: move;
-            display :none;
-            box-shadow: 1px 2px 5px rgba(0, 0, 0, 1);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgb(36, 40, 42);
+            z-index: -1;
+            transform: scale(0.2, 0.8);
+            opacity: 0;
+            border-radius: 12px;
+        }
+        .game:hover {
+            .front {
+                transform: translateY(-25%) scale(0.8);
+                .name {
+                    animation: gameName 150ms forwards;
+                }
+                .status {
+                    opacity: 0;
+                }
+            }
+            .back {
+                opacity: 1;
+                .streamers {
+                    width: 100%;
+                    justify-content: space-between;
+                }
+                .streamer {
+                    font-size: 0.9rem;
+                }
+                .name {
+                    font-weight: bold;
+                }
+            }
+            .rank {
+                top: -35px;
+                right: -30px;
+            }
+            .backgroundWrapper {
+                transition: transform 200ms ease-in-out, opacity 100ms linear;
+                opacity: 1;
+                transform: scale(1.4, 1.2);
+            }
         }
 
+        .rank {
+            position: absolute;
+            right: 15px;
+            font-weight: bold;
+            font-size: 1.12rem;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 0.5em 0.5em;
+            clip-path: polygon(100% 0%, 100% 100%, 50% 85%, 0 100%, 0 0);
+            transition: 250ms ease-in-out;
+        }
 
-header{
+        @keyframes gameName {
+            0% {
+                text-align: left;
+                opacity: 1;
+            }
+            20% {
+                text-align: left;
+                opacity: 0;
+            }
+            50% {
+                text-align: center;
+                opacity: 0;
+            }
+            100% {
+                text-align: center;
+                opacity: 1;
+            }
+        }
+        header{
     display: none;
 }
 
@@ -401,16 +266,52 @@ header{
 
 <%--    </div>--%>
 <%--    <hr style="border: solid 1px black;">--%>
-    <div class="test">
-        <div class="container-fluid main-cont">
-            <div class="row news-row">
-                <div class="container-fluid col-md-12 col-sm-6 justify-content-center news-block">
-                    <div class="card-group">
-<%--                        js로 받아오는 곳--%>
-                    </div>
+    <div class="game">
+        <div class="rank">2</div>
+        <div class="front">
+            <img src="https://thumbs.dreamstime.com/z/dj-dog-listening-to-music-behind-empty-blank-wood-wall-victory-peace-fingers-43357579.jpg" alt="game">
+            <h3 class="name">Just Chatting</h3>
+            <div class="status">
+                <p class="viewers">132.5k</p>
+                <div class="streamers">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+                    <img src="https://images.unsplash.com/photo-1510227272981-87123e259b17?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=3759e09a5b9fbe53088b23c615b6312e" alt="">
                 </div>
             </div>
         </div>
+        <div class="back">
+            <div class="streaming-info">
+                <p class="game-stat">174.4k <span>Watching</span></p>
+                <p class="game-stat">3,172<span>Streams</span></p>
+            </div>
+            <button class="btn">See more streams</button>
+            <div class="streamers">
+                <div class="streamer">
+                    <div class="icon">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+                    </div>
+                    <p class="name">gamer 1</p>
+                    <p class="number">18k</p>
+                </div>
+                <div class="streamer">
+                    <div class="icon">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+                    </div>
+                    <p class="name">gamer 2</p>
+                    <p class="number">9,600</p>
+                </div>
+                <div class="streamer">
+                    <div class="icon">
+                        <img src="https://images.unsplash.com/photo-1510227272981-87123e259b17?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=3759e09a5b9fbe53088b23c615b6312e" alt="">
+                    </div>
+                    <p class="name">gamer 3</p>
+                    <p class="number">7,407</p>
+                </div>
+            </div>
+        </div>
+        <div class="backgroundWrapper"></div>
+    </div>
     </div>
     <hr style="border: solid 1px black;">
     <br>
