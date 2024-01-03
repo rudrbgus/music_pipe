@@ -26,7 +26,10 @@ public class AutoLoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 유저한테 자동로그인 쿠키가 있는지 확인
         Cookie cookie = WebUtils.getCookie(request, AUTO_LOGIN_COOKIE);
+<<<<<<< HEAD
 //        String sessionId = cookie.getValue();
+=======
+>>>>>>> origin/css
         if(cookie != null){
             String sessionId = cookie.getValue();
             User user = userMapper.findUserByCookie(sessionId);

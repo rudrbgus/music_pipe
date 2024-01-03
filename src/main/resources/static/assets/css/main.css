@@ -1330,7 +1330,9 @@ input, select, textarea {
 			transition: none !important;
 		}
 
-	body, input, textarea, select {
+	body, input, textarea
+	/*, select */
+	{
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: 300;
 		/*color: #777777;*/
@@ -1479,7 +1481,7 @@ input, select, textarea {
 	form input[type="text"],
 	form input[type="email"],
 	form input[type="password"],
-	form select,
+	/*form select,*/
 	form textarea {
 		-webkit-appearance: none;
 		border: 0;
