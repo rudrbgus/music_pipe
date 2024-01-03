@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Web Study</title>
-<%@include file="../include/static-head.jsp"%>
+    <%@include file="../include/static-head.jsp" %>
     <style>
 
         a {
@@ -14,15 +14,16 @@
         }
 
 
-        body{
+        body {
             background: #DAA394;
         }
 
-        span{
+        span {
             font-size: 1.2rem;
             font-weight: 700;
         }
-        .profile_main_container{
+
+        .profile_main_container {
             width: 1000px;
             height: 700px;
             border: 3px solid #000;
@@ -30,42 +31,38 @@
             margin-top: 180px;
             background: #e4e4e4;
         }
-        .profile_main_container .profile_container{
+
+        .profile_main_container .profile_container {
             /* background: #eee; */
             width: 90%;
             height: 400px;
             margin: 0 auto;
             display: flex;
         }
-        .profile_main_container .profile_container .profile_img_box{
-            /* background: skyblue; */
+
+
+        .profile_main_container .profile_container .profile_image_box .upload-box:hover{
+            display: block;
             width: 250px;
-            height: 400px;
-            display: flex;
-            align-content: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-        .profile_main_container .profile_container .profile_img_box .profile_img{
-            width: 200px;
-            height: 200px;
-            border: 1px solid #000;
+            height: 250px;
             border-radius: 50%;
-            margin-left: 25px;
-        }
-        .profile_main_container .profile_container .profile_img_box .profile_img_change{
-            width: 135px;
-            margin-top: 40px;
-            margin-left: 58px;
-            background: #fff;
-            border: 1px solid #ccc;
-            border-radius: 20px;
-        }
-        .profile_main_container .profile_container .profile_img_box .profile_img_change:hover{
-            background: #cccccc;
+            background-clip: content-box;
+            animation: spin 10s linear infinite;
         }
 
-        .profile_main_container .profile_container .profile_text{
+        .profile_main_container .profile_container .profile_image_box .upload-box:active{
+            animation: spin 3s linear infinite;
+        }
+
+
+        @keyframes spin {
+            100% {
+                transform: rotateZ(360deg);
+            }
+        }
+
+
+        .profile_main_container .profile_container .profile_text {
             /* background: orange; */
             width: 600px;
             height: 400px;
@@ -74,43 +71,49 @@
             padding-top: 45px;
             font-size: 1.3rem;
         }
+
         .profile_main_container .profile_container .profile_text .profile_nickname,
         .profile_main_container .profile_container .profile_text .profile_team,
-        .profile_main_container .profile_container .profile_text .profile_email{
+        .profile_main_container .profile_container .profile_text .profile_email {
             /* border: 1px solid #000; */
             width: 400px;
             height: 2rem;
             margin-bottom: 10px;
         }
+
         .profile_main_container .profile_container .profile_text .profile_instrument,
-        #modal .modal_container .profile_instrument_recruitCheckBox_container{
+        #modal .modal_container .profile_instrument_recruitCheckBox_container {
             width: 400px;
             height: 4rem;
             margin-bottom: 15px;
         }
-        .profile_main_container .profile_container .profile_text .profile_instrument .profile_instrument_checkBox_container{
+
+        .profile_main_container .profile_container .profile_text .profile_instrument .profile_instrument_checkBox_container {
             /* border: 1px solid #000; */
             width: 380px;
             height: 3rem;
         }
-        .profile_main_container .profile_container .profile_text .profile_instrument .profile_instrument_checkBox_container .checkbox-wrapper ,
-        #modal .modal_container .profile_instrument_recruitCheckBox_container .checkbox-recruit{
+
+        .profile_main_container .profile_container .profile_text .profile_instrument .profile_instrument_checkBox_container .checkbox-wrapper,
+        #modal .modal_container .profile_instrument_recruitCheckBox_container .checkbox-recruit {
             margin-top: 5px;
             box-sizing: border-box;
             font-size: 1rem;
             display: flex;
         }
 
-        .profile_main_container .profile_container .profile_text .profile_instrument .profile_instrument_checkBox_container .checkbox-wrapper input ,
-        #modal .modal_container .profile_instrument_recruitCheckBox_container .checkbox-recruit input{
+        .profile_main_container .profile_container .profile_text .profile_instrument .profile_instrument_checkBox_container .checkbox-wrapper input,
+        #modal .modal_container .profile_instrument_recruitCheckBox_container .checkbox-recruit input {
             margin-right: 0.5rem;
         }
-        .profile_main_container .profile_container .profile_text .profile_instrument_skill{
+
+        .profile_main_container .profile_container .profile_text .profile_instrument_skill {
             width: 400px;
             height: 8rem;
             margin-bottom: 15px;
         }
-        .profile_main_container .profile_container .profile_text .profile_instrument_skill .profile_instrument_skill_container{
+
+        .profile_main_container .profile_container .profile_text .profile_instrument_skill .profile_instrument_skill_container {
             border: 1px solid #ccc;
             width: 380px;
             height: 7rem;
@@ -136,9 +139,7 @@
         }
 
 
-
-
-        .profile_main_container .board_container{
+        .profile_main_container .board_container {
             /* background: #e4e4e4; */
             width: 900px;
             height: 250px;
@@ -150,8 +151,9 @@
             justify-content: space-between;
             flex-direction: column;
         }
+
         .profile_main_container .board_container .my_writing_list,
-        .profile_main_container .board_container .apply_writing_list{
+        .profile_main_container .board_container .apply_writing_list {
             border: 1px solid #000;
             border-radius: 15px;
             width: 850px;
@@ -159,13 +161,14 @@
             padding-left: 30px;
             padding-top: 5px;
         }
+
         .profile_main_container .board_container .apply_writing_list .apply_writing_item,
-        .profile_main_container .board_container .my_writing_list .my_writing_item{
+        .profile_main_container .board_container .my_writing_list .my_writing_item {
             padding-left: 10px;
             margin-top: 5px;
         }
 
-        #modal{
+        #modal {
             width: 800px;
             height: 500px;
             display: flex;
@@ -177,21 +180,25 @@
             right: 50%;
             top: 50%;
         }
-        #modal .modal_container{
+
+        #modal .modal_container {
             width: 700px;
             height: 400px;
         }
+
         .invisible {
             display: none;
         }
-        #modal .modal_container #createTeamForm{
+
+        #modal .modal_container #createTeamForm {
             position: relative;
         }
 
-        #modal .modal_container h3{
+        #modal .modal_container h3 {
             font-size: 1.2rem;
         }
-        #modal .modal_container .cloes{
+
+        #modal .modal_container .cloes {
             font-size: 1.2rem;
             color: #dd1111;
             position: absolute;
@@ -200,11 +207,18 @@
             right: 200px;
         }
 
+        .profile_image_box{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
         .upload-box {
             width: 250px;
             height: 250px;
-            border: 3px dashed orange;
-            border-radius: 70% ;
+            border: 3px dashed black;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -212,13 +226,14 @@
             font-weight: 700;
             cursor: pointer;
             overflow: hidden;
-
         }
-        .upload-box img{
+        .upload-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+
+
         #img-input {
             display: none;
         }
@@ -228,31 +243,37 @@
 
 </head>
 <body>
-<%@include file="../include/header.jsp"%>
+<%@include file="../include/header.jsp" %>
 <div class="profile_main_container">
     <div class="profile_container">
-        <!-- 프로필 사진 -->
-        <div class="upload-box">
-            <c:if test="${login == null || user.profileImagePath == null}">
-                <img src="/assets/img/profile.png" alt="프사">
-            </c:if>
-            <c:if test="${login != null && user.profileImagePath != null}">
-                <img src="/local${user.profileImagePath}" alt="프사">
-            </c:if>
+        <div class="profile_image_box">
+            <!-- 프로필 사진 -->
+            <div class="upload-box">
+                <c:if test="${login == null || user.profileImagePath == null}">
+                    <img src="/assets/img/profile.png" alt="프사">
+                </c:if>
+                <c:if test="${login != null && user.profileImagePath != null}">
+                    <img src="/local${user.profileImagePath}" alt="가져온 프사">
+                </c:if>
+            </div>
+            <form action="/user/addProfileImage" method="post" enctype="multipart/form-data">
+                <input id="img-input" type="file" name="thumbnail" accept="image/*">
+                <button type="submit">프로필 이미지 수정하기</button>
+            </form>
         </div>
-
-        <form action="/user/addProfileImage" method="post" enctype="multipart/form-data">
-            <input id="img-input" type="file" name="thumbnail" accept="image/*">
-            <button type="submit">전송</button>
-        </form>
         <div class="profile_text">
             <c:if test="${user != null}">
                 <div class="profile_nickname">닉네임 : ${user.nickname} </div>
                 <div class="profile_email">이메일 : ${user.email} </div>
-                <div class="profile_team">소속 팀 : ${user.nickname} <button class="creative_team_btn">팀 생성</button> </div>
+                <div class="profile_team">소속 팀 : ${user.nickname}
+                    <button class="creative_team_btn">팀 생성</button>
+                </div>
             </c:if>
             <div class="profile_instrument">악기
                 <div class="profile_instrument_checkBox_container">
+                    <div>
+                        
+                    </div>
                     <div class="checkbox-wrapper">
                         <input type="checkbox" id="checkbox1">
                         <label for="checkbox1">보컬</label>
@@ -276,12 +297,6 @@
 
                         <input type="checkbox" id="checkbox7">
                         <label for="checkbox7">드럼</label>
-
-                        <input type="checkbox" id="checkbox8">
-                        <label for="checkbox8">클래식 악기</label>
-
-                        <input type="checkbox" id="checkbox9">
-                        <label for="checkbox9">기타 악기</label>
                     </div>
                 </div>
             </div>
@@ -293,11 +308,11 @@
     <div class="board_container">
         <ul class="my_writing_list">
             <span>내가 작성한 글 목록</span>
-            <li class="my_writing_item">제목 : 작성날짜 : </li>
+            <li class="my_writing_item">제목 : 작성날짜 :</li>
         </ul>
         <ul class="apply_writing_list">
             <span>내가 신청한 글 목록</span>
-            <li class="apply_writing_item">제목 : 작성날짜 : </li>
+            <li class="apply_writing_item">제목 : 작성날짜 :</li>
         </ul>
     </div>
 </div>
@@ -307,10 +322,11 @@
             <h3>팀생성</h3>
             <div class="cloes">X</div>
             <div class="teamNameContainer">
-                팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName" />
+                팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName"/>
             </div>
             <div class="teamInstrumentContainer">
-                모집 : <div class="profile_instrument_recruitCheckBox_container">
+                모집 :
+                <div class="profile_instrument_recruitCheckBox_container">
                     <div class="checkbox-recruit">
                         <input type="checkbox" id="recruitCheckbox1">
                         <label for="checkbox1">보컬</label>
@@ -402,6 +418,7 @@
                 skillContainer.appendChild(skillDiv);
             });
         }
+
         const $box = document.querySelector('.upload-box');
         const $input = document.getElementById('img-input');
 
@@ -413,7 +430,7 @@
         const $profile = document.querySelector('.profile');
         const $fileInput = document.getElementById('profile-img');
 
-        $profile.onclick = e =>{
+        $profile.onclick = e => {
             $fileInput.click();
         }
 
