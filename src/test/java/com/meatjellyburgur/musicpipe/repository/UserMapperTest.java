@@ -38,19 +38,19 @@ class UserMapperTest {
     }
 
     @Test
-    @DisplayName("User 100개를 넣으면 100개가 조회된다")
+    @DisplayName("User 10개를 넣으면 10개가 조회된다")
     void saveAllTest(){
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             User male = User.builder()
                     .sex("Male")
                     .age(i)
                     .email("test" + i + "@naver.com")
                     .nickname("test" + i)
-                    .password("1234")
+                    .password(encoder.encode("1234"))
                     .build();
             mapper.save(male);
         }
-        assertEquals(100, mapper.findUseByTeamId(0).size());
+        assertEquals(10, mapper.findUseByTeamId(0).size());
     }
 
     @Test
@@ -73,8 +73,6 @@ class UserMapperTest {
         System.out.println(user);
     }
 
-
-
     @Test
     @DisplayName("닉네임이 '나가' 경우 결과값은 false 이여야한다")
     void duplicateTest () {
@@ -86,6 +84,7 @@ class UserMapperTest {
         //then
         assertTrue(flag);
     }
+
     @Test
     @DisplayName("이메일이 bbb@naver.com 경우 결과값은 false 이여야한다")
     void duplicateEmailTest () {

@@ -82,7 +82,6 @@ public class UserController {
             userService.maintainLoginState(request.getSession(), dto.getEmail());
 
 
-
             return "redirect:/";
         }
 
