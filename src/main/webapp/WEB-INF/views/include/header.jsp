@@ -40,15 +40,21 @@
         height: 100px;
     }
     header .inner-header #search{
-        margin-left: 1350px;
-        width: 350px;
+        margin-left: 1150px;
+        width: 550px;
         display: flex;
         justify-content: center;
         align-content: center;
         flex-direction: row;
         margin-top: 0px;
-        padding-top: 0px;
+        padding: 0px;
         height: 20px;
+    }
+    header .inner-header #search select{
+        font-size: 12px;
+        margin-top: 25px;
+        height: 25px;
+        width: 75px;
     }
 
     header .inner-header .intro-text {
@@ -127,22 +133,22 @@
 
     @media ( max-width: 1600px ) {
         header .inner-header #search{
-            margin-left: 1000px;
+            margin-left: 800px;
         }
     }
     @media ( max-width: 1450px ) {
         header .inner-header #search{
-            margin-left: 850px;
+            margin-left: 650px;
         }
     }
     @media ( max-width: 1300px ) {
         header .inner-header #search{
-            margin-left: 700px;
+            margin-left: 500px;
         }
     }
     @media ( max-width: 1000px ) {
         header .inner-header #search{
-            margin-left: 400px;
+            margin-left: 200px;
         }
     }
 
@@ -160,6 +166,11 @@
         </h1>
 
         <form action="/user/list" id="search" method="POST">
+            <select name="search_select" >
+                <option value="none">팀/개인</option>
+                <option value="korean">팀</option>
+                <option value="english">개인</option>
+            </select>
             <input type="text" class="form-control" name="equipmentId">
             <button class="btn btn-primary" type="submit">
                 <i class="fas fa-search"></i>
