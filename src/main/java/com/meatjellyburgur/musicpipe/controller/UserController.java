@@ -176,11 +176,13 @@ public class UserController {
     public String showProfile(HttpSession session){
         return "/profile/profile";
     }
+
     @PostMapping("/profile")
-    public void modifyProfile(MultipartFile thumbnail, HttpSession session){
+    public String modifyProfile(MultipartFile thumbnail, HttpSession session){
         String savedPath = FileUtil.uploadFile(thumbnail, rootPath);
         boolean flag = userService.changeProfileImagePath(savedPath, session);
         System.out.println("파일 저장: " + flag);
+        return "redirect:/";
     }
 
 
