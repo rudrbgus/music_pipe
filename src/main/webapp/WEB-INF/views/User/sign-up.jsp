@@ -60,11 +60,13 @@
             border: 0px;
             background: rgba(255, 255, 255, 0.2);
             display: block;
-            margin: 15px;
             width: 400px;
             color: white;
             font-size: 18px;
             height: 54px;
+        }
+        #signUpForm input{
+            margin: 15px;
         }
 
         input:focus {

@@ -41,7 +41,7 @@
             font-family: 'Roboto', sans-serif;
         }
 
-        form {
+        #signInForm{
             padding-top: 300px;
             position: relative;
             margin: 50px auto;
@@ -55,11 +55,14 @@
             border: 0px;
             background: rgba(255, 255, 255, 0.2);
             display: block;
-            margin: 15px;
+
             width: 300px;
             color: white;
             font-size: 18px;
             height: 54px;
+        }
+        #signInForm input{
+            margin: 15px;
         }
 
         input:focus {

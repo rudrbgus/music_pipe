@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
+
 <style>
     header {
         /* background: red; */
@@ -39,23 +41,8 @@
     header .inner-header .logo a img {
         height: 100px;
     }
-    header .inner-header #search{
-        margin-left: 1150px;
-        width: 550px;
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        flex-direction: row;
-        margin-top: 0px;
-        padding: 0px;
-        height: 20px;
-    }
-    header .inner-header #search select{
-        font-size: 12px;
-        margin-top: 25px;
-        height: 25px;
-        width: 75px;
-    }
+
+
 
     header .inner-header .intro-text {
         /* background: greenyellow; */
@@ -121,6 +108,27 @@
         /*background: transparent;*/
         cursor: pointer;
     }
+
+    header .inner-header #search{
+        margin-left: 1150px;
+        width: 550px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        margin-top: 0px;
+        padding: 0px;
+        height: 20px;
+    }
+
+    header .inner-header #search select{
+        font-size: 12px;
+        margin-top: 25px;
+        height: 25px;
+        width: 75px;
+        margin-right: 15px;
+    }
+
     header .inner-header #search .btn-primary{
         height: 35px;
         margin-top: 20px;
@@ -175,7 +183,9 @@
             <button class="btn btn-primary" type="submit">
                 <i class="fas fa-search"></i>
             </button>
+
         </form>
+
 
         <a href="#" class="menu-open">
             <span class="lnr lnr-menu"></span>
@@ -199,13 +209,15 @@
             <span class="lnr lnr-cross"></span>
         </a>
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/board/list">together</a></li>
-            <li><a href="/user/sign-up">sign-up</a></li>
-<%--            <c:if test="${not empty login}">
-                <li><a href="#">My Page</a></li>
-                <li><a href="/user/sign-out">Sign Out</a></li>
-            </c:if>--%>
+            <c:if test="${empty login}">
+                <li><a href="/user/sign-up">sign-up</a></li>
+            </c:if>
+            <c:if test="${not empty login}">
+                <li><a href="/user/profile">My Page</a></li>
+                <li><a href="/user/sign-out">LogOut</a></li>
+            </c:if>
         </ul>
     </nav>
 
