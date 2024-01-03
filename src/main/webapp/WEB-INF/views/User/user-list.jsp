@@ -771,7 +771,9 @@
             },
             body: JSON.stringify({equipmentId: 1})
         }).then(res=>{
-            console.log(res.json());
+            return res.json();
+        }).then(r=>{
+            console.log(r[0].nickname)
         })
     }
     (() => {
