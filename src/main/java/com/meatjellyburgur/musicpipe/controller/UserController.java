@@ -1,5 +1,8 @@
 package com.meatjellyburgur.musicpipe.controller;
 
+import com.fasterxml.jackson.annotation.JsonKey;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.meatjellyburgur.musicpipe.dto.request.ListRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
@@ -12,6 +15,7 @@ import com.meatjellyburgur.musicpipe.util.SignInUtils;
 import com.meatjellyburgur.musicpipe.util.upload.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -163,12 +167,22 @@ public class UserController {
         return allUserByTeamId;
     }
 
+
+    @GetMapping("/list")
+    public String showList(){
+        log.info("/user/list GET!!");
+
+        return "/User/user-list";
+    }
+
     // 악기 주면 해당 악기 가진 사람 리스트 보내줌
     @PostMapping("/list")
-    public ResponseEntity<?> showList(int equipmentId, Model model){
+    public ResponseEntity<?> showList(@RequestBody ListRequestDTO requestBody, Model model){
+        System.out.println();
         log.info("/user/list Post!!!");
-        log.info("insturmentId :"+ equipmentId);
-        List<FindUserResponseDTO> allUserByInstrumentId = userService.findAllUserByInstrumentId(equipmentId);
+        log.info("insturmentId :"+ requestBody.getEquipmentId());
+        List<FindUserResponseDTO> allUserByInstrumentId = userService.findAllUserByInstrumentId(Integer.parseInt(requestBody.getEquipmentId()));
+        log.info(allUserByInstrumentId.toString());
         return ResponseEntity.ok().body(allUserByInstrumentId);
     }
 

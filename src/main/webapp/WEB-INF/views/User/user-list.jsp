@@ -761,5 +761,22 @@
             $('#toggle-grid').toggleClass('orange');
         });
     });
+
+
+    function fetchGetUserList(){
+        fetch("/user/list", {
+            method: "POST",
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({equipmentId: 1})
+        }).then(res=>{
+            console.log(res.json());
+        })
+    }
+    (() => {
+        fetchGetUserList();
+    })();
+
 </script>
 </body>
