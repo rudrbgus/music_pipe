@@ -189,6 +189,7 @@ public class UserController {
     @GetMapping("/profile")
     public String showProfile(String email, Model model){
         log.debug("user/profile POST!!!");
+        log.info("email: {}", email);
         User user = userService.getUser(email);
         UserProfileResponseDTO dto = UserProfileResponseDTO.builder()
                 .sex(user.getSex())
@@ -198,15 +199,18 @@ public class UserController {
                 .nickname(user.getNickname())
                 .build();
         model.addAttribute("user", dto);
+        System.out.println("dto = " + dto);
         return "/profile/profile";
     }
 
     @PostMapping("/addProfileImage")
     public String modifyProfile(MultipartFile thumbnail, HttpSession session){
+        log.info("/user/addProfileImage POST!!! ");
         String savedPath = FileUtil.uploadFile(thumbnail, rootPath);
         boolean flag = userService.changeProfileImagePath(savedPath, session);
         System.out.println("파일 저장: " + flag);
-        return "redirect:/user/profile";
+
+        return "redirect:/";
     }
 
 

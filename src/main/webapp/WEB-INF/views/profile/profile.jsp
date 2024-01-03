@@ -201,20 +201,27 @@
         }
 
         .upload-box {
-            width: 150px;
-            height: 150px;
+            width: 250px;
+            height: 250px;
             border: 3px dashed orange;
+            border-radius: 70% ;
             display: flex;
             justify-content: center;
             align-items: center;
             color: red;
             font-weight: 700;
             cursor: pointer;
+            overflow: hidden;
+
+        }
+        .upload-box img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         #img-input {
             display: none;
         }
-
 
 
     </style>
@@ -225,19 +232,16 @@
 <div class="profile_main_container">
     <div class="profile_container">
         <!-- 프로필 사진 -->
-        <div class="profile-box">
+        <div class="upload-box">
             <c:if test="${login == null || user.profileImagePath == null}">
-                <img src="/assets/img/anonymous.jpg" alt="프사">
+                <img src="/assets/img/profile.png" alt="프사">
             </c:if>
-
             <c:if test="${login != null && user.profileImagePath != null}">
                 <img src="/local${user.profileImagePath}" alt="프사">
             </c:if>
         </div>
 
-        <div class="upload-box">파일 첨부</div>
-
-        <form action="/user/profile" method="post" enctype="multipart/form-data">
+        <form action="/user/addProfileImage" method="post" enctype="multipart/form-data">
             <input id="img-input" type="file" name="thumbnail" accept="image/*">
             <button type="submit">전송</button>
         </form>

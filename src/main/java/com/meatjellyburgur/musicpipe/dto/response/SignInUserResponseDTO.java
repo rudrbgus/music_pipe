@@ -13,7 +13,7 @@ public class SignInUserResponseDTO {
     private int userId;
     private String email;
     private String nickname;
-    private String gender;
+    private String sex;
     private int age;
     private String profileImagePath;
 }
