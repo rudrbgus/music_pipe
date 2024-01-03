@@ -181,8 +181,23 @@
             width: 700px;
             height: 400px;
         }
-        #modal .on {
-            right: 0;
+        .invisible {
+            display: none;
+        }
+        #modal .modal_container #createTeamForm{
+            position: relative;
+        }
+
+        #modal .modal_container h3{
+            font-size: 1.2rem;
+        }
+        #modal .modal_container .cloes{
+            font-size: 1.2rem;
+            color: #dd1111;
+            position: absolute;
+            z-index: 2001;
+            top: 100px;
+            right: 200px;
         }
 
         .upload-box {
@@ -224,7 +239,7 @@
             <c:if test="${login != null}">
                 <div class="profile_nickname">닉네임 : ${login.nickname} </div>
                 <div class="profile_email">이메일 : ${login.email} </div>
-                <div class="profile_team">소속 팀 : ${login.nickname} </div>
+                <div class="profile_team">소속 팀 : ${login.nickname} <button class="creative_team_btn">팀 생성</button> </div>
             </c:if>
             <div class="profile_instrument">악기
                 <div class="profile_instrument_checkBox_container">
@@ -276,10 +291,11 @@
         </ul>
     </div>
 </div>
-<div class="modal" id="modal">
+<div class="modal invisible" id="modal">
     <div class="modal_container">
         <form name="createTeam" method="post" id="createTeamForm">
             <h3>팀생성</h3>
+            <div class="cloes">X</div>
             <div class="teamNameContainer">
                 팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName" />
             </div>
