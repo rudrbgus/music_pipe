@@ -215,11 +215,416 @@
                 max-width: 380px;
             }
         }
+        @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap");
+        // 공통사용 스타일 시작
+           * {
+               font-family: "Noto Sans KR", sans-serif;
+               margin: 0;
+               padding: 0;
+               text-decoration: none;
+               color: black;
+           }
+        img {
+            box-shadow: 1px 2px 5px rgba(0, 0, 0, 1);
+            transition: all 0.4s, transform 0.2s;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        hr{
+            border : solid 2px brown;
+        }
+        img:hover {
+            transform: scale(1.05);
+        }
+        .sflex {
+            padding-top: 30px;
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        a:hover p{
+            color: brown;
+        }
+        a:hover {
+            color: brown;
+        }
+        .select > p {
+
+            padding-bottom: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            width: auto;
+            color: brown;
+        }
+        .select > div > p {
+
+            padding-bottom: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            width: auto;
+            color: brown;
+        }
+        // 공통사용 스타일끝
+
+        // 상단 로그줄 구현시작
+           .board_head {
+               display: flex;
+               .board_tap {
+                   flex-grow: 5;
+                   align-content: center;
+                   display: flex;
+                   justify-content: space-between;
+                   margin-bottom: 40px;
+                   align-items: center;
+
+                   .logo {
+                       p {
+                           color: brown;
+                       }
+                       p:nth-child(1) {
+                           font-size: 40px;
+                       }
+                       p:nth-child(2) {
+                           font-size: 10px;
+                           padding-left: 10px;
+                       }
+                   }
+                   .logo_base {
+                       font-size: 20px;
+                   }
+               }
+               .board_login {
+                   flex-grow: 2;
+                   align-content: center;
+                   display: flex;
+                   justify-content: flex-end;
+                   margin-bottom: 40px;
+                   align-items: center;
+                   a {
+                       margin: 10px;
+                   }
+               }
+           }
+        body {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-content: center;
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+            width: 1200px;
+        }
+        .top_nav {
+            align-items: center;
+            display: flex;
+            margin: 10px;
+            margin-bottom: 50px;
+        }
+        .top_nav p {
+            text-align: center;
+            display: inline-block;
+            font-size: 18px;
+            font-weight: bold;
+            vertical-align: middle;
+        }
+        .top_nav a {
+            width: 200px;
+            padding: 10px;
+        }
+        h3 {
+            font-size: 25px;
+        }
+        
+          .free_notice_board{
+              font-size:40px;
+              display: flex;
+              justify-content: center;
+          }
+        .free_notice_board {
+
+        }
+        .sign_ui{
+            display:inline-flex;
+            padding-top:30px;
+            padding-left:30px;
+        }
+        .sign{
+            padding-left:10px;
+            font-size:20px;
+            list-style:none;
+            text-align:center;
+        }
+
+        .free_notice_board > ul{
+            list-style:none;
+            display:flex;
+        }
+
+        .free_notice_board > ul > li{
+            padding:19px;
+        }
+        .free_notice_board > ul > li:nth-child(2){
+            text-align:right;
+        }
+        table.user_board{
+            margin:10px;
+        }
+        /*댓글구현시작*/
+        .comment_detali {
+            list-style: none;
+            display:flex;
+            justify-content: space-between;
+            padding-top: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
+            align-items: center;
+            width:99%;
+        }
+
+        .commentt {
+            padding-left: 20px;
+            word-wrap: break-word; /* 긴 댓글이 줄바꿈되도록 함 */
+            max-width: 40%;
+        }
+
+        .commentn {
+            display: flex;
+            justify-content: flex-start;
+            font-size: 12px;
+        }
+
+        .commentd {
+            font-size: 12px;
+        }
+
+        .comment_detali > li:nth-child(1) {
+            flex-grow: 10;
+
+
+        }
+
+        .comment_detali > li:nth-child(2) {
+            flex-grow: 0;
+        }
+
+          .popup_nav {
+              width: 60px;
+              height: 600px;
+              position: absolute;
+              margin: 50px;
+              margin-top: 100px;
+              background-color: lightgray;
+              z-index: 999999;
+              border-radius: 100px;
+              box-shadow: 1px 2px 5px rgba(0, 0, 0, 1);
+          }
+        .popup_body {
+            margin: 20px;
+            position: sticky;
+            height: 0;
+            top: 0;
+        }
+          .draggable {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              width: 500px;
+              height: 500px;
+              background-color: lightgray;
+              cursor: move;
+              display :none;
+              box-shadow: 1px 2px 5px rgba(0, 0, 0, 1);
+          }
+        /*This was all taken from https://tympanus.net/Development/ButtonStylesInspiration/ but I needed to see it in CodePen
+        */
+        @import url(https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600);
+        @font-face {
+            font-weight: normal;
+            font-style: normal;
+            font-family: 'codropsicons';
+            /*src: url("../fonts/codropsicons/codropsicons.eot");*/
+            /*src: url("../fonts/codropsicons/codropsicons.eot?#iefix") format("embedded-opentype"), url("../fonts/codropsicons/codropsicons.woff") format("woff"), url("../fonts/codropsicons/codropsicons.ttf") format("truetype"), url("../fonts/codropsicons/codropsicons.svg#codropsicons") format("svg");*/
+        }
+        *,
+        *:after,
+        *:before {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        /* Top Navigation Style */
+
+        /* Related demos */
+
+        /* Box colors */
+
+        /* Common button styles */
+        .button {
+            float: left;
+            min-width: 15px;
+            max-width: 150px;
+            display: block;
+            margin: 1em;
+            padding: 1em 2em;
+            border: none;
+            background: none;
+            color: inherit;
+            vertical-align: middle;
+            position: relative;
+            z-index: 1;
+            -webkit-backface-visibility: hidden;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Text color adjustments (we could stick to the "inherit" but that does not work well in Safari) */
+        /* Sizes */
+        /* Typography and Roundedness */
+        .button--round-s {
+            border-radius: 5px;
+        }
+        /* Borders */
+        .button--border-thin {
+            border: 1px solid;
+        }
+        /* Individual button styles */
+        /* Winona */
+        .button--winona {
+            overflow: hidden;
+            padding: 0;
+            -webkit-transition: border-color 0.3s, background-color 0.3s;
+            transition: border-color 0.3s, background-color 0.3s;
+            -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+            transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .button--winona::after {
+            content: attr(data-text);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            color:brown;
+            -webkit-transform: translate3d(0, 25%, 0);
+            transform: translate3d(0, 25%, 0);
+        }
+        .button--winona > span {
+            display: block;
+        }
+
+        .button--winona::after,
+        .button--winona > span {
+            padding: 1em 2em;
+            -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+            transition: transform 0.3s, opacity 0.3s;
+            -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+            transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .button--winona:hover {
+            border-color: brown;
+
+
+        }
+        .button--winona.button--inverted:hover {
+            border-color: brown;
+            background-color:brown;
+        }
+        .button--winona:hover::after {
+            opacity: 1;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+        .button--winona:hover > span {
+            opacity: 0;
+            -webkit-transform: translate3d(0, -25%, 0);
+            transform: translate3d(0, -25%, 0);
+        }
+
 
     </style>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
+<div class="form">
+    <hr>
+    <!--  상단 nav바 시작-->
+    <nav class="top_nav">
+        <a href="#">
+            <div>
+                <p>피아노</p>
+            </div>
+        </a>
+        <a href="#">
+            <div>
+                <p>드럼</p>
+            </div>
+        </a>
+        <a href="#">
+            <div  class="select">
+                <p>통기타</p>
+            </div>
+        </a>
+        <a href="#">
+            <div>
+                <p>바이올린</p>
+            </div>
+        </a>
+        <a href="#">
+            <div>
+                <p>트럼펫</p>
+            </div>
+        </a>
+        <a href="#">
+            <div>
+                <p>플룻</p>
+                </p>
+            </div>
+        </a>
+        <a href="#">
+            <div>
+                <p>첼로</p>
+            </div>
+        </a>
+        <a href="#">
+            <div>
+                <p>일렉 기타
+                </p>
+            </div>
+        </a>
+    </nav>
+    <!--  상단 nav바 끝 -->
+    <!--유저 게시판 작성 구현 시작-->
+
+    <div class="free_notice_board">
+        <ul>
+            <li>게시판</li>
+        </ul>
+
+    </div>
+    <br>
+    <hr style="border: solid 1px black;">
+    <br>
+    <tbody class="test">
+    </table>
+    <br>
+    <br>
+    <hr style="border: solid 1px black;">
+    <br>
+    <br>
+    <hr style="border: solid 1px black;">
+    <table class="puser_board">
+        <tbody class="test">
+    </table>
+    <br>
+    <br>
+    <hr style="border: solid 1px black;">
+    <br>
+    <br>
+
+    <!--유저 게시판 리스트 구현 끝-->
+</div>
 <%--<c:forEach var="user" items="${userList}">--%>
 <%--<div class="user-card">--%>
 <%--    <div class="card-container" style="display:flex; justify-content:center;">--%>
@@ -241,104 +646,26 @@
 <%--    </c:forEach>--%>
 <!--======Pixel Grid======-->
 <!--========Cards========-->
-<div class="container-fluid main-cont">
-    <div class="row news-row">
-        <div class="container-fluid col-md-12 col-sm-6 justify-content-center news-block">
-            <div class="card-group">
-                <div class="underlay">
-                    <div class="card">
-                        <div class="card-img-top" style="background-image: url('https://i.imgur.com/wLMJQPH.png')"></div>
-                        <div class="card-block" >
-                            <h5 class="card-title" style="font-family: 'Anton', sans-serif">Canon Unveils New Lens<hr></h5>
-                            <p class="card-text" >Canon will have a full slate of new and updated products to show attendees at this year’s NAB Show. The company has announced its new Compact-Servo 70-200mm telephoto zoom lens <a href="#"><u>Read More...</u></a></p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="underlay">
-                    <div class="card">
-                        <div class="card-img-top" style="background-image: url('https://i.imgur.com/tT6Bxay.png')"></div>
-                        <div class="card-block" >
-                            <h5 class="card-title" style="font-family: 'Anton', sans-serif">Sennheiser HD 598 Tech Specs<hr></h5>
-                            <p class="card-text" >The brown Sennheiser HD 598 audiophile headphones have excellent, detailed hi-fi sound and a stylish design. They are comfortable to wear and offer versatility as well. These accessories feature a multi-dimensional soundstage <a href="#"><u>Read More...</u></a></p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="underlay">
-                    <div class="card">
-                        <div class="card-img-top" style="background-image: url('https://i.imgur.com/n6b2rib.png')"></div>
-                        <div class="card-block" >
-                            <h5 class="card-title" style="font-family: 'Anton', sans-serif">North Sea Wind Power Hub<hr></h5>
-                            <p class="card-text" >The harnessing of energy has never been without projects of monolithic scale. From the Hoover Dam to the Three Gorges—the world's largest power station—engineers the world over have recognised that with size comes advantages <a href="#"><u>Read More...</u></a></p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="underlay">
-                    <div class="card">
-                        <div class="card-img-top" style="background-image: url('https://i.imgur.com/ssMsuUO.png')"></div>
-                        <div class="card-block" >
-                            <h5 class="card-title" style="font-family: 'Anton', sans-serif">Apple MacBook Retina displays<hr></h5>
-                            <p class="card-text" >In 2015 we reported on an issue with MacBook Retina displays that were seeing problems with the anti-reflective coating wearing off, which came to be known as ‘Staingate.’ <a href="#"><u>Read More...</u></a></p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="underlay">
-                    <div class="card">
-                        <div class="card-img-top" style="background-image: url('https://i.imgur.com/yAFDnZ1.png')"></div>
-                        <div class="card-block" >
-                            <h5 class="card-title" style="font-family: 'Anton', sans-serif">Intel Dismisses 7700k Problems<hr></h5>
-                            <p class="card-text" >Modern processors can run at temperatures ranging from 25 to 90 degrees, depending on configuration, cooling and workload. That said, when a CPU takes on a heavy load, that increase is gradual <a href="#"><u>Read More...</u></a></p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="underlay">
-                    <div class="card">
-                        <div class="card-img-top" style="background-image: url('https://i.imgur.com/5rgwfW6.png')"></div>
-                        <div class="card-block" >
-                            <h5 class="card-title" style="font-family: 'Anton', sans-serif">T3 Agenda: Beats By Dre<hr></h5>
-                            <p class="card-text" >In the latest edition of the T3 Agenda, we prepare to box our ears with Beats By Dre's Anthony Joshua headphones, detail the pre-order incentives and special editions of Call of Duty WW2 <a href="#"><u>Read More...</u></a></p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="underlay">
-                    <div class="card">
-                        <div class="card-img-top" style="background-image: url('https://i.imgur.com/WaGs6zS.png')"></div>
-                        <div class="card-block" >
-                            <h5 class="card-title" style="font-family: 'Anton', sans-serif">Remembering &ldquo;Jobs&rdquo; 5th anniv<hr></h5>
-                            <p class="card-text" >It has been 5 years since Steve Jobs passed away. Many publications write about how Apple Inc. has faired under Tim Cook's leadership post-Jobs <a href="#"><u>Read More...</u></a></p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="underlay">
-                    <div class="card">
-                        <div class="card-img-top" style="background-image: url('https://i.imgur.com/M8PGoML.png')"></div>
-                        <div class="card-block" >
-                            <h5 class="card-title" style="font-family: 'Anton', sans-serif">Pair iPod Touch with an AirPlay<hr></h5>
-                            <p class="card-text" >Officially, in order to use AirPlay to stream music from your iOS device, you would need either an Apple TV, AirPort Express, or an AirPlay-enabled receiver or set of speakers <a href="#"><u>Read More...</u></a></p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="underlay">
-                    <div class="card">
-                        <div class="card-img-top" style="background-image: url('https://i.imgur.com/Hp8NxLI.png')"></div>
-                        <div class="card-block" >
-                            <h5 class="card-title" style="font-family: 'Anton', sans-serif">A Time-Travel Experiment Works<hr></h5>
-                            <p class="card-text" >In a makeshift lab, a trio of brainiac students argue over their time-travel device. The skeptic on the team has her doubts—not that the invention will work <a href="#"><u>Read More...</u></a></p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<%--<div class="container-fluid main-cont">--%>
+<%--    <div class="row news-row">--%>
+<%--        <div class="container-fluid col-md-12 col-sm-6 justify-content-center news-block">--%>
+<%--            <div class="card-group">--%>
+<%--                <c:forEach var="user" items="${userList}">--%>
+<%--                <div class="underlay">--%>
+<%--                    <div class="card">--%>
+<%--                        <div class="card-img-top" style="background-image: url('https://i.imgur.com/wLMJQPH.png')"></div>--%>
+<%--                        <div class="card-block" >--%>
+<%--                            <h5 class="card-title" style="font-family: 'Anton', sans-serif">${user.nickname}<hr></h5>--%>
+<%--                            <p class="card-text" >Canon will have a full slate of new and updated products to show attendees at this year’s NAB Show. The company has announced its new Compact-Servo 70-200mm telephoto zoom lens <a href="#"><u>Read More...</u></a></p>--%>
+<%--                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                </c:forEach>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 <!------------------------>
 <!--=======Scripts======-->
 <script>
