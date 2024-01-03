@@ -25,38 +25,28 @@
 
         .news-row {
             margin: 0;
-            margin-top: 240px;
-            margin-bottom: 50px;
         }
 
         .news-block {
             margin: auto;
             padding: 0;
             background-color: transparent;
-            max-width: 1060px;
+            max-width: 1560px;
             min-width: 100px;
             border: 20px solid transparent;
-            border-image: linear-gradient(
-                    to bottom right,
-                    rgba(255, 255, 255, 0.75),
-                    rgba(245, 245, 245, 0.75),
-                    rgba(245, 245, 245, 0.75),
-                    rgb(245, 245, 245),
-                    rgb(245, 245, 245),
-                    rgb(254, 254, 254),
-                    rgba(245, 245, 245, 0.75),
-                    rgba(245, 245, 245, 0.75)
-            );
+            border-color: #3d8b40;
             border-image-slice: 1;
             transition: all 0.6s ease;
             animation: blockAppear 0.6s ease-in-out;
         }
 
         .underlay {
-            margin: 0;
+
             padding: 0;
             max-height: 350px;
             max-width: 340px;
+            background-color: #f5d682;
+            border: 1px solid red;
         }
 
         .card {
@@ -66,14 +56,7 @@
             max-width: 340px;
             background-color: transparent;
             border: 20px solid transparent;
-            border-image: linear-gradient(
-                    to bottom right,
-                    rgba(255, 255, 255, 0.75),
-                    rgba(245, 245, 245, 0.75),
-                    rgba(245, 245, 245, 0.75),
-                    rgba(245, 245, 245, 0.75),
-                    rgba(245, 245, 245, 0.75)
-            );
+            border-color: white;
             border-image-slice: 1;
             transition: transform 0.6s ease;
             animation: blockAppear 0.6s ease-in-out;
@@ -216,14 +199,14 @@
             }
         }
         @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap");
-        // 공통사용 스타일 시작
-           * {
-               font-family: "Noto Sans KR", sans-serif;
-               margin: 0;
-               padding: 0;
-               text-decoration: none;
-               color: black;
-           }
+        /* 공통사용 스타일 시작*/
+        * {
+            font-family: "Noto Sans KR", sans-serif;
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            color: black;
+        }
         img {
             box-shadow: 1px 2px 5px rgba(0, 0, 0, 1);
             transition: all 0.4s, transform 0.2s;
@@ -235,12 +218,6 @@
         }
         img:hover {
             transform: scale(1.05);
-        }
-        .sflex {
-            padding-top: 30px;
-            padding-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
         }
         a:hover p{
             color: brown;
@@ -264,61 +241,26 @@
             width: auto;
             color: brown;
         }
-        // 공통사용 스타일끝
+        /* 공통사용 스타일끝*/
 
-        // 상단 로그줄 구현시작
-           .board_head {
-               display: flex;
-               .board_tap {
-                   flex-grow: 5;
-                   align-content: center;
-                   display: flex;
-                   justify-content: space-between;
-                   margin-bottom: 40px;
-                   align-items: center;
-
-                   .logo {
-                       p {
-                           color: brown;
-                       }
-                       p:nth-child(1) {
-                           font-size: 40px;
-                       }
-                       p:nth-child(2) {
-                           font-size: 10px;
-                           padding-left: 10px;
-                       }
-                   }
-                   .logo_base {
-                       font-size: 20px;
-                   }
-               }
-               .board_login {
-                   flex-grow: 2;
-                   align-content: center;
-                   display: flex;
-                   justify-content: flex-end;
-                   margin-bottom: 40px;
-                   align-items: center;
-                   a {
-                       margin: 10px;
-                   }
-               }
-           }
         body {
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-content: center;
+            background-color: #DAA394;
         }
         .form {
             display: flex;
             flex-direction: column;
-            width: 1200px;
+            width: 100%;
+            margin-top: 120px;
         }
         .top_nav {
             align-items: center;
             display: flex;
+            justify-content: center;
+            align-items: center;
             margin: 10px;
             margin-bottom: 50px;
         }
@@ -336,12 +278,15 @@
         h3 {
             font-size: 25px;
         }
-        
-          .free_notice_board{
-              font-size:40px;
-              display: flex;
-              justify-content: center;
-          }
+
+        /*상단 로그줄 구현끝*/
+
+        /*유저 게시판 리스트 구현시작*/
+        .free_notice_board{
+            font-size:40px;
+            display: flex;
+            justify-content: center;
+        }
         .free_notice_board {
 
         }
@@ -371,176 +316,21 @@
         table.user_board{
             margin:10px;
         }
-        /*댓글구현시작*/
-        .comment_detali {
-            list-style: none;
-            display:flex;
-            justify-content: space-between;
-            padding-top: 10px;
-            margin-left: 20px;
-            margin-right: 20px;
-            align-items: center;
-            width:99%;
-        }
-
-        .commentt {
-            padding-left: 20px;
-            word-wrap: break-word; /* 긴 댓글이 줄바꿈되도록 함 */
-            max-width: 40%;
-        }
-
-        .commentn {
-            display: flex;
-            justify-content: flex-start;
-            font-size: 12px;
-        }
-
-        .commentd {
-            font-size: 12px;
-        }
-
-        .comment_detali > li:nth-child(1) {
-            flex-grow: 10;
 
 
-        }
-
-        .comment_detali > li:nth-child(2) {
-            flex-grow: 0;
-        }
-
-          .popup_nav {
-              width: 60px;
-              height: 600px;
-              position: absolute;
-              margin: 50px;
-              margin-top: 100px;
-              background-color: lightgray;
-              z-index: 999999;
-              border-radius: 100px;
-              box-shadow: 1px 2px 5px rgba(0, 0, 0, 1);
-          }
-        .popup_body {
-            margin: 20px;
-            position: sticky;
-            height: 0;
-            top: 0;
-        }
-          .draggable {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              width: 500px;
-              height: 500px;
-              background-color: lightgray;
-              cursor: move;
-              display :none;
-              box-shadow: 1px 2px 5px rgba(0, 0, 0, 1);
-          }
-        /*This was all taken from https://tympanus.net/Development/ButtonStylesInspiration/ but I needed to see it in CodePen
-        */
-        @import url(https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600);
-        @font-face {
-            font-weight: normal;
-            font-style: normal;
-            font-family: 'codropsicons';
-            /*src: url("../fonts/codropsicons/codropsicons.eot");*/
-            /*src: url("../fonts/codropsicons/codropsicons.eot?#iefix") format("embedded-opentype"), url("../fonts/codropsicons/codropsicons.woff") format("woff"), url("../fonts/codropsicons/codropsicons.ttf") format("truetype"), url("../fonts/codropsicons/codropsicons.svg#codropsicons") format("svg");*/
-        }
-        *,
-        *:after,
-        *:before {
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        /* Top Navigation Style */
-
-        /* Related demos */
-
-        /* Box colors */
-
-        /* Common button styles */
-        .button {
-            float: left;
-            min-width: 15px;
-            max-width: 150px;
-            display: block;
-            margin: 1em;
-            padding: 1em 2em;
-            border: none;
-            background: none;
-            color: inherit;
-            vertical-align: middle;
-            position: relative;
-            z-index: 1;
-            -webkit-backface-visibility: hidden;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* Text color adjustments (we could stick to the "inherit" but that does not work well in Safari) */
-        /* Sizes */
-        /* Typography and Roundedness */
-        .button--round-s {
-            border-radius: 5px;
-        }
-        /* Borders */
-        .button--border-thin {
-            border: 1px solid;
-        }
-        /* Individual button styles */
-        /* Winona */
-        .button--winona {
-            overflow: hidden;
-            padding: 0;
-            -webkit-transition: border-color 0.3s, background-color 0.3s;
-            transition: border-color 0.3s, background-color 0.3s;
-            -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-            transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-        }
-        .button--winona::after {
-            content: attr(data-text);
+        /*채팅창용 시작*/
+        .draggable {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            color:brown;
-            -webkit-transform: translate3d(0, 25%, 0);
-            transform: translate3d(0, 25%, 0);
-        }
-        .button--winona > span {
-            display: block;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 500px;
+            background-color: lightgray;
+            cursor: move;
+            display :none;
+            box-shadow: 1px 2px 5px rgba(0, 0, 0, 1);
         }
 
-        .button--winona::after,
-        .button--winona > span {
-            padding: 1em 2em;
-            -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
-            transition: transform 0.3s, opacity 0.3s;
-            -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-            transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-        }
-        .button--winona:hover {
-            border-color: brown;
-
-
-        }
-        .button--winona.button--inverted:hover {
-            border-color: brown;
-            background-color:brown;
-        }
-        .button--winona:hover::after {
-            opacity: 1;
-            -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-        }
-        .button--winona:hover > span {
-            opacity: 0;
-            -webkit-transform: translate3d(0, -25%, 0);
-            transform: translate3d(0, -25%, 0);
-        }
 
 
     </style>
@@ -606,8 +396,28 @@
     <br>
     <hr style="border: solid 1px black;">
     <br>
-    <tbody class="test">
-    </table>
+    <div class="test">
+        <div class="container-fluid main-cont">
+            <div class="row news-row">
+                <div class="container-fluid col-md-12 col-sm-6 justify-content-center news-block">
+                    <div class="card-group">
+                        <c:forEach var="user" items="${r.length}">
+                            <div class="underlay">
+                                <div class="card">
+                                    <div class="card-img-top" style="background-image: url('https://i.imgur.com/wLMJQPH.png')"></div>
+                                    <div class="card-block" >
+                                        <h5 class="card-title" style="font-family: 'Anton', sans-serif">${user.nickname}<hr><p>마우스를 올려주세요</p></h5>
+                                        <p class="card-text" >Canon will have a full slate of new and updated products to show attendees at this year’s NAB Show. The company has announced its new Compact-Servo 70-200mm telephoto zoom lens <a href="#"><u>Read More...</u></a></p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <br>
     <br>
     <hr style="border: solid 1px black;">
@@ -646,26 +456,7 @@
 <%--    </c:forEach>--%>
 <!--======Pixel Grid======-->
 <!--========Cards========-->
-<%--<div class="container-fluid main-cont">--%>
-<%--    <div class="row news-row">--%>
-<%--        <div class="container-fluid col-md-12 col-sm-6 justify-content-center news-block">--%>
-<%--            <div class="card-group">--%>
-<%--                <c:forEach var="user" items="${userList}">--%>
-<%--                <div class="underlay">--%>
-<%--                    <div class="card">--%>
-<%--                        <div class="card-img-top" style="background-image: url('https://i.imgur.com/wLMJQPH.png')"></div>--%>
-<%--                        <div class="card-block" >--%>
-<%--                            <h5 class="card-title" style="font-family: 'Anton', sans-serif">${user.nickname}<hr></h5>--%>
-<%--                            <p class="card-text" >Canon will have a full slate of new and updated products to show attendees at this year’s NAB Show. The company has announced its new Compact-Servo 70-200mm telephoto zoom lens <a href="#"><u>Read More...</u></a></p>--%>
-<%--                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                </c:forEach>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
+
 <!------------------------>
 <!--=======Scripts======-->
 <script>
@@ -773,7 +564,7 @@
         }).then(res=>{
             return res.json();
         }).then(r=>{
-            console.log(r[0].nickname)
+            console.log(r.length)
         })
     }
     (() => {
