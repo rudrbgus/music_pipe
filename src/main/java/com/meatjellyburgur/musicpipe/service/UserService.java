@@ -51,7 +51,6 @@ public class UserService {
     // 로그인 검증 처라
     public SigninResult authenticate(SignInRequestDTO dto, HttpServletRequest request, HttpServletResponse response) {
         User foundUser = getUser(dto.getEmail());
-        System.out.println(dto.getEmail());
         // 회원가입 안한 상태
         if (foundUser == null) {
             log.info("회원가입이 필요합니다.");
@@ -64,7 +63,6 @@ public class UserService {
         }
 
         // 자동 로그인 처리
-        System.out.println("dto: "+ dto.toString());
         if(dto.isAutoLogin()){
             String sessionId = request.getSession().getId();
             Cookie autoLogin = new Cookie(AUTO_LOGIN_COOKIE, sessionId);
@@ -105,6 +103,7 @@ public class UserService {
         return duplicate;
     }
 
+    //팀 아이디에 해당하는 유저 리스트 가져오는 메서드
     public List<User> findAllUserByTeamId(int teamId){
         return userMapper.findUseByTeamId(teamId);
     }
