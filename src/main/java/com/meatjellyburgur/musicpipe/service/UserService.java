@@ -92,6 +92,7 @@ public class UserService {
                 .email(user.getEmail())
                 .gender(user.getSex())
                 .nickname(user.getNickname())
+                .profileImagePath(user.getProfileImagePath())
                 .build();
         session.setAttribute(LOGIN_KEY, dto);
         session.setMaxInactiveInterval(60 * 60);
