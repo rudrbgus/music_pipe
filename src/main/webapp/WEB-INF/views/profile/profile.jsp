@@ -6,42 +6,35 @@
     <meta charset="UTF-8">
     <title>Web Study</title>
     <%@include file="../include/static-head.jsp" %>
+    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css" rel="stylesheet">
     <style>
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-
+        @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap');
         body {
             background: #DAA394;
-        }
-
-        span {
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-family: 'Jua', sans-serif;
         }
 
         .profile_main_container {
-            width: 1000px;
-            height: 700px;
+            width: 60%;
+            height: 70vh;
             border: 3px solid #000;
-            margin: 0 auto;
-            margin-top: 180px;
+            margin: 220px auto 0;
             background: #e4e4e4;
         }
 
         .profile_main_container .profile_container {
             /* background: #eee; */
-            width: 90%;
-            height: 400px;
-            margin: 0 auto;
+            width: 100%;
+            height: 45%;
             display: flex;
+            background: yellow;
         }
 
+        #img-input{
+            display: none;
+        }
 
-        .profile_main_container .profile_container .profile_image_box .upload-box:hover{
+        .upload-box:hover {
             display: block;
             width: 250px;
             height: 250px;
@@ -50,168 +43,23 @@
             animation: spin 10s linear infinite;
         }
 
-        .profile_main_container .profile_container .profile_image_box .upload-box:active{
+        .upload-box:active {
             animation: spin 3s linear infinite;
         }
 
-
-        @keyframes spin {
-            100% {
-                transform: rotateZ(360deg);
-            }
-        }
-
-
-        .profile_main_container .profile_container .profile_text {
-            /* background: orange; */
-            width: 600px;
-            height: 400px;
-            margin: 0 auto;
-            padding-left: 75px;
-            padding-top: 45px;
-            font-size: 1.3rem;
-        }
-
-        .profile_main_container .profile_container .profile_text .profile_nickname,
-        .profile_main_container .profile_container .profile_text .profile_team,
-        .profile_main_container .profile_container .profile_text .profile_email {
-            /* border: 1px solid #000; */
-            width: 400px;
-            height: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .profile_main_container .profile_container .profile_text .profile_instrument,
-        #modal .modal_container .profile_instrument_recruitCheckBox_container {
-            width: 400px;
-            height: 4rem;
-            margin-bottom: 15px;
-        }
-
-        .profile_main_container .profile_container .profile_text .profile_instrument .profile_instrument_checkBox_container {
-            /* border: 1px solid #000; */
-            width: 380px;
-            height: 3rem;
-        }
-
-        .profile_main_container .profile_container .profile_text .profile_instrument .profile_instrument_checkBox_container .checkbox-wrapper,
-        #modal .modal_container .profile_instrument_recruitCheckBox_container .checkbox-recruit {
-            margin-top: 5px;
-            box-sizing: border-box;
-            font-size: 1rem;
-            display: flex;
-        }
-
-        .profile_main_container .profile_container .profile_text .profile_instrument .profile_instrument_checkBox_container .checkbox-wrapper input,
-        #modal .modal_container .profile_instrument_recruitCheckBox_container .checkbox-recruit input {
-            margin-right: 0.5rem;
-        }
-
-        .profile_main_container .profile_container .profile_text .profile_instrument_skill {
-            width: 400px;
-            height: 8rem;
-            margin-bottom: 15px;
-        }
-
-        .profile_main_container .profile_container .profile_text .profile_instrument_skill .profile_instrument_skill_container {
-            border: 1px solid #ccc;
-            width: 380px;
-            height: 7rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .profile_main_container .profile_container .profile_text .profile_instrument_skill .profile_instrument_skill_container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        .profile_main_container .profile_container .profile_text .profile_instrument_skill .profile_instrument_skill_container .skill-item label {
-            margin-bottom: 3px;
-        }
-
-        .profile_main_container .profile_container .profile_text .profile_instrument_skill .profile_instrument_skill_container .skill-item input[type="radio"] {
-            margin-right: 3px;
-        }
-
-
-        .profile_main_container .board_container {
-            /* background: #e4e4e4; */
-            width: 900px;
-            height: 250px;
-            margin: 0 auto;
-            margin-top: 20px;
-            padding-left: 25px;
-            display: flex;
-            align-content: center;
-            justify-content: space-between;
-            flex-direction: column;
-        }
-
-        .profile_main_container .board_container .my_writing_list,
-        .profile_main_container .board_container .apply_writing_list {
-            border: 1px solid #000;
-            border-radius: 15px;
-            width: 850px;
-            height: 120px;
-            padding-left: 30px;
-            padding-top: 5px;
-        }
-
-        .profile_main_container .board_container .apply_writing_list .apply_writing_item,
-        .profile_main_container .board_container .my_writing_list .my_writing_item {
-            padding-left: 10px;
-            margin-top: 5px;
-        }
-
-        #modal {
-            width: 800px;
-            height: 500px;
-            display: flex;
-            align-content: center;
-            justify-content: center;
-            background: #777;
-            position: fixed;
-            z-index: 2000;
-            right: 50%;
-            top: 50%;
-        }
-
-        #modal .modal_container {
-            width: 700px;
-            height: 400px;
-        }
-
-        .invisible {
-            display: none;
-        }
-
-        #modal .modal_container #createTeamForm {
-            position: relative;
-        }
-
-        #modal .modal_container h3 {
-            font-size: 1.2rem;
-        }
-
-        #modal .modal_container .cloes {
-            font-size: 1.2rem;
-            color: #dd1111;
-            position: absolute;
-            z-index: 2001;
-            top: 100px;
-            right: 200px;
-        }
-
-        .profile_image_box{
+        .profile_image_box {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            flex:3;
+        }
+        .profile_text{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            font-size: 2rem;
+            flex:7;
         }
 
         .upload-box {
@@ -227,17 +75,39 @@
             cursor: pointer;
             overflow: hidden;
         }
+
         .upload-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-
-        #img-input {
-            display: none;
+        .profile_instrument_list {
+            height: 100px;
+            background: darkred;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
         }
 
+        .profile_instrument_list .profile_instrument_img{
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+            flex: 1;
+            background: green;
+        }
+
+        .profile_instrument_list img {
+
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotateZ(360deg);
+            }
+        }
 
     </style>
 
@@ -270,190 +140,66 @@
                 </div>
             </c:if>
             <div class="profile_instrument">악기
-                <div class="profile_instrument_checkBox_container">
-                    <div>
-                        
+                <div class="profile_instrument_list">
+                    <div class="profile_instrument_img">
+                        <img src="/assets/img/guitar2.png" alt="guitar">
                     </div>
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox" id="checkbox1">
-                        <label for="checkbox1">보컬</label>
-
-                        <input type="checkbox" id="checkbox2">
-                        <label for="checkbox2">피아노</label>
-
-                        <input type="checkbox" id="checkbox3">
-                        <label for="checkbox3">키보드</label>
-
-                        <input type="checkbox" id="checkbox4">
-                        <label for="checkbox4">어쿠스틱</label>
-
-                        <input type="checkbox" id="checkbox5">
-                        <label for="checkbox5">일렉</label>
+                    <div class="profile_instrument_img">
+                        <img src="/assets/img/drum.png" alt="drum">
                     </div>
-
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox" id="checkbox6">
-                        <label for="checkbox6">베이스</label>
-
-                        <input type="checkbox" id="checkbox7">
-                        <label for="checkbox7">드럼</label>
+                    <div class="profile_instrument_img">
+                        <img src="/assets/img/vocal.png" alt="vocal">
+                    </div>
+                    <div class="profile_instrument_img">
+                        <img src="/assets/img/keyboard.png" alt="keyboard">
                     </div>
                 </div>
             </div>
-            <div class="profile_instrument_skill">악기 숙련도
-                <div class="profile_instrument_skill_container"></div>
-            </div>
+
         </div>
-    </div>
-    <div class="board_container">
-        <ul class="my_writing_list">
-            <span>내가 작성한 글 목록</span>
-            <li class="my_writing_item">제목 : 작성날짜 :</li>
-        </ul>
-        <ul class="apply_writing_list">
-            <span>내가 신청한 글 목록</span>
-            <li class="apply_writing_item">제목 : 작성날짜 :</li>
-        </ul>
     </div>
 </div>
 <div class="modal invisible" id="modal">
-    <div class="modal_container">
-        <form name="createTeam" method="post" id="createTeamForm">
-            <h3>팀생성</h3>
-            <div class="cloes">X</div>
-            <div class="teamNameContainer">
-                팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName"/>
-            </div>
-            <div class="teamInstrumentContainer">
-                모집 :
-                <div class="profile_instrument_recruitCheckBox_container">
-                    <div class="checkbox-recruit">
-                        <input type="checkbox" id="recruitCheckbox1">
-                        <label for="checkbox1">보컬</label>
-
-                        <input type="checkbox" id="recruitCheckbox2">
-                        <label for="checkbox2">피아노</label>
-
-                        <input type="checkbox" id="recruitCheckbox3">
-                        <label for="checkbox3">키보드</label>
-
-                        <input type="checkbox" id="recruitCheckbox4">
-                        <label for="checkbox4">어쿠스틱</label>
-
-                        <input type="checkbox" id="recruitCheckbox5">
-                        <label for="checkbox5">일렉</label>
-                    </div>
-
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox" id="recruitCheckbox6">
-                        <label for="checkbox6">베이스</label>
-
-                        <input type="checkbox" id="recruitCheckbox7">
-                        <label for="checkbox7">드럼</label>
-
-                        <input type="checkbox" id="recruitCheckbox8">
-                        <label for="checkbox8">클래식 악기</label>
-
-                        <input type="checkbox" id="recruitCheckbox9">
-                        <label for="checkbox9">기타 악기</label>
-                    </div>
-                </div>
-            </div>
-
-            <button type="button" value="create_team" id="create_team_btn">팀 생성</button>
-        </form>
-    </div>
 </div>
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Get the checkbox container and listen for checkbox changes
-        var checkboxContainer = document.querySelector('.profile_instrument_checkBox_container');
-        checkboxContainer.addEventListener('change', handleCheckboxChange);
+    const $box = document.querySelector('.upload-box');
+    const $input = document.getElementById('img-input');
 
-        // Function to handle checkbox changes
-        function handleCheckboxChange(event) {
-            var selectedCheckboxes = checkboxContainer.querySelectorAll('input[type="checkbox"]:checked');
+    $box.onclick = e => {
+        $input.click();
+        console.log("클릭함");
+    };
 
-            // Clear previous content in the skill container
-            var skillContainer = document.querySelector('.profile_instrument_skill_container');
-            skillContainer.innerHTML = '';
 
-            // Loop through selected checkboxes and create corresponding skill checkboxes
-            selectedCheckboxes.forEach(function (checkbox) {
-                var skillName = checkbox.labels[0].textContent;
+    // 프로필 업로드 관련 스크립트
+    const $profile = document.querySelector('.profile');
+    const $fileInput = document.getElementById('profile-img');
 
-                // Create a div for each skill
-                var skillDiv = document.createElement('div');
-                skillDiv.classList.add('skill-item');
+    $profile.onclick = e => {
+        $fileInput.click();
+    }
 
-                // Create a label for the skill name
-                var skillNameLabel = document.createElement('label');
-                skillNameLabel.textContent = skillName;
-                skillDiv.appendChild(skillNameLabel);
+    // 프로필 사진 선택시 썸네일 보여주기
+    $fileInput.onchange = e => {
+        // 사용자가 선택한 파일 읽기
+        const fileDate = $fileInput.files[0];
+        console.log(fileDate);
 
-                // Create a div to hold level checkboxes
-                var levelContainer = document.createElement('div');
-                levelContainer.classList.add('level-container');
+        // 첨부파일의 바이트데이터를 읽는 객체를 생성
+        const reader = new FileReader();
 
-                // Create radio buttons for skill level (high, medium, low)
-                var levels = ['상', '중', '하'];
-                levels.forEach(function (level) {
-                    var levelCheckbox = document.createElement('input');
-                    levelCheckbox.type = 'radio';
-                    levelCheckbox.name = skillName + '-level';
-                    levelCheckbox.value = level;
+        // 파일의 바이트데이터를 읽어서 img태그의 src속성에 넣으려면
+        // URL형태로 파일을 읽어아햐나는데 그거를 처리하는 함수
+        reader.readAsDataURL(fileDate);
 
-                    var levelLabel = document.createElement('label');
-                    levelLabel.textContent = level;
-
-                    levelContainer.appendChild(levelCheckbox);
-                    levelContainer.appendChild(levelLabel);
-                });
-
-                skillDiv.appendChild(levelContainer);
-
-                // Append the skill div to the skill container
-                skillContainer.appendChild(skillDiv);
-            });
+        // 첨부파일이 등록되는 순간 img태그에 이미지를 세팅
+        reader.onloadend = e => {
+            const $img = document.querySelector('.thumbnail-box img');
+            $img.setAttribute('src', reader.result);
         }
-
-        const $box = document.querySelector('.upload-box');
-        const $input = document.getElementById('img-input');
-
-        $box.onclick = e => {
-            $input.click();
-        };
-
-        // 프로필 업로드 관련 스크립트
-        const $profile = document.querySelector('.profile');
-        const $fileInput = document.getElementById('profile-img');
-
-        $profile.onclick = e => {
-            $fileInput.click();
-        }
-
-        // 프로필 사진 선택시 썸네일 보여주기
-        $fileInput.onchange = e => {
-            // 사용자가 선택한 파일 읽기
-            const fileDate = $fileInput.files[0];
-            console.log(fileDate);
-
-            // 첨부파일의 바이트데이터를 읽는 객체를 생성
-            const reader = new FileReader();
-
-            // 파일의 바이트데이터를 읽어서 img태그의 src속성에 넣으려면
-            // URL형태로 파일을 읽어아햐나는데 그거를 처리하는 함수
-            reader.readAsDataURL(fileDate);
-
-            // 첨부파일이 등록되는 순간 img태그에 이미지를 세팅
-            reader.onloadend = e => {
-                const $img = document.querySelector('.thumbnail-box img');
-                $img.setAttribute('src', reader.result);
-            }
-        }
-    });
+    }
 </script>
 
 </body>
