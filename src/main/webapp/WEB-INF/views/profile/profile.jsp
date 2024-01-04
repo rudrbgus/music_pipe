@@ -203,6 +203,18 @@
         $instrumentImageBox.onclick = e => {
             if (e.target.parentElement.classList.contains("on")) {
                 e.target.parentElement.classList.remove("on");
+                fetch("/user/instrument", {
+                    method : "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+
+                    },
+                    body: JSON.stringify({
+                        email: "${user.email}",
+                        instrumentId: e.target.alt,
+                        onOff: false
+                    })
+                })
             } else {
                 e.target.parentElement.classList.add("on");
                 fetch("/user/instrument", {
@@ -250,7 +262,9 @@
     //         $img.setAttribute('src', reader.result);
     //     }
     // }
+    (()=>{
 
+    })();
 
 </script>
 
