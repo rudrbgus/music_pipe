@@ -5,15 +5,17 @@ import lombok.*;
 @Setter
 @Getter
 @ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 @Builder
-public class SignInUserResponseDTO {
-    private int userId;
+public class UserProfileResponseDTO {
     private String email;
-    private String nickname;
-    private String sex;
     private int age;
+    private String sex;
+    private int team_id;
+    private String nickname;
     private String profileImagePath;
+
+
 }

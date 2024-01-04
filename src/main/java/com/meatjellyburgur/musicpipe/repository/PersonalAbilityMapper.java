@@ -11,7 +11,12 @@ public interface PersonalAbilityMapper {
 
     List<PersonalAbility> findAll();
 
-    PersonalAbility findOne(int userId);
+    List<PersonalAbility> findPersonalAbilityList(int userId);
 
     List<Integer> findUserIdByEquipmentId(int equipmentId);
+
+    boolean isDuplicate(int userId, int equipmentId);
+
+    boolean remove(PersonalAbility p);
+
 }

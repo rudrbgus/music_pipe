@@ -90,8 +90,9 @@ public class UserService {
                 .userId(user.getUserId())
                 .age(user.getAge())
                 .email(user.getEmail())
-                .gender(user.getSex())
+                .sex(user.getSex())
                 .nickname(user.getNickname())
+                .profileImagePath(user.getProfileImagePath())
                 .build();
         session.setAttribute(LOGIN_KEY, dto);
         session.setMaxInactiveInterval(60 * 60);
@@ -152,6 +153,11 @@ public class UserService {
 
     public boolean changeProfileImagePath(String savedPath, HttpSession session) {
         SignInUserResponseDTO dto= (SignInUserResponseDTO)session.getAttribute(LOGIN_KEY);
+
+        if(dto==null){
+            log.info(""+session.getAttribute(LOGIN_KEY));
+            log.info("SignInUserResponseDTO가 널입니다 {}", dto);
+        }
         return userMapper.changeProfileImagePath(dto.getUserId(), savedPath);
     }
 }
