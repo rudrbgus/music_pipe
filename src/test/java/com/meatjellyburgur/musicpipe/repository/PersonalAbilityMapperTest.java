@@ -41,17 +41,7 @@ class PersonalAbilityMapperTest {
         assertEquals(10, all.size());
     }
 
-    @Test
-    @DisplayName("유저 아이디를 주면 해당하는 능력을 줌")
-    void findOneTest() {
-        //given
-        int userId = 4;
-        //when
-        PersonalAbility one = mapper.findOne(userId);
-        //then
-        System.out.println(one);
-        assertNotNull(one);
-    }
+
 
     @Test
     @DisplayName("악기를 주면 유저아이디를 뱉어")

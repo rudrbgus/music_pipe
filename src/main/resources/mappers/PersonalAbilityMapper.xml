@@ -31,4 +31,15 @@
         WHERE equipment_id = #{equipmentId}
     </select>
 
+    <select id="isDuplicate" resultType="boolean">
+        select count(*)
+        from personal_ability
+        where user_id = #{userId} AND equipment_id = #{equipmentId}
+    </select>
+
+    <delete id="remove">
+        DELETE FROM personal_ability
+        WHERE user_id = #{userId} AND equipment_id = #{equipmentId}
+    </delete>
+
 </mapper>

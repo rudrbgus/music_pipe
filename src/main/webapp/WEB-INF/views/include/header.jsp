@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 
@@ -32,14 +32,36 @@
 
         /*position: relative;*/
     }
+
     header .inner-header .logo {
         width: 200px;
     }
+
     header .inner-header .logo a {
         display: block;
     }
+
     header .inner-header .logo a img {
         height: 100px;
+    }
+
+    header .inner-header #search {
+        margin-left: 1150px;
+        width: 550px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: row;
+        margin-top: 0px;
+        padding: 0px;
+        height: 20px;
+    }
+
+    header .inner-header #search select {
+        font-size: 12px;
+        margin-top: 25px;
+        height: 25px;
+        width: 75px;
     }
 
 
@@ -50,6 +72,7 @@
         text-transform: uppercase;
         margin-left: 40px;
     }
+
     header .inner-header .menu-open {
         margin-left: 20px;
         margin-right: 20px;
@@ -58,6 +81,7 @@
         justify-content: flex-end;
         align-items: center;
     }
+
     header .inner-header .menu-open .lnr-menu {
         font-size: 33px;
         margin-left: 15px;
@@ -82,6 +106,7 @@
         display: flex;
         flex-direction: row-reverse;
     }
+
     header .gnb.on {
         right: 0;
     }
@@ -90,18 +115,21 @@
         display: block;
         color: #000000;
     }
+
     header .gnb ul {
         margin-right: 100px;
     }
+
     header .gnb ul li {
         font-weight: 700;
         line-height: 1.7;
     }
+
     header .gnb ul li:hover,
-    header .gnb ul li.active
-    {
+    header .gnb ul li.active {
         color: #000000;
     }
+
     button {
         border: 0;
         outline: 0;
@@ -160,24 +188,46 @@
     }
 
     @media ( max-width: 1600px ) {
-        header .inner-header #search{
+        header .inner-header #search {
             margin-left: 800px;
         }
     }
+
     @media ( max-width: 1450px ) {
-        header .inner-header #search{
+        header .inner-header #search {
             margin-left: 650px;
         }
     }
+
     @media ( max-width: 1300px ) {
-        header .inner-header #search{
+        header .inner-header #search {
             margin-left: 500px;
         }
     }
+
     @media ( max-width: 1000px ) {
-        header .inner-header #search{
+        header .inner-header #search {
             margin-left: 200px;
         }
+    }
+
+
+    .user-profile-image{
+        box-sizing: border-box;
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        border-radius:50%;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .user-profile-image img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
 </style>
@@ -192,6 +242,12 @@
                 <img src="/assets/img/logo.png" alt="로고이미지">
             </a>
         </h1>
+        <div class="user-profile-image">
+            <c:if test="${login != null}">
+                <img src="/local${login.profileImagePath}" alt="가져온 프사">
+            </c:if>
+        </div>
+
 
         <form action="/user/list" id="search" method="POST">
             <select name="search_select" >
@@ -212,15 +268,15 @@
         </a>
 
         <c:if test="${empty login}">
-        <a href="/user/sign-in">Login</a>
+            <a href="/user/sign-in">Login</a>
         </c:if>
         <c:if test="${not empty login}">
             <a href="/user/sign-out">LogOut</a>
         </c:if>
-<%--        <c:if test="${not empty login}">--%>
-<%--            <a href="#"><img src="${login.profile_img}"></a>--%>
-<%--            <p>${login.profile_nikname}</p>--%>
-<%--        </c:if>--%>
+        <%--        <c:if test="${not empty login}">--%>
+        <%--            <a href="#"><img src="${login.profile_img}"></a>--%>
+        <%--            <p>${login.profile_nikname}</p>--%>
+        <%--        </c:if>--%>
 
     </div>
 

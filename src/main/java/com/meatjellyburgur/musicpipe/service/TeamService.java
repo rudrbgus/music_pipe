@@ -2,13 +2,13 @@ package com.meatjellyburgur.musicpipe.service;
 
 import com.meatjellyburgur.musicpipe.common.Page;
 import com.meatjellyburgur.musicpipe.common.PageMaker;
+import com.meatjellyburgur.musicpipe.dto.request.TeamRegisterRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.response.TeamDetailResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.TeamListResponseDTO;
-import com.meatjellyburgur.musicpipe.entity.Team;
-import com.meatjellyburgur.musicpipe.repository.TeamMapper;
+import com.meatjellyburgur.musicpipe.entity.*;
+import com.meatjellyburgur.musicpipe.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +19,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class TeamService {
     private final TeamMapper teamMapper;
+    private  final TeamMemberInfoMapper teamMemberInfoMapper;
+    private final PersonalAbilityMapper personalAbilityMapper;
     //전체 조회
     public TeamListResponseDTO getList(Page page) {
         List<TeamDetailResponseDTO> allTeamList = teamMapper.findAllTeam()
@@ -59,5 +61,31 @@ public class TeamService {
                 .teamDetailList(findTeamList)
                 .pageInfo(new PageMaker(page,count))
                 .build();
+    }
+
+    public void createTeam(TeamRegisterRequestDTO dto) {
+        //팀 생성하는 서비스
+        //1. 일단 기본 권한은 CHIEF(팀장)으로
+        teamMapper.save(dto.getTeamName());
+        //처음 부터 첫행만 가져와서 team_id 다시 얻기
+        int teamId = teamMapper.findFirstRowTeamInfo();
+        //team_member_info 에 team_id roll(auth) equipment_id 넣기
+        int userId = dto.getUserId();
+
+        // equipment_id -> 가져오는 법 ...
+//        userMapper 이용해야할듯
+        PersonalAbility personalAbility = personalAbilityMapper.findOne(userId);
+
+        TeamMemberInfo teamMemberInfo = TeamMemberInfo.builder()
+                .teamId(teamId)
+                .userId(userId)
+                .role(String.valueOf(Auth.CHIEF))
+                .equipmentId(personalAbility.getEquipmentId())
+                .build();
+
+
+        teamMemberInfoMapper.saveTeamMember(teamMemberInfo);
+
+
     }
 }
