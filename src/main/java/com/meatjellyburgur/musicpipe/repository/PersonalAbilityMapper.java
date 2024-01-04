@@ -19,4 +19,5 @@ public interface PersonalAbilityMapper {
 
     boolean remove(PersonalAbility p);
 
+    PersonalAbility findOne(int userId);
 }

@@ -73,7 +73,7 @@ public class TeamService {
         int userId = dto.getUserId();
 
         // equipment_id -> 가져오는 법 ...
-//        userMapper 이용해야할듯
+
         PersonalAbility personalAbility = personalAbilityMapper.findOne(userId);
 
         TeamMemberInfo teamMemberInfo = TeamMemberInfo.builder()
