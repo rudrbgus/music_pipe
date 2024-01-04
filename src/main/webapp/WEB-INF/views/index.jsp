@@ -53,15 +53,6 @@
 <span data-content="e">e</span>
 
         <br /><br/>
-<%--		<span data-content="한">한</span>--%>
-<%--<span data-content="o">o</span>--%>
-<%--<span data-content="l">l</span>--%>
-<%--<span data-content="o">o</span>--%>
-<%--<span data-content="r" class="gap">r</span>--%>
-<%--<span data-content="f">f</span>--%>
-<%--<span data-content="i">i</span>--%>
-<%--<span data-content="l">l</span>--%>
-<%--<span data-content="l">l</span>--%>
 
 	</span>
                 </div>
@@ -169,6 +160,23 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
+<script>
+
+        const $fa_home = document.querySelector(".fa-home");
+        const $body=document.getElementsByTagName("body");
+        const firstColor = "#F29E38";
+        document.addEventListener("DOMContentLoaded", function() {
+            e.preventDefault();
+
+            $fa_home.addEventListener("click", function() {
+                // Get the first color from the gradient
+
+
+                // Set the new background color
+                document.body.style.background = `linear-gradient(to right, ${firstColor} 0%, ${firstColor} 100%)`;
+            });
+        });
+</script>
 
 
 </body>
