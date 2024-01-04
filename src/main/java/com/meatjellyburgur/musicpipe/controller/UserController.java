@@ -37,7 +37,7 @@ import static com.meatjellyburgur.musicpipe.util.SignInUtils.*;
 @Slf4j
 @RequiredArgsConstructor
 public class UserController {
-    private  final UserService userService;
+    private final UserService userService;
     private final InstrumentService instrumentService;
 
     @Value("${file.upload.root-path}")
@@ -52,15 +52,16 @@ public class UserController {
 
     // 회원가입 처리
     @PostMapping("/sign-up")
-    public String signUp(SignUpRequestDTO dto){ // 파라미터로 회원가입 DTO 만들어야함
+    public String signUp(SignUpRequestDTO dto) { // 파라미터로 회원가입 DTO 만들어야함
         log.info("/user/sign-up Post");
         boolean flag = userService.join(dto);
-        log.info("회원가입에 " + (flag?"성공했습니다":"실패했습니다"));
+        log.info("회원가입에 " + (flag ? "성공했습니다" : "실패했습니다"));
         return "redirect:/";
     }
+
     // 회원 가입 양식 요청
     @GetMapping("/sign-up")
-    public String signUp(){
+    public String signUp() {
         log.info("/user/sign-up Get");
 
         return "/User/sign-up";
@@ -68,7 +69,7 @@ public class UserController {
 
     // 로그인 양식 요청
     @GetMapping("/sign-in")
-    public String signIn(){ // 세션 받아야함 파라미터로
+    public String signIn() { // 세션 받아야함 파라미터로
         log.info("/user/sign-in GET!!");
 
         return "/User/sign-in";
@@ -76,20 +77,19 @@ public class UserController {
 
     // 로그인 검증 요청
     @PostMapping("/sign-in")
-    public String signIn(SignInRequestDTO dto, HttpServletResponse response, HttpServletRequest request, RedirectAttributes ra){
+    public String signIn(SignInRequestDTO dto, HttpServletResponse response, HttpServletRequest request, RedirectAttributes ra) {
         log.info("/user/sign-in POST!!");
         SigninResult result = userService.authenticate(dto, request, response);
         log.info("로그인 결과: {}", result);
         ra.addFlashAttribute("result", result);
 
-        if(result == SigninResult.SUCCESS){
+        if (result == SigninResult.SUCCESS) {
             // 세션으로 로그인 유지
             userService.maintainLoginState(request.getSession(), dto.getEmail());
 
 
             return "redirect:/";
         }
-
 
 
         return "redirect:/user/sign-in";
@@ -107,7 +107,7 @@ public class UserController {
 
         // 로그인 상태인지 확인
         if (isLogin(session)) {
-             //자동 로그인 상태인지도 확인
+            //자동 로그인 상태인지도 확인
             if (SignInUtils.isLogin(request.getSession())) {
                 // 쿠키를 삭제해주고 디비데이터도 원래대로 돌려놓는다.
                 userService.autoLoginClear(request, response);
@@ -127,7 +127,7 @@ public class UserController {
 
     // 개인 정보 요청
     @RequestMapping("/detail")
-    public String detail(String email){
+    public String detail(String email) {
 //        log.info("/user/detail POST!!");
 //        log.info("유저가 준 이메일 : {}", email);
 //        User findUser = userService.getUser(email);
@@ -148,19 +148,14 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<?> duplicate(String type, String keyword) {
         boolean duplicate = userService.duplicate(type, keyword);
-        log.info(duplicate+"");
+        log.info(duplicate + "");
         return ResponseEntity.ok().body(duplicate);
     }
 
 
-
-
-
-
-
     // 팀 아이디 주면 해당하는 팀 번호를 가진 유저리스트 보내줌 (동기처리)
     @PostMapping("/team")
-    public List<User> findUserByTeamId(int teamId){
+    public List<User> findUserByTeamId(int teamId) {
         log.info("/user/team Post !!");
         List<User> allUserByTeamId = userService.findAllUserByTeamId(teamId);
         System.out.println(allUserByTeamId);
@@ -169,7 +164,7 @@ public class UserController {
 
 
     @GetMapping("/list")
-    public String showList(){
+    public String showList() {
         log.info("/user/list GET!!");
 
         return "/User/user-list";
@@ -177,17 +172,17 @@ public class UserController {
 
     // 악기 주면 해당 악기 가진 사람 리스트 보내줌
     @PostMapping("/list")
-    public ResponseEntity<?> showList(@RequestBody ListRequestDTO requestBody, Model model){
+    public ResponseEntity<?> showList(@RequestBody ListRequestDTO requestBody, Model model) {
         System.out.println();
         log.info("/user/list Post!!!");
-        log.info("insturmentId :"+ requestBody.getEquipmentId());
+        log.info("insturmentId :" + requestBody.getEquipmentId());
         List<FindUserResponseDTO> allUserByInstrumentId = userService.findAllUserByInstrumentId(Integer.parseInt(requestBody.getEquipmentId()));
         log.info(allUserByInstrumentId.toString());
         return ResponseEntity.ok().body(allUserByInstrumentId);
     }
 
     @GetMapping("/profile")
-    public String showProfile(String email, Model model){
+    public String showProfile(String email, Model model) {
         log.debug("user/profile POST!!!");
         log.info("email: {}", email);
         User user = userService.getUser(email);
@@ -204,7 +199,7 @@ public class UserController {
     }
 
     @PostMapping("/addProfileImage")
-    public String modifyProfile(MultipartFile thumbnail, HttpSession session){
+    public String modifyProfile(MultipartFile thumbnail, HttpSession session) {
         log.info("/user/addProfileImage POST!!! ");
         String savedPath = FileUtil.uploadFile(thumbnail, rootPath);
         boolean flag = userService.changeProfileImagePath(savedPath, session);
@@ -212,8 +207,6 @@ public class UserController {
 
         return "redirect:/";
     }
-
-
 
 
 }

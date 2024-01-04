@@ -96,7 +96,6 @@ public class UserService {
                 .build();
         session.setAttribute(LOGIN_KEY, dto);
         session.setMaxInactiveInterval(60 * 60);
-        log.info("세션에 값 넣어줬습니다 {}", dto);
     }
 
     // 이메일, 아이디 중복검사
