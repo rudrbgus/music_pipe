@@ -5,10 +5,11 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 .list_body{
-    background-image: url("../img/overlay.png"),url("../img/bg.jpg");
-    background-repeat: repeat, no-repeat;
+    /*background-image: url("../img/overlay.png"),url("../img/bg.jpg");*/
+    background: linear-gradient(to right, #F29E38, #D9B88F, #D97F30, #A64826, #732E1F);
+
     background-size: auto, 100% 100%;
-    background-attachment: fixed;
+
     overflow-y: scroll;
     border-top: #000000 solid 1px;
 }
