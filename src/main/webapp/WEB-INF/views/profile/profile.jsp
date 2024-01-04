@@ -185,6 +185,34 @@
                 </div>
             </div>
         </div>
+                </div>
+            </div>
+            <div class="profile_instrument_skill">악기 숙련도
+                <div class="profile_instrument_skill_container"></div>
+            </div>
+        </div>
+    </div>
+    <div class="board_container">
+        <ul class="my_writing_list">
+            <span>내가 작성한 글 목록</span>
+            <li class="my_writing_item">제목 : 작성날짜 : </li>
+        </ul>
+        <ul class="apply_writing_list">
+            <span>내가 신청한 글 목록</span>
+            <li class="apply_writing_item">제목 : 작성날짜 : </li>
+        </ul>
+    </div>
+</div>
+<div class="modal" id="modal">
+    <div class="modal_container">
+        <form action="/team/register" name="createTeam" method="post" id="createTeamForm">
+            <h3>팀생성</h3>
+            <div class="teamNameContainer">
+                팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName" />
+            </div>
+
+            <input type="submit" value="create_team" id="create_team_btn">
+        </form>
     </div>
 </div>
 <div class="modal invisible" id="modal">
@@ -266,6 +294,12 @@
 
     })();
 
+        //팀버튼 생성버튼 눌렀을때,
+        const $teamCreateBtn=document.getElementById('create_team_btn');
+
+
+
+    });
 </script>
 
 </body>

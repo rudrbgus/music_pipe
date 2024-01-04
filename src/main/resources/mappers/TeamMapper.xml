@@ -26,6 +26,11 @@
             where team_id=#{keyWord}
         </if>
     </select>
+    <insert id="save">
+        insert into team
+        (team_name)
+        VALUES (#{teamName})
+    </insert>
 
 <!--    <select id="findTeamByName" resultType="team">-->
 <!--        select team_id,team_name-->
@@ -43,6 +48,10 @@
     <select id="count" resultType="int">
         select count(*)
         from team
+    </select>
+
+    <select id="findFirstRowTeamInfo" resultType="int">
+        SELECT * FROM team LIMIT 1;
     </select>
 
 

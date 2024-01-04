@@ -24,4 +24,8 @@ public interface TeamMapper {
     int count();
 
     List<Team> findTeamByKeyword(String type,String keyWord);
+
+    void save(String teamName);
+
+    int findFirstRowTeamInfo();
 }
