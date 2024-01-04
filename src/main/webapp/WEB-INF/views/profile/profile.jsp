@@ -224,9 +224,15 @@
 <%@include file="../include/header.jsp"%>
 <div class="profile_main_container">
     <div class="profile_container">
-        <div class="profile_img_box">
-            <div class="profile_img">\${profileImg}</div>
-            <button class="profile_img_change">프로필 이미지 변경</button>
+        <!-- 프로필 사진 -->
+        <div class="profile-box">
+            <c:if test="${login == null || user.profileImagePath == null}">
+                <img src="/assets/img/anonymous.jpg" alt="프사">
+            </c:if>
+
+            <c:if test="${login != null && user.profileImagePath != null}">
+                <img src="/local${user.profileImagePath}" alt="프사">
+            </c:if>
         </div>
 
         <div class="upload-box">파일 첨부</div>
@@ -236,10 +242,10 @@
             <button type="submit">전송</button>
         </form>
         <div class="profile_text">
-            <c:if test="${login != null}">
-                <div class="profile_nickname">닉네임 : ${login.nickname} </div>
-                <div class="profile_email">이메일 : ${login.email} </div>
-                <div class="profile_team">소속 팀 : ${login.nickname} <button class="creative_team_btn">팀 생성</button> </div>
+            <c:if test="${user != null}">
+                <div class="profile_nickname">닉네임 : ${user.nickname} </div>
+                <div class="profile_email">이메일 : ${user.email} </div>
+                <div class="profile_team">소속 팀 : ${user.nickname} <button class="creative_team_btn">팀 생성</button> </div>
             </c:if>
             <div class="profile_instrument">악기
                 <div class="profile_instrument_checkBox_container">
@@ -399,7 +405,33 @@
             $input.click();
         };
 
+        // 프로필 업로드 관련 스크립트
+        const $profile = document.querySelector('.profile');
+        const $fileInput = document.getElementById('profile-img');
 
+        $profile.onclick = e =>{
+            $fileInput.click();
+        }
+
+        // 프로필 사진 선택시 썸네일 보여주기
+        $fileInput.onchange = e => {
+            // 사용자가 선택한 파일 읽기
+            const fileDate = $fileInput.files[0];
+            console.log(fileDate);
+
+            // 첨부파일의 바이트데이터를 읽는 객체를 생성
+            const reader = new FileReader();
+
+            // 파일의 바이트데이터를 읽어서 img태그의 src속성에 넣으려면
+            // URL형태로 파일을 읽어아햐나는데 그거를 처리하는 함수
+            reader.readAsDataURL(fileDate);
+
+            // 첨부파일이 등록되는 순간 img태그에 이미지를 세팅
+            reader.onloadend = e => {
+                const $img = document.querySelector('.thumbnail-box img');
+                $img.setAttribute('src', reader.result);
+            }
+        }
     });
 </script>
 

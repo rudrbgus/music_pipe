@@ -1,8 +1,12 @@
 package com.meatjellyburgur.musicpipe.controller;
 
+import com.fasterxml.jackson.annotation.JsonKey;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.meatjellyburgur.musicpipe.dto.request.ListRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
+import com.meatjellyburgur.musicpipe.dto.response.UserProfileResponseDTO;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.service.InstrumentService;
 import com.meatjellyburgur.musicpipe.service.SigninResult;
@@ -11,6 +15,7 @@ import com.meatjellyburgur.musicpipe.util.SignInUtils;
 import com.meatjellyburgur.musicpipe.util.upload.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -162,25 +167,46 @@ public class UserController {
         return allUserByTeamId;
     }
 
-    // 악기 주면 해당 악기 가진 사람 리스트 보내줌
-    @PostMapping("/list")
-    public String showList(int equipmentId, Model model){
-        log.info("/user/list Post!!!");
-        log.info("insturmentId :"+ equipmentId);
-        List<FindUserResponseDTO> allUserByInstrumentId = userService.findAllUserByInstrumentId(equipmentId);
-        model.addAttribute("userList", allUserByInstrumentId);
+
+    @GetMapping("/list")
+    public String showList(){
+        log.info("/user/list GET!!");
+
         return "/User/user-list";
     }
 
+    // 악기 주면 해당 악기 가진 사람 리스트 보내줌
+    @PostMapping("/list")
+    public ResponseEntity<?> showList(@RequestBody ListRequestDTO requestBody, Model model){
+        System.out.println();
+        log.info("/user/list Post!!!");
+        log.info("insturmentId :"+ requestBody.getEquipmentId());
+        List<FindUserResponseDTO> allUserByInstrumentId = userService.findAllUserByInstrumentId(Integer.parseInt(requestBody.getEquipmentId()));
+        log.info(allUserByInstrumentId.toString());
+        return ResponseEntity.ok().body(allUserByInstrumentId);
+    }
+
     @GetMapping("/profile")
-    public String showProfile(HttpSession session){
+    public String showProfile(String email, Model model){
+        log.debug("user/profile POST!!!");
+        User user = userService.getUser(email);
+        UserProfileResponseDTO dto = UserProfileResponseDTO.builder()
+                .sex(user.getSex())
+                .team_id(user.getTeamId())
+                .profileImagePath(user.getProfileImagePath())
+                .email(user.getEmail())
+                .nickname(user.getNickname())
+                .build();
+        model.addAttribute("user", dto);
         return "/profile/profile";
     }
-    @PostMapping("/profile")
-    public void modifyProfile(MultipartFile thumbnail, HttpSession session){
+
+    @PostMapping("/addProfileImage")
+    public String modifyProfile(MultipartFile thumbnail, HttpSession session){
         String savedPath = FileUtil.uploadFile(thumbnail, rootPath);
         boolean flag = userService.changeProfileImagePath(savedPath, session);
         System.out.println("파일 저장: " + flag);
+        return "redirect:/user/profile";
     }
 
 

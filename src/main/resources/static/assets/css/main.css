@@ -1311,10 +1311,11 @@ input, select, textarea {
 	}
 
 	body {
-		background-image: url("../img/overlay.png"), url("../img/bg.jpg");
-		background-repeat: repeat, no-repeat;
+		/*background-image: url("../img/overlay.png"), url("../img/bg.jpg");*/
+		/*background-repeat: repeat, no-repeat;*/
+		background: linear-gradient(to right, #F29E38 0%, #D9B88F 20%, #D97F30 40%, #A64826 60%, #732E1F 80%);
 		background-size: auto, 100% 100%;
-		background-attachment: fixed;
+		/*background-attachment: fixed;*/
 		overflow-y: scroll;
 
 	}
