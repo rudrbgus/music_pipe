@@ -34,7 +34,9 @@
 
         #img-input {
             display: none;
-        .profile_main_container .profile_container .profile_img_box{
+        }
+
+        .profile_main_container .profile_container .profile_img_box {
             /* background: skyblue; */
             width: 250px;
             height: 400px;
@@ -86,7 +88,8 @@
             cursor: pointer;
             overflow: hidden;
         }
-        .profile_main_container .profile_container .profile_text .profile_instrument_skill .profile_instrument_skill_container .skill-item{
+
+        .profile_main_container .profile_container .profile_text .profile_instrument_skill .profile_instrument_skill_container .skill-item {
             width: 100px;
             height: 3rem;
             margin-right: 9px;
@@ -170,6 +173,7 @@
                     <button class="creative_team_btn">팀 생성</button>
                 </div>
             </c:if>
+            <%--  악기 리스트          --%>
             <div class="profile_instrument">
                 <div class="profile_instrument_list">
                     <div class="profile_instrument_image_box">
@@ -199,33 +203,34 @@
                 </div>
             </div>
         </div>
-                </div>
-            </div>
-            <div class="profile_instrument_skill">악기 숙련도
-                <div class="profile_instrument_skill_container"></div>
-            </div>
-        </div>
     </div>
-    <div class="board_container">
-        <ul class="my_writing_list">
-            <span>내가 작성한 글 목록</span>
-            <li class="my_writing_item">제목 : 작성날짜 : </li>
-        </ul>
-        <ul class="apply_writing_list">
-            <span>내가 신청한 글 목록</span>
-            <li class="apply_writing_item">제목 : 작성날짜 : </li>
-        </ul>
-    </div>
+</div>
+<div class="profile_instrument_skill">악기 숙련도
+    <div class="profile_instrument_skill_container"></div>
+</div>
+</div>
+</div>
+<div class="board_container">
+    <ul class="my_writing_list">
+        <span>내가 작성한 글 목록</span>
+        <li class="my_writing_item">제목 : 작성날짜 :</li>
+    </ul>
+    <ul class="apply_writing_list">
+        <span>내가 신청한 글 목록</span>
+        <li class="apply_writing_item">제목 : 작성날짜 :</li>
+    </ul>
+</div>
 </div>
 <div class="modal" id="modal">
     <div class="modal_container">
         <form action="/team/register" name="createTeam" method="post" id="createTeamForm">
             <h3>팀생성</h3>
             <div class="teamNameContainer">
-                팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName" />
+                팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName"/>
             </div>
             <div class="teamInstrumentContainer">
-                모집 : <div class="profile_instrument_recruitCheckBox_container">
+                모집 :
+                <div class="profile_instrument_recruitCheckBox_container">
                     <div class="checkbox-recruit">
                         <input type="checkbox" id="recruitCheckbox1">
                         <label>보컬</label>
@@ -275,7 +280,7 @@
             if (e.target.parentElement.classList.contains("on")) {
                 e.target.parentElement.classList.remove("on");
                 fetch("/user/instrument", {
-                    method : "POST",
+                    method: "POST",
                     headers: {
                         "Content-Type": "application/json",
 
@@ -289,7 +294,7 @@
             } else {
                 e.target.parentElement.classList.add("on");
                 fetch("/user/instrument", {
-                    method : "POST",
+                    method: "POST",
                     headers: {
                         "Content-Type": "application/json",
 
@@ -301,7 +306,6 @@
                     })
                 })
             }
-
         }
     }
 
@@ -333,16 +337,20 @@
     //         $img.setAttribute('src', reader.result);
     //     }
     // }
-    (()=>{
+    //팀버튼 생성버튼 눌렀을때,
+    const $teamCreateBtn = document.getElementById('create_team_btn');
+
+    function getInstrument() {
+
+
+    };
+
+    (() => {
+        getInstrument();
 
     })();
 
-        //팀버튼 생성버튼 눌렀을때,
-        const $teamCreateBtn=document.getElementById('create_team_btn');
 
-
-
-    });
 </script>
 
 </body>
