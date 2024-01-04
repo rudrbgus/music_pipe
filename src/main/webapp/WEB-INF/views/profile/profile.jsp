@@ -278,47 +278,13 @@
 </div>
 <div class="modal" id="modal">
     <div class="modal_container">
-        <form name="createTeam" method="post" id="createTeamForm">
+        <form action="/team/register" name="createTeam" method="post" id="createTeamForm">
             <h3>팀생성</h3>
             <div class="teamNameContainer">
                 팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName" />
             </div>
-            <div class="teamInstrumentContainer">
-                모집 : <div class="profile_instrument_recruitCheckBox_container">
-                    <div class="checkbox-recruit">
-                        <input type="checkbox" id="recruitCheckbox1">
-                        <label for="checkbox1">보컬</label>
 
-                        <input type="checkbox" id="recruitCheckbox2">
-                        <label for="checkbox2">피아노</label>
-
-                        <input type="checkbox" id="recruitCheckbox3">
-                        <label for="checkbox3">키보드</label>
-
-                        <input type="checkbox" id="recruitCheckbox4">
-                        <label for="checkbox4">어쿠스틱</label>
-
-                        <input type="checkbox" id="recruitCheckbox5">
-                        <label for="checkbox5">일렉</label>
-                    </div>
-
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox" id="recruitCheckbox6">
-                        <label for="checkbox6">베이스</label>
-
-                        <input type="checkbox" id="recruitCheckbox7">
-                        <label for="checkbox7">드럼</label>
-
-                        <input type="checkbox" id="recruitCheckbox8">
-                        <label for="checkbox8">클래식 악기</label>
-
-                        <input type="checkbox" id="recruitCheckbox9">
-                        <label for="checkbox9">기타 악기</label>
-                    </div>
-                </div>
-            </div>
-
-            <button type="button" value="create_team" id="create_team_btn">팀 생성</button>
+            <input type="submit" value="create_team" id="create_team_btn">
         </form>
     </div>
 </div>
@@ -382,6 +348,11 @@
         $box.onclick = e => {
             $input.click();
         };
+
+
+        //팀버튼 생성버튼 눌렀을때,
+        const $teamCreateBtn=document.getElementById('create_team_btn');
+
 
 
     });

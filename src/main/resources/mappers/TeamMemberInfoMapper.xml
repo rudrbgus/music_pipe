@@ -15,6 +15,12 @@
         where team_id=#{teamId}
     </select>
 
+    <insert id="saveTeamMember">
+        insert into team_member_info
+        (team_id,roll,equipment_id,user_id)
+        values (#{teamId},#{roll},#{equipmentId},#{userId} )
+    </insert>
+
 
 
 </mapper>
