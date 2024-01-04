@@ -4,7 +4,7 @@ a {
 }
 
 body {
-    background: #DAA394;
+    /*background: #DAA394;*/
     font-family: 'Roboto', sans-serif;
 }
 
@@ -236,38 +236,59 @@ body #wrap{
     margin-top: 200px;
 }
 #wrap .search {
+    width: 80%;
+    margin: 0px auto;
     display: flex;
     align-items: center;
-    flex-direction: column;
-    margin-left: 1200px;
-    position: relative;
+    justify-content: space-between;
 }
 #wrap .search .add-btn{
-    margin-left: 200px;
-    background: #DAA394;
-    width: 130px;
-    height: 60px;
-    font-size: 1.3rem;
-    font-weight: 700;
-    position: absolute;
-    left: -1000px;
-
+    width: 110px;
+    height: 35px;
+    font-size: 1.1rem;
+    border: 1px solid #000000;
+    border-radius: 15px;
 }
-
-/* 검색창 */
-/*.top-section {*/
-/*    display: flex;*/
-/*    justify-content: flex-end;*/
-/*    align-items: center;*/
-/*    margin-bottom: 20px;*/
-/*}*/
-.top-section .search {
-    flex: 1.5;
-}
-
-.top-section .search form {
+#search{
+    width: 280px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 0px;
+    padding: 0px;
+    height: 35px;
+    /*border: 1px solid #222222;*/
+    background: #e4e4e4;
+    border-radius: 20px;
 }
+
+#search .btn-primary{
+    height: 35px;
+    width: 35px;
+    /*margin-top: 20px;*/
+    color: #222222;
+    border-radius: 50%;
+    border: none;
+    background: #e4e4e4;
+}
+#search .form-control{
+    /*margin-top: 20px;*/
+    height: 35px;
+    width: 150px;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    /*color: #fff;*/
+    background: #e4e4e4;
+    padding-left: 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+
+
 .top-section .search form #search-type {
     flex: 1;
     margin-right: 10px;
@@ -306,8 +327,4 @@ body #wrap{
     color: #fff;
     font-size: 1.4em;
     text-decoration: none;
-}
-header .inner-header #search .btn-primary ,
-header .inner-header #search .form-control{
-    height: 0px;
 }
