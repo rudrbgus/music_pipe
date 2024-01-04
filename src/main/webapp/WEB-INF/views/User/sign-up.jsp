@@ -28,15 +28,20 @@
         }
 
         h2 {
-            color: rgba(255, 255, 255, 0.8);
+            /*color: rgba(255, 255, 255, 0.8);*/
             /* margin-left: 12px; */
+            color: #2c2c2c;
             display: flex;
             align-content: center;
             justify-content: center;
+            font-weight: 700;
+            margin-bottom: 50px;
+            /*border: 1px solid #e4e4e4;*/
         }
 
         body {
-            background: #777777;
+            /*background: #777777;*/
+            /*background: #DAA394;*/
             font-family: 'Roboto', sans-serif;
             padding-top: 150px;
             overflow: hidden;
@@ -45,23 +50,28 @@
         #signUpForm {
             /*position: relative;*/
             flex-wrap: wrap;
-            margin: 50px auto;
-            width: 550px;
-            height: auto;
+            margin: 25px auto;
+            width: 680px;
+            height: 630px;
             display: flex;
             align-content: center;
             justify-content: center;
             flex-direction: column;
+            padding: 20px;
+            /*background: #6a4f6d;*/
+            border-radius: 20px;
+            border: 1px solid #e4e4e4;
         }
 
         input {
             padding: 16px;
             border-radius: 7px;
-            border: 0px;
             background: rgba(255, 255, 255, 0.2);
             display: block;
             width: 400px;
-            color: white;
+            /*color: white;*/
+            color: #2c2c2c;
+            border: 1px solid #e4e4e4;
             font-size: 18px;
             height: 54px;
         }
@@ -81,18 +91,22 @@
             margin-left: 140px;
             height: 50px;
             width: 150px;
-            border: 0px;
-            background: #e74c3c;
+            /*border: 0px;*/
+            background: #777777;
             border-radius: 7px;
             padding: 10px;
             color: white;
+            /*color: #2c2c2c;*/
             font-size: 22px;
+            border: 1px solid #e4e4e4;
         }
 
 
         input::-webkit-input-placeholder {
-            color: white;
+            /*color: white;*/
+            color: #2c2c2c;
         }
+
 
         input:focus::-webkit-input-placeholder {
             color: #e74c3c;
@@ -102,12 +116,15 @@
         }
         .select {
             padding: 15px 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
         }
         .select input[type=radio]{
             display: none;
         }
         .select input[type=radio]+label{
-            width: 200px;
+            width: 180px;
             display: inline-block;
             cursor: pointer;
             height: 48px;
@@ -116,13 +133,14 @@
             text-align: center;
             font-weight: bold;
             font-size: 13px;
+            border-radius: 30px;
         }
         .select input[type=radio]+label{
-            background-color: #000;
-            color: #ffffff;
+            background-color: #ffffff;
+            color: #2c2c2c;
         }
         .select input[type=radio]:checked+label{
-            background-color: #e74c3c;
+            background-color: #333333;
             color: #fff;
         }
 
@@ -140,8 +158,8 @@
 <body>
 <%@ include file="../include/header.jsp" %>
 
+<h2>회원가입</h2>
 <form action="/user/sign-up" name="signUp" method="post" id="signUpForm">
-    <h2>회원가입</h2>
     <input name="email" type="text" class="user" placeholder="user-email" id="user_email" />
     <span id="emailChk"></span>
     <input
@@ -245,7 +263,7 @@
         } else if (!passwordPattern.test(pwValue)) {
             $pwInput.style.borderColor = 'red';
             document.getElementById('passwordChk').innerHTML
-                = '<b style="color: red;">[6자 이상 16자 이하, 영어와 숫자의 조합으로 구성, 특수문자를 허용합니다.]</b>';
+                = '<b style="color: red;">[6자 이상 16자 이하, 영어와 숫자의 조합으로 구성해주세요.]</b>';
             checkResultList[1] = false;
         } else {
 

@@ -253,7 +253,6 @@
 
                         <input type="checkbox" id="checkbox3">
                         <label for="checkbox3">키보드</label>
-
                         <input type="checkbox" id="checkbox4">
                         <label for="checkbox4">어쿠스틱</label>
 

@@ -111,32 +111,52 @@
 
     header .inner-header #search{
         margin-left: 1150px;
-        width: 550px;
+        width: 280px;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: row;
         margin-top: 0px;
         padding: 0px;
-        height: 20px;
+        height: 35px;
+        /*border: 1px solid #222222;*/
+        background: #e4e4e4;
+        border-radius: 20px;
     }
 
     header .inner-header #search select{
         font-size: 12px;
-        margin-top: 25px;
+        /*margin-top: 25px;*/
         height: 25px;
-        width: 75px;
+        width: 55px;
         margin-right: 15px;
+        border-radius: 10px;
+        background: #e4e4e4;
+        border: none;
     }
 
     header .inner-header #search .btn-primary{
         height: 35px;
-        margin-top: 20px;
+        width: 35px;
+        /*margin-top: 20px;*/
+        color: #222222;
+        border-radius: 50%;
+        border: none;
+        background: #e4e4e4;
     }
     header .inner-header #search .form-control{
-        margin-top: 20px;
+        /*margin-top: 20px;*/
         height: 35px;
         width: 150px;
+        border: none;
+        font-size: 10pt;
+        float: left;
+        /*color: #fff;*/
+        background: #e4e4e4;
+        padding-left: 15px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
     }
 
     @media ( max-width: 1600px ) {
@@ -175,7 +195,7 @@
 
         <form action="/user/list" id="search" method="POST">
             <select name="search_select" >
-                <option value="none">팀/개인</option>
+                <option value="none">선택</option>
                 <option value="korean">팀</option>
                 <option value="english">개인</option>
             </select>
