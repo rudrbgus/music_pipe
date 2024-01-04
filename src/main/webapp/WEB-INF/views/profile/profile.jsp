@@ -159,28 +159,28 @@
             <div class="profile_instrument">
                 <div class="profile_instrument_list">
                     <div class="profile_instrument_image_box">
-                        <img src="/assets/img/guitar2.png" alt="guitar">
+                        <img src="/assets/img/guitar2.png" alt="1">
                     </div>
                     <div class="profile_instrument_image_box">
-                        <img src="/assets/img/drum.png" alt="drum">
+                        <img src="/assets/img/drum.png" alt="2">
                     </div>
                     <div class="profile_instrument_image_box">
-                        <img src="/assets/img/vocal.png" alt="vocal">
+                        <img src="/assets/img/vocal.png" alt="3">
                     </div>
                     <div class="profile_instrument_image_box">
-                        <img src="/assets/img/keyboard.png" alt="keyboard">
+                        <img src="/assets/img/keyboard.png" alt="4">
                     </div>
                     <div class="profile_instrument_image_box">
-                        <img src="/assets/img/saxophone.png" alt="saxophone">
+                        <img src="/assets/img/saxophone.png" alt="5">
                     </div>
                     <div class="profile_instrument_image_box">
-                        <img src="/assets/img/trumpet.png" alt="trumpet">
+                        <img src="/assets/img/trumpet.png" alt="6">
                     </div>
                     <div class="profile_instrument_image_box">
-                        <img src="/assets/img/flute.png" alt="flute">
+                        <img src="/assets/img/flute.png" alt="7">
                     </div>
                     <div class="profile_instrument_image_box">
-                        <img src="/assets/img/bass-guitar.png" alt="bass-guitar">
+                        <img src="/assets/img/bass-guitar.png" alt="8">
                     </div>
                 </div>
             </div>
@@ -197,20 +197,26 @@
     const $instrumentImageBox = document.querySelector('.profile_instrument_list');
     if ("${login.nickname}" === "${user.nickname}") {
         $box.onclick = e => {
-            console.log("${user.nickname}");
-            console.log("${login.nickname}");
             $input.click();
             console.log("클릭함");
-            if("${login.nickname} === ${user.nickname}"){
-                console.log("똑같음");
-            }
         };
         $instrumentImageBox.onclick = e => {
             if (e.target.parentElement.classList.contains("on")) {
-
                 e.target.parentElement.classList.remove("on");
             } else {
                 e.target.parentElement.classList.add("on");
+                fetch("/user/instrument", {
+                    method : "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+
+                    },
+                    body: JSON.stringify({
+                        email: "${user.email}",
+                        instrumentId: e.target.alt,
+                        onOff: true
+                    })
+                })
             }
 
         }

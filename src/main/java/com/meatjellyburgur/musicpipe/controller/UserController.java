@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.meatjellyburgur.musicpipe.dto.request.ListRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
+import com.meatjellyburgur.musicpipe.dto.request.UserInstrumentRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.UserProfileResponseDTO;
 import com.meatjellyburgur.musicpipe.entity.User;
@@ -181,6 +182,7 @@ public class UserController {
         return ResponseEntity.ok().body(allUserByInstrumentId);
     }
 
+    // 유저 프로필 주는 url
     @GetMapping("/profile")
     public String showProfile(String email, Model model) {
         log.debug("user/profile POST!!!");
@@ -198,6 +200,7 @@ public class UserController {
         return "/profile/profile";
     }
 
+    // 프로필 이미지 추가하는 Url
     @PostMapping("/addProfileImage")
     public String modifyProfile(MultipartFile thumbnail, HttpSession session) {
         log.info("/user/addProfileImage POST!!! ");
@@ -208,5 +211,16 @@ public class UserController {
         return "redirect:/";
     }
 
+    // 유저에 악기 넣기 -> 비동기
+    @PostMapping("/instrument")
+    public ResponseEntity<?>  userInstrumentModify(HttpSession session, @RequestBody UserInstrumentRequestDTO dto){
+        System.out.println("dto = " + dto);
+        User user = userService.getUser(dto.getEmail());
+        if(dto.isOnOff()){
+            instrumentService.addPersonalAbility(user.getUserId(), dto);
 
+        }
+
+        return null;
+    }
 }
