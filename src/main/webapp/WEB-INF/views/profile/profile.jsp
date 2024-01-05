@@ -11,16 +11,18 @@
         @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap');
 
         body {
-            background: #DAA394;
+            /*background: rgba(86, 232, 226, 0.87);*/
             font-family: 'Jua', sans-serif;
         }
-
+        /*엄마*/
         .profile_main_container {
             width: 60%;
             height: 70vh;
-            border: 3px solid #000;
+            border: 1.5px deepskyblue solid;
+            border-radius: 20px ;
             margin: 220px auto 0;
-            background: #e4e4e4;
+            background: aliceblue;
+            filter: drop-shadow(1px 1px 10px rgba(69, 137, 211, 0.96));
         }
 
         /* 프로필 컨테이너*/
@@ -29,20 +31,15 @@
             width: 100%;
             height: 60%;
             display: flex;
-            background: yellow;
+            align-items: center;
+            /*background: yellow;*/
         }
 
         #img-input {
             display: none;
-        .profile_main_container .profile_container .profile_img_box{
-            /* background: skyblue; */
-            width: 250px;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
         }
+
+
 
         .upload-box:hover {
             display: block;
@@ -63,20 +60,13 @@
             justify-content: center;
             align-items: center;
             flex: 3;
-        }
-
-        .profile_text {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
             font-size: 2rem;
-            flex: 7;
         }
-
-        .upload-box {
+        .profile_image_box .upload-box {
             width: 250px;
             height: 250px;
-            border: 3px dashed black;
+            border: 2px solid rgba(141, 191, 243, 0.93);
+            filter: drop-shadow(1px 1px 10px cadetblue);
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -86,28 +76,48 @@
             cursor: pointer;
             overflow: hidden;
         }
-        .profile_main_container .profile_container .profile_text .profile_instrument_skill .profile_instrument_skill_container .skill-item{
-            width: 100px;
-            height: 3rem;
-            margin-right: 9px;
-            margin-bottom: 0.5rem;
-        }
 
-        .upload-box img {
+        .profile_image_box .upload-box img{
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+        .profile_image_box .profile_nickname{
+            margin-top: 20px;
+        }
 
+        .profile_image_box .submit-button{
+            margin-top: 20px;
+            background: greenyellow;
+            border: 3px solid black;
+            font-size: 1.2rem;
+            border-radius: 40px;
+        }
+
+        .profile_text {
+            /*border: 2px solid rgba(141, 191, 243, 0.93);*/
+            height: 70%;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 2rem;
+            flex: 7;
+        }
+        .profile_text div{
+            /*background: greenyellow;*/
+            margin-left: 15px;
+            margin-top: 30px;
+        }
         .profile_instrument {
-            background: red;
+            height: 40%;
+            /*background: red;*/
         }
 
         /*악기 테이블*/
         .profile_instrument_list {
-            width: 100%;
-            height: 300px;
-            background: darkred;
+            height: 100%;
+            /*background: darkred;*/
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
@@ -118,7 +128,7 @@
             width: 25%;
             height: 50%;
             padding: 10px;
-            border: black 1px solid;
+            border: rgba(75, 220, 169, 0.77) 1px double;
             cursor: pointer;
             display: flex;
             justify-content: center;
@@ -154,78 +164,67 @@
                     <img src="/assets/img/profile.png" alt="프사">
                 </c:if>
                 <c:if test="${login != null && user.profileImagePath != null}">
-                    <img src="/local${user.profileImagePath}" alt="가져온 프사">
+                    <img class="inputImage" src="/local${user.profileImagePath}" alt="가져온 프사">
                 </c:if>
             </div>
             <form action="/user/addProfileImage" method="post" enctype="multipart/form-data">
                 <input id="img-input" type="file" name="thumbnail" accept="image/*">
-                <button type="submit">프로필 이미지 수정하기</button>
+                <button  class="submit-button" type="submit" style="display: none">프로필 이미지 수정하기</button>
             </form>
+            <div class="profile_nickname">${user.nickname} </div>
         </div>
         <div class="profile_text">
             <c:if test="${user != null}">
-                <div class="profile_nickname">닉네임 : ${user.nickname} </div>
+                <div class="profile-introduce-text">자기소개 : ${user.introduceText}</div>
                 <div class="profile_email">이메일 : ${user.email} </div>
                 <div class="profile_team">소속 팀 : ${user.nickname}
                     <button class="creative_team_btn">팀 생성</button>
                 </div>
             </c:if>
-            <div class="profile_instrument">
-                <div class="profile_instrument_list">
-                    <div class="profile_instrument_image_box">
-                        <img src="/assets/img/guitar2.png" alt="1">
-                    </div>
-                    <div class="profile_instrument_image_box">
-                        <img src="/assets/img/drum.png" alt="2">
-                    </div>
-                    <div class="profile_instrument_image_box">
-                        <img src="/assets/img/vocal.png" alt="3">
-                    </div>
-                    <div class="profile_instrument_image_box">
-                        <img src="/assets/img/keyboard.png" alt="4">
-                    </div>
-                    <div class="profile_instrument_image_box">
-                        <img src="/assets/img/saxophone.png" alt="5">
-                    </div>
-                    <div class="profile_instrument_image_box">
-                        <img src="/assets/img/trumpet.png" alt="6">
-                    </div>
-                    <div class="profile_instrument_image_box">
-                        <img src="/assets/img/flute.png" alt="7">
-                    </div>
-                    <div class="profile_instrument_image_box">
-                        <img src="/assets/img/bass-guitar.png" alt="8">
-                    </div>
-                </div>
-            </div>
-        </div>
-                </div>
-            </div>
-            <div class="profile_instrument_skill">악기 숙련도
-                <div class="profile_instrument_skill_container"></div>
-            </div>
         </div>
     </div>
-    <div class="board_container">
-        <ul class="my_writing_list">
-            <span>내가 작성한 글 목록</span>
-            <li class="my_writing_item">제목 : 작성날짜 : </li>
-        </ul>
-        <ul class="apply_writing_list">
-            <span>내가 신청한 글 목록</span>
-            <li class="apply_writing_item">제목 : 작성날짜 : </li>
-        </ul>
+    <%--  악기 리스트  --%>
+    <div class="profile_instrument">
+        <div class="profile_instrument_list">
+            <a class="profile_instrument_image_box instrument1" name="1">
+                <img class="instrument1 img" src="/assets/img/guitar2.png" name="1">
+            </a>
+            <a class="profile_instrument_image_box instrument2" name="2">
+                <img class="instrument2 img" src="/assets/img/drum.png" name="2">
+            </a>
+            <a class="profile_instrument_image_box instrument3" name="3">
+                <img class="instrument3 img" src="/assets/img/vocal.png" name="3">
+            </a>
+            <a class="profile_instrument_image_box instrument4" name="4">
+                <img class="instrument4 img" src="/assets/img/keyboard.png" name="4">
+            </a>
+            <a class="profile_instrument_image_box instrument5" name="5">
+                <img class="instrument5 img" src="/assets/img/saxophone.png" name="5">
+            </a>
+            <a class="profile_instrument_image_box instrument6" name="6">
+                <img class="instrument6 img" src="/assets/img/trumpet.png" name="6">
+            </a>
+            <a class="profile_instrument_image_box instrument7" name="7">
+                <img class="instrument7 img" src="/assets/img/flute.png" name="7">
+            </a>
+            <a class="profile_instrument_image_box instrument8" name="8">
+                <img class="instrument8 img" src="/assets/img/bass-guitar.png" name="8">
+            </a>
+        </div>
     </div>
 </div>
+
+
 <div class="modal" id="modal">
     <div class="modal_container">
         <form action="/team/register" name="createTeam" method="post" id="createTeamForm">
             <h3>팀생성</h3>
             <div class="teamNameContainer">
-                팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName" />
+                팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName"/>
             </div>
             <div class="teamInstrumentContainer">
-                모집 : <div class="profile_instrument_recruitCheckBox_container">
+                모집 :
+                <div class="profile_instrument_recruitCheckBox_container">
                     <div class="checkbox-recruit">
                         <input type="checkbox" id="recruitCheckbox1">
                         <label>보컬</label>
@@ -269,80 +268,132 @@
     if ("${login.nickname}" === "${user.nickname}") {
         $box.onclick = e => {
             $input.click();
-            console.log("클릭함");
         };
+
+        // 악기 눌렀을 때
         $instrumentImageBox.onclick = e => {
-            if (e.target.parentElement.classList.contains("on")) {
-                e.target.parentElement.classList.remove("on");
-                fetch("/user/instrument", {
-                    method : "POST",
-                    headers: {
-                        "Content-Type": "application/json",
+            if(e.target.classList.contains("profile_instrument_image_box") || e.target.classList.contains("img")){
+                if(e.target.classList.contains("profile_instrument_image_box")){
+                    if(e.target.classList.contains("on")){
+                        e.target.classList.remove("on");
+                        fetch("/user/instrument", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                email: "${user.email}",
+                                instrumentId: e.target.getAttribute("name"),
+                                onOff: false
+                            })
+                        })
+                    }else{
+                        e.target.classList.add("on");
+                        fetch("/user/instrument", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                email: "${user.email}",
+                                instrumentId: e.target.getAttribute("name"),
+                                onOff: true
+                            })
+                        })
+                    }
+                }
+                if(e.target.classList.contains("img")){
+                    if(e.target.parentElement.classList.contains("on")){
+                        e.target.parentElement.classList.remove("on");
+                        fetch("/user/instrument", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
 
-                    },
-                    body: JSON.stringify({
-                        email: "${user.email}",
-                        instrumentId: e.target.alt,
-                        onOff: false
-                    })
-                })
-            } else {
-                e.target.parentElement.classList.add("on");
-                fetch("/user/instrument", {
-                    method : "POST",
-                    headers: {
-                        "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                email: "${user.email}",
+                                instrumentId: e.target.getAttribute("name"),
+                                onOff: false
+                            })
+                        })
+                    }else{
+                        e.target.parentElement.classList.add("on");
+                        fetch("/user/instrument", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
 
-                    },
-                    body: JSON.stringify({
-                        email: "${user.email}",
-                        instrumentId: e.target.alt,
-                        onOff: true
-                    })
-                })
+                            },
+                            body: JSON.stringify({
+                                email: "${user.email}",
+                                instrumentId: e.target.getAttribute("name"),
+                                onOff: true
+                            })
+                        })
+                    }
+                }
             }
-
         }
     }
 
+    // 프로필 사진 선택시 썸네일 보여주기
+    $input.onchange = e => {
+        // 사용자가 선택한 파일 읽기
+        const fileDate = $input.files[0];
+        console.log(fileDate);
 
-    // // 프로필 업로드 관련 스크립트
-    // const $profile = document.querySelector('.profile');
-    // const $fileInput = document.getElementById('profile-img');
-    //
-    // $profile.onclick = e => {
-    //     $fileInput.click();
-    // }
-    //
-    // // 프로필 사진 선택시 썸네일 보여주기
-    // $fileInput.onchange = e => {
-    //     // 사용자가 선택한 파일 읽기
-    //     const fileDate = $fileInput.files[0];
-    //     console.log(fileDate);
-    //
-    //     // 첨부파일의 바이트데이터를 읽는 객체를 생성
-    //     const reader = new FileReader();
-    //
-    //     // 파일의 바이트데이터를 읽어서 img태그의 src속성에 넣으려면
-    //     // URL형태로 파일을 읽어아햐나는데 그거를 처리하는 함수
-    //     reader.readAsDataURL(fileDate);
-    //
-    //     // 첨부파일이 등록되는 순간 img태그에 이미지를 세팅
-    //     reader.onloadend = e => {
-    //         const $img = document.querySelector('.thumbnail-box img');
-    //         $img.setAttribute('src', reader.result);
-    //     }
-    // }
-    (()=>{
+        // 첨부파일의 바이트데이터를 읽는 객체를 생성
+        const reader = new FileReader();
+
+        // 파일의 바이트데이터를 읽어서 img태그의 src속성에 넣으려면
+        // URL형태로 파일을 읽어아햐나는데 그거를 처리하는 함수
+        reader.readAsDataURL(fileDate);
+
+        // 첨부파일이 등록되는 순간 img태그에 이미지를 세팅
+        reader.onloadend = e => {
+            const $img = $box.querySelector('.inputImage');
+            $img.setAttribute('src', reader.result);
+            $submitButton = document.querySelector('.submit-button');
+            $submitButton.style.display="flex";
+        }
+    }
+
+    //팀버튼 생성버튼 눌렀을때,
+    const $teamCreateBtn = document.getElementById('create_team_btn');
+
+    //비동기로 유저 악기 가져오기
+    function getInstrument() {
+        fetch("/user/getInstrument",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: "${user.email}"
+            })
+        }).then(res=>{
+            console.log(res);
+            return res.json();
+        }).then(result =>{
+            result.forEach(s=>{
+                console.log(s.equipmentId);
+                if(s.equipmentId !== 0){
+                    const $instrument= document.querySelector(".profile_instrument_image_box.instrument"+s.equipmentId);
+                    console.log($instrument);
+                    $instrument.classList.add("on");
+                }
+            })
+        })
+
+    };
+
+    (() => {
+        getInstrument();
 
     })();
 
-        //팀버튼 생성버튼 눌렀을때,
-        const $teamCreateBtn=document.getElementById('create_team_btn');
 
-
-
-    });
 </script>
 
 </body>

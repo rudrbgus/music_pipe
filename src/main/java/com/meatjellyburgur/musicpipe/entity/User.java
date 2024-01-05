@@ -25,5 +25,6 @@ public class User {
     private String sessionId;
     private LocalDateTime limitTime;
     private String profileImagePath;
+    private String introduceText;
 
 }
