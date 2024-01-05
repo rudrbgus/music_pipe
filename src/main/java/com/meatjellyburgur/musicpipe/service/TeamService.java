@@ -78,8 +78,8 @@ public class TeamService {
         PersonalAbility personalAbility = personalAbilityMapper.findOne(userId);
 
 
-        log.info("teamMemberinfo{}",teamMemberInfo);
-        teamMemberInfoMapper.saveTeamMember(teamMemberInfo);
+//        log.info("teamMemberinfo{}",teamMemberInfo);
+//        teamMemberInfoMapper.saveTeamMember(teamMemberInfo);
 
 
     }

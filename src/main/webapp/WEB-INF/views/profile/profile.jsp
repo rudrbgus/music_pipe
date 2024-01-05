@@ -14,12 +14,13 @@
             /*background: rgba(86, 232, 226, 0.87);*/
             font-family: 'Jua', sans-serif;
         }
+
         /*엄마*/
         .profile_main_container {
             width: 60%;
             height: 70vh;
             border: 1.5px deepskyblue solid;
-            border-radius: 20px ;
+            border-radius: 20px;
             margin: 220px auto 0;
             background: aliceblue;
             filter: drop-shadow(1px 1px 10px rgba(69, 137, 211, 0.96));
@@ -40,6 +41,14 @@
         }
 
 
+        .upload-box:hover {
+            display: block;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-clip: content-box;
+            animation: spin 10s linear infinite;
+        }
 
         .upload-box:hover {
             display: block;
@@ -50,15 +59,6 @@
             animation: spin 10s linear infinite;
         }
 
-            .upload-box:hover {
-                display: block;
-                width: 250px;
-                height: 250px;
-                border-radius: 50%;
-                background-clip: content-box;
-                animation: spin 10s linear infinite;
-            }
-
         .profile_image_box {
             display: flex;
             flex-direction: column;
@@ -67,6 +67,7 @@
             flex: 3;
             font-size: 2rem;
         }
+
         .profile_image_box .upload-box {
             width: 250px;
             height: 250px;
@@ -82,16 +83,17 @@
             overflow: hidden;
         }
 
-        .profile_image_box .upload-box img{
+        .profile_image_box .upload-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        .profile_image_box .profile_nickname{
+
+        .profile_image_box .profile_nickname {
             margin-top: 20px;
         }
 
-        .profile_image_box .submit-button{
+        .profile_image_box .submit-button {
             margin-top: 20px;
             background: greenyellow;
             border: 3px solid black;
@@ -109,18 +111,20 @@
             font-size: 2rem;
             flex: 7;
         }
-        .profile_text div{
+
+        .profile_text div {
             /*background: greenyellow;*/
             margin-left: 15px;
             margin-top: 30px;
         }
+
         .profile_instrument {
             height: 40%;
             /*background: red;*/
         }
 
         /*악기 테이블*/
-        .profile_instrument_list {
+        .profile_instrument_list{
             height: 100%;
             /*background: darkred;*/
             display: flex;
@@ -138,48 +142,26 @@
             display: flex;
             justify-content: center;
         }
-
-            /*악기 테이블*/
-
-            .profile_instrument_list {
-                width: 100%;
-                height: 300px;
-                background: darkred;
-                display: flex;
-                flex-wrap: wrap;
-                flex-direction: row;
-            }
-
-            /* 악기 하나하나 테두리*/
-
-            .profile_instrument_list .profile_instrument_image_box {
-                width: 25%;
-                height: 50%;
-                padding: 10px;
-                border: black 1px solid;
-                cursor: pointer;
-                display: flex;
-                justify-content: center;
-            }
-
-            .profile_instrument_list .profile_instrument_image_box.on {
-                background: green;
-            }
-
-            .profile_instrument_list img {
-                height: 100%;
-                object-fit: cover;
-            }
+        
 
 
-            @keyframes spin {
-                100% {
-                    transform: rotateZ(360deg);
-                }
+
+        .profile_instrument_list .profile_instrument_image_box.on {
+            background: green;
+        }
+
+        .profile_instrument_list img {
+            height: 100%;
+            object-fit: cover;
+        }
 
 
+        @keyframes spin {
+            100% {
+                transform: rotateZ(360deg);
             }
         }
+
 
         .modal {
             position: absolute;
@@ -214,7 +196,7 @@
             </div>
             <form action="/user/addProfileImage" method="post" enctype="multipart/form-data">
                 <input id="img-input" type="file" name="thumbnail" accept="image/*">
-                <button  class="submit-button" type="submit" style="display: none">프로필 이미지 수정하기</button>
+                <button class="submit-button" type="submit" style="display: none">프로필 이미지 수정하기</button>
             </form>
             <div class="profile_nickname">${user.nickname} </div>
         </div>
@@ -274,188 +256,189 @@
                         <input type="checkbox" id="recruitCheckbox1">
                         <label>보컬</label>
 
-    <%-- 모달 예시   --%>
+                        <%-- 모달 예시   --%>
 
-    <div class="modal">
+                        <div class="modal">
 
-        <div class="modal_container" id="modal">
-            <form action="/team/register" name="createTeam" method="post" id="createTeamForm">
-                <h3>팀생성</h3>
-                <div class="teamNameContainer">
-                    팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName"/>
-                </div>
-                <%--            <div class="teamInstrumentContainer">--%>
-                <%--                모집 : <div class="profile_instrument_recruitCheckBox_container">--%>
-                <%--                    <div class="checkbox-recruit">--%>
-                <%--                        <input type="checkbox" id="recruitCheckbox1">--%>
-                <%--                        <label>보컬</label>--%>
+                            <div class="modal_container" id="modal">
+                                <form action="/team/register" name="createTeam" method="post" id="createTeamForm">
+                                    <h3>팀생성</h3>
+                                    <div class="teamNameContainer">
+                                        팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName"
+                                                    id="teamName"/>
+                                    </div>
+                                    <%--            <div class="teamInstrumentContainer">--%>
+                                    <%--                모집 : <div class="profile_instrument_recruitCheckBox_container">--%>
+                                    <%--                    <div class="checkbox-recruit">--%>
+                                    <%--                        <input type="checkbox" id="recruitCheckbox1">--%>
+                                    <%--                        <label>보컬</label>--%>
 
-                <%--                        <input type="checkbox" id="recruitCheckbox2">--%>
-                <%--                        <label>피아노</label>--%>
+                                    <%--                        <input type="checkbox" id="recruitCheckbox2">--%>
+                                    <%--                        <label>피아노</label>--%>
 
-                <%--                        <input type="checkbox" id="recruitCheckbox3">--%>
-                <%--                        <label>키보드</label>--%>
+                                    <%--                        <input type="checkbox" id="recruitCheckbox3">--%>
+                                    <%--                        <label>키보드</label>--%>
 
-                <%--                        <input type="checkbox" id="recruitCheckbox4">--%>
-                <%--                        <label>어쿠스틱</label>--%>
+                                    <%--                        <input type="checkbox" id="recruitCheckbox4">--%>
+                                    <%--                        <label>어쿠스틱</label>--%>
 
-                <%--                        <input type="checkbox" id="recruitCheckbox5">--%>
-                <%--                        <label>일렉</label>--%>
+                                    <%--                        <input type="checkbox" id="recruitCheckbox5">--%>
+                                    <%--                        <label>일렉</label>--%>
 
-                <%--                        <input type="checkbox" id="recruitCheckbox6">--%>
-                <%--                        <label>베이스</label>--%>
+                                    <%--                        <input type="checkbox" id="recruitCheckbox6">--%>
+                                    <%--                        <label>베이스</label>--%>
 
-                <%--                        <input type="checkbox" id="recruitCheckbox7">--%>
-                <%--                        <label>드럼</label>--%>
+                                    <%--                        <input type="checkbox" id="recruitCheckbox7">--%>
+                                    <%--                        <label>드럼</label>--%>
 
-                <%--                        <input type="checkbox" id="recruitCheckbox8">--%>
-                <%--                        <label>기타 악기</label>--%>
-                <%--                    </div>--%>
-                <%--                </div>--%>
-                <%--            </div>--%>
+                                    <%--                        <input type="checkbox" id="recruitCheckbox8">--%>
+                                    <%--                        <label>기타 악기</label>--%>
+                                    <%--                    </div>--%>
+                                    <%--                </div>--%>
+                                    <%--            </div>--%>
 
-                <input type="submit" value="팀생성" id="createTeamBtn">
-            </form>
-        </div>
-    </div>
+                                    <input type="submit" value="팀생성" id="createTeamBtn">
+                                </form>
+                            </div>
+                        </div>
 
-</div>
+                    </div>
 
 
-<script>
-    const $box = document.querySelector('.upload-box');
-    const $input = document.getElementById('img-input');
-    const $instrumentImageBox = document.querySelector('.profile_instrument_list');
-    if ("${login.nickname}" === "${user.nickname}") {
-        $box.onclick = e => {
-            $input.click();
-        };
+                    <script>
+                        const $box = document.querySelector('.upload-box');
+                        const $input = document.getElementById('img-input');
+                        const $instrumentImageBox = document.querySelector('.profile_instrument_list');
+                        if ("${login.nickname}" === "${user.nickname}") {
+                            $box.onclick = e => {
+                                $input.click();
+                            };
 
-        // 악기 눌렀을 때
-        $instrumentImageBox.onclick = e => {
-            if(e.target.classList.contains("profile_instrument_image_box") || e.target.classList.contains("img")){
-                if(e.target.classList.contains("profile_instrument_image_box")){
-                    if(e.target.classList.contains("on")){
-                        e.target.classList.remove("on");
-                        fetch("/user/instrument", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify({
-                                email: "${user.email}",
-                                instrumentId: e.target.getAttribute("name"),
-                                onOff: false
+                            // 악기 눌렀을 때
+                            $instrumentImageBox.onclick = e => {
+                                if (e.target.classList.contains("profile_instrument_image_box") || e.target.classList.contains("img")) {
+                                    if (e.target.classList.contains("profile_instrument_image_box")) {
+                                        if (e.target.classList.contains("on")) {
+                                            e.target.classList.remove("on");
+                                            fetch("/user/instrument", {
+                                                method: "POST",
+                                                headers: {
+                                                    "Content-Type": "application/json",
+                                                },
+                                                body: JSON.stringify({
+                                                    email: "${user.email}",
+                                                    instrumentId: e.target.getAttribute("name"),
+                                                    onOff: false
+                                                })
+                                            })
+                                        } else {
+                                            e.target.classList.add("on");
+                                            fetch("/user/instrument", {
+                                                method: "POST",
+                                                headers: {
+                                                    "Content-Type": "application/json",
+                                                },
+                                                body: JSON.stringify({
+                                                    email: "${user.email}",
+                                                    instrumentId: e.target.getAttribute("name"),
+                                                    onOff: true
+                                                })
+                                            })
+                                        }
+                                    }
+                                    if (e.target.classList.contains("img")) {
+                                        if (e.target.parentElement.classList.contains("on")) {
+                                            e.target.parentElement.classList.remove("on");
+                                            fetch("/user/instrument", {
+                                                method: "POST",
+                                                headers: {
+                                                    "Content-Type": "application/json",
+
+                                                },
+                                                body: JSON.stringify({
+                                                    email: "${user.email}",
+                                                    instrumentId: e.target.getAttribute("name"),
+                                                    onOff: false
+                                                })
+                                            })
+                                        } else {
+                                            e.target.parentElement.classList.add("on");
+                                            fetch("/user/instrument", {
+                                                method: "POST",
+                                                headers: {
+                                                    "Content-Type": "application/json",
+
+                                                },
+                                                body: JSON.stringify({
+                                                    email: "${user.email}",
+                                                    instrumentId: e.target.getAttribute("name"),
+                                                    onOff: true
+                                                })
+                                            })
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        // 프로필 사진 선택시 썸네일 보여주기
+                        $input.onchange = e => {
+                            // 사용자가 선택한 파일 읽기
+                            const fileDate = $input.files[0];
+                            console.log(fileDate);
+
+                            // 첨부파일의 바이트데이터를 읽는 객체를 생성
+                            const reader = new FileReader();
+
+                            // 파일의 바이트데이터를 읽어서 img태그의 src속성에 넣으려면
+                            // URL형태로 파일을 읽어아햐나는데 그거를 처리하는 함수
+                            reader.readAsDataURL(fileDate);
+
+                            // 첨부파일이 등록되는 순간 img태그에 이미지를 세팅
+                            reader.onloadend = e => {
+                                const $img = $box.querySelector('.inputImage');
+                                $img.setAttribute('src', reader.result);
+                                $submitButton = document.querySelector('.submit-button');
+                                $submitButton.style.display = "flex";
+                            }
+                        }
+
+                        //팀버튼 생성버튼 눌렀을때,
+                        const $teamCreateBtn = document.getElementById('create_team_btn');
+
+                        //비동기로 유저 악기 가져오기
+                        function getInstrument() {
+                            fetch("/user/getInstrument", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    email: "${user.email}"
+                                })
+                            }).then(res => {
+                                console.log(res);
+                                return res.json();
+                            }).then(result => {
+                                result.forEach(s => {
+                                    console.log(s.equipmentId);
+                                    if (s.equipmentId !== 0) {
+                                        const $instrument = document.querySelector(".profile_instrument_image_box.instrument" + s.equipmentId);
+                                        console.log($instrument);
+                                        $instrument.classList.add("on");
+                                    }
+                                })
                             })
-                        })
-                    }else{
-                        e.target.classList.add("on");
-                        fetch("/user/instrument", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify({
-                                email: "${user.email}",
-                                instrumentId: e.target.getAttribute("name"),
-                                onOff: true
-                            })
-                        })
-                    }
-                }
-                if(e.target.classList.contains("img")){
-                    if(e.target.parentElement.classList.contains("on")){
-                        e.target.parentElement.classList.remove("on");
-                        fetch("/user/instrument", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
 
-                            },
-                            body: JSON.stringify({
-                                email: "${user.email}",
-                                instrumentId: e.target.getAttribute("name"),
-                                onOff: false
-                            })
-                        })
-                    }else{
-                        e.target.parentElement.classList.add("on");
-                        fetch("/user/instrument", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
+                        };
 
-                            },
-                            body: JSON.stringify({
-                                email: "${user.email}",
-                                instrumentId: e.target.getAttribute("name"),
-                                onOff: true
-                            })
-                        })
-                    }
-                }
-            }
-        }
-    }
+                        (() => {
+                            getInstrument();
 
-    // 프로필 사진 선택시 썸네일 보여주기
-    $input.onchange = e => {
-        // 사용자가 선택한 파일 읽기
-        const fileDate = $input.files[0];
-        console.log(fileDate);
-
-        // 첨부파일의 바이트데이터를 읽는 객체를 생성
-        const reader = new FileReader();
-
-        // 파일의 바이트데이터를 읽어서 img태그의 src속성에 넣으려면
-        // URL형태로 파일을 읽어아햐나는데 그거를 처리하는 함수
-        reader.readAsDataURL(fileDate);
-
-        // 첨부파일이 등록되는 순간 img태그에 이미지를 세팅
-        reader.onloadend = e => {
-            const $img = $box.querySelector('.inputImage');
-            $img.setAttribute('src', reader.result);
-            $submitButton = document.querySelector('.submit-button');
-            $submitButton.style.display="flex";
-        }
-    }
-
-    //팀버튼 생성버튼 눌렀을때,
-    const $teamCreateBtn = document.getElementById('create_team_btn');
-
-    //비동기로 유저 악기 가져오기
-    function getInstrument() {
-        fetch("/user/getInstrument",{
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                email: "${user.email}"
-            })
-        }).then(res=>{
-            console.log(res);
-            return res.json();
-        }).then(result =>{
-            result.forEach(s=>{
-                console.log(s.equipmentId);
-                if(s.equipmentId !== 0){
-                    const $instrument= document.querySelector(".profile_instrument_image_box.instrument"+s.equipmentId);
-                    console.log($instrument);
-                    $instrument.classList.add("on");
-                }
-            })
-        })
-
-    };
-
-    (() => {
-        getInstrument();
-
-    })();
+                        })();
 
 
-</script>
+                    </script>
 
 </body>
 </html>
