@@ -62,7 +62,7 @@ public class TeamController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> teamSave(String teamName,HttpSession session){
+    public String teamSave(String teamName,HttpSession session){
         //가져올 정보
         //
         //team table
@@ -79,7 +79,7 @@ public class TeamController {
         dto.setUserId(userId);
         dto.setTeamName(teamName);
         teamService.createTeam(dto);
-        return null;
+        return "redirect:/user/profile";
 
     }
 

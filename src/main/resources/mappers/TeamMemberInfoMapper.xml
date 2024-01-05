@@ -2,7 +2,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.meatjellyburgur.musicpipe.repository.UserMapper">
+<mapper namespace="com.meatjellyburgur.musicpipe.repository.TeamMemberInfoMapper">
 
 
 <!--    //        insert  into  user-->
@@ -17,8 +17,8 @@
 
     <insert id="saveTeamMember">
         insert into team_member_info
-        (team_id,roll,equipment_id,user_id)
-        values (#{teamId},#{roll},#{equipmentId},#{userId} )
+        (team_id,role,equipment_id,user_id)
+        values (#{teamId},#{role},#{equipmentId},#{userId})
     </insert>
 
 

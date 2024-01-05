@@ -7,7 +7,9 @@ import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.UserInstrumentRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
+import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.UserProfileResponseDTO;
+import com.meatjellyburgur.musicpipe.entity.PersonalAbility;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.service.InstrumentService;
 import com.meatjellyburgur.musicpipe.service.SigninResult;
@@ -184,8 +186,10 @@ public class UserController {
 
     // 유저 프로필 주는 url
     @GetMapping("/profile")
-    public String showProfile(String email, Model model) {
+    public String showProfile(HttpSession session, Model model) {
         log.debug("user/profile POST!!!");
+        SignInUserResponseDTO loginDTO =(SignInUserResponseDTO) session.getAttribute("login");
+        String email = loginDTO.getEmail();
         log.info("email: {}", email);
         User user = userService.getUser(email);
         UserProfileResponseDTO dto = UserProfileResponseDTO.builder()
@@ -194,6 +198,7 @@ public class UserController {
                 .profileImagePath(user.getProfileImagePath())
                 .email(user.getEmail())
                 .nickname(user.getNickname())
+                .introduceText(user.getIntroduceText())
                 .build();
         model.addAttribute("user", dto);
         System.out.println("dto = " + dto);
@@ -225,4 +230,16 @@ public class UserController {
 
         return null;
     }
+
+    //유저의 악기 가져오기 -> 비동기
+    @PostMapping("/getInstrument")
+    public ResponseEntity<?> getUserInstrument(@RequestBody UserInstrumentRequestDTO dto){
+
+        User user = userService.getUser(dto.getEmail());
+        List<PersonalAbility> personalAbilityList = instrumentService.findPersonalAbilityList(user.getUserId());
+
+        return ResponseEntity.ok().body(personalAbilityList);
+
+    }
+
 }

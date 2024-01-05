@@ -51,7 +51,7 @@
     </select>
 
     <select id="findFirstRowTeamInfo" resultType="int">
-        SELECT * FROM team LIMIT 1;
+        SELECT team.team_id FROM team LIMIT 1;
     </select>
 
 
