@@ -16,197 +16,132 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <style>
-        body {
-            background: grey;
-            height: 100vh;
-        }
-
-        .container-agoda {
-            width: 1586px;
-            margin: 0 auto;
-        }
-
-        .swiper {
-            width: 100%;
-            margin-top: 70px;
-            position: relative;
-        }
-        .swiper-container {
-            margin-top: 100px;
-            width: 60%;
-            height: 50vh;
-        }
-        .swiper-card {
-            background: #fff;
-            height: 100%;
-            border-radius:28px
-        }
-
-        .container{
-            margin: 0;
-            padding: 0;
-            display: flex;
-            height: 100%;
-        }
-
-        .box {
-            position: relative;
-            width: 100vh;
-            height: 100%;
-            background: #262626;
-            margin: 0 auto;
-            box-shadow: 0px 5px 25px rgba(0,0,0,.7);
-            overflow: hidden;
-            border-radius:28px
-        }
-
-        .box__img {
-            position: absolute;
-            top:0;
-            left:0;
-            transition: transform .5s linear;
-            height: 100%;
-
-        }
-        .box__img img {
-            height: 100%;
-            width: 100%;
-        }
-
-        .box__details{
-            color: #fff;
-            padding: 10px 25px;
-        }
-
-        .box__details h2 {
-            text-align: center;
-            color: #ccc;
-        }
-
-        .box:hover .box__img {
-            transform: translateX(-100%);
-        }
-
-        .cta {
-            display: block;
-            text-decoration: none;
-            color: #fff;
-            border: 1px solid #fff;
-            padding: 10px 20px;
-            margin-top: 50px;
-            text-align: center;
-        }
-
-        .cta:hover {
-            background: orange;
-            border-radius: 10px;
-        }
-
-
-.title_list{
-    margin-top: 220px;
-    margin-left: 20vh;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-
-}
-    </style>
 </head>
 
 <body class="list_body">
 <%@include file="../include/header.jsp"%>
-<h2 class="title_list">팀원 찾기 게시판</h2>
-<div class="container-agoda">
-    <div class="swiper">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-card">
+<div class="header-list">
+    <div class="box bg-1">
+        <button class="button button--winona button--border-thin button--round-s" data-text="guitar"><span><img src="/assets/img/icon/icon-guitar.png" alt="tq"></span></button>
+        <button class="button button--winona button--border-thin button--round-s" data-text="Create New"><span><img src="/assets/img/icon/icon-piano.png" alt="tq"></span></button>
+        <button class="button button--winona button--border-thin button--round-s" data-text="Publish"><span><img src="/assets/img/icon/icon-drum.png" alt="tq"></span></button>
+        <button class="button button--winona button--border-thin button--round-s" data-text="Publish"><span><img src="/assets/img/icon/icon-microphone.png" alt="tq"></span></button>
+        <button class="button button--winona button--border-thin button--round-s" data-text="Publish"><span><img src="/assets/img/icon/icon-violin.png" alt="tq"></span></button>
+        <button class="button button--winona button--border-thin button--round-s" data-text="Publish"><span><img src="/assets/img/icon/icon-flute.png" alt="tq"></span></button>
+        <button class="button button--winona button--border-thin button--round-s" data-text="Publish"><span><img src="/assets/img/icon/icon-harp.png" alt="tq"></span></button>
+    </div>
+</div>
+<div class="listBox1">
 
+    <div class="emptyBox1"></div>
+    <div class="contentBox1">
+        <div class="content">
+            <div class="slider1 slider"></div>
+            <a href="#" class="content-card1 content-card">
+                <img src="https://source.unsplash.com/random/300x420">
+                <div class="content-text">
+                    <div class="tag">
+                        <div class="tagName">피아노</div>
+                        <div class="tagName">바이올린</div>
+                    </div>
+                    <div class="title">슬기로운 밴드 생활</div>
+                    <div class="information">미팅 유형 : 오프라인</div>
+                    <div class="team-list">
+                        <img src="https://source.unsplash.com/random/300x420">
+                        <img src="https://source.unsplash.com/random/300x420">
+                        <img src="https://source.unsplash.com/random/300x420">
+                        <img src="https://source.unsplash.com/random/300x420">
+                    </div>
                 </div>
-
+            </a>
         </div>
-
+        <div class="content">
+            <div class="slider2 slider"></div>
+            <a href="#" class="content-card2 content-card">
+                <img src="https://source.unsplash.com/random/300x420">
+                <div class="content-text">
+                    <div class="tag">
+                        <div class="tagName">피아노</div>
+                        <div class="tagName">바이올린</div>
+                    </div>
+                    <div class="title">슬기로운 밴드 생활</div>
+                    <div class="information">미팅 유형 : 오프라인</div>
+                    <div class="team-list">
+                        <img src="https://source.unsplash.com/random/300x420">
+                        <img src="https://source.unsplash.com/random/300x420">
+                        <img src="https://source.unsplash.com/random/300x420">
+                        <img src="https://source.unsplash.com/random/300x420">
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="content">
+            <div class="slider1 slider"></div>
+            <a href="#" class="content-card1 content-card">
+                <img src="https://source.unsplash.com/random/300x420">
+                <div class="content-text">
+                    <div class="tag">
+                        <div class="tagName">피아노</div>
+                        <div class="tagName">바이올린</div>
+                    </div>
+                    <div class="title">슬기로운 밴드 생활</div>
+                    <div class="information">미팅 유형 : 오프라인</div>
+                    <div class="team-list">
+                        <img src="https://source.unsplash.com/random/300x420">
+                        <img src="https://source.unsplash.com/random/300x420">
+                        <img src="https://source.unsplash.com/random/300x420">
+                        <img src="https://source.unsplash.com/random/300x420">
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="content">
+            <div class="slider2 slider"></div>
+            <a href="#" class="content-card2 content-card">
+                <img src="https://source.unsplash.com/random/300x420">
+                <div class="content-text">
+                    <div class="tag">
+                        <div class="tagName">피아노</div>
+                        <div class="tagName">바이올린</div>
+                    </div>
+                    <div class="title">슬기로운 밴드 생활</div>
+                    <div class="information">미팅 유형 : 오프라인</div>
+                    <div class="team-list">
+                        <img src="https://source.unsplash.com/random/300x420">
+                        <img src="https://source.unsplash.com/random/300x420">
+                        <img src="https://source.unsplash.com/random/300x420">
+                        <img src="https://source.unsplash.com/random/300x420">
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
+    <div class="emptyBox2"></div>
+
 </div>
-</div>
+
 </body>
-<script type="module">
-    import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
-
-    // 비동기 데이터를 가져오고 Swiper를 초기화하는 함수
-    async function initSwiperWithData() {
-        try {
-            // 서버에서 데이터를 가져옴
-            const response = await fetch("/user/list", {
-                method: "POST",
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify({ equipmentId: 1 })
-            });
-            const users = await response.json();
-
-            // 가져온 데이터를 가지고 동적으로 카드 생성
-            createCards(users);
-
-            // Swiper를 초기화
-            initSwiper();
-        } catch (error) {
-            console.error('데이터를 가져오는 중 에러 발생:', error);
-        }
-    }
-let i=1;
-    // 데이터를 기반으로 카드를 동적으로 생성하는 함수
-    function createCards(users) {
-        $('.swiper-wrapper').empty();
-
-        users.forEach(function (user) {
-            const { nickname, age, sex, regDate, teamId } = user;
-            var card = `
-        <div class="swiper-slide" data-hash="slide1">
-          <div class="swiper-card">
-<div class="container">
-  <div class="box">
-    <div class="box__img">
-      <img src="https://source.unsplash.com/random/300x420" alt="">
-    </div>
-    <div class="box__details">
-      <h2>Here's the details</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eius ea sit voluptate distinctio atque illo cumque incidunt fuga odio omnis in ad, iusto veritatis debitis, voluptatum corrupti voluptas?</p>
-      <a href="#" class="cta">Click here...</a>
-    </div>
-  </div>
-</div>
-            </div>
-        </div>
-      `;
-            // 생성한 카드를 swiper-wrapper에 추가
-            $('.swiper-wrapper').append(card);
-            i++;
-        });
-    }
-
-    // Swiper 초기화 함수
-    function initSwiper() {
-        const swiper = new Swiper('.swiper-container', {
-            direction: 'horizontal',
-            loop: true,
-            slidesPerView: 2,
-            spaceBetween: 100,
-        });
-    }
-
-    // 페이지 로드 시 데이터 가져오고 Swiper 초기화
-    initSwiperWithData();
-</script>
 <script>
-    $('.cover').on('click', function() {
-        $('.next').toggleClass('anmt');
-        $('.content').toggleClass('anmt');
-    });
+    // JavaScript 코드
+    // JavaScript 코드
+    function addHoverEffect(className, hoverColor, originalColor, hoverTitle,originalTitle) {
+        document.querySelectorAll(className).forEach(function (card) {
+            card.addEventListener('mouseenter', function () {
+                card.querySelector('.title').style.color = hoverTitle;
+            });
+
+            card.addEventListener('mouseleave', function () {
+                card.querySelector('.title').style.color = originalTitle;
+            });
+        });
+    }
+
+    addHoverEffect('.content-card1', '#212121', '#ffffff','#ffffff','#212121');
+    addHoverEffect('.content-card2', '#ffffff', '#212121','#212121','#ffffff');
 </script>
+
 </body>
+</html>
