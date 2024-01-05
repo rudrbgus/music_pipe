@@ -17,7 +17,7 @@
             personal_ability
     </select>
 
-    <select id="findOne" resultType="personalability">
+    <select id="findPersonalAbilityList" resultType="personalability">
         select
         user_id, equipment_id, ability
         from personal_ability

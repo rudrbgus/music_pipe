@@ -8,6 +8,7 @@ import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.UserInstrumentRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.UserProfileResponseDTO;
+import com.meatjellyburgur.musicpipe.entity.PersonalAbility;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.service.InstrumentService;
 import com.meatjellyburgur.musicpipe.service.SigninResult;
@@ -226,4 +227,16 @@ public class UserController {
 
         return null;
     }
+
+    //유저의 악기 가져오기 -> 비동기
+    @PostMapping("/getInstrument")
+    public ResponseEntity<?> getUserInstrument(@RequestBody UserInstrumentRequestDTO dto){
+
+        User user = userService.getUser(dto.getEmail());
+        List<PersonalAbility> personalAbilityList = instrumentService.findPersonalAbilityList(user.getUserId());
+
+        return ResponseEntity.ok().body(personalAbilityList);
+
+    }
+
 }

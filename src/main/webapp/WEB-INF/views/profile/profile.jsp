@@ -11,25 +11,28 @@
         @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap');
 
         body {
-            background: #DAA394;
+            /*background: rgba(86, 232, 226, 0.87);*/
             font-family: 'Jua', sans-serif;
         }
-
+        /*엄마*/
         .profile_main_container {
             width: 60%;
             height: 70vh;
-            border: 3px solid #000;
+            border: 1.5px deepskyblue solid;
+            border-radius: 20px ;
             margin: 220px auto 0;
-            background: #e4e4e4;
+            background: aliceblue;
+            filter: drop-shadow(1px 1px 10px rgba(69, 137, 211, 0.96));
         }
 
         /* 프로필 컨테이너*/
         .profile_main_container .profile_container {
             /* background: #eee; */
             width: 100%;
-            height: 50%;
+            height: 60%;
             display: flex;
-            background: yellow;
+            align-items: center;
+            /*background: yellow;*/
         }
 
         #img-input {
@@ -62,7 +65,8 @@
         .profile_image_box .upload-box {
             width: 250px;
             height: 250px;
-            border: 3px dashed black;
+            border: 2px solid rgba(141, 191, 243, 0.93);
+            filter: drop-shadow(1px 1px 10px cadetblue);
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -91,26 +95,29 @@
         }
 
         .profile_text {
+            /*border: 2px solid rgba(141, 191, 243, 0.93);*/
+            height: 70%;
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: center;
             font-size: 2rem;
             flex: 7;
         }
-
-
-
-
-
+        .profile_text div{
+            /*background: greenyellow;*/
+            margin-left: 15px;
+            margin-top: 30px;
+        }
         .profile_instrument {
-            height: 50%;
-            background: red;
+            height: 40%;
+            /*background: red;*/
         }
 
         /*악기 테이블*/
         .profile_instrument_list {
             height: 100%;
-            background: darkred;
+            /*background: darkred;*/
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
@@ -121,7 +128,7 @@
             width: 25%;
             height: 50%;
             padding: 10px;
-            border: black 1px solid;
+            border: rgba(75, 220, 169, 0.77) 1px double;
             cursor: pointer;
             display: flex;
             justify-content: center;
@@ -179,30 +186,30 @@
     <%--  악기 리스트  --%>
     <div class="profile_instrument">
         <div class="profile_instrument_list">
-            <div class="profile_instrument_image_box">
-                <img src="/assets/img/guitar2.png" alt="1">
-            </div>
-            <div class="profile_instrument_image_box">
-                <img src="/assets/img/drum.png" alt="2">
-            </div>
-            <div class="profile_instrument_image_box">
-                <img src="/assets/img/vocal.png" alt="3">
-            </div>
-            <div class="profile_instrument_image_box">
-                <img src="/assets/img/keyboard.png" alt="4">
-            </div>
-            <div class="profile_instrument_image_box">
-                <img src="/assets/img/saxophone.png" alt="5">
-            </div>
-            <div class="profile_instrument_image_box">
-                <img src="/assets/img/trumpet.png" alt="6">
-            </div>
-            <div class="profile_instrument_image_box">
-                <img src="/assets/img/flute.png" alt="7">
-            </div>
-            <div class="profile_instrument_image_box">
-                <img src="/assets/img/bass-guitar.png" alt="8">
-            </div>
+            <a class="profile_instrument_image_box instrument1" name="1">
+                <img class="instrument1 img" src="/assets/img/guitar2.png" name="1">
+            </a>
+            <a class="profile_instrument_image_box instrument2" name="2">
+                <img class="instrument2 img" src="/assets/img/drum.png" name="2">
+            </a>
+            <a class="profile_instrument_image_box instrument3" name="3">
+                <img class="instrument3 img" src="/assets/img/vocal.png" name="3">
+            </a>
+            <a class="profile_instrument_image_box instrument4" name="4">
+                <img class="instrument4 img" src="/assets/img/keyboard.png" name="4">
+            </a>
+            <a class="profile_instrument_image_box instrument5" name="5">
+                <img class="instrument5 img" src="/assets/img/saxophone.png" name="5">
+            </a>
+            <a class="profile_instrument_image_box instrument6" name="6">
+                <img class="instrument6 img" src="/assets/img/trumpet.png" name="6">
+            </a>
+            <a class="profile_instrument_image_box instrument7" name="7">
+                <img class="instrument7 img" src="/assets/img/flute.png" name="7">
+            </a>
+            <a class="profile_instrument_image_box instrument8" name="8">
+                <img class="instrument8 img" src="/assets/img/bass-guitar.png" name="8">
+            </a>
         </div>
     </div>
 </div>
@@ -262,35 +269,70 @@
         $box.onclick = e => {
             $input.click();
         };
+
+        // 악기 눌렀을 때
         $instrumentImageBox.onclick = e => {
-            if (e.target.parentElement.classList.contains("on")) {
-                e.target.parentElement.classList.remove("on");
-                fetch("/user/instrument", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
+            if(e.target.classList.contains("profile_instrument_image_box") || e.target.classList.contains("img")){
+                if(e.target.classList.contains("profile_instrument_image_box")){
+                    if(e.target.classList.contains("on")){
+                        e.target.classList.remove("on");
+                        fetch("/user/instrument", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                email: "${user.email}",
+                                instrumentId: e.target.getAttribute("name"),
+                                onOff: false
+                            })
+                        })
+                    }else{
+                        e.target.classList.add("on");
+                        fetch("/user/instrument", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                email: "${user.email}",
+                                instrumentId: e.target.getAttribute("name"),
+                                onOff: true
+                            })
+                        })
+                    }
+                }
+                if(e.target.classList.contains("img")){
+                    if(e.target.parentElement.classList.contains("on")){
+                        e.target.parentElement.classList.remove("on");
+                        fetch("/user/instrument", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
 
-                    },
-                    body: JSON.stringify({
-                        email: "${user.email}",
-                        instrumentId: e.target.alt,
-                        onOff: false
-                    })
-                })
-            } else {
-                e.target.parentElement.classList.add("on");
-                fetch("/user/instrument", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                email: "${user.email}",
+                                instrumentId: e.target.getAttribute("name"),
+                                onOff: false
+                            })
+                        })
+                    }else{
+                        e.target.parentElement.classList.add("on");
+                        fetch("/user/instrument", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
 
-                    },
-                    body: JSON.stringify({
-                        email: "${user.email}",
-                        instrumentId: e.target.alt,
-                        onOff: true
-                    })
-                })
+                            },
+                            body: JSON.stringify({
+                                email: "${user.email}",
+                                instrumentId: e.target.getAttribute("name"),
+                                onOff: true
+                            })
+                        })
+                    }
+                }
             }
         }
     }
@@ -320,8 +362,29 @@
     //팀버튼 생성버튼 눌렀을때,
     const $teamCreateBtn = document.getElementById('create_team_btn');
 
+    //비동기로 유저 악기 가져오기
     function getInstrument() {
-
+        fetch("/user/getInstrument",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: "${user.email}"
+            })
+        }).then(res=>{
+            console.log(res);
+            return res.json();
+        }).then(result =>{
+            result.forEach(s=>{
+                console.log(s.equipmentId);
+                if(s.equipmentId !== 0){
+                    const $instrument= document.querySelector(".profile_instrument_image_box.instrument"+s.equipmentId);
+                    console.log($instrument);
+                    $instrument.classList.add("on");
+                }
+            })
+        })
 
     };
 
