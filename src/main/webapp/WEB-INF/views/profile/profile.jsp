@@ -50,9 +50,14 @@
             animation: spin 10s linear infinite;
         }
 
-        .upload-box:active {
-            animation: spin 3s linear infinite;
-        }
+            .upload-box:hover {
+                display: block;
+                width: 250px;
+                height: 250px;
+                border-radius: 50%;
+                background-clip: content-box;
+                animation: spin 10s linear infinite;
+            }
 
         .profile_image_box {
             display: flex;
@@ -134,20 +139,60 @@
             justify-content: center;
         }
 
-        .profile_instrument_list .profile_instrument_image_box.on {
-            background: green;
-        }
+            /*악기 테이블*/
 
-        .profile_instrument_list img {
-            height: 100%;
-            object-fit: cover;
-        }
-
-
-        @keyframes spin {
-            100% {
-                transform: rotateZ(360deg);
+            .profile_instrument_list {
+                width: 100%;
+                height: 300px;
+                background: darkred;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: row;
             }
+
+            /* 악기 하나하나 테두리*/
+
+            .profile_instrument_list .profile_instrument_image_box {
+                width: 25%;
+                height: 50%;
+                padding: 10px;
+                border: black 1px solid;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+            }
+
+            .profile_instrument_list .profile_instrument_image_box.on {
+                background: green;
+            }
+
+            .profile_instrument_list img {
+                height: 100%;
+                object-fit: cover;
+            }
+
+
+            @keyframes spin {
+                100% {
+                    transform: rotateZ(360deg);
+                }
+
+
+            }
+        }
+
+        .modal {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            display: none;
+
+            background-color: rgba(0, 0, 0, 0.4);
+
         }
 
     </style>
@@ -178,7 +223,7 @@
                 <div class="profile-introduce-text">자기소개 : ${user.introduceText}</div>
                 <div class="profile_email">이메일 : ${user.email} </div>
                 <div class="profile_team">소속 팀 : ${user.nickname}
-                    <button class="creative_team_btn">팀 생성</button>
+                    <button id="teamCreateFormBtn" class="creative_team_btn">팀 생성</button>
                 </div>
             </c:if>
         </div>
@@ -229,35 +274,51 @@
                         <input type="checkbox" id="recruitCheckbox1">
                         <label>보컬</label>
 
-                        <input type="checkbox" id="recruitCheckbox2">
-                        <label>피아노</label>
+    <%-- 모달 예시   --%>
 
-                        <input type="checkbox" id="recruitCheckbox3">
-                        <label>키보드</label>
+    <div class="modal">
 
-                        <input type="checkbox" id="recruitCheckbox4">
-                        <label>어쿠스틱</label>
-
-                        <input type="checkbox" id="recruitCheckbox5">
-                        <label>일렉</label>
-
-                        <input type="checkbox" id="recruitCheckbox6">
-                        <label>베이스</label>
-
-                        <input type="checkbox" id="recruitCheckbox7">
-                        <label>드럼</label>
-
-                        <input type="checkbox" id="recruitCheckbox8">
-                        <label>기타 악기</label>
-                    </div>
+        <div class="modal_container" id="modal">
+            <form action="/team/register" name="createTeam" method="post" id="createTeamForm">
+                <h3>팀생성</h3>
+                <div class="teamNameContainer">
+                    팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName"/>
                 </div>
-            </div>
+                <%--            <div class="teamInstrumentContainer">--%>
+                <%--                모집 : <div class="profile_instrument_recruitCheckBox_container">--%>
+                <%--                    <div class="checkbox-recruit">--%>
+                <%--                        <input type="checkbox" id="recruitCheckbox1">--%>
+                <%--                        <label>보컬</label>--%>
 
-            <button type="button" value="create_team" id="create_team_btn">팀 생성</button>
-        </form>
+                <%--                        <input type="checkbox" id="recruitCheckbox2">--%>
+                <%--                        <label>피아노</label>--%>
+
+                <%--                        <input type="checkbox" id="recruitCheckbox3">--%>
+                <%--                        <label>키보드</label>--%>
+
+                <%--                        <input type="checkbox" id="recruitCheckbox4">--%>
+                <%--                        <label>어쿠스틱</label>--%>
+
+                <%--                        <input type="checkbox" id="recruitCheckbox5">--%>
+                <%--                        <label>일렉</label>--%>
+
+                <%--                        <input type="checkbox" id="recruitCheckbox6">--%>
+                <%--                        <label>베이스</label>--%>
+
+                <%--                        <input type="checkbox" id="recruitCheckbox7">--%>
+                <%--                        <label>드럼</label>--%>
+
+                <%--                        <input type="checkbox" id="recruitCheckbox8">--%>
+                <%--                        <label>기타 악기</label>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
+                <%--            </div>--%>
+
+                <input type="submit" value="팀생성" id="createTeamBtn">
+            </form>
+        </div>
     </div>
-</div>
-<div class="modal invisible" id="modal">
+
 </div>
 
 

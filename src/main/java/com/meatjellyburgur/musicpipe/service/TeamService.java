@@ -69,22 +69,17 @@ public class TeamService {
         teamMapper.save(dto.getTeamName());
         //처음 부터 첫행만 가져와서 team_id 다시 얻기
         int teamId = teamMapper.findFirstRowTeamInfo();
+        log.info("teamid :{}",teamId);
         //team_member_info 에 team_id roll(auth) equipment_id 넣기
         int userId = dto.getUserId();
-
+        log.info("user id {}",userId);
         // equipment_id -> 가져오는 법 ...
-        //        userMapper 이용해야할듯
-//        PersonalAbility personalAbility = personalAbilityMapper.findOne(userId);
-//
-//        TeamMemberInfo teamMemberInfo = TeamMemberInfo.builder()
-//                .teamId(teamId)
-//                .userId(userId)
-//                .role(String.valueOf(Auth.CHIEF))
-//                .equipmentId(personalAbility.getEquipmentId())
-//                .build();
-//
-//
-//        teamMemberInfoMapper.saveTeamMember(teamMemberInfo);
+
+        PersonalAbility personalAbility = personalAbilityMapper.findOne(userId);
+
+
+        log.info("teamMemberinfo{}",teamMemberInfo);
+        teamMemberInfoMapper.saveTeamMember(teamMemberInfo);
 
 
     }
