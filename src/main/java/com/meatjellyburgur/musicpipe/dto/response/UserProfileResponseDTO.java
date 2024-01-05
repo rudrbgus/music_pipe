@@ -16,6 +16,6 @@ public class UserProfileResponseDTO {
     private int team_id;
     private String nickname;
     private String profileImagePath;
-
+    private String introduceText;
 
 }

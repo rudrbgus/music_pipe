@@ -194,6 +194,7 @@ public class UserController {
                 .profileImagePath(user.getProfileImagePath())
                 .email(user.getEmail())
                 .nickname(user.getNickname())
+                .introduceText(user.getIntroduceText())
                 .build();
         model.addAttribute("user", dto);
         System.out.println("dto = " + dto);
