@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.meatjellyburgur.musicpipe.util.InstrumentImageUtil" %>
 <!DOCTYPE html>
 <html>
 
@@ -47,10 +48,21 @@
                                     ${b.regDateTime} <%-- 생성 날짜 --%>
                             </div>
                         </div>
+                        <div class="instrument_img">모집악기 :
+                            <div class="img_box">
+                                <c:forEach var="i" begin="1" end="8">
+                                    <c:if test="${!b.recruit_instrument}">
+                                        <img class="img invisible" src="/assets/img/${InstrumentImageUtil.instrumentImage(i)}.png" alt="${i}">
+                                    </c:if>
+                                    <c:if test="${b.recruit_instrument}">
+                                        <img class="img" src="/assets/img/${InstrumentImageUtil.instrumentImage(i)}.png" alt="${i}">
+                                    </c:if>
+                                </c:forEach>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-content">
                             ${b.content}
-                            <%-- 악기 아이콘 --%>
                     </div>
                 </section>
                 <div class="card-btn-group">

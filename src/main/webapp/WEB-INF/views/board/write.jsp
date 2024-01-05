@@ -193,12 +193,38 @@
         <textarea id="content" name="content" maxlength="200" required></textarea>
         <div class="buttons">
             <button class="list-btn" type="button" onclick="window.location.href='/board/list'">목록</button>
-            <button type="submit">글쓰기</button>
+            <button type="submit" id="submitBtn">글쓰기</button>
         </div>
     </form>
 </div>
 <script>
-  CKEDITOR.replace('content');
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('submitBtn').addEventListener('click', function () {
+                var selectedCheckboxes = document.querySelectorAll('.checkbox-item:checked');
+                var selectedValues = [];
+
+                selectedCheckboxes.forEach(function (checkbox) {
+                    selectedValues.push(checkbox.getAttribute('data-id'));
+                });
+
+                sendSelectedValuesToServer(selectedValues);
+            });
+            function sendSelectedValuesToServer(selectedValues) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/board/write',
+                    data: { selectedValues: selectedValues },
+                    success: function (response) {
+                        console.log('Server response:', response);
+                    },
+                    error: function (error) {
+                        console.error('Error sending data to the server:', error);
+                    }
+                });
+            }
+        });
+
+        CKEDITOR.replace('content');
 </script>
 </body>
 </html>
