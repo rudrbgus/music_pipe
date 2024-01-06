@@ -36,7 +36,6 @@
 
 
     <div class="card-container">
-
         <c:forEach var="b" items="${bList}"><%--게시글 리스트 --%>
             <div class="card-wrapper">
                 <section class="card" data-bno="${b.boardId}">
