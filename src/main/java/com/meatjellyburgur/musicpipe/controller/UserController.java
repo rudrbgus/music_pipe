@@ -180,6 +180,31 @@ public class UserController {
         return "/User/user-list";
     }
 
+    @PostMapping("/list/instrument")
+    public String showInstrumentList(String equipmentId, Model model){
+        log.info("equipmentId: {}", equipmentId);
+        if(equipmentId.equals("피아노")){
+            model.addAttribute("instrument", 2);
+        } else if (equipmentId.equals("드럼")) {
+            model.addAttribute("instrument", 7);
+        }else if (equipmentId.equals("키보드")) {
+            model.addAttribute("instrument", 3);
+        }else if (equipmentId.equals("어쿠스틱")) {
+            model.addAttribute("instrument", 4);
+        }else if (equipmentId.equals("일렉")) {
+            model.addAttribute("instrument", 5);
+        }else if (equipmentId.equals("베이스")) {
+            model.addAttribute("instrument", 6);
+        }else if (equipmentId.equals("보컬")) {
+            model.addAttribute("instrument", 1);
+        }else if (equipmentId.equals("기타")) {
+            model.addAttribute("instrument", 8);
+        }
+
+
+        return "/User/user-list";
+    }
+
     // 악기 주면 해당 악기 가진 사람 리스트 보내줌
     @PostMapping("/list")
     public ResponseEntity<?> showList(@RequestBody ListRequestDTO requestBody, Model model) {
@@ -189,10 +214,6 @@ public class UserController {
                 .amount(requestBody.getAmount())
                 .build();
         log.info("/user/list Post!!!");
-        Page page = Page.builder()
-                .pageNo(requestBody.getPageNo())
-                .amount(requestBody.getAmount())
-                .build();
         log.info("instrumentId :" + requestBody.getEquipmentId());
         HashMap<Object, Object> allUserByInstrumentId = userService.findAllUserByInstrumentId(Integer.parseInt(requestBody.getEquipmentId()), page);
         log.info(allUserByInstrumentId.toString());

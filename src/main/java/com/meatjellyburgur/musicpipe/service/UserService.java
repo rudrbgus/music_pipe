@@ -112,10 +112,12 @@ public class UserService {
 
     public HashMap<Object, Object> findAllUserByInstrumentId(int equipmentId, Page page) {
         List<Integer> userIdByEquipmentId = personalAbilityMapper.findUserIdByEquipmentId(equipmentId);
+        log.info(""+userIdByEquipmentId);
         List<FindUserResponseDTO> users = new ArrayList<>();
         PageMaker pageMaker = new PageMaker(page, userIdByEquipmentId.size());
         for(int i:userIdByEquipmentId){
             User userByUserId = userMapper.findUserByUserId(i);
+            log.info("user: {}", userByUserId);
             if(userByUserId!=null){
                 FindUserResponseDTO build = FindUserResponseDTO.builder()
                         .teamId(userByUserId.getTeamId())
@@ -127,11 +129,10 @@ public class UserService {
                 users.add(build);
             }
         }
-        System.out.println(users);
         int fromIndex = (page.getPageNo()-1) * page.getAmount();
-        users.subList(fromIndex, fromIndex+page.getAmount());
+        List<FindUserResponseDTO> findUserResponseDTO = users.subList(fromIndex, fromIndex + page.getAmount());
         HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
-        objectObjectHashMap.put("users", users);
+        objectObjectHashMap.put("users", findUserResponseDTO);
         objectObjectHashMap.put("pageInfo",pageMaker);
         return objectObjectHashMap;
     }

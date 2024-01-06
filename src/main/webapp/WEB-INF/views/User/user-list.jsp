@@ -222,19 +222,38 @@
     // 초기 데이터 로딩
     async function initSwiperWithData() {
         try {
+            if("${instrument}!=null"){
+
+
             // 서버에서 초기 데이터를 가져옴
             const response = await fetch("/user/list", {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'
                 },
-                body: JSON.stringify({ equipmentId: 1 ,pageNo: 1,amount: 3})
+                body: JSON.stringify({ equipmentId: ${instrument} ,pageNo: 1,amount: 3})
             })
             const users = await response.json();
             console.log(users);
 
             // 가져온 데이터를 가지고 동적으로 카드 생성
             createCards(users.users);
+            }else{
+                // 서버에서 초기 데이터를 가져옴
+                const response = await fetch("/user/list", {
+                    method: "POST",
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({ equipmentId: 1,pageNo: 1,amount: 3})
+                })
+                const users = await response.json();
+                console.log(users);
+
+                // 가져온 데이터를 가지고 동적으로 카드 생성
+                createCards(users.users);
+            }
+
         } catch (error) {
             console.error('데이터를 가져오는 중 에러 발생:', error);
         }

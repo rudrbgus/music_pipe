@@ -249,17 +249,16 @@
         </div>
 
 
-        <form action="/user/list" id="search" method="POST">
-            <select name="search_select" >
-                <option value="none">선택</option>
-                <option value="korean">팀</option>
-                <option value="english">개인</option>
+        <form action="/user/list/instr2ument" id="search" method="POST">
+            <select class="search" name="type" >
+                <option name="type" value="none">선택</option>
+                <option name="type" value="team">팀</option>
+                <option name="type" value="person">개인</option>
             </select>
             <input type="text" class="form-control" name="equipmentId">
             <button class="btn btn-primary" type="submit">
                 <i class="fas fa-search"></i>
             </button>
-
         </form>
 
 
@@ -296,6 +295,18 @@
             </c:if>
         </ul>
     </nav>
-
+    <script>
+        const $form = document.getElementById("search");
+        const $search = document.querySelector(".search");
+        const $submitButton=document.querySelector(".btn-primary");
+        $search.onchange = e =>{
+            const s = $form.querySelector("select").value;
+            if(s==="person"){
+                $form.action = "/user/list/instrument";
+            }else if (s==="team"){
+                $form.action = "";
+            }
+        }
+    </script>
 </header>
 <!— //header —>
