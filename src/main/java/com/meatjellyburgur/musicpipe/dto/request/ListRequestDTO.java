@@ -9,4 +9,6 @@ import lombok.*;
 @EqualsAndHashCode
 public class ListRequestDTO {
     private String equipmentId;
+    private int pageNo;
+    private int amount;
 }

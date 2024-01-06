@@ -1,14 +1,12 @@
 package com.meatjellyburgur.musicpipe.common;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Setter
 @Getter
 @ToString
 @AllArgsConstructor
+@Builder
 public class Page {
 
     private int pageNo; // 클라이언트가 보낸 페이지번호
