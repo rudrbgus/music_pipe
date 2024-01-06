@@ -3,10 +3,12 @@ package com.meatjellyburgur.musicpipe.dto.response;
 import com.meatjellyburgur.musicpipe.entity.EmployBoard;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import static com.meatjellyburgur.musicpipe.dto.response.onOff.*;
 
@@ -23,6 +25,10 @@ public class BoardListResponseDTO {
     private String content;//내용
     private int viewCount; // 조회수
     private String regDateTime; // 작성일자시간
+    //모집악기..모음집...
+    @Setter
+    private List<Integer> recruit_equipment;
+
 
 
     public BoardListResponseDTO(EmployBoard employBoard) {

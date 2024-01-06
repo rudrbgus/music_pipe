@@ -3,6 +3,7 @@ package com.meatjellyburgur.musicpipe.controller;
 import com.meatjellyburgur.musicpipe.common.PageMaker;
 import com.meatjellyburgur.musicpipe.common.Search;
 
+import com.meatjellyburgur.musicpipe.dto.request.BoardWriteEquipmentRequsetDTO;
 import com.meatjellyburgur.musicpipe.dto.request.BoardWriteRequestDTO;
 
 import com.meatjellyburgur.musicpipe.dto.response.BoardDetailResponseDTO;
@@ -57,7 +58,7 @@ public class EmployBoardController {
     }
 
     @PostMapping("/write")
-    public String write(BoardWriteRequestDTO dto, HttpSession session){
+    public String write( BoardWriteRequestDTO dto, HttpSession session){
         System.out.println("/board/write :post!"+dto);
 
         //세션에서 user_id 가져오기
