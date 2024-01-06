@@ -14,7 +14,8 @@ public interface UserMapper {
     //회원 가입
     boolean save(User user);
 
-
+    // team_id 업데이트
+    void updateTeamId(int userId,int teamId);
     void saveAutoLogin(AutoLoginDTO dto);
 
     User findUser(String email);

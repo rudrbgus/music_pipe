@@ -72,5 +72,11 @@
         WHERE user_id = #{userId}
     </update>
 
+    <update id="updateTeamId">
+        update user
+        set team_id=#{teamId}
+        where user_id=#{userId}
+    </update>
+
 
 </mapper>

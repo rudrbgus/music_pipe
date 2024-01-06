@@ -19,8 +19,10 @@ import java.util.stream.Collectors;
 @Slf4j
 public class TeamService {
     private final TeamMapper teamMapper;
-    private  final TeamMemberInfoMapper teamMemberInfoMapper;
+    private final TeamMemberInfoMapper teamMemberInfoMapper;
     private final PersonalAbilityMapper personalAbilityMapper;
+    private final UserMapper userMapper;
+
     //전체 조회
     public TeamListResponseDTO getList(Page page) {
         List<TeamDetailResponseDTO> allTeamList = teamMapper.findAllTeam()
@@ -29,7 +31,7 @@ public class TeamService {
                 .collect(Collectors.toList());
 
         //DB에서 team 총 댓글수 조회
-        int count=teamMapper.count();
+        int count = teamMapper.count();
 
 
 //        return TeamListResponseDTO.builder()
@@ -54,12 +56,12 @@ public class TeamService {
                 .collect(Collectors.toList());
 
 
-        int count=findTeamList.size();
+        int count = findTeamList.size();
 
         return TeamListResponseDTO.builder()
                 .count(count)
                 .teamDetailList(findTeamList)
-                .pageInfo(new PageMaker(page,count))
+                .pageInfo(new PageMaker(page, count))
                 .build();
     }
 
@@ -69,17 +71,26 @@ public class TeamService {
         teamMapper.save(dto.getTeamName());
         //처음 부터 첫행만 가져와서 team_id 다시 얻기
         int teamId = teamMapper.findFirstRowTeamInfo();
-        log.info("teamid :{}",teamId);
+        log.info("teamid :{}", teamId);
         //team_member_info 에 team_id roll(auth) equipment_id 넣기
         int userId = dto.getUserId();
-        log.info("user id {}",userId);
-        // equipment_id -> 가져오는 법 ...
-
+        log.info("user id {}", userId);
+        //team_id update 하기
+        userMapper.updateTeamId(userId, teamId);
+        // equipment_id -> user_id 기반 악기 가져오기
         PersonalAbility personalAbility = personalAbilityMapper.findOne(userId);
 
+        TeamMemberInfo teamMemberInfo = TeamMemberInfo.builder()
+                .role(String.valueOf(Auth.CHIEF))
+                .teamId(teamId)
+                .equipmentId(personalAbility.getEquipmentId())
+                .userId(userId)
+                .build();
 
-//        log.info("teamMemberinfo{}",teamMemberInfo);
-//        teamMemberInfoMapper.saveTeamMember(teamMemberInfo);
+        log.info("teamMemberinfo{}", teamMemberInfo);
+        teamMemberInfoMapper.saveTeamMember(teamMemberInfo);
+
+
 
 
     }
