@@ -158,35 +158,35 @@
             <div class="checkbox-recruit">
                 <div class="checkbox">
                     <label>보컬</label>
-                    <input type="checkbox"  id="recruitCheckbox1">
+                    <input name="vocal" type="checkbox"  id="recruitCheckbox1">
                 </div>
                 <div class="checkbox">
                     <label>피아노</label>
-                    <input type="checkbox" id="recruitCheckbox2">
+                    <input name="piano" type="checkbox" id="recruitCheckbox2">
                 </div>
                 <div class="checkbox">
                     <label>키보드</label>
-                    <input type="checkbox"id="recruitCheckbox3">
+                    <input name="keyboard" type="checkbox"id="recruitCheckbox3">
                 </div>
                 <div class="checkbox">
                     <label>어쿠스틱</label>
-                    <input type="checkbox"id="recruitCheckbox4">
+                    <input name="acoustic" type="checkbox"id="recruitCheckbox4">
                 </div>
                 <div class="checkbox">
                     <label>일렉</label>
-                    <input type="checkbox"id="recruitCheckbox5">
+                    <input name="electric" type="checkbox"id="recruitCheckbox5">
                 </div>
                 <div class="checkbox">
                     <label>베이스</label>
-                    <input type="checkbox" id="recruitCheckbox6">
+                    <input name="base" type="checkbox" id="recruitCheckbox6">
                 </div>
                 <div class="checkbox">
                     <label>드럼</label>
-                    <input type="checkbox" id="recruitCheckbox7">
+                    <input name="drum" type="checkbox" id="recruitCheckbox7">
                 </div>
                 <div class="checkbox">
                     <label>기타 악기</label>
-                    <input type="checkbox" id="recruitCheckbox8">
+                    <input name="etc" type="checkbox" id="recruitCheckbox8">
                 </div>
             </div>
         </div>

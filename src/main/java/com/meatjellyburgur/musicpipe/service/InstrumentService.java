@@ -53,4 +53,6 @@ public class InstrumentService {
         List<PersonalAbility> personalAbilityList = mapper.findPersonalAbilityList(userId);
         return personalAbilityList;
     }
+
+
 }
