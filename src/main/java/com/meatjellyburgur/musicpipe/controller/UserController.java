@@ -180,19 +180,22 @@ public class UserController {
         return "/User/user-list";
     }
 
+    @PostMapping("/list/search")
+    public String showListBySearch(){
+
+        return null;
+    }
+
     // 악기 주면 해당 악기 가진 사람 리스트 보내줌
     @PostMapping("/list")
     public ResponseEntity<?> showList(@RequestBody ListRequestDTO requestBody, Model model) {
+        log.info("dto{}",requestBody);
         System.out.println();
         Page page = Page.builder()
                 .pageNo(requestBody.getPageNo())
                 .amount(requestBody.getAmount())
                 .build();
         log.info("/user/list Post!!!");
-        Page page = Page.builder()
-                .pageNo(requestBody.getPageNo())
-                .amount(requestBody.getAmount())
-                .build();
         log.info("instrumentId :" + requestBody.getEquipmentId());
         HashMap<Object, Object> allUserByInstrumentId = userService.findAllUserByInstrumentId(Integer.parseInt(requestBody.getEquipmentId()), page);
         log.info(allUserByInstrumentId.toString());

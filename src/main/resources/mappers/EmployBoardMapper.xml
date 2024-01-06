@@ -13,6 +13,12 @@
             INNER JOIN equipment ON equipment.equipment_id=#{keyword}
             where need_equipment.position_id=#{keyword}
         </if>
+        <if test="type == 'team'">
+            INNER JOIN need_equipment ON  need_equipment.board_id=employ_board.board_id
+            INNER JOIN equipment ON equipment.equipment_id=need_equipment.equipment_id
+            where equipment_name like CONCAT('%',#{keyword},'%')
+            or INSTR(#{keyword},equipment_name) > 0
+        </if>
 
         order by employ_board.board_id desc
         limit #{pageStart},#{amount}
@@ -34,6 +40,12 @@
             inner  join position P
             on P.position_id=#{keyword}
 
+        </if>
+        <if test="type == 'team'">
+            INNER JOIN need_equipment ON  need_equipment.board_id=employ_board.board_id
+            INNER JOIN equipment ON equipment.equipment_id=need_equipment.equipment_id
+            where equipment_name like CONCAT('%',#{keyword},'%')
+            or INSTR(#{keyword},equipment_name) > 0
         </if>
 <!--        <if test="type == 'content'">-->
 <!--            where content like concat('%',#{keyword},'%')-->
