@@ -28,6 +28,8 @@ public interface EmployBoardMapper {
     //총게시물수 구하기
     int count(Search search);
 
+    EmployBoard findLastRowBoard();
+
 
 
 }

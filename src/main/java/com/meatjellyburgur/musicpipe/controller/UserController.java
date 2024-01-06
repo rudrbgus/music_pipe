@@ -16,6 +16,7 @@ import com.meatjellyburgur.musicpipe.entity.PersonalAbility;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.service.InstrumentService;
 import com.meatjellyburgur.musicpipe.service.SigninResult;
+import com.meatjellyburgur.musicpipe.service.TeamService;
 import com.meatjellyburgur.musicpipe.service.UserService;
 import com.meatjellyburgur.musicpipe.util.SignInUtils;
 import com.meatjellyburgur.musicpipe.util.upload.FileUtil;
@@ -46,6 +47,8 @@ import static com.meatjellyburgur.musicpipe.util.SignInUtils.*;
 public class UserController {
     private final UserService userService;
     private final InstrumentService instrumentService;
+    private final TeamService teamService;
+
 
     @Value("${file.upload.root-path}")
     private String rootPath;
@@ -186,7 +189,11 @@ public class UserController {
                 .amount(requestBody.getAmount())
                 .build();
         log.info("/user/list Post!!!");
-        log.info("insturmentId :" + requestBody.getEquipmentId());
+        Page page = Page.builder()
+                .pageNo(requestBody.getPageNo())
+                .amount(requestBody.getAmount())
+                .build();
+        log.info("instrumentId :" + requestBody.getEquipmentId());
         HashMap<Object, Object> allUserByInstrumentId = userService.findAllUserByInstrumentId(Integer.parseInt(requestBody.getEquipmentId()), page);
         log.info(allUserByInstrumentId.toString());
         return ResponseEntity.ok().body(allUserByInstrumentId);
@@ -200,9 +207,18 @@ public class UserController {
         String email = loginDTO.getEmail();
         log.info("email: {}", email);
         User user = userService.getUser(email);
+        String teamName=null;
+        if(user.getTeamId()!=0){
+            //0이아니면 팀이 있다는 소리니까 팀을 찾아서 반환해야함.
+            teamName = teamService.findTeamName(user.getTeamId());
+
+
+        }
+
         UserProfileResponseDTO dto = UserProfileResponseDTO.builder()
                 .sex(user.getSex())
                 .team_id(user.getTeamId())
+                .teamName(teamName)
                 .profileImagePath(user.getProfileImagePath())
                 .email(user.getEmail())
                 .nickname(user.getNickname())

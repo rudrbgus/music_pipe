@@ -127,6 +127,7 @@ public class UserService {
                 users.add(build);
             }
         }
+        System.out.println(users);
         int fromIndex = (page.getPageNo()-1) * page.getAmount();
         users.subList(fromIndex, fromIndex+page.getAmount());
         HashMap<Object, Object> objectObjectHashMap = new HashMap<>();

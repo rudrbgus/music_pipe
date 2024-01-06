@@ -70,6 +70,11 @@
         delete from employ_board
         where board_id=#{boardId}
     </delete>
+    <select id="findLastRowBoard" resultType="employboard">
+        select *
+        from employ_board
+        order by board_id desc limit 1;
+    </select>
 
 
 </mapper>

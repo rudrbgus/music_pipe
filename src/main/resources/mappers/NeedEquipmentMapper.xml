@@ -2,8 +2,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!--<mapper namespace="com.meatjellyburgur.musicpipe.repository.">-->
+<mapper namespace="com.meatjellyburgur.musicpipe.repository.NeedEquipmentMapper">
 
+    <select id="findAllEquipmentIdByBoardId" resultType="int">
+        select equipment_id
+        from need_equipment
+        where board_id =#{boardId}
+    </select>
+
+
+    <insert id="save">
+        insert into need_equipment
+        (board_id,equipment_id)
+        values (#{boardId},#{equipmentId})
+    </insert>
+</mapper>
 
 <!--&lt;!&ndash;    //        insert  into  user&ndash;&gt;-->
 <!--&lt;!&ndash;    //                (password, nickname, age, email, sex)&ndash;&gt;-->
