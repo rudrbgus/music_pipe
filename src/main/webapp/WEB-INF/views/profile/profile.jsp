@@ -420,7 +420,7 @@
             const $img = $box.querySelector('.inputImage');
             $img.setAttribute('src', reader.result);
             $submitButton = document.querySelector('.submit-button');
-            $submitButton.style.display = "flex";
+            $submitButton.style.display="flex";
         }
     }
 

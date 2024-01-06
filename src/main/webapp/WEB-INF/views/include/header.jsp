@@ -298,7 +298,7 @@
     <script>
         const $form = document.getElementById("search");
         const $search = document.querySelector(".search");
-        const $submitButton=document.querySelector(".btn-primary");
+        let $submitButton=document.querySelector(".btn-primary");
         $search.onchange = e =>{
             const s = $form.querySelector("select").value;
             if(s==="person"){
