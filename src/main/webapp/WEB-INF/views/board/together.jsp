@@ -55,7 +55,7 @@
 
                                 <c:forEach var="e" items="${b.recruit_equipment}">
 
-                                        <img class="img invisible" src="/assets/img/${InstrumentImageUtil.instrumentImage(e)}.png" alt="${e}">
+                                        <img class="img" src="/assets/img/${InstrumentImageUtil.instrumentImage(e)}.png" alt="${e}">
                                 </c:forEach>
 
 <%--                                <c:if test="${bList.recruit_equipment.size()==0}">--%>
