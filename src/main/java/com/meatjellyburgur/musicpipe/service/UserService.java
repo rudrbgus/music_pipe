@@ -1,15 +1,15 @@
 package com.meatjellyburgur.musicpipe.service;
 
+import com.meatjellyburgur.musicpipe.common.Page;
+import com.meatjellyburgur.musicpipe.common.PageMaker;
 import com.meatjellyburgur.musicpipe.dto.request.AutoLoginDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
-import com.meatjellyburgur.musicpipe.entity.PersonalAbility;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.repository.PersonalAbilityMapper;
 import com.meatjellyburgur.musicpipe.repository.UserMapper;
-import com.meatjellyburgur.musicpipe.util.SignInUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static com.meatjellyburgur.musicpipe.service.SigninResult.*;
@@ -109,9 +110,10 @@ public class UserService {
         return userMapper.findUseByTeamId(teamId);
     }
 
-    public List<FindUserResponseDTO> findAllUserByInstrumentId(int equipmentId) {
+    public HashMap<Object, Object> findAllUserByInstrumentId(int equipmentId, Page page) {
         List<Integer> userIdByEquipmentId = personalAbilityMapper.findUserIdByEquipmentId(equipmentId);
         List<FindUserResponseDTO> users = new ArrayList<>();
+        PageMaker pageMaker = new PageMaker(page, userIdByEquipmentId.size());
         for(int i:userIdByEquipmentId){
             User userByUserId = userMapper.findUserByUserId(i);
             if(userByUserId!=null){
@@ -125,7 +127,13 @@ public class UserService {
                 users.add(build);
             }
         }
-        return users;
+        System.out.println(users);
+        int fromIndex = (page.getPageNo()-1) * page.getAmount();
+        users.subList(fromIndex, fromIndex+page.getAmount());
+        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+        objectObjectHashMap.put("users", users);
+        objectObjectHashMap.put("pageInfo",pageMaker);
+        return objectObjectHashMap;
     }
 
     public void autoLoginClear(HttpServletRequest request, HttpServletResponse response) {

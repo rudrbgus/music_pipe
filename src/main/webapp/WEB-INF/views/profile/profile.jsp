@@ -50,13 +50,8 @@
             animation: spin 10s linear infinite;
         }
 
-        .upload-box:hover {
-            display: block;
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            background-clip: content-box;
-            animation: spin 10s linear infinite;
+        .upload-box:active {
+            animation: spin 3s linear infinite;
         }
 
         .profile_image_box {
@@ -175,6 +170,21 @@
 
         }
 
+        .profile-introduce-text-container {
+            display: flex;
+            flex-flow: row;
+        }
+
+        .profile-introduce-text-button {
+            background: cornflowerblue;
+            border-radius: 20px;
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+        }
+
     </style>
 
 </head>
@@ -200,7 +210,11 @@
         </div>
         <div class="profile_text">
             <c:if test="${user != null}">
+                <c:if test="${login != null || user.nickname == login.nickname}">
+                    <button class="profile-introduce-text-button">수정하기</button>
+                </c:if>
                 <div class="profile-introduce-text">자기소개 : ${user.introduceText}</div>
+                <input class="profile-input" type="text" style="display: none">
                 <div class="profile_email">이메일 : ${user.email} </div>
                 <div class="profile_team">소속 팀
                         <c:if test="${user.team_id!=0}">
@@ -263,7 +277,6 @@
                         <%-- 모달 예시   --%>
 
                         <div class="modal">
-
                             <div class="modal_container" id="modal">
                                 <form action="/team/register" name="createTeam" method="post" id="createTeamForm">
                                     <h3>팀생성</h3>
@@ -305,7 +318,6 @@
                                 </form>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -313,6 +325,7 @@
     </div>
 </div>
 
+</body>
 <script>
     const $box = document.querySelector('.upload-box');
     const $input = document.getElementById('img-input');
@@ -414,6 +427,15 @@
     //팀버튼 생성버튼 눌렀을때,
     const $teamCreateBtn = document.getElementById('create_team_btn');
 
+    // 수정하기 버튼 눌렀을 떄
+    const $button = document.querySelector(".profile-introduce-text-button");
+    const $inputIntroduce = document.querySelector(".profile-input");
+    $button.onclick = e => {
+        console.log(e.target);
+        $inputIntroduce.style.display = "flex";
+    };
+
+
     //비동기로 유저 악기 가져오기
     function getInstrument() {
         fetch("/user/getInstrument", {
@@ -442,11 +464,10 @@
 
     (() => {
         getInstrument();
-
     })();
-
 
 </script>
 
-</body>
+</script>
+
 </html>
