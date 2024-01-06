@@ -39,11 +39,11 @@
 
 <!--    </select>-->
 
-<!--    <select id="findOneTeamById" resultType="team">-->
-<!--        select team_id,team_name-->
-<!--        from team-->
-<!--        where team_id=#{teamId}-->
-<!--    </select>-->
+    <select id="findOneTeamById" resultType="team">
+        select team_id,team_name
+        from team
+        where team_id=#{teamId}
+    </select>
 
     <select id="count" resultType="int">
         select count(*)

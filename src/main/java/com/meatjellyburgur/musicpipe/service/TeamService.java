@@ -94,4 +94,9 @@ public class TeamService {
 
 
     }
+
+    public String findTeamName(int teamId){
+        Team team = teamMapper.findOneTeamById(teamId);
+        return team.getTeamName();
+    }
 }

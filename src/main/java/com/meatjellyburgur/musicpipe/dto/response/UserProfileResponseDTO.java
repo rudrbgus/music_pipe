@@ -14,6 +14,7 @@ public class UserProfileResponseDTO {
     private int age;
     private String sex;
     private int team_id;
+    private  String teamName;
     private String nickname;
     private String profileImagePath;
     private String introduceText;

@@ -24,6 +24,7 @@ public class BoardListResponseDTO {
     private int viewCount; // 조회수
     private String regDateTime; // 작성일자시간
 
+
     public BoardListResponseDTO(EmployBoard employBoard) {
         this.boardId=employBoard.getBoardId();
         this.userId=employBoard.getUserId();

@@ -51,7 +51,7 @@
                         <div class="instrument_img">모집악기 :
                             <div class="img_box">
                                 <c:forEach var="i" begin="1" end="8">
-                                    <c:if test="${!b.recruit_instrument}">
+                                <c:if test="${!b.recruit_instrument}">
                                         <img class="img invisible" src="/assets/img/${InstrumentImageUtil.instrumentImage(i)}.png" alt="${i}">
                                     </c:if>
                                     <c:if test="${b.recruit_instrument}">
