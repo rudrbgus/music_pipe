@@ -2,6 +2,7 @@ package com.meatjellyburgur.musicpipe.controller;
 
 import com.fasterxml.jackson.annotation.JsonKey;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.meatjellyburgur.musicpipe.common.Page;
 import com.meatjellyburgur.musicpipe.dto.request.ListRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
@@ -31,6 +32,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 
 import static com.meatjellyburgur.musicpipe.util.SignInUtils.*;
@@ -178,8 +180,12 @@ public class UserController {
     public ResponseEntity<?> showList(@RequestBody ListRequestDTO requestBody, Model model) {
         System.out.println();
         log.info("/user/list Post!!!");
-        log.info("insturmentId :" + requestBody.getEquipmentId());
-        List<FindUserResponseDTO> allUserByInstrumentId = userService.findAllUserByInstrumentId(Integer.parseInt(requestBody.getEquipmentId()));
+        Page page = Page.builder()
+                .pageNo(requestBody.getPageNo())
+                .amount(requestBody.getAmount())
+                .build();
+        log.info("instrumentId :" + requestBody.getEquipmentId());
+        HashMap<Object, Object> allUserByInstrumentId = userService.findAllUserByInstrumentId(Integer.parseInt(requestBody.getEquipmentId()), page);
         log.info(allUserByInstrumentId.toString());
         return ResponseEntity.ok().body(allUserByInstrumentId);
     }
