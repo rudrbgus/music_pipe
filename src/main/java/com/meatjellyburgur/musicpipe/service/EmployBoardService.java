@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -61,12 +62,17 @@ public class EmployBoardService {
 
         //유저아이디 이용해서 need_equipmemnt에 값 넣기
         employBoardMapper.save(board);
+        //employboard 맨 마지막 행 받아와서 board_id 불러오기
+        EmployBoard lastRowBoard = employBoardMapper.findLastRowBoard();
+
+
         //
 
         //equipment enum 통해서 번호값을 받아와서
-        Map<String, String> needEquipments = dto.returnEquipment();
+        HashMap<String, String> needEquipments = (HashMap<String, String>) dto.returnEquipment();
         //모집악기 체크 여부 확인해서 need equipment에 넣는 메서드
-        registerNeedEquipment(needEquipments, board.getBoardId());
+        System.out.println("needEquipments = " + needEquipments);
+        registerNeedEquipment(needEquipments, lastRowBoard.getBoardId());
 
 
 
@@ -75,17 +81,13 @@ public class EmployBoardService {
     }
     //모집악기 체크 여부 확인해서 need equipment에 넣는 메서드
 
-    public  void  registerNeedEquipment(Map<String,String> needEquipments, int boardId){
-        needEquipments.forEach((key,value)->{
-            if(value.equals("on")){
-                //만약에 악기가 체크되어 있으면
-                //need_equipment mapper 이용해서 저장함.
-                needEquipmentMapper.save(boardId,Equipment.valueOf(key).equipmentId);
-
-            }
+    public  void  registerNeedEquipment(HashMap<String, String> needEquipments, int boardId){
+            needEquipments.forEach((key,value)->{
+                if (value!=null){
+                    needEquipmentMapper.save(boardId,Equipment.valueOf(key).equipmentId);
                 }
+            });
 
-        );
 
     }
     

@@ -9,6 +9,13 @@
         from need_equipment
         where board_id =#{boardId}
     </select>
+
+
+    <insert id="save">
+        insert into need_equipment
+        (board_id,equipment_id)
+        values (#{boardId},#{equipmentId})
+    </insert>
 </mapper>
 
 <!--&lt;!&ndash;    //        insert  into  user&ndash;&gt;-->

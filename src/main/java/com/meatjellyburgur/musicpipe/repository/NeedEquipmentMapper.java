@@ -10,4 +10,5 @@ public interface NeedEquipmentMapper {
     void save(int boardId, int equipmentId);
 
     List<Integer> findAllEquipmentIdByBoardId(int boardId);
+
 }

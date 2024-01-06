@@ -51,16 +51,16 @@
                         <div class="instrument_img">모집악기 :
                             <div class="img_box">
 <%--                                모집악기 리스트 불러와서 값이 on 일경우만 찾아서 표시 아니면 표시하지 않기--%>
+                                    ${b.recruit_equipment}
 
+<%--                                <c:forEach var="e" items="${b.recruit_equipment}">--%>
+<%--                                       ${e}--%>
+<%--&lt;%&ndash;                                        <img class="img invisible" src="/assets/img/${InstrumentImageUtil.instrumentImage(e)}.png" alt="${e}">&ndash;%&gt;--%>
+<%--                                </c:forEach>--%>
 
-                                <c:forEach var="e" items="${b.recruit_equipment}">
-                                       ${e}
-<%--                                        <img class="img invisible" src="/assets/img/${InstrumentImageUtil.instrumentImage(e)}.png" alt="${e}">--%>
-                                </c:forEach>
-
-                                <c:if test="${bList.recruit_equipment.size()==0}">
-                                    모집악기:없음.
-                                </c:if>
+<%--                                <c:if test="${bList.recruit_equipment.size()==0}">--%>
+<%--                                    모집악기:없음.--%>
+<%--                                </c:if>--%>
                             </div>
                         </div>
                     </div>
