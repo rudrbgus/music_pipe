@@ -305,22 +305,15 @@
 
         // 악기 눌렀을 때
         $instrumentImageBox.onclick = e => {
-            // profile_instrument_list 안에 하나라도 on이 있으면
-            //수정하시겠습니까? 띄우고 해당 아이디 값
 
-            if(specificClassElementsNamedOn.length===1){
-                let b = confirm('수정하시겠습니까?');
-                if(!b){
-                    return;
-                }
-            }
 
 
             if (e.target.classList.contains("profile_instrument_image_box") || e.target.classList.contains("img")) {
                 if (e.target.classList.contains("profile_instrument_image_box")) {
 
                     if (e.target.classList.contains("on")) {
-                        return;
+                        let b = confirm('이 악기를 제거하시겠습니까?');
+                        if(!b)return;
                         e.target.classList.remove("on");
                         fetch("/user/instrument", {
                             method: "POST",
@@ -334,12 +327,8 @@
                             })
                         })
                     } else {
-
-                        //기존 on 삭제 해야함.
-                        let ExistedElement = specificClassElementsNamedOn[0][0];
-                        console.log('기존 on어쩌고')
-                        console.log(ExistedElement)
-                        ExistedElement.classList.remove("on");
+                        let b2 = confirm('이 악기를 추가하시겠습니까?');
+                        if(!b2)return;
                         e.target.classList.add("on");
 
                         fetch("/user/instrument", {
@@ -357,7 +346,8 @@
                 }
                 if (e.target.classList.contains("img")) {
                     if (e.target.parentElement.classList.contains("on")) {
-                        return;
+                        let b1 = confirm('이 악기를 제거하시겠습니까?');
+                        if(!b1)return;;
                         e.target.parentElement.classList.remove("on");
                         fetch("/user/instrument", {
                             method: "POST",
@@ -372,14 +362,11 @@
                             })
                         })
                     } else {
-                        //기존 on 삭제 해야함.
-                        let ExistedElement = specificClassElementsNamedOn[0][0];
-                        console.log('기존 on어쩌고')
-                        console.log(ExistedElement)
-                        ExistedElement.classList.remove("on");
+                        let b3 = confirm('이 악기를 추가하시겠습니까?');
+                        if(!b3)return;
                         e.target.parentElement.classList.add("on");
 
-                        ExistedElement.classList.remove("on");
+                        // ExistedElement.classList.remove("on");
 
                         fetch("/user/instrument", {
                             method: "POST",

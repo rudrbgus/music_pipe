@@ -237,7 +237,7 @@ public class UserController {
 
         }
         //userid 기반으로 personal_ablity 테이블에 값이 있는지 없는지 알아내기
-        PersonalAbility equipmentIdByUserId = personalAbilityService.findEquipmentIdByUserId(user.getUserId());
+        List<PersonalAbility> allEquipmentByUserId = personalAbilityService.findAllEquipmentByUserId(user.getUserId());
 
         UserProfileResponseDTO dto = UserProfileResponseDTO.builder()
                 .sex(user.getSex())
@@ -247,7 +247,6 @@ public class UserController {
                 .email(user.getEmail())
                 .nickname(user.getNickname())
                 .introduceText(user.getIntroduceText())
-                .equipmentId(equipmentIdByUserId.getEquipmentId())
                 .build();
         model.addAttribute("user", dto);
         System.out.println("dto = " + dto);
@@ -271,11 +270,11 @@ public class UserController {
         System.out.println("dto = " + dto);
         User user = userService.getUser(dto.getEmail());
         log.info("유저 아이디: {}", user.getUserId());
-//        if(dto.isOnOff()){ // 추가하는문
-        instrumentService.addPersonalAbility(user.getUserId(), dto);
-//        } else{
-//            instrumentService.removePersonalAbility(user.getUserId(), dto);
-//        }
+        if(dto.isOnOff()){ // 추가하는문
+            instrumentService.addPersonalAbility(user.getUserId(), dto);
+        } else{
+            instrumentService.removePersonalAbility(user.getUserId(), dto);
+        }
 
         return null;
     }
