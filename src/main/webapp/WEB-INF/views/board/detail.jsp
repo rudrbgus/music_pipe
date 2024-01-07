@@ -267,9 +267,13 @@
 
     <div class="team_main_container">
         <div class="team_profile_container">
-            <div class="profile_img">
-                <img src="/루피.png" alt="">
-            </div>
+            <c:forEach var="teamData" items="${teamDataList}">
+
+                <div class="profile_img">
+                    <img src="/${teamData.teamProfileimage}" alt="">
+                </div>
+            </c:forEach>
+
         </div>
 
         <div class="team_introduction_container">
