@@ -158,7 +158,7 @@
                     headers: {
                         'content-type': 'application/json'
                     },
-                    body: JSON.stringify({ equipmentId: 1,pageNo: 1,amount: 3})
+                    body: JSON.stringify({ equipmentId: 1,pageNo: page.pageNo,amount:page.amount})
                 })
                 const users = await response.json();
                 console.log(users);
