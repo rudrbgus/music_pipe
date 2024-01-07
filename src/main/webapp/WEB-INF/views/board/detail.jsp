@@ -112,11 +112,18 @@
         .container .team_main_container .team_introduction_container .on_and_off_line .icon{
             width: 30px;
             height: 30px;
-            background: #ff3030;
             border-radius: 50%;
             margin-right: 10px;
             box-shadow: 2px 2px 3px #727272;
         }
+        .container .team_main_container .team_introduction_container .on_and_off_line .on_line{
+            background: #ff3030;
+        }
+        .container .team_main_container .team_introduction_container .on_and_off_line .off_line{
+            background: #3c3c3c;
+        }
+
+
         .container .team_main_container .team_introduction_container .on_and_off_line .text{
             font-size: 1.5rem;
         }
@@ -266,22 +273,24 @@
         </div>
 
         <div class="team_introduction_container">
-            <div class="team_top_box">
-                <div class="team_name">
-                    루피크루
+            <c:forEach var="teamData" items="${teamDataList}">
+                <div class="team_top_box">
+                    <div class="team_name">
+                            ${teamData.teamName}
+                    </div>
+                    <div class="on_and_off_line">
+                        <div class="icon ${teamData.online ? 'on_line' : 'off_line'}"></div>
+                        <div class="text">${teamData.online ? '온라인' : '오프라인'}</div>
+                    </div>
                 </div>
-                <div class="on_and_off_line">
-                    <div class="icon"></div>
-                    <div class="text">온라인</div>
+                <div class="team_main_box">
+                    <span> 모집 사항 </span>
+                    <div class="text">
+                        자격요건: ${teamData.requirements}
+                        등등
+                    </div>
                 </div>
-            </div>
-            <div class="team_main_box">
-                <span> 모집 사항 </span>
-                <div class="text">
-                    자격요건 : ~~~~
-                    등등
-                </div>
-            </div>
+            </c:forEach>
             <div class="team_footer_box">
                 <div class="instrument_container">
 
