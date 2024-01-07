@@ -313,6 +313,7 @@
 <%-- 팀 요청 리스트 --%>
 <%-- 자신이 크루의 리더면 요청한 사람들의 요청이 뜸 --%>
 <div class="request-team">
+    <div>요청 리스트!!!!!!!!!!!!!!!!!!!!!</div>
     <div class="request-form">
         <div class="name">1</div>
         <div class="profile-image"><img src="" alt="">1</div>
