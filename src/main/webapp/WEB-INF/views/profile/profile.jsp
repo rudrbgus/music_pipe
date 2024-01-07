@@ -155,14 +155,14 @@
             }
         }
 
-
+        /*모달 페이지 꾸미는 부분*/
         .modal {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 30%;
+            left: 30%;
 
-            width: 100%;
-            height: 100%;
+            width: 50%;
+            height: 50%;
 
             display: none;
 
@@ -217,9 +217,9 @@
                 <input class="profile-input" type="text" style="display: none">
                 <div class="profile_email">이메일 : ${user.email} </div>
                 <div class="profile_team">소속 팀
-                        <c:if test="${user.team_id!=0}">
-                            ${user.teamName}
-                        </c:if>
+                    <c:if test="${user.team_id!=0}">
+                        ${user.teamName}
+                    </c:if>
                     <c:if test="${user.team_id==0}">
                         <button id="teamCreateFormBtn" class="creative_team_btn">팀 생성</button>
                     </c:if>
@@ -267,60 +267,9 @@
             <div class="teamNameContainer">
                 팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName"/>
             </div>
-            <div class="teamInstrumentContainer">
-                모집 :
-                <div class="profile_instrument_recruitCheckBox_container">
-                    <div class="checkbox-recruit">
-                        <input type="checkbox" id="recruitCheckbox1">
-                        <label>보컬</label>
 
-                        <%-- 모달 예시   --%>
 
-                        <div class="modal">
-                            <div class="modal_container" id="modal">
-                                <form action="/team/register" name="createTeam" method="post" id="createTeamForm">
-                                    <h3>팀생성</h3>
-                                    <div class="teamNameContainer">
-                                        팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName"
-                                                    id="teamName"/>
-                                    </div>
-                                    <%--            <div class="teamInstrumentContainer">--%>
-                                    <%--                모집 : <div class="profile_instrument_recruitCheckBox_container">--%>
-                                    <%--                    <div class="checkbox-recruit">--%>
-                                    <%--                        <input type="checkbox" id="recruitCheckbox1">--%>
-                                    <%--                        <label>보컬</label>--%>
-
-                                    <%--                        <input type="checkbox" id="recruitCheckbox2">--%>
-                                    <%--                        <label>피아노</label>--%>
-
-                                    <%--                        <input type="checkbox" id="recruitCheckbox3">--%>
-                                    <%--                        <label>키보드</label>--%>
-
-                                    <%--                        <input type="checkbox" id="recruitCheckbox4">--%>
-                                    <%--                        <label>어쿠스틱</label>--%>
-
-                                    <%--                        <input type="checkbox" id="recruitCheckbox5">--%>
-                                    <%--                        <label>일렉</label>--%>
-
-                                    <%--                        <input type="checkbox" id="recruitCheckbox6">--%>
-                                    <%--                        <label>베이스</label>--%>
-
-                                    <%--                        <input type="checkbox" id="recruitCheckbox7">--%>
-                                    <%--                        <label>드럼</label>--%>
-
-                                    <%--                        <input type="checkbox" id="recruitCheckbox8">--%>
-                                    <%--                        <label>기타 악기</label>--%>
-                                    <%--                    </div>--%>
-                                    <%--                </div>--%>
-                                    <%--            </div>--%>
-
-                                    <input type="submit" value="팀생성" id="createTeamBtn">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <input type="submit" value="팀생성" id="createTeamBtn">
         </form>
     </div>
 </div>
@@ -419,13 +368,19 @@
         reader.onloadend = e => {
             const $img = $box.querySelector('.inputImage');
             $img.setAttribute('src', reader.result);
-            $submitButton = document.querySelector('.submit-button');
+            const $submitButton = document.querySelector('.submit-button');
             $submitButton.style.display = "flex";
         }
     }
 
-    //팀버튼 생성버튼 눌렀을때,
-    const $teamCreateBtn = document.getElementById('create_team_btn');
+    //팀생성폼 버튼 열기 버튼
+    const $teamCreateFormBtn = document.getElementById('teamCreateFormBtn');
+    const $teamCreateFormModal= document.getElementById('modal');
+    $teamCreateFormBtn.onclick=e=>{
+        $teamCreateFormModal.style.display='flex';
+    }
+
+
 
     // 수정하기 버튼 눌렀을 떄
     const $button = document.querySelector(".profile-introduce-text-button");

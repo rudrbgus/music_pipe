@@ -27,5 +27,5 @@ public interface TeamMapper {
 
     void save(String teamName);
 
-    int findFirstRowTeamInfo();
+    int findLastRowTeamInfo();
 }

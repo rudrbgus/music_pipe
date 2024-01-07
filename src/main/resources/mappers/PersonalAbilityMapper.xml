@@ -5,21 +5,21 @@
 <mapper namespace="com.meatjellyburgur.musicpipe.repository.PersonalAbilityMapper">
     <insert id="save">
         INSERT INTO personal_ability
-            (user_id, equipment_id, ability)
+            (user_id, equipment_id)
         VALUES
-            (#{userId}, #{equipmentId}, #{ability})
+            (#{userId}, #{equipmentId})
     </insert>
 
     <select id="findAll" resultType="personalability">
         select
-            user_id, equipment_id, ability
+            user_id, equipment_id
         from
             personal_ability
     </select>
 
     <select id="findPersonalAbilityList" resultType="personalability">
         select
-        user_id, equipment_id, ability
+        user_id, equipment_id
         from personal_ability
         WHERE user_id=#{userId}
     </select>
@@ -41,5 +41,10 @@
         DELETE FROM personal_ability
         WHERE user_id = #{userId} AND equipment_id = #{equipmentId}
     </delete>
+    <select id="findOne" resultType="personalability">
+        select *
+        from personal_ability
+        where user_id=#{userId}
+    </select>
 
 </mapper>

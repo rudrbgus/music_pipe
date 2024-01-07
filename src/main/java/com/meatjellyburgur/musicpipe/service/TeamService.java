@@ -70,7 +70,7 @@ public class TeamService {
         //1. 일단 기본 권한은 CHIEF(팀장)으로
         teamMapper.save(dto.getTeamName());
         //처음 부터 첫행만 가져와서 team_id 다시 얻기
-        int teamId = teamMapper.findFirstRowTeamInfo();
+        int teamId = teamMapper.findLastRowTeamInfo();
         log.info("teamid :{}", teamId);
         //team_member_info 에 team_id roll(auth) equipment_id 넣기
         int userId = dto.getUserId();

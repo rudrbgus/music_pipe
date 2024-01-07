@@ -50,8 +50,10 @@
         from team
     </select>
 
-    <select id="findFirstRowTeamInfo" resultType="int">
-        SELECT team.team_id FROM team LIMIT 1;
+    <select id="findLastRowTeamInfo" resultType="int">
+        SELECT team.team_id FROM team
+        order by team_id desc
+        LIMIT 1;
     </select>
 
 
