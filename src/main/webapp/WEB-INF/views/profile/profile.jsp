@@ -25,6 +25,15 @@
             background: aliceblue;
             filter: drop-shadow(1px 1px 10px rgba(69, 137, 211, 0.96));
         }
+        .request-team{
+            width: 60%;
+            height: 30vh;
+            border: 1.5px deepskyblue solid;
+            border-radius: 20px;
+            margin: 110px auto 0;
+            background: aliceblue;
+            filter: drop-shadow(1px 1px 10px rgba(69, 137, 211, 0.96));
+        }
 
         /* 프로필 컨테이너*/
         .profile_main_container .profile_container {
@@ -384,7 +393,31 @@
             })
         })
     }
-
+    function getTeamRequest(){
+        fetch("/user/getInstrument", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: "${user.email}"
+            })
+        }).then(res => {
+            console.log(res);
+            return res.json();
+        }).then(result => {
+            result.forEach(s => {
+                console.log(s.equipmentId);
+                if (s.equipmentId !== 0) {
+                    const $instrument = document.querySelector(".profile_instrument_image_box.instrument" + s.equipmentId);
+                    const $modalInstrument = document.querySelector(".modal .instrument" + s.equipmentId);
+                    console.log($instrument);
+                    $instrument.classList.add("on");
+                    $modalInstrument.classList.remove("none");
+                }
+            })
+        })
+    }
     if ("${login.nickname}" === "${user.nickname}") {
         console.log("나 실행함 이프")
         $box.onclick = e => {
@@ -569,7 +602,7 @@
 
     (() => {
         getInstrument();
-        console.log("씨발!");
+        getTeamRequest();
     })();
     $(document).ready(function (){
         getInstrument();
