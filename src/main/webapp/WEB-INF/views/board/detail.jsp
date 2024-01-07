@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.meatjellyburgur.musicpipe.util.InstrumentImageUtil" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -283,20 +284,12 @@
             </div>
             <div class="team_footer_box">
                 <div class="instrument_container">
-                    <input type="radio" id="bassGuitar" name="instrument" class="instrument-radio" style="display: none">
-                    <label for="bassGuitar" class="instrument" style="background-image: url('/bass-guitar.png');"></label>
 
-                    <input type="radio" id="drum" name="instrument" class="instrument-radio" style="display: none">
-                    <label for="drum" class="instrument" style="background-image: url('/drum.png');"></label>
+                    <c:forEach var="e" items="${recruit_equipment}">
+                        <input type="radio" id="bassGuitar" name="instrument" class="instrument-radio" style="display: none">
+                        <label for="bassGuitar" class="instrument" style="background-image: url('${InstrumentImageUtil.instrumentImage(e)}');"></label>
+                    </c:forEach>
 
-                    <input type="radio" id="vocal" name="instrument" class="instrument-radio" style="display: none">
-                    <label for="vocal" class="instrument" style="background-image: url('/vocal.png');"></label>
-
-                    <input type="radio" id="keyboard" name="instrument" class="instrument-radio" style="display: none">
-                    <label for="keyboard" class="instrument" style="background-image: url('/keyboard.png');"></label>
-
-                    <input type="radio" id="guitar2" name="instrument" class="instrument-radio" style="display: none">
-                    <label for="guitar2" class="instrument" style="background-image: url('/guitar2.png');"></label>
                 </div>
             </div>
 
