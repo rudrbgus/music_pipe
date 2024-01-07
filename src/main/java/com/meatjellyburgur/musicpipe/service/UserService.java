@@ -140,10 +140,19 @@ public class UserService {
                 users.add(build);
             }
         }
-        if(userIdByEquipmentId.size()<page.getAmount()){
-            log.warn("악기 리스트보다 가져오는 양이 많습니다");
-        }
         int fromIndex = (page.getPageNo()-1) * page.getAmount();
+        if(userIdByEquipmentId.size()<fromIndex+ page.getAmount()){
+            log.warn("악기 리스트보다 가져오는 양이 많습니다");
+            // 자료 없는데 요구 할 때
+            if(userIdByEquipmentId.size()<fromIndex){
+                return null;
+            }
+            List<FindUserResponseDTO> findUserResponseDTOS = users.subList(fromIndex, userIdByEquipmentId.size());
+            HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+            objectObjectHashMap.put("users", findUserResponseDTOS);
+            objectObjectHashMap.put("pageInfo",pageMaker);
+            return objectObjectHashMap;
+        }
         List<FindUserResponseDTO> findUserResponseDTO = users.subList(fromIndex, fromIndex + page.getAmount());
         HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
         objectObjectHashMap.put("users", findUserResponseDTO);

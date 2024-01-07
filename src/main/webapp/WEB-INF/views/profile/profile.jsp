@@ -212,7 +212,7 @@
         </div>
         <div class="profile_text">
             <c:if test="${user != null}">
-                <c:if test="${login != null || user.nickname == login.nickname}">
+                <c:if test="${user.nickname == login.nickname}">
                     <button type="submit" class="profile-introduce-text-button" id="introduceModifyBtn">수정하기</button>
                 </c:if>
                 <div class="profile-introduce-text">자기소개 : ${user.introduceText}</div>
