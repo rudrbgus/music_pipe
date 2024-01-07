@@ -216,7 +216,6 @@ public class UserController {
         log.info("/user/list Post!!!");
         log.info("instrumentId :" + requestBody.getEquipmentId());
         HashMap<Object, Object> allUserByInstrumentId = userService.findAllUserByInstrumentId(Integer.parseInt(requestBody.getEquipmentId()), page);
-        log.info(allUserByInstrumentId.toString());
         return ResponseEntity.ok().body(allUserByInstrumentId);
     }
 
@@ -244,6 +243,7 @@ public class UserController {
                 .nickname(user.getNickname())
                 .introduceText(user.getIntroduceText())
                 .build();
+        
         model.addAttribute("user", dto);
         System.out.println("dto = " + dto);
         return "/profile/profile";

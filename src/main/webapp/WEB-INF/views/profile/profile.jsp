@@ -266,6 +266,12 @@
     </div>
 </div>
 
+<%-- 팀 요청 리스트 --%>
+<%-- 자신이 크루의 리더면 요청한 사람들의 요청이 뜸 --%>
+
+
+
+
 
 <div class="modal" id="modal">
     <div class="modal_container">
