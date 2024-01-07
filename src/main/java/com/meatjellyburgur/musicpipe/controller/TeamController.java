@@ -2,8 +2,11 @@ package com.meatjellyburgur.musicpipe.controller;
 
 import com.meatjellyburgur.musicpipe.common.Page;
 import com.meatjellyburgur.musicpipe.dto.request.TeamRegisterRequestDTO;
+import com.meatjellyburgur.musicpipe.dto.request.TeamRegisterRequestJsonDTO;
+import com.meatjellyburgur.musicpipe.dto.request.UserInstrumentRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.TeamListResponseDTO;
+import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.repository.TeamMapper;
 import com.meatjellyburgur.musicpipe.service.TeamService;
 import lombok.RequiredArgsConstructor;
@@ -23,16 +26,16 @@ import static com.meatjellyburgur.musicpipe.util.SignInUtils.LOGIN_KEY;
 @RequestMapping("/team")
 @RequiredArgsConstructor
 public class TeamController {
-    private  final TeamService teamService;
+    private final TeamService teamService;
 
     /*
      * 서비스 필요함.
      *
-    */
+     */
 
     // 1. 팀 목록 조회 요청
     @GetMapping("/findAll/page/{pageNo}")
-    public ResponseEntity<?> findAllTeam(@PathVariable int pageNo){
+    public ResponseEntity<?> findAllTeam(@PathVariable int pageNo) {
         Page page = new Page();
         page.setPageNo(pageNo);
         page.setAmount(5);
@@ -51,38 +54,87 @@ public class TeamController {
             @PathVariable String keyWord,
             @PathVariable int pageNo
     ) {
-        
+
         Page page = new Page();
         page.setPageNo(pageNo);
         page.setAmount(5);
-        TeamListResponseDTO findteamListResponseDTO = teamService.getListByKeyWord(page,type,keyWord);
+        TeamListResponseDTO findteamListResponseDTO = teamService.getListByKeyWord(page, type, keyWord);
 
 
-       return ResponseEntity.ok().body(findteamListResponseDTO);
+        return ResponseEntity.ok().body(findteamListResponseDTO);
     }
+
+//    @PostMapping("/register2")
+//    public String teamSave(String teamName, HttpSession session) {
+//        //가져올 정보
+//        //
+//        //team table
+//        //teamid
+//        //team name
+//        //유저 id
+//        //권한
+//
+//        //세션에서 user_id 가져오기
+//        SignInUserResponseDTO login = (SignInUserResponseDTO) session.getAttribute("login");
+//        int userId = login.getUserId();
+//        //포장해서 service로 보내기
+//        TeamRegisterRequestDTO dto = new TeamRegisterRequestDTO();
+//        dto.setUserId(userId);
+//        dto.setTeamName(teamName);
+//        teamService.createTeam(dto);
+//        return "redirect:/user/profile";
+//
+//    }
+
+
+//
+//    @PostMapping("/instrument")
+//    public ResponseEntity<?>  userInstrumentModify(HttpSession session, @RequestBody UserInstrumentRequestDTO dto){
+//        System.out.println("dto = " + dto);
+//        User user = userService.getUser(dto.getEmail());
+//        log.info("유저 아이디: {}", user.getUserId());
+//        if(dto.isOnOff()){ // 추가하는문
+//            instrumentService.addPersonalAbility(user.getUserId(), dto);
+//        } else{
+//            instrumentService.removePersonalAbility(user.getUserId(), dto);
+//        }
+//
+//        return null;
+//    }
+
 
     @PostMapping("/register")
-    public String teamSave(String teamName,HttpSession session){
-        //가져올 정보
-        //
-        //team table
-        //teamid
-        //team name
-        //유저 id
-        //권한
+    public ResponseEntity<?> teamSave2(HttpSession session
+            , @RequestBody TeamRegisterRequestJsonDTO dto
+            , BindingResult result) {
 
-        //세션에서 user_id 가져오기
+
+
+        if (result.hasErrors()) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(result.toString());
+        }
+        log.info("dto {}",dto);
+
+        System.out.println("dto = " + dto);
+
         SignInUserResponseDTO login = (SignInUserResponseDTO) session.getAttribute("login");
         int userId = login.getUserId();
-        //포장해서 service로 보내기
-        TeamRegisterRequestDTO dto= new TeamRegisterRequestDTO();
-        dto.setUserId(userId);
-        dto.setTeamName(teamName);
-        teamService.createTeam(dto);
-        return "redirect:/user/profile";
+
+        TeamRegisterRequestDTO teamRegisterRequestDTO = new TeamRegisterRequestDTO();
+        teamRegisterRequestDTO.setTeamName(dto.getTeamName());
+        teamRegisterRequestDTO.setUserId(userId);
+        teamService.createTeam(teamRegisterRequestDTO,dto);
+
+
+        return ResponseEntity
+                .ok()
+//                .headers(headers)
+                .body(dto);
+
 
     }
-
 
 
     //팀 생성
@@ -95,23 +147,23 @@ public class TeamController {
     @PostMapping
     public ResponseEntity<?> createTeam(TeamRegisterRequestDTO dto
             , BindingResult result
-            , HttpSession session){
+            , HttpSession session) {
 
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return ResponseEntity
                     .badRequest()
                     .body(result.toString());
         }
 
-        try{
+        try {
 //            teamService.createTeam(dto,session)
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
 
-
         return null;
     }
+
 
 }

@@ -250,10 +250,11 @@
                 <div class="profile_email">이메일 : ${user.email} </div>
                 <div class="profile_team">소속 팀
                     <c:if test="${user.team_id!=0}">
-                        ${user.teamName}
+                        <span id="userTeamName"></span>
                         <button id="teamCreateFormBtn" style="display: none" class="creative_team_btn">팀 생성</button>
                     </c:if>
                     <c:if test="${user.team_id==0}">
+                        <span  id="userTeamName"></span>
                         <button id="teamCreateFormBtn" class="creative_team_btn">팀 생성</button>
                     </c:if>
 
@@ -342,7 +343,9 @@
 </div>
 
 </body>
-<script>
+<script defer>
+    const $teamNameTag=document.getElementById('userTeamName');
+    console.log($teamNameTag)
 
     const userEquipmentSelect=document.getElementById(${user.equipmentId});
 
@@ -534,10 +537,18 @@
             },
             body: JSON.stringify({
                 teamName:  $teamName.value,
-                introduceText: $clickedInstrument.querySelector("img").name,
+                instrumentId: $clickedInstrument.querySelector("img").name,
                 role : "master"
             })
         })
+            .then(dto=> dto.json())
+            .then(dtoList=>{
+                renderTeamInfo(dtoList)
+            })
+        $teamCreateFormModal.style.display='none';
+
+
+
     }
 
 
@@ -570,9 +581,27 @@
         })
     };
 
+
+
+
+    //팀 이름 랜더링하는 함수
+    function renderTeamInfo({teamName, instrumentId, role}) {
+
+        $teamNameTag.innerText=teamName;
+        $teamNameTag.style.display='flex';
+        $teamCreateFormBtn.style.display='none';
+
+    }
+
+
+
     (() => {
         getInstrument();
     })();
+
+
+
+
 
 </script>
 
