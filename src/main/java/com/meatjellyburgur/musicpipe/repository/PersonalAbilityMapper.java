@@ -9,13 +9,16 @@ import java.util.List;
 public interface PersonalAbilityMapper {
     boolean save(PersonalAbility p);
 
+    boolean update(PersonalAbility p);
+
     List<PersonalAbility> findAll();
 
     List<PersonalAbility> findPersonalAbilityList(int userId);
 
     List<Integer> findUserIdByEquipmentId(int equipmentId);
 
-    boolean isDuplicate(int userId, int equipmentId);
+//    boolean isDuplicate(int userId, int equipmentId);
+    int isDuplicate(int userId);
 
     boolean remove(PersonalAbility p);
 

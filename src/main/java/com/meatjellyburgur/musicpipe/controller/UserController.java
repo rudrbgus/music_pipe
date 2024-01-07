@@ -14,10 +14,7 @@ import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.UserProfileResponseDTO;
 import com.meatjellyburgur.musicpipe.entity.PersonalAbility;
 import com.meatjellyburgur.musicpipe.entity.User;
-import com.meatjellyburgur.musicpipe.service.InstrumentService;
-import com.meatjellyburgur.musicpipe.service.SigninResult;
-import com.meatjellyburgur.musicpipe.service.TeamService;
-import com.meatjellyburgur.musicpipe.service.UserService;
+import com.meatjellyburgur.musicpipe.service.*;
 import com.meatjellyburgur.musicpipe.util.SignInUtils;
 import com.meatjellyburgur.musicpipe.util.upload.FileUtil;
 import lombok.RequiredArgsConstructor;
@@ -48,6 +45,7 @@ public class UserController {
     private final UserService userService;
     private final InstrumentService instrumentService;
     private final TeamService teamService;
+    private final PersonalAbilityService personalAbilityService;
 
 
     @Value("${file.upload.root-path}")
@@ -217,6 +215,8 @@ public class UserController {
 
 
         }
+        //userid 기반으로 personal_ablity 테이블에 값이 있는지 없는지 알아내기
+        PersonalAbility equipmentIdByUserId = personalAbilityService.findEquipmentIdByUserId(user.getUserId());
 
         UserProfileResponseDTO dto = UserProfileResponseDTO.builder()
                 .sex(user.getSex())
@@ -226,6 +226,7 @@ public class UserController {
                 .email(user.getEmail())
                 .nickname(user.getNickname())
                 .introduceText(user.getIntroduceText())
+                .equipmentId(equipmentIdByUserId.getEquipmentId())
                 .build();
         model.addAttribute("user", dto);
         System.out.println("dto = " + dto);
@@ -246,14 +247,14 @@ public class UserController {
     // 유저에 악기 넣기 -> 비동기
     @PostMapping("/instrument")
     public ResponseEntity<?>  userInstrumentModify(HttpSession session, @RequestBody UserInstrumentRequestDTO dto){
-        //System.out.println("dto = " + dto);
+        System.out.println("dto = " + dto);
         User user = userService.getUser(dto.getEmail());
-        //log.info("유저 아이디: {}", user.getUserId());
-        if(dto.isOnOff()){ // 추가하는문
-            instrumentService.addPersonalAbility(user.getUserId(), dto);
-        } else{
-            instrumentService.removePersonalAbility(user.getUserId(), dto);
-        }
+        log.info("유저 아이디: {}", user.getUserId());
+//        if(dto.isOnOff()){ // 추가하는문
+        instrumentService.addPersonalAbility(user.getUserId(), dto);
+//        } else{
+//            instrumentService.removePersonalAbility(user.getUserId(), dto);
+//        }
 
         return null;
     }

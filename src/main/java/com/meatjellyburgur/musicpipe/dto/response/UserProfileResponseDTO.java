@@ -18,5 +18,6 @@ public class UserProfileResponseDTO {
     private String nickname;
     private String profileImagePath;
     private String introduceText;
+    private int equipmentId;
 
 }

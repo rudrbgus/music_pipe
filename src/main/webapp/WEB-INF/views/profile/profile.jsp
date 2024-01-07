@@ -185,6 +185,10 @@
             width: 150px;
         }
 
+        .profile-input{
+            display: none;
+        }
+
     </style>
 
 </head>
@@ -211,14 +215,15 @@
         <div class="profile_text">
             <c:if test="${user != null}">
                 <c:if test="${login != null || user.nickname == login.nickname}">
-                    <button class="profile-introduce-text-button">수정하기</button>
+                    <button type="submit" class="profile-introduce-text-button" id="introduceModifyBtn">수정하기</button>
                 </c:if>
                 <div class="profile-introduce-text">자기소개 : ${user.introduceText}</div>
-                <input class="profile-input" type="text" style="display: none">
+                <input class="profile-input" type="text" >
                 <div class="profile_email">이메일 : ${user.email} </div>
                 <div class="profile_team">소속 팀
                     <c:if test="${user.team_id!=0}">
                         ${user.teamName}
+                        <button id="teamCreateFormBtn" style="display: none" class="creative_team_btn">팀 생성</button>
                     </c:if>
                     <c:if test="${user.team_id==0}">
                         <button id="teamCreateFormBtn" class="creative_team_btn">팀 생성</button>
@@ -229,31 +234,35 @@
         </div>
     </div>
     <%--  악기 리스트  --%>
+<%--  a 클래스에 on 추가하면 색이 바뀜.--%>
+<%--    데이터에 개인 악기 가 있으면 그거에 해당하는 값만 on 칠하기
+그게 없으면  아무색도 없고
+개인악기가 있는 상황에서 다른 거 클릭하면 alret로 수정하시겠습니까  띄우고 수정하면 그거에 관련된 값 업데이트 하기--%>
     <div class="profile_instrument">
         <div class="profile_instrument_list">
-            <a class="profile_instrument_image_box instrument1" name="1">
+            <a class="profile_instrument_image_box instrument1" id="1">
                 <img class="instrument1 img" src="/assets/img/guitar2.png" name="1">
             </a>
-            <a class="profile_instrument_image_box instrument2" name="2">
-                <img class="instrument2 img" src="/assets/img/drum.png" name="2">
+            <a class="profile_instrument_image_box instrument2" id="2">
+                <img class="instrument2 img" src="/assets/img/drum.png" name="2" >
             </a>
-            <a class="profile_instrument_image_box instrument3" name="3">
-                <img class="instrument3 img" src="/assets/img/vocal.png" name="3">
+            <a class="profile_instrument_image_box instrument3" id="3" >
+                <img class="instrument3 img" src="/assets/img/vocal.png" name="3" >
             </a>
-            <a class="profile_instrument_image_box instrument4" name="4">
-                <img class="instrument4 img" src="/assets/img/keyboard.png" name="4">
+            <a class="profile_instrument_image_box instrument4" id="4" >
+                <img class="instrument4 img" src="/assets/img/keyboard.png"name="4">
             </a>
-            <a class="profile_instrument_image_box instrument5" name="5">
+            <a class="profile_instrument_image_box instrument5" id="5">
                 <img class="instrument5 img" src="/assets/img/saxophone.png" name="5">
             </a>
-            <a class="profile_instrument_image_box instrument6" name="6">
-                <img class="instrument6 img" src="/assets/img/trumpet.png" name="6">
+            <a class="profile_instrument_image_box instrument6" id="6" >
+                <img class="instrument6 img" src="/assets/img/trumpet.png" name="6" >
             </a>
-            <a class="profile_instrument_image_box instrument7" name="7">
+            <a class="profile_instrument_image_box instrument7" id="7">
                 <img class="instrument7 img" src="/assets/img/flute.png" name="7">
             </a>
-            <a class="profile_instrument_image_box instrument8" name="8">
-                <img class="instrument8 img" src="/assets/img/bass-guitar.png" name="8">
+            <a class="profile_instrument_image_box instrument8" id="8" >
+                <img class="instrument8 img" src="/assets/img/bass-guitar.png"name="8" >
             </a>
         </div>
     </div>
@@ -276,9 +285,19 @@
 
 </body>
 <script>
+
+    const userEquipmentSelect=document.getElementById(${user.equipmentId});
+
+
     const $box = document.querySelector('.upload-box');
     const $input = document.getElementById('img-input');
     const $instrumentImageBox = document.querySelector('.profile_instrument_list');
+    //on 클래스 가진 태그들만 모음.
+    let specificClassElementsNamedOn = $instrumentImageBox.getElementsByClassName("on");
+    console.log('on 가진거 어쩌고')
+    console.log(specificClassElementsNamedOn.length)
+
+
     if ("${login.nickname}" === "${user.nickname}") {
         $box.onclick = e => {
             $input.click();
@@ -286,9 +305,22 @@
 
         // 악기 눌렀을 때
         $instrumentImageBox.onclick = e => {
+            // profile_instrument_list 안에 하나라도 on이 있으면
+            //수정하시겠습니까? 띄우고 해당 아이디 값
+
+            if(specificClassElementsNamedOn.length===1){
+                let b = confirm('수정하시겠습니까?');
+                if(!b){
+                    return;
+                }
+            }
+
+
             if (e.target.classList.contains("profile_instrument_image_box") || e.target.classList.contains("img")) {
                 if (e.target.classList.contains("profile_instrument_image_box")) {
+
                     if (e.target.classList.contains("on")) {
+                        return;
                         e.target.classList.remove("on");
                         fetch("/user/instrument", {
                             method: "POST",
@@ -297,12 +329,19 @@
                             },
                             body: JSON.stringify({
                                 email: "${user.email}",
-                                instrumentId: e.target.getAttribute("name"),
+                                instrumentId: e.target.getAttribute("id"),
                                 onOff: false
                             })
                         })
                     } else {
+
+                        //기존 on 삭제 해야함.
+                        let ExistedElement = specificClassElementsNamedOn[0][0];
+                        console.log('기존 on어쩌고')
+                        console.log(ExistedElement)
+                        ExistedElement.classList.remove("on");
                         e.target.classList.add("on");
+
                         fetch("/user/instrument", {
                             method: "POST",
                             headers: {
@@ -310,7 +349,7 @@
                             },
                             body: JSON.stringify({
                                 email: "${user.email}",
-                                instrumentId: e.target.getAttribute("name"),
+                                instrumentId: e.target.getAttribute("id"),
                                 onOff: true
                             })
                         })
@@ -318,6 +357,7 @@
                 }
                 if (e.target.classList.contains("img")) {
                     if (e.target.parentElement.classList.contains("on")) {
+                        return;
                         e.target.parentElement.classList.remove("on");
                         fetch("/user/instrument", {
                             method: "POST",
@@ -332,7 +372,15 @@
                             })
                         })
                     } else {
+                        //기존 on 삭제 해야함.
+                        let ExistedElement = specificClassElementsNamedOn[0][0];
+                        console.log('기존 on어쩌고')
+                        console.log(ExistedElement)
+                        ExistedElement.classList.remove("on");
                         e.target.parentElement.classList.add("on");
+
+                        ExistedElement.classList.remove("on");
+
                         fetch("/user/instrument", {
                             method: "POST",
                             headers: {
@@ -349,6 +397,11 @@
                 }
             }
         }
+
+        specificClassElementsNamedOn =[$instrumentImageBox.getElementsByClassName("on")];
+        console.log('on가진거 어쩌고..2')
+        console.log(specificClassElementsNamedOn.length)
+
     }
 
     // 프로필 사진 선택시 썸네일 보여주기
@@ -378,16 +431,24 @@
     const $teamCreateFormModal= document.getElementById('modal');
     $teamCreateFormBtn.onclick=e=>{
         $teamCreateFormModal.style.display='flex';
-    }
+    };
 
 
 
     // 수정하기 버튼 눌렀을 떄
-    const $button = document.querySelector(".profile-introduce-text-button");
+    const $button = document.getElementById('introduceModifyBtn');
     const $inputIntroduce = document.querySelector(".profile-input");
     $button.onclick = e => {
-        console.log(e.target);
-        $inputIntroduce.style.display = "flex";
+        if($button.innerText=='수정하기') {
+            console.log(e.target);
+            $inputIntroduce.style.display = "flex";
+            $button.innerText = '완료';
+
+        }else{
+
+
+        }
+
     };
 
 
@@ -423,6 +484,6 @@
 
 </script>
 
-</script>
+
 
 </html>

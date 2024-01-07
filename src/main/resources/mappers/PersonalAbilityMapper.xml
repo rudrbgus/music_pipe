@@ -30,12 +30,23 @@
         FROM personal_ability
         WHERE equipment_id = #{equipmentId}
     </select>
+<!-- 기존 isDuplicate -->
+<!--    <select id="isDuplicate" resultType="boolean">-->
+<!--        select count(*)-->
+<!--        from personal_ability-->
+<!--        where user_id = #{userId} AND equipment_id = #{equipmentId}-->
+<!--    </select>-->
 
-    <select id="isDuplicate" resultType="boolean">
+    <select id="isDuplicate" resultType="int">
         select count(*)
         from personal_ability
-        where user_id = #{userId} AND equipment_id = #{equipmentId}
+        where user_id = #{userId}
     </select>
+    <update id="update">
+        update personal_ability
+        set equipment_id=#{equipmentId}
+        where user_id=#{userId}
+    </update>
 
     <delete id="remove">
         DELETE FROM personal_ability

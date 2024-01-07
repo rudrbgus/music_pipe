@@ -18,16 +18,21 @@ public class InstrumentService {
 
     public boolean addPersonalAbility(int userId, UserInstrumentRequestDTO dto) {
         // 중복인지 검증
-        boolean duplicate = mapper.isDuplicate(userId, dto.getInstrumentId());
+        int duplicate = mapper.isDuplicate(userId);
+        log.info("duplicate {}",duplicate);
 
         //중복이면 수정 메서드로 이동
-        if(duplicate){
-            modifyPersonalAbility(userId, dto);
+        if(duplicate!=0){
+//            modifyPersonalAbility(userId, dto);
+            PersonalAbility build = PersonalAbility.builder()
+                    .userId(userId)
+                    .equipmentId(dto.getInstrumentId())
+                    .build();
+            mapper.update(build);
         }else{
             boolean save = mapper.save(PersonalAbility.builder()
                     .userId(userId)
                     .equipmentId(dto.getInstrumentId())
-                    .ability("초보")
                     .build());
             return save;
         }
