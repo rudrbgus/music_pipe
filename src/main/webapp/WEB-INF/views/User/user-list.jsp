@@ -84,7 +84,12 @@
         // $('.contentBox1').empty();
 
         users.forEach(function (user) {
-            const { nickname, age, sex, regDate, teamId ,email,userProfileImagePath} = user;
+            const { nickname, age, sex, regDate, teamId ,email,userProfileImagePath,equipmentList} = user;
+
+            let list= ['보컬','기타','피아노','드럼','섹소폰','트럼펫','플루트','베이스'];
+            let tagName;
+
+
             let card = `
         <div class="content">
             <div class="slider\${index} slider"></div>
@@ -92,8 +97,6 @@
                 <img src="https://source.unsplash.com/random/300x420">
                 <div class="content-text">
                     <div class="tag">
-                        <div class="tagName">피아노</div>
-                        <div class="tagName">바이올린</div>
                     </div>
                     <div class="title">\${nickname}</div>
                     <div class="information">미팅 유형 : 오프라인</div>
@@ -107,8 +110,16 @@
             </a>
         </div>
       `;
+
+
             // 생성한 카드를 contentBox1에 추가
             $('.contentBox1').append(card);
+            equipmentList.forEach(e=>{
+                console.log(e);
+                tagName=`<div class="tagName">\${list[e-1]}</div>`
+                $('.tag').append(tagName);
+            });
+
             if(index===1){addHoverEffect(`.content-card1`, '#212121', '#ffffff', '#ffffff', '#212121');}
             else {addHoverEffect(`.content-card2`, '#212121', '#ffffff', '#212121', '#ffffff');}
 
