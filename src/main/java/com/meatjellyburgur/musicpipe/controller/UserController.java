@@ -227,12 +227,13 @@ public class UserController {
     @GetMapping("/profile")
     public String showProfile(String email,HttpSession session, Model model) {
         log.debug("user/profile POST!!!");
-        User user = userService.getUser(email);
+        SignInUserResponseDTO signInUserResponseDTOdto = (SignInUserResponseDTO) session.getAttribute(LOGIN_KEY);
+        User user = userService.getUser(signInUserResponseDTOdto.getEmail());
+        log.info("user{}",user);
         String teamName=null;
         if(user.getTeamId()!=0){
             //0이아니면 팀이 있다는 소리니까 팀을 찾아서 반환해야함.
             teamName = teamService.findTeamName(user.getTeamId());
-
 
         }
         //userid 기반으로 personal_ablity 테이블에 값이 있는지 없는지 알아내기
