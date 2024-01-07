@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.meatjellyburgur.musicpipe.util.InstrumentImageUtil" %>
 <!DOCTYPE html>
 <html>
 
@@ -247,31 +248,20 @@
 <%@include file="../include/header.jsp"%>
 <div class="container">
     <div class="new_porfile">
-        <span>신규 프로필</span>
-        <div class="new_card">
-            <img src="/춘식이.png" alt="" class="profile_img" />
-            <div class="text">
-                <div class="nickname">춘식이</div>
-                <div class="instrument">
-                    <img src="/vocal.png" alt="" />
-                    <img src="/guitar2.png" alt="" />
-                    <img src="/drum.png" alt="" />
-                    <img src="/bass-guitar.png" alt="" />
+        <span>신규 글</span>
+        <c:forEach var="teamData" items="${teamDataList}">
+            <div class="new_card">
+                <div style="background-image: url('${teamData.teamProfileimage}');" class="profile_img"></div>
+                <div class="text">
+                    <div class="nickname">${teamData.teamName}</div>
+                    <div class="instrument">
+                        <c:forEach var="e" items="${recruit_equipment}">
+                            <img src="${InstrumentImageUtil.instrumentImage(e)}">
+                        </c:forEach>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="new_card">
-            <img src="/루피.png" alt="" class="profile_img" />
-            <div class="text">
-                <div class="nickname">루피</div>
-                <div class="instrument">
-                    <img src="/vocal.png" alt="" />
-                    <img src="/guitar2.png" alt="" />
-                    <img src="/drum.png" alt="" />
-                </div>
-            </div>
-        </div>
+        </c:forEach>
     </div>
 
     <div class="select_container">
@@ -279,104 +269,23 @@
             <!-- 검색 프로필 -->
 
             <div class="card_container">
-                <div class="card">
-                    <div class="profile_view_box">
-                        <div class="profile_img">
-                            <img src="/루피.png" alt="" />
+                <c:forEach var="teamData" items="${teamDataList}">
+                    <div class="card">
+                        <div class="profile_view_box">
+                            <div style="background-image: url('${teamData.teamProfileimage}');" class="profile_img">
+                            </div>
+                            <div class="profile_text_box">
+                                <div class="nickname">${teamData.teamName}</div>
+                                <div class="on_and_off_line">${teamData.online ? '온라인' : '오프라인'}</div>
+                            </div>
                         </div>
-                        <div class="profile_text_box">
-                            <div class="nickname">루피</div>
-                        </div>
-                    </div>
-                    <div class="profile_instrument">
-                        <img src="/vocal.png" alt="" />
-                        <img src="/guitar2.png" alt="" />
-                        <img src="/drum.png" alt="" />
-                    </div>
-                </div>
-                <div class="card_modal">
-                    <p>모집페이지 보러가기</p>
-                </div>
-            </div>
-            <div class="card_container">
-                <div class="card">
-                    <div class="profile_view_box">
-                        <div class="profile_img">
-                            <img src="/루피.png" alt="" />
-                        </div>
-                        <div class="profile_text_box">
-                            <div class="nickname">루피</div>
+                        <div class="profile_instrument">
+                            <c:forEach var="e" items="${recruit_equipment}">
+                                <div class="img" style="background-image: url('${InstrumentImageUtil.instrumentImage(e)}');"></div>
+                            </c:forEach>
                         </div>
                     </div>
-                    <div class="profile_instrument">
-                        <img src="/vocal.png" alt="" />
-                        <img src="/guitar2.png" alt="" />
-                        <img src="/drum.png" alt="" />
-                    </div>
-                </div>
-                <div class="card_modal">
-                    <p>프로필 보러가기</p>
-                </div>
-            </div>
-            <div class="card_container">
-                <div class="card">
-                    <div class="profile_view_box">
-                        <div class="profile_img">
-                            <img src="/루피.png" alt="" />
-                        </div>
-                        <div class="profile_text_box">
-                            <div class="nickname">루피</div>
-                        </div>
-                    </div>
-                    <div class="profile_instrument">
-                        <img src="/vocal.png" alt="" />
-                        <img src="/guitar2.png" alt="" />
-                        <img src="/drum.png" alt="" />
-                    </div>
-                </div>
-                <div class="card_modal">
-                    <p>프로필 보러가기</p>
-                </div>
-            </div>
-            <div class="card_container">
-                <div class="card">
-                    <div class="profile_view_box">
-                        <div class="profile_img">
-                            <img src="/루피.png" alt="" />
-                        </div>
-                        <div class="profile_text_box">
-                            <div class="nickname">루피</div>
-                        </div>
-                    </div>
-                    <div class="profile_instrument">
-                        <img src="/vocal.png" alt="" />
-                        <img src="/guitar2.png" alt="" />
-                        <img src="/drum.png" alt="" />
-                    </div>
-                </div>
-                <div class="card_modal">
-                    <p>프로필 보러가기</p>
-                </div>
-            </div>
-            <div class="card_container">
-                <div class="card">
-                    <div class="profile_view_box">
-                        <div class="profile_img">
-                            <img src="/루피.png" alt="" />
-                        </div>
-                        <div class="profile_text_box">
-                            <div class="nickname">루피</div>
-                        </div>
-                    </div>
-                    <div class="profile_instrument">
-                        <img src="/vocal.png" alt="" />
-                        <img src="/guitar2.png" alt="" />
-                        <img src="/drum.png" alt="" />
-                    </div>
-                </div>
-                <div class="card_modal">
-                    <p>프로필 보러가기</p>
-                </div>
+                </c:forEach>
             </div>
 
 
