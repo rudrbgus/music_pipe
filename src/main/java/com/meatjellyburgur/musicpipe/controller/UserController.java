@@ -174,23 +174,23 @@ public class UserController {
     }
     // 악기 코드 받아서 유저 리스트 페이지에 악기 넣어줌
     @PostMapping("/list/instrument")
-    public String showInstrumentList(String equipmentId, Model model){
-        log.info("equipmentId: {}", equipmentId);
-        if(equipmentId.equals("피아노")){
+    public String showInstrumentList(String keyword, Model model){
+        log.info("equipmentId: {}", keyword);
+        if(keyword.equals("피아노")){
             model.addAttribute("instrument", 2);
-        } else if (equipmentId.equals("드럼")) {
+        } else if (keyword.equals("드럼")) {
             model.addAttribute("instrument", 7);
-        }else if (equipmentId.equals("키보드")) {
+        }else if (keyword.equals("키보드")) {
             model.addAttribute("instrument", 3);
-        }else if (equipmentId.equals("어쿠스틱")) {
+        }else if (keyword.equals("어쿠스틱")) {
             model.addAttribute("instrument", 4);
-        }else if (equipmentId.equals("일렉")) {
+        }else if (keyword.equals("일렉")) {
             model.addAttribute("instrument", 5);
-        }else if (equipmentId.equals("베이스")) {
+        }else if (keyword.equals("베이스")) {
             model.addAttribute("instrument", 6);
-        }else if (equipmentId.equals("보컬")) {
+        }else if (keyword.equals("보컬")) {
             model.addAttribute("instrument", 1);
-        }else if (equipmentId.equals("기타")) {
+        }else if (keyword.equals("기타")) {
             model.addAttribute("instrument", 8);
         }
 

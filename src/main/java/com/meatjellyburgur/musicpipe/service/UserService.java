@@ -7,6 +7,7 @@ import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
+import com.meatjellyburgur.musicpipe.entity.PersonalAbility;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.repository.PersonalAbilityMapper;
 import com.meatjellyburgur.musicpipe.repository.UserMapper;
@@ -118,6 +119,11 @@ public class UserService {
         for(int i:userIdByEquipmentId){
             User userByUserId = userMapper.findUserByUserId(i);
             log.info("user: {}", userByUserId);
+            List<Integer> equipmentList = new ArrayList<>();
+            List<PersonalAbility> personalAbilityList = personalAbilityMapper.findPersonalAbilityList(userByUserId.getUserId());
+            personalAbilityList.forEach(personalAbility -> {
+                equipmentList.add(personalAbility.getEquipmentId());
+            });
             if(userByUserId!=null){
                 FindUserResponseDTO build = FindUserResponseDTO.builder()
                         .teamId(userByUserId.getTeamId())
@@ -128,6 +134,8 @@ public class UserService {
                         .nickname(userByUserId.getNickname())
                         .email(userByUserId.getEmail())
                         .userProfileImagePath(userByUserId.getProfileImagePath())
+                        .introduceText(userByUserId.getIntroduceText())
+                        .equipmentList(equipmentList)
                         .build();
                 users.add(build);
             }

@@ -3,6 +3,7 @@ package com.meatjellyburgur.musicpipe.dto.response;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Setter @Getter
 @EqualsAndHashCode
@@ -18,4 +19,6 @@ public class FindUserResponseDTO {
     private LocalDateTime regDate;
     private int teamId;
     private String userProfileImagePath;
+    private String introduceText;
+    private List<Integer> equipmentList;
 }

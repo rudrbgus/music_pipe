@@ -421,6 +421,7 @@
 
 
     // 수정하기 버튼 눌렀을 떄
+    const $introduceText = document.querySelector(".profile-introduce-text");
     const $button = document.getElementById('introduceModifyBtn');
     const $inputIntroduce = document.querySelector(".profile-input");
     $button.onclick = e => {
@@ -429,17 +430,23 @@
             $inputIntroduce.style.display = "flex";
             $button.innerText = '완료';
         }else if($button.innerText==='완료'){
-            fetch("/user/introduce", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    introduceText: $inputIntroduce.value
+            if($inputIntroduce.value.trim()!==""){
+                fetch("/user/introduce", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        introduceText: $inputIntroduce.value
+                    })
                 })
-            })
+            }
             console.log("완료 버튼 누름");
+            console.log($inputIntroduce.value);
+            console.log($introduceText.innerText);
+            $introduceText.innerText = "자기소개: "+$inputIntroduce.value;
             $inputIntroduce.style.display = "none";
+            $button.innerText = '수정하기';
 
 
         }
