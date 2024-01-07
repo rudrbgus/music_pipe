@@ -121,13 +121,18 @@ public class UserService {
             if(userByUserId!=null){
                 FindUserResponseDTO build = FindUserResponseDTO.builder()
                         .teamId(userByUserId.getTeamId())
+                        .email(userByUserId.getEmail())
                         .sex(userByUserId.getSex())
                         .regDate(userByUserId.getRegdate())
                         .age(userByUserId.getAge())
                         .nickname(userByUserId.getNickname())
+                        .userProfileImagePath(userByUserId.getProfileImagePath())
                         .build();
                 users.add(build);
             }
+        }
+        if(userIdByEquipmentId.size()<page.getAmount()){
+            log.warn("악기 리스트보다 가져오는 양이 많습니다");
         }
         int fromIndex = (page.getPageNo()-1) * page.getAmount();
         List<FindUserResponseDTO> findUserResponseDTO = users.subList(fromIndex, fromIndex + page.getAmount());

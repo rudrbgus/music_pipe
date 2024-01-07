@@ -427,6 +427,7 @@
     //팀버튼 생성버튼 눌렀을때,
     const $teamCreateBtn = document.getElementById('create_team_btn');
 
+
     // 수정하기 버튼 눌렀을 떄
     const $button = document.querySelector(".profile-introduce-text-button");
     const $inputIntroduce = document.querySelector(".profile-input");
@@ -459,7 +460,6 @@
                 }
             })
         })
-
     };
 
     (() => {
