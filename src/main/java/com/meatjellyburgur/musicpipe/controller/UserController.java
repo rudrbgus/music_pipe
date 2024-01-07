@@ -94,8 +94,6 @@ public class UserController {
         if (result == SigninResult.SUCCESS) {
             // 세션으로 로그인 유지
             userService.maintainLoginState(request.getSession(), dto.getEmail());
-
-
             return "redirect:/";
         }
 
@@ -170,10 +168,35 @@ public class UserController {
         return allUserByTeamId;
     }
 
-
+    // 유저 리스트 폼 응답
     @GetMapping("/list")
     public String showList() {
         log.info("/user/list GET!!");
+
+        return "/User/user-list";
+    }
+    // 악기 코드 받아서 유저 리스트 페이지에 악기 넣어줌
+    @PostMapping("/list/instrument")
+    public String showInstrumentList(String equipmentId, Model model){
+        log.info("equipmentId: {}", equipmentId);
+        if(equipmentId.equals("피아노")){
+            model.addAttribute("instrument", 2);
+        } else if (equipmentId.equals("드럼")) {
+            model.addAttribute("instrument", 7);
+        }else if (equipmentId.equals("키보드")) {
+            model.addAttribute("instrument", 3);
+        }else if (equipmentId.equals("어쿠스틱")) {
+            model.addAttribute("instrument", 4);
+        }else if (equipmentId.equals("일렉")) {
+            model.addAttribute("instrument", 5);
+        }else if (equipmentId.equals("베이스")) {
+            model.addAttribute("instrument", 6);
+        }else if (equipmentId.equals("보컬")) {
+            model.addAttribute("instrument", 1);
+        }else if (equipmentId.equals("기타")) {
+            model.addAttribute("instrument", 8);
+        }
+
 
         return "/User/user-list";
     }
@@ -202,10 +225,10 @@ public class UserController {
 
     // 유저 프로필 주는 url
     @GetMapping("/profile")
-    public String showProfile(HttpSession session, Model model) {
+    public String showProfile(String email,HttpSession session, Model model) {
         log.debug("user/profile POST!!!");
-        SignInUserResponseDTO loginDTO =(SignInUserResponseDTO) session.getAttribute("login");
-        String email = loginDTO.getEmail();
+        //SignInUserResponseDTO loginDTO =(SignInUserResponseDTO) session.getAttribute("login");
+
         log.info("email: {}", email);
         User user = userService.getUser(email);
         String teamName=null;

@@ -112,26 +112,32 @@ public class UserService {
 
     public HashMap<Object, Object> findAllUserByInstrumentId(int equipmentId, Page page) {
         List<Integer> userIdByEquipmentId = personalAbilityMapper.findUserIdByEquipmentId(equipmentId);
+        log.info(""+userIdByEquipmentId);
         List<FindUserResponseDTO> users = new ArrayList<>();
         PageMaker pageMaker = new PageMaker(page, userIdByEquipmentId.size());
         for(int i:userIdByEquipmentId){
             User userByUserId = userMapper.findUserByUserId(i);
+            log.info("user: {}", userByUserId);
             if(userByUserId!=null){
                 FindUserResponseDTO build = FindUserResponseDTO.builder()
                         .teamId(userByUserId.getTeamId())
+                        .email(userByUserId.getEmail())
                         .sex(userByUserId.getSex())
                         .regDate(userByUserId.getRegdate())
                         .age(userByUserId.getAge())
                         .nickname(userByUserId.getNickname())
+                        .userProfileImagePath(userByUserId.getProfileImagePath())
                         .build();
                 users.add(build);
             }
         }
-        System.out.println(users);
+        if(userIdByEquipmentId.size()<page.getAmount()){
+            log.warn("악기 리스트보다 가져오는 양이 많습니다");
+        }
         int fromIndex = (page.getPageNo()-1) * page.getAmount();
-        users.subList(fromIndex, fromIndex+page.getAmount());
+        List<FindUserResponseDTO> findUserResponseDTO = users.subList(fromIndex, fromIndex + page.getAmount());
         HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
-        objectObjectHashMap.put("users", users);
+        objectObjectHashMap.put("users", findUserResponseDTO);
         objectObjectHashMap.put("pageInfo",pageMaker);
         return objectObjectHashMap;
     }
