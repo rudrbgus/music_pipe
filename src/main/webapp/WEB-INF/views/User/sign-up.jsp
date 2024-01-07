@@ -52,7 +52,7 @@
             flex-wrap: wrap;
             margin: 25px auto;
             width: 680px;
-            height: 630px;
+            height: 650px;
             display: flex;
             align-content: center;
             justify-content: center;
