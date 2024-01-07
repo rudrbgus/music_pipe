@@ -227,8 +227,7 @@ public class UserController {
     @GetMapping("/profile")
     public String showProfile(String email,HttpSession session, Model model) {
         log.debug("user/profile POST!!!");
-        SignInUserResponseDTO signInUserResponseDTOdto = (SignInUserResponseDTO) session.getAttribute(LOGIN_KEY);
-        User user = userService.getUser(signInUserResponseDTOdto.getEmail());
+        User user = userService.getUser(email);
         log.info("user{}",user);
         String teamName=null;
         if(user.getTeamId()!=0){
