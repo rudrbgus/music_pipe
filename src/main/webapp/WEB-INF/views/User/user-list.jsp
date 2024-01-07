@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html lang="ko">
+<body lang="ko">
 
 <head>
     <%@ include file="../include/static-head.jsp" %>
@@ -11,202 +11,307 @@
     <link rel="icon" type="image/png" href="…">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <%@include file="../include/static-head.jsp"%>
-    <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <style>
-        body {
-            background: grey;
-            height: 100vh;
+        @font-face {
+            font-family: 'DNFBitBitv2';
+            font-style: normal;
+            font-weight: 400;
+            src: url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')
+            format('opentype');
         }
-
-        .container-agoda {
-            width: 1586px;
-            margin: 0 auto;
-        }
-
-        .swiper {
-            width: 100%;
-            margin-top: 70px;
-            position: relative;
-        }
-        .swiper-container {
-            margin-top: 100px;
-            width: 60%;
-            height: 50vh;
-        }
-        .swiper-card {
-            background: #fff;
-            height: 100%;
-            border-radius:28px
-        }
-
-        .container{
-            margin: 0;
-            padding: 0;
-            display: flex;
-            height: 100%;
-        }
-
-        .box {
-            position: relative;
-            width: 100vh;
-            height: 100%;
-            background: #262626;
-            margin: 0 auto;
-            box-shadow: 0px 5px 25px rgba(0,0,0,.7);
-            overflow: hidden;
-            border-radius:28px
-        }
-
-        .box__img {
-            position: absolute;
-            top:0;
-            left:0;
-            transition: transform .5s linear;
-            height: 100%;
-
-        }
-        .box__img img {
-            height: 100%;
-            width: 100%;
-        }
-
-        .box__details{
-            color: #fff;
-            padding: 10px 25px;
-        }
-
-        .box__details h2 {
-            text-align: center;
-            color: #ccc;
-        }
-
-        .box:hover .box__img {
-            transform: translateX(-100%);
-        }
-
-        .cta {
-            display: block;
+        a {
+            color: inherit;
             text-decoration: none;
+        }
+
+        /* 전체 body */
+        .container {
+            /* border: 1px solid #000; */
+             margin-top: 120px;
+            /* background: #eeeeee; */
+            height: 100vh;
+            padding: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* 신규 프로필 */
+        .container .new_porfile {
+            border: 1px solid #d0d0d0;
+            border-radius: 20px;
+            width: 17%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .container .new_porfile span {
+            font-size: 2rem;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        /* 신규 프로필 카드 */
+        .container .new_porfile .new_card {
+            border: 1px solid #eee;
+            border-radius: 30px;
+            width: 80%;
+            height: 70px;
+            box-shadow: 2px 2px 5px #00ff22;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10%;
+        }
+        .new_porfile .new_card .profile_img {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            margin-left: 15px;
+            border-radius: 50%;
+            box-shadow: 1px 1px 2px #444444;
+        }
+        .new_porfile .new_card .text {
+            width: 65%;
+            height: 60px;
+        }
+        .new_porfile .new_card .text .nickname {
+            width: 70%;
+            height: 20px;
+            border-bottom: 1px solid #000;
+        }
+        .new_porfile .new_card .text .instrument {
+            display: flex;
+            align-items: center;
+            padding-right: 10%;
+            padding-top: 5px;
+        }
+        .new_porfile .new_card .text .instrument img {
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            margin-right: 5%;
+        }
+
+        .container .select_container {
+            width: 82%;
+            height: 100%;
+        }
+
+        /* 검색 프로필*/
+        .container .select_container .select_profile {
+            /* background: orangered; */
+            /* border: 1px solid #000; */
+            width: 100%;
+            height: 85%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .container .select_profile .card_container {
+            display: flex;
+            margin-top: 5%;
+            margin-left: 7%;
+            height: 300px;
+            position: relative;
+        }
+
+        /* 검색 프로필 카드 */
+        .container .select_profile .card_container .card {
+            border: 1px solid #eee;
+            border-radius: 40px;
+            width: 350px;
+            height: 280px;
+            box-shadow: 2px 2px 5px #888888;
+            background: #fff;
+            z-index: 1;
+        }
+        .container .select_profile .card_container .card:hover{
+            z-index: -10;
+        }
+
+        .container .select_profile .card_container .card_modal{
+            width: 100%;
+            height: 94%;
+            border-radius: 40px;
+            position: absolute;
+            background: rgb(0, 0, 0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container .select_profile .card_container p{
+            font-size: 2rem;
             color: #fff;
-            border: 1px solid #fff;
-            padding: 10px 20px;
-            margin-top: 50px;
-            text-align: center;
+            opacity: 1;
+            font-weight: 700;
         }
 
-        .cta:hover {
-            background: orange;
-            border-radius: 10px;
+        .container .select_profile .card_container .card .profile_view_box {
+            width: 100%;
+            height: 70%;
+            display: flex;
+        }
+
+        .container
+        .select_profile
+        .card_container
+        .card
+        .profile_view_box
+        .profile_img
+        img {
+            width: 150px;
+            height: 150px;
+            margin-top: 40px;
+            margin-left: 15px;
+            border-radius: 50%;
+            box-shadow: 1px 1px 2px #444444;
+        }
+
+        .container
+        .select_profile
+        .card_container
+        .card
+        .profile_view_box
+        .profile_text_box {
+            /* border: 1px solid #000; */
+            width: 100%;
+            display: flex;
+        }
+        .container
+        .select_profile
+        .card_container
+        .card
+        .profile_view_box
+        .profile_text_box
+        .nickname {
+            margin: 70px auto;
+            font-size: 2rem;
+            font-family: 'DNFBitBitv2';
+        }
+        .container .select_profile .card_container .card .profile_instrument {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .container .select_profile .card_container .card .profile_instrument img {
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            margin: 2%;
         }
 
 
-.title_list{
-    margin-top: 220px;
-    margin-left: 20vh;
-    display: flex;
-    align-items: center;
-    justify-content: left;
 
-}
+        /* 페이지 이동버튼 영역 */
+        .container .select_container .page_navigation{
+            width: 100%;
+            height: 14%;
+        }
+
+        .container .select_container .page_navigation .pagination{
+            height: 100%;
+            display: flex;
+            list-style:none;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .container .select_container .page_navigation .pagination .page-item{
+            /* border: 1px solid #000; */
+            width: 3rem;
+            font-size: 1.5rem;
+            margin: 0 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+
     </style>
 </head>
-
 <body class="list_body">
 <%@include file="../include/header.jsp"%>
-<h2 class="title_list">팀원 찾기 게시판</h2>
-<div class="container-agoda">
-    <div class="swiper">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-card">
-
-                </div>
-
-        </div>
-
-    </div>
-</div>
-</div>
-</body>
-<script type="module">
-    import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
-
-    // 비동기 데이터를 가져오고 Swiper를 초기화하는 함수
-    async function initSwiperWithData() {
-        try {
-            // 서버에서 데이터를 가져옴
-            const response = await fetch("/user/list", {
-                method: "POST",
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify({ equipmentId: 1 })
-            });
-            const users = await response.json();
-
-            // 가져온 데이터를 가지고 동적으로 카드 생성
-            createCards(users);
-
-            // Swiper를 초기화
-            initSwiper();
-        } catch (error) {
-            console.error('데이터를 가져오는 중 에러 발생:', error);
-        }
-    }
-let i=1;
-    // 데이터를 기반으로 카드를 동적으로 생성하는 함수
-    function createCards(users) {
-        $('.swiper-wrapper').empty();
-
-        users.forEach(function (user) {
-            const { nickname, age, sex, regDate, teamId } = user;
-            var card = `
-        <div class="swiper-slide" data-hash="slide1">
-          <div class="swiper-card">
 <div class="container">
-  <div class="box">
-    <div class="box__img">
-      <img src="https://source.unsplash.com/random/300x420" alt="">
-    </div>
-    <div class="box__details">
-      <h2>Here's the details</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eius ea sit voluptate distinctio atque illo cumque incidunt fuga odio omnis in ad, iusto veritatis debitis, voluptatum corrupti voluptas?</p>
-      <a href="#" class="cta">Click here...</a>
-    </div>
-  </div>
-</div>
+    <div class="new_porfile">
+        <span>신규 프로필</span>
+        <div class="new_card">
+            <img src="/춘식이.png" alt="" class="profile_img" />
+            <div class="text">
+                <div class="nickname">춘식이</div>
+                <div class="instrument">
+                    <img src="/vocal.png" alt="" />
+                    <img src="/guitar2.png" alt="" />
+                    <img src="/drum.png" alt="" />
+                    <img src="/bass-guitar.png" alt="" />
+                </div>
             </div>
         </div>
-      `;
-            // 생성한 카드를 swiper-wrapper에 추가
-            $('.swiper-wrapper').append(card);
-            i++;
-        });
-    }
 
-    // Swiper 초기화 함수
-    function initSwiper() {
-        const swiper = new Swiper('.swiper-container', {
-            direction: 'horizontal',
-            loop: true,
-            slidesPerView: 2,
-            spaceBetween: 100,
-        });
-    }
+        <div class="new_card">
+            <img src="/루피.png" alt="" class="profile_img" />
+            <div class="text">
+                <div class="nickname">루피</div>
+                <div class="instrument">
+                    <img src="/vocal.png" alt="" />
+                    <img src="/guitar2.png" alt="" />
+                    <img src="/drum.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
 
-    // 페이지 로드 시 데이터 가져오고 Swiper 초기화
-    initSwiperWithData();
-</script>
-<script>
-    $('.cover').on('click', function() {
-        $('.next').toggleClass('anmt');
-        $('.content').toggleClass('anmt');
-    });
-</script>
+    <div class="select_container">
+        <div class="select_profile">
+            <!-- 검색 프로필 -->
+
+            <div class="card_container">
+                <div class="card">
+                    <div class="profile_view_box">
+                        <div class="profile_img">
+                            <img src="/루피.png" alt="" />
+                        </div>
+                        <div class="profile_text_box">
+                            <div class="nickname">루피</div>
+                        </div>
+                    </div>
+                    <div class="profile_instrument">
+                        <img src="/vocal.png" alt="" />
+                        <img src="/guitar2.png" alt="" />
+                        <img src="/drum.png" alt="" />
+                    </div>
+                </div>
+                <div class="card_modal">
+                    <p>프로필 보러가기</p>
+                </div>
+            </div>
+
+
+            <nav class="page_navigation">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link"href="#"><<</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link"href="#"><</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">></a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">>></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
 </body>

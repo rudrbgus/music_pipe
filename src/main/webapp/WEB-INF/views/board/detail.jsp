@@ -12,116 +12,447 @@
 
 
     <style>
+        @font-face {
+            font-family: 'ImcreSoojin';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.3/ImcreSoojin.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'KOTRAHOPE';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-
-        .form-container {
-            width: 500px;
-            margin: auto;
-            padding: 20px;
-            background-image: linear-gradient(135deg, #a1c4fd, #fbc2eb);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 4px;
-            font-size: 18px;
+        /* 메인가서 사라질 곳 */
+        body {
+            position: relative;
         }
-        .form-container h1 {
-            font-size: 40px;
-            font-weight: 700;
-            letter-spacing: 10px;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #ffffff;
-        }
-        .form-container h2 {
-            font-size: 30px;
-            color: #222;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 20px;
-        }
-        #title{
-            font-size: 18px;
+        .header {
+            border: 1px solid #000;
             width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 2px solid #ffffff;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
-        }
-        #content {
-            height: 400px;
-            font-size: 18px;
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 2px solid #ffffff;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
-        }
-
-        textarea {
-            resize: none;
-            height: 200px;
-        }
-        .buttons {
+            height: 120px;
             display: flex;
-            justify-content: flex-end;
-            margin-top: 20px;
-        }
-        button {
-            font-size: 20px;
-            padding: 10px 20px;
-            border: none;
-            margin-right: 10px;
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s;
-        }
-        button.list-btn {
-            background: #e61e8c;
-        }
-        button:hover {
-            background-color: #3d8b40;
-        }
-        button.list-btn:hover {
-            background: #e61e8c93;
-        }
-        /* 페이지 css */
-        /* 페이지 액티브 기능 */
-        .pagination .page-item.p-active a {
-            background: #333 !important;
-            color: #fff !important;
-            cursor: default;
-            pointer-events: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            position: absolute;
+            /* position: absolute; */
         }
 
-        .pagination .page-item:hover a {
-            background: #888 !important;
-            color: #fff !important;
+
+        /* 바디 */
+        .container {
+            width: 100%;
+            height: 100vh;
+            /* border: 1px solid #000; */
         }
+
+
+        /* 메인 컨테이너 */
+        .container .team_main_container {
+            /* border: 1px solid #000; */
+            width: 100%;
+            height: 85%;
+            display: flex;
+            justify-content: space-around;
+        }
+        /* 팀 프로필 컨테이너 */
+        .container .team_main_container .team_profile_container{
+            width: 20%;
+            padding-top: 120px;
+            /* border: 1px solid #000; */
+        }
+        .container .team_main_container .team_profile_container .profile_img{
+            width: 100%;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container .team_main_container .team_profile_container .profile_img img{
+            width: 350px;
+            height: 300px;
+            border-radius: 50%;
+            box-shadow: 5px 4px 10px #444444;
+        }
+        /* 팀 모집 컨테이너 */
+        .container .team_main_container .team_introduction_container{
+            width: 41%;
+            padding-top: 120px;
+            /* border: 1px solid #000; */
+        }
+        .container .team_main_container .team_introduction_container .team_top_box{
+            width: 100%;
+            height: 20%;
+            display: flex;
+        }
+        .container .team_main_container .team_introduction_container .team_name{
+            width: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family:  'ImcreSoojin';
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+        /* 온라인 오프라인 표시 */
+        .container .team_main_container .team_introduction_container .on_and_off_line{
+            width: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container .team_main_container .team_introduction_container .on_and_off_line .icon{
+            width: 30px;
+            height: 30px;
+            background: #ff3030;
+            border-radius: 50%;
+            margin-right: 10px;
+            box-shadow: 2px 2px 3px #727272;
+        }
+        .container .team_main_container .team_introduction_container .on_and_off_line .text{
+            font-size: 1.5rem;
+        }
+        .container .team_main_container .team_main_box{
+            width: 90%;
+            height: 50%;
+            /* border: 1px solid #000; */
+            padding-left: 70px;
+        }
+        .container .team_main_container .team_main_box span{
+            width: 10%;
+            font-size: 1.3rem;
+        }
+        .container .team_main_container .team_main_box .text{
+            width: 90%;
+            min-height: 60%;
+            margin-top: 30px;
+            text-align: justify;
+            padding: 10px;
+            border: 1px solid #bbb;
+            border-radius: 15px;
+        }
+        .container .team_main_container .team_footer_box{
+            width: 90%;
+            height: 29%;
+            /* border: 1px solid #000; */
+            padding-left: 70px;
+        }
+        .container .team_main_container .team_footer_box .instrument_container{
+            width: 90%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .container .team_main_container .team_footer_box .instrument_container .instrument{
+            width: 80px;
+            height: 80px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-size: contain;
+            cursor: pointer;
+        }
+        .instrument-radio {
+            display: none;
+        }
+        /* 라디오 버튼이 선택되었을 때 이미지 스타일 변경 */
+        .instrument-radio:checked + label {
+            background: rgb(255, 0, 0,0.6);
+        }
+        /* 맴버 컨테이너  */
+        .container .team_main_container .team_member{
+            width: 31%;
+            padding-top: 120px;
+            /* border: 1px solid #000; */
+        }
+        .container .team_main_container .team_member .member_box{
+            /* border: 1px solid #000; */
+            width: 100%;
+            height: 80%;
+            margin-top: 100px;
+        }
+        .container .team_main_container .team_member .member_box span{
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5%;
+        }
+        .container .team_main_container .team_member .member_box .member_list{
+            width: 95%;
+            height: 87%;
+            border: 10px solid #ff1da1;
+            border-radius: 30px;
+            list-style:none;
+            overflow: scroll;
+            overflow: auto;
+        }
+        .container .team_main_container .team_member .member_box .member_list li .member_profile_box{
+            margin-top: 30px;
+            width: 95%;
+            height: 100px;
+            border: 1px solid #c7c7c7;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            list-style: none;
+            justify-content: space-between;
+        }
+        .container .team_main_container .team_member .member_box .member_list li .member_profile_box img{
+            width: 80px;
+            height: 75px;
+            margin: 10px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+        }
+        .container .team_main_container .team_member .member_box .member_list li .member_profile_box .member_text_box{
+            width: 55%;
+            font-size: 1.1rem;
+            /* border: 1px solid #000; */
+        }
+        .container .team_main_container .team_member .member_box .member_list li .member_profile_box .member_text_box .member_nickname{
+            margin-bottom: 10px;
+        }
+        .container .team_main_container .team_member .member_box .member_list li .member_profile_box .member_instrument{
+            width: 80px;
+            height: 75px;
+            margin: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+
+
+
+        /* 풋터 컨테이너 */
+        .container .team_footer_container{
+            height: 14%;
+            /* border: 1px solid #000; */
+            display: flex;
+            justify-content: left;
+            align-items: center;
+        }
+        .container .team_footer_container button{
+            width: 10%;
+            height: 40%;
+            font-size: 2rem;
+            font-family: 'KOTRAHOPE';
+            margin-left: 7%;
+            margin-bottom: 18%;
+            background: #fff;
+            border-radius: 5px;
+        }
+
     </style>
 </head>
 <body>
-<%@include file="../include/header.jsp"%>
-<div id="wrap" class="form-container">
-    <h1>게시물 내용 </h1>
-    <h2># 작성일자:</h2>
-    <label for="title">제목</label>
-    <input type="text" id="title" name="title" value="${b.title}" readonly>
-    <label for="content">내용</label>
-    <div id="content">${b.content}</div>
-    <div class="buttons">
-        <button class="list-btn" type="button" onclick="">목록</button>
+<div class="header"><h1>해더</h1></div>
+<div class="container">
+
+
+    <div class="team_main_container">
+        <div class="team_profile_container">
+            <div class="profile_img">
+                <img src="/루피.png" alt="">
+            </div>
+        </div>
+
+        <div class="team_introduction_container">
+            <div class="team_top_box">
+                <div class="team_name">
+                    루피크루
+                </div>
+                <div class="on_and_off_line">
+                    <div class="icon"></div>
+                    <div class="text">온라인</div>
+                </div>
+            </div>
+            <div class="team_main_box">
+                <span> 모집 사항 </span>
+                <div class="text">
+                    자격요건 : ~~~~
+                    등등
+                </div>
+            </div>
+            <div class="team_footer_box">
+                <div class="instrument_container">
+                    <input type="radio" id="bassGuitar" name="instrument" class="instrument-radio" style="display: none">
+                    <label for="bassGuitar" class="instrument" style="background-image: url('/bass-guitar.png');"></label>
+
+                    <input type="radio" id="drum" name="instrument" class="instrument-radio" style="display: none">
+                    <label for="drum" class="instrument" style="background-image: url('/drum.png');"></label>
+
+                    <input type="radio" id="vocal" name="instrument" class="instrument-radio" style="display: none">
+                    <label for="vocal" class="instrument" style="background-image: url('/vocal.png');"></label>
+
+                    <input type="radio" id="keyboard" name="instrument" class="instrument-radio" style="display: none">
+                    <label for="keyboard" class="instrument" style="background-image: url('/keyboard.png');"></label>
+
+                    <input type="radio" id="guitar2" name="instrument" class="instrument-radio" style="display: none">
+                    <label for="guitar2" class="instrument" style="background-image: url('/guitar2.png');"></label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="team_member">
+            <div class="member_box">
+                <span> 소속 맴버 </span>
+                <ul class="member_list">
+
+                    <li>
+                        <div class="member_profile_box">
+                            <img src="/루피.png" alt="">
+                            <div class="member_text_box">
+                                <div class="member_nickname">닉네임 : 루피</div>
+                                <div class="member_email">이메일 : qwer1234@naver.com</div>
+                            </div>
+                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="member_profile_box">
+                            <img src="/루피.png" alt="">
+                            <div class="member_text_box">
+                                <div class="member_nickname">닉네임 : 루피</div>
+                                <div class="member_email">이메일 : qwer1234@naver.com</div>
+                            </div>
+                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="member_profile_box">
+                            <img src="/루피.png" alt="">
+                            <div class="member_text_box">
+                                <div class="member_nickname">닉네임 : 루피</div>
+                                <div class="member_email">이메일 : qwer1234@naver.com</div>
+                            </div>
+                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="member_profile_box">
+                            <img src="/루피.png" alt="">
+                            <div class="member_text_box">
+                                <div class="member_nickname">닉네임 : 루피</div>
+                                <div class="member_email">이메일 : qwer1234@naver.com</div>
+                            </div>
+                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="member_profile_box">
+                            <img src="/루피.png" alt="">
+                            <div class="member_text_box">
+                                <div class="member_nickname">닉네임 : 루피</div>
+                                <div class="member_email">이메일 : qwer1234@naver.com</div>
+                            </div>
+                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="member_profile_box">
+                            <img src="/루피.png" alt="">
+                            <div class="member_text_box">
+                                <div class="member_nickname">닉네임 : 루피</div>
+                                <div class="member_email">이메일 : qwer1234@naver.com</div>
+                            </div>
+                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="member_profile_box">
+                            <img src="/루피.png" alt="">
+                            <div class="member_text_box">
+                                <div class="member_nickname">닉네임 : 루피</div>
+                                <div class="member_email">이메일 : qwer1234@naver.com</div>
+                            </div>
+                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="member_profile_box">
+                            <img src="/루피.png" alt="">
+                            <div class="member_text_box">
+                                <div class="member_nickname">닉네임 : 루피</div>
+                                <div class="member_email">이메일 : qwer1234@naver.com</div>
+                            </div>
+                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="member_profile_box">
+                            <img src="/루피.png" alt="">
+                            <div class="member_text_box">
+                                <div class="member_nickname">닉네임 : 루피</div>
+                                <div class="member_email">이메일 : qwer1234@naver.com</div>
+                            </div>
+                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="member_profile_box">
+                            <img src="/루피.png" alt="">
+                            <div class="member_text_box">
+                                <div class="member_nickname">닉네임 : 루피</div>
+                                <div class="member_email">이메일 : qwer1234@naver.com</div>
+                            </div>
+                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="member_profile_box">
+                            <img src="/루피.png" alt="">
+                            <div class="member_text_box">
+                                <div class="member_nickname">닉네임 : 루피</div>
+                                <div class="member_email">이메일 : qwer1234@naver.com</div>
+                            </div>
+                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="member_profile_box">
+                            <img src="/루피.png" alt="">
+                            <div class="member_text_box">
+                                <div class="member_nickname">닉네임 : 루피</div>
+                                <div class="member_email">이메일 : qwer1234@naver.com</div>
+                            </div>
+                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
     </div>
 
+
+    <div class="team_footer_container">
+        <button> 신청하기 </button>
+    </div>
+
+
 </div>
+<script>
+
+</script>
 </body>
 </html>

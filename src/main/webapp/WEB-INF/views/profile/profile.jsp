@@ -139,6 +139,7 @@
                 transform: rotateZ(360deg);
             }
         }
+        }
 
     </style>
 
@@ -337,12 +338,12 @@
 
     })();
 
-        //팀버튼 생성버튼 눌렀을때,
-        const $teamCreateBtn=document.getElementById('create_team_btn');
 
-
-
-    });
+    //     //팀버튼 생성버튼 눌렀을때,
+    //     const $teamCreateBtn=document.getElementById('create_team_btn');
+    //
+    //
+    // });
 </script>
 
 </body>
