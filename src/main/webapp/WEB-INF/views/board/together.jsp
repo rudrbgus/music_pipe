@@ -312,5 +312,24 @@
     </div>
 </div>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var instrumentContainer = document.querySelector('.new_porfile .new_card .text .instrument');
+
+        instrumentContainer.addEventListener('wheel', function (event) {
+            // 가로 스크롤을 마우스 휠로 처리
+            instrumentContainer.scrollLeft += event.deltaY;
+
+            // 가로 스크롤의 끝에서 더 이상 스크롤되지 않도록 설정 (옵션)
+            if (instrumentContainer.scrollLeft <= 0) {
+                instrumentContainer.scrollLeft = 0;
+            } else if (instrumentContainer.scrollLeft >= (instrumentContainer.scrollWidth - instrumentContainer.clientWidth)) {
+                instrumentContainer.scrollLeft = instrumentContainer.scrollWidth - instrumentContainer.clientWidth;
+            }
+
+            event.preventDefault(); // 기본 스크롤 이벤트 방지
+        });
+    });
+</script>
 
 </html>
