@@ -330,6 +330,12 @@
             event.preventDefault(); // 기본 스크롤 이벤트 방지
         });
     });
+
+    $(document).ready(function() {
+        $(".card").click(function() {
+            window.location.href = "/detail";
+        });
+    });
 </script>
 
 </html>
