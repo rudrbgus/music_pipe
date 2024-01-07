@@ -300,137 +300,18 @@
                 <span> 소속 맴버 </span>
                 <ul class="member_list">
 
-                    <li>
-                        <div class="member_profile_box">
-                            <img src="/루피.png" alt="">
-                            <div class="member_text_box">
-                                <div class="member_nickname">닉네임 : 루피</div>
-                                <div class="member_email">이메일 : qwer1234@naver.com</div>
+                    <c:forEach var="member" items="${members}">
+                        <li>
+                            <div class="member_profile_box">
+                                <img src="<c:out value="${member.profileImageUrl}" />" alt="">
+                                <div class="member_text_box">
+                                    <div class="member_nickname">닉네임 : <c:out value="${member.nickname}" /></div>
+                                    <div class="member_email">이메일 : <c:out value="${member.email}" /></div>
+                                </div>
+                                <img class="member_instrument" src="<c:out value="${member.instrumentImageUrl}" />" alt="" class="instrument">
                             </div>
-                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="member_profile_box">
-                            <img src="/루피.png" alt="">
-                            <div class="member_text_box">
-                                <div class="member_nickname">닉네임 : 루피</div>
-                                <div class="member_email">이메일 : qwer1234@naver.com</div>
-                            </div>
-                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="member_profile_box">
-                            <img src="/루피.png" alt="">
-                            <div class="member_text_box">
-                                <div class="member_nickname">닉네임 : 루피</div>
-                                <div class="member_email">이메일 : qwer1234@naver.com</div>
-                            </div>
-                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="member_profile_box">
-                            <img src="/루피.png" alt="">
-                            <div class="member_text_box">
-                                <div class="member_nickname">닉네임 : 루피</div>
-                                <div class="member_email">이메일 : qwer1234@naver.com</div>
-                            </div>
-                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="member_profile_box">
-                            <img src="/루피.png" alt="">
-                            <div class="member_text_box">
-                                <div class="member_nickname">닉네임 : 루피</div>
-                                <div class="member_email">이메일 : qwer1234@naver.com</div>
-                            </div>
-                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="member_profile_box">
-                            <img src="/루피.png" alt="">
-                            <div class="member_text_box">
-                                <div class="member_nickname">닉네임 : 루피</div>
-                                <div class="member_email">이메일 : qwer1234@naver.com</div>
-                            </div>
-                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="member_profile_box">
-                            <img src="/루피.png" alt="">
-                            <div class="member_text_box">
-                                <div class="member_nickname">닉네임 : 루피</div>
-                                <div class="member_email">이메일 : qwer1234@naver.com</div>
-                            </div>
-                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="member_profile_box">
-                            <img src="/루피.png" alt="">
-                            <div class="member_text_box">
-                                <div class="member_nickname">닉네임 : 루피</div>
-                                <div class="member_email">이메일 : qwer1234@naver.com</div>
-                            </div>
-                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="member_profile_box">
-                            <img src="/루피.png" alt="">
-                            <div class="member_text_box">
-                                <div class="member_nickname">닉네임 : 루피</div>
-                                <div class="member_email">이메일 : qwer1234@naver.com</div>
-                            </div>
-                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="member_profile_box">
-                            <img src="/루피.png" alt="">
-                            <div class="member_text_box">
-                                <div class="member_nickname">닉네임 : 루피</div>
-                                <div class="member_email">이메일 : qwer1234@naver.com</div>
-                            </div>
-                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="member_profile_box">
-                            <img src="/루피.png" alt="">
-                            <div class="member_text_box">
-                                <div class="member_nickname">닉네임 : 루피</div>
-                                <div class="member_email">이메일 : qwer1234@naver.com</div>
-                            </div>
-                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="member_profile_box">
-                            <img src="/루피.png" alt="">
-                            <div class="member_text_box">
-                                <div class="member_nickname">닉네임 : 루피</div>
-                                <div class="member_email">이메일 : qwer1234@naver.com</div>
-                            </div>
-                            <img class="member_instrument" src="/drum.png" alt="" class="instrument">
-                        </div>
-                    </li>
+                        </li>
+                    </c:forEach>
 
                 </ul>
             </div>
