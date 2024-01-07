@@ -249,12 +249,12 @@ public class UserController {
     public ResponseEntity<?>  userInstrumentModify(HttpSession session, @RequestBody UserInstrumentRequestDTO dto){
         System.out.println("dto = " + dto);
         User user = userService.getUser(dto.getEmail());
-        //log.info("유저 아이디: {}", user.getUserId());
-        if(dto.isOnOff()){ // 추가하는문
-            instrumentService.addPersonalAbility(user.getUserId(), dto);
-        } else{
-            instrumentService.removePersonalAbility(user.getUserId(), dto);
-        }
+        log.info("유저 아이디: {}", user.getUserId());
+//        if(dto.isOnOff()){ // 추가하는문
+        instrumentService.addPersonalAbility(user.getUserId(), dto);
+//        } else{
+//            instrumentService.removePersonalAbility(user.getUserId(), dto);
+//        }
 
         return null;
     }
