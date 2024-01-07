@@ -303,7 +303,7 @@
                 <li><a href="/user/sign-up">sign-up</a></li>
             </c:if>
             <c:if test="${not empty login}">
-                <li><a href="/user/profile">My Page</a></li>
+                <li><a href="/user/profile?email=${login.email}">My Page</a></li>
                 <li><a href="/user/sign-out">LogOut</a></li>
             </c:if>
         </ul>
