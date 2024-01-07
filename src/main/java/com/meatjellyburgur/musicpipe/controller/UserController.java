@@ -243,7 +243,7 @@ public class UserController {
                 .nickname(user.getNickname())
                 .introduceText(user.getIntroduceText())
                 .build();
-        
+
         model.addAttribute("user", dto);
         System.out.println("dto = " + dto);
         return "/profile/profile";

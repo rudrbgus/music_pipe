@@ -169,6 +169,36 @@
             background-color: rgba(0, 0, 0, 0.4);
 
         }
+        .modal .present-instrument-list{
+            display: flex;
+            flex-flow: row wrap;
+            width: 100%;
+            height: auto;
+        }
+        .modal .present-instrument-list a{
+            cursor: pointer;
+            width: auto;
+            flex: 1;
+        }
+        .modal .present-instrument-list a.click{
+            background: green;
+        }
+        .modal .present-instrument-list img{
+            width: 125px;
+            object-fit: cover;
+        }
+        .modal .present-instrument-list .none{
+            display: none;
+        }
+        .modal .createTeamBtn123{
+            width:fit-content;
+            font-size: 2rem;
+            text-align: center;
+            display: flex;
+            background: #8bc8e2;
+            border: 1px rgba(51, 84, 140, 0.82) solid;
+            border-radius: 20px;
+        }
 
         .profile-introduce-text-container {
             display: flex;
@@ -280,9 +310,33 @@
             <div class="teamNameContainer">
                 팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName"/>
             </div>
-
-
-            <input type="submit" value="팀생성" id="createTeamBtn">
+            <div class="present-instrument-list">
+                <a class="instrument1 none">
+                    <img class="instrument1 img" src="/assets/img/guitar2.png" name="1">
+                </a>
+                <a class="instrument2 none">
+                    <img class="instrument2 img" src="/assets/img/drum.png" name="2" >
+                </a>
+                <a class="instrument3 none">
+                    <img class="instrument3 img" src="/assets/img/vocal.png" name="3" >
+                </a>
+                <a class="instrument4 none">
+                    <img class="instrument4 img" src="/assets/img/keyboard.png"name="4">
+                </a>
+                <a class="instrument5 none">
+                    <img class="instrument5 img" src="/assets/img/saxophone.png" name="5">
+                </a>
+                <a class="instrument6 none">
+                    <img class="instrument6 img" src="/assets/img/trumpet.png" name="6" >
+                </a>
+                <a class="instrument7 none">
+                    <img class="instrument7 img" src="/assets/img/flute.png" name="7">
+                </a>
+                <a class="instrument8 none">
+                    <img class="instrument8 img" src="/assets/img/bass-guitar.png" name="8" >
+                </a>
+            </div>
+            <div class="createTeamBtn123">팀 생성</div>
         </form>
     </div>
 </div>
@@ -421,6 +475,8 @@
     const $teamCreateFormBtn = document.getElementById('teamCreateFormBtn');
     const $teamCreateFormModal= document.getElementById('modal');
     $teamCreateFormBtn.onclick=e=>{
+        console.log(e.target);
+        getInstrument();
         $teamCreateFormModal.style.display='flex';
     };
 
@@ -453,11 +509,38 @@
             $introduceText.innerText = "자기소개: "+$inputIntroduce.value;
             $inputIntroduce.style.display = "none";
             $button.innerText = '수정하기';
-
-
         }
-
     };
+    // 모달안에 있는 악기 눌렀을 때
+    const $modalBtn = document.querySelector('.modal .present-instrument-list');
+    $modalBtn.onclick = e => {
+        for (let i = 0; i < $modalBtn.children.length; i++) {
+            $modalBtn.children.item(i).classList.remove("click");
+        }
+        e.target.parentNode.classList.add("click");
+    }
+
+    // 팀 생성 버튼 눌렀을때
+    const $modalSubmitButton123 = document.querySelector(".createTeamBtn123");
+    const $teamName = document.getElementById("teamName");
+    $modalSubmitButton123.onclick = e =>{
+        const $clickedInstrument = document.querySelector(".modal a.click");
+        console.log($teamName);
+        console.log($clickedInstrument.querySelector("img").name);
+        fetch("/team/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                teamName:  $teamName.value,
+                introduceText: $clickedInstrument.querySelector("img").name,
+                role : "master"
+            })
+        })
+    }
+
+
 
 
     //비동기로 유저 악기 가져오기
@@ -478,8 +561,10 @@
                 console.log(s.equipmentId);
                 if (s.equipmentId !== 0) {
                     const $instrument = document.querySelector(".profile_instrument_image_box.instrument" + s.equipmentId);
+                    const $modalInstrument = document.querySelector(".modal .instrument"+ s.equipmentId);
                     console.log($instrument);
                     $instrument.classList.add("on");
+                    $modalInstrument.classList.remove("none");
                 }
             })
         })
