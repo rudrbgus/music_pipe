@@ -126,6 +126,7 @@ public class UserService {
                         .regDate(userByUserId.getRegdate())
                         .age(userByUserId.getAge())
                         .nickname(userByUserId.getNickname())
+                        .email(userByUserId.getEmail())
                         .userProfileImagePath(userByUserId.getProfileImagePath())
                         .build();
                 users.add(build);

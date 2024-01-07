@@ -164,6 +164,24 @@
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-card">
+                        <c:forEach var="b" items="${bList}">
+                        <div class="swiper-slide" data-hash="slide1">
+                            <div class="swiper-card">
+                                <div class="container">
+                                    <div class="box">
+                                        <div class="box__img">
+                                            <img src="https://source.unsplash.com/random/300x420" alt="">
+                                        </div>
+                                        <div class="box__details">
+                                            <h2>Here's the details</h2>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eius ea sit voluptate distinctio atque illo cumque incidunt fuga odio omnis in ad, iusto veritatis debitis, voluptatum corrupti voluptas?</p>
+                                            <a href="#" class="cta">Click here...</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </c:forEach>
                     </div>
 
                 </div>
@@ -189,13 +207,11 @@
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
 <script>
-
         const $fa_home = document.querySelector(".fa-home");
         const $body=document.getElementsByTagName("body");
         const firstColor = "#F29E38";
         document.addEventListener("DOMContentLoaded", function() {
             e.preventDefault();
-
             $fa_home.addEventListener("click", function() {
                 // Get the first color from the gradient
 
@@ -238,22 +254,7 @@
         users.forEach(function (user) {
             const { nickname, age, sex, regDate, teamId } = user;
             var card = `
-        <div class="swiper-slide" data-hash="slide1">
-          <div class="swiper-card">
-<div class="container">
-  <div class="box">
-    <div class="box__img">
-      <img src="https://source.unsplash.com/random/300x420" alt="">
-    </div>
-    <div class="box__details">
-      <h2>Here's the details</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eius ea sit voluptate distinctio atque illo cumque incidunt fuga odio omnis in ad, iusto veritatis debitis, voluptatum corrupti voluptas?</p>
-      <a href="#" class="cta">Click here...</a>
-    </div>
-  </div>
-</div>
-            </div>
-        </div>
+
       `;
             // 생성한 카드를 swiper-wrapper에 추가
             $('.swiper-wrapper').append(card);

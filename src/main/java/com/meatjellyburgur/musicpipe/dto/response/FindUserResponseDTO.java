@@ -17,5 +17,6 @@ public class FindUserResponseDTO {
     private String sex;
     private LocalDateTime regDate;
     private int teamId;
+    private String email;
     private String userProfileImagePath;
 }
