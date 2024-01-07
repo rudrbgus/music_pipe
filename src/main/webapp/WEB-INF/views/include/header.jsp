@@ -252,7 +252,7 @@
         <form action="/user/list" id="search" method="POST">
             <select name="search_select" >
                 <option value="none">선택</option>
-                <option value="korean">팀</option>
+                <option value="team">팀</option>
                 <option value="english">개인</option>
             </select>
             <input type="text" class="form-control" name="equipmentId">

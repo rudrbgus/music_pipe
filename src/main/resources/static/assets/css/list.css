@@ -20,6 +20,7 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #f9f9f9;
 }
 .button {
     float: left;
@@ -249,7 +250,6 @@ a{
     border-radius: 24px;
 }
 .list_body .listBox1 .emptyBox1{
-    background-color: #212121;
     height: 100vh;
     width: 20%;}
 .list_body .listBox1 .emptyBox2{
@@ -257,6 +257,14 @@ a{
     width: 20%;
 }
 /*버튼*/
-.top-btn{
-    position: absolute;
+.page-top {
+    position: fixed;
+    bottom: 100px;
+    right: calc(28% - 300px);
+    width: 120px;
+    height: 120px;
+    border: 1px solid #eee;
+    border-radius: 50%;
+    /*background: #eee url(./images/ico_package_2x.png) no-repeat -200px -400px;*/
+    text-indent: -999em; /*top이라는 글씨가 안 보이게 됨*/
 }

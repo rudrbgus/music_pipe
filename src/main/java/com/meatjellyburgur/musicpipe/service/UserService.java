@@ -123,15 +123,17 @@ public class UserService {
                         .regDate(userByUserId.getRegdate())
                         .age(userByUserId.getAge())
                         .nickname(userByUserId.getNickname())
+                        .email(userByUserId.getEmail())
+                        .userProfileImagePath(userByUserId.getProfileImagePath())
                         .build();
                 users.add(build);
             }
         }
         System.out.println(users);
         int fromIndex = (page.getPageNo()-1) * page.getAmount();
-        users.subList(fromIndex, fromIndex+page.getAmount());
+        List<FindUserResponseDTO> findUserResponseDTO = users.subList(fromIndex, fromIndex + page.getAmount());
         HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
-        objectObjectHashMap.put("users", users);
+        objectObjectHashMap.put("users", findUserResponseDTO);
         objectObjectHashMap.put("pageInfo",pageMaker);
         return objectObjectHashMap;
     }

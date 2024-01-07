@@ -189,10 +189,6 @@ public class UserController {
                 .amount(requestBody.getAmount())
                 .build();
         log.info("/user/list Post!!!");
-        Page page = Page.builder()
-                .pageNo(requestBody.getPageNo())
-                .amount(requestBody.getAmount())
-                .build();
         log.info("instrumentId :" + requestBody.getEquipmentId());
         HashMap<Object, Object> allUserByInstrumentId = userService.findAllUserByInstrumentId(Integer.parseInt(requestBody.getEquipmentId()), page);
         log.info(allUserByInstrumentId.toString());
@@ -201,11 +197,8 @@ public class UserController {
 
     // 유저 프로필 주는 url
     @GetMapping("/profile")
-    public String showProfile(HttpSession session, Model model) {
+    public String showProfile(HttpSession session, Model model, String email) {
         log.debug("user/profile POST!!!");
-        SignInUserResponseDTO loginDTO =(SignInUserResponseDTO) session.getAttribute("login");
-        String email = loginDTO.getEmail();
-        log.info("email: {}", email);
         User user = userService.getUser(email);
         String teamName=null;
         if(user.getTeamId()!=0){

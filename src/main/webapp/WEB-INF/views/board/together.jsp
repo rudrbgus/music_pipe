@@ -9,9 +9,7 @@
     <title>Insert title here</title>
     <%@include file="../include/static-head.jsp"%>
     <link rel="stylesheet" href="/assets/css/together.css">
-</head>
-
-<body>
+</head><body>
 <%@include file="../include/header.jsp"%>
 <div id="wrap">
 
@@ -29,12 +27,8 @@
                     <i class="fas fa-search"></i>
                 </button>
             </form>
-
-
         </div>
     </div>
-
-
     <div class="card-container">
         <c:forEach var="b" items="${bList}"><%--게시글 리스트 --%>
             <div class="card-wrapper">

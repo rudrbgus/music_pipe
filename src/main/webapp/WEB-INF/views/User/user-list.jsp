@@ -11,6 +11,7 @@
     <link rel="icon" type="image/png" href="…">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <%@include file="../include/static-head.jsp"%>
     <link
             rel="stylesheet"
@@ -38,118 +39,20 @@
 
     <div class="emptyBox1"></div>
     <div class="contentBox1">
-        <div class="content">
-            <div class="slider1 slider"></div>
-            <a href="#" class="content-car${index} content-card">
-                <img src="https://source.unsplash.com/random/300x420">
-                <div class="content-text">
-                    <div class="tag">
-                        <div class="tagName">피아노</div>
-                        <div class="tagName">바이올린</div>
-                    </div>
-                    <div class="title">${nickname}</div>
-                    <div class="information">미팅 유형 : 오프라인</div>
-                    <div class="team-list">
-                        <img src="https://source.unsplash.com/random/300x420">
-                        <img src="https://source.unsplash.com/random/300x420">
-                        <img src="https://source.unsplash.com/random/300x420">
-                        <img src="https://source.unsplash.com/random/300x420">
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="content">
-            <div class="slider1 slider"></div>
-            <a href="#" class="content-car${index} content-card">
-                <img src="https://source.unsplash.com/random/300x420">
-                <div class="content-text">
-                    <div class="tag">
-                        <div class="tagName">피아노</div>
-                        <div class="tagName">바이올린</div>
-                    </div>
-                    <div class="title">${nickname}</div>
-                    <div class="information">미팅 유형 : 오프라인</div>
-                    <div class="team-list">
-                        <img src="https://source.unsplash.com/random/300x420">
-                        <img src="https://source.unsplash.com/random/300x420">
-                        <img src="https://source.unsplash.com/random/300x420">
-                        <img src="https://source.unsplash.com/random/300x420">
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="content">
-            <div class="slider1 slider"></div>
-            <a href="#" class="content-car${index} content-card">
-                <img src="https://source.unsplash.com/random/300x420">
-                <div class="content-text">
-                    <div class="tag">
-                        <div class="tagName">피아노</div>
-                        <div class="tagName">바이올린</div>
-                    </div>
-                    <div class="title">${nickname}</div>
-                    <div class="information">미팅 유형 : 오프라인</div>
-                    <div class="team-list">
-                        <img src="https://source.unsplash.com/random/300x420">
-                        <img src="https://source.unsplash.com/random/300x420">
-                        <img src="https://source.unsplash.com/random/300x420">
-                        <img src="https://source.unsplash.com/random/300x420">
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="content">
-            <div class="slider1 slider"></div>
-            <a href="#" class="content-car${index} content-card">
-                <img src="https://source.unsplash.com/random/300x420">
-                <div class="content-text">
-                    <div class="tag">
-                        <div class="tagName">피아노</div>
-                        <div class="tagName">바이올린</div>
-                    </div>
-                    <div class="title">${nickname}</div>
-                    <div class="information">미팅 유형 : 오프라인</div>
-                    <div class="team-list">
-                        <img src="https://source.unsplash.com/random/300x420">
-                        <img src="https://source.unsplash.com/random/300x420">
-                        <img src="https://source.unsplash.com/random/300x420">
-                        <img src="https://source.unsplash.com/random/300x420">
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="content">
-            <div class="slider1 slider"></div>
-            <a href="#" class="content-car${index} content-card">
-                <img src="https://source.unsplash.com/random/300x420">
-                <div class="content-text">
-                    <div class="tag">
-                        <div class="tagName">피아노</div>
-                        <div class="tagName">바이올린</div>
-                    </div>
-                    <div class="title">${nickname}</div>
-                    <div class="information">미팅 유형 : 오프라인</div>
-                    <div class="team-list">
-                        <img src="https://source.unsplash.com/random/300x420">
-                        <img src="https://source.unsplash.com/random/300x420">
-                        <img src="https://source.unsplash.com/random/300x420">
-                        <img src="https://source.unsplash.com/random/300x420">
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div id="loadingIndicator" style="display: none;">Loading...</div>
 </div>
     <div class="emptyBox2"></div>
 </div>
-    <a href="#" class="top-btn"><img src='/assets/img/pic01.jpg'></a>
+<%--    <a href="#" class="top-btn"><img src='/assets/img/pic01.jpg'></a>--%>
+<a href="#" class="page-top">TOP</a>
 </body>
 <script>
-    const page ={pageNo:1,amount:3}
-
+    let page = {pageNo:1,amount:3};
+    let index = 1;
+    let isDate=true;
+    const $body = document.querySelector('.list_body');
     $(window).scroll(async function () {
-        if ($(window).scrollTop() === $(document).height() - $(window).height()) {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 10 && isDate) {
+            console.log(page.pageNo);
             try {
                 // 서버에서 데이터를 가져옴
                 const response = await fetch("/user/list", {
@@ -157,37 +60,42 @@
                     headers: {
                         'content-type': 'application/json'
                     },
-                    body: JSON.stringify({ equipmentId: 1 ,pageNo: 1,amount: 3})
+                    body: JSON.stringify({ equipmentId: 1, pageNo: page.pageNo, amount: 3 })
                 });
                 const users = await response.json();
-                console.log(users);
-                // 가져온 데이터를 가지고 동적으로 카드 생성
-                createCards(users);
 
+                // 가져온 데이터를 가지고 동적으로 카드 생성
+                createCards(users.users);
 
             } catch (error) {
-                console.error('데이터를 가져오는 중 에러 발생:', error);
+                console.log('asdf');
+                isDate=false;
+                $endBox=`<div class="endBox"> tqlkf...</div>`
+                $('.contentBox1').append($endBox);
             }
+
+
         }
     });
 
+
     // 데이터를 기반으로 카드를 동적으로 생성하는 함수
     function createCards(users) {
-        $('.contentBox1').empty();
-        let index = 1;
-        users.forEach(function (user, index) {
-            const { nickname, age, sex, regDate, teamId } = user;
-            var card = `
+        // $('.contentBox1').empty();
+
+        users.forEach(function (user) {
+            const { nickname, age, sex, regDate, teamId ,email,userProfileImagePath} = user;
+            let card = `
         <div class="content">
-            <div class="slider${index} slider"></div>
-            <a href="#" class="content-car${index} content-card">
+            <div class="slider\${index} slider"></div>
+            <a href="/user/profile?email=\${email}" class="content-card\${index} content-card">
                 <img src="https://source.unsplash.com/random/300x420">
                 <div class="content-text">
                     <div class="tag">
                         <div class="tagName">피아노</div>
                         <div class="tagName">바이올린</div>
                     </div>
-                    <div class="title">${nickname}</div>
+                    <div class="title">\${nickname}</div>
                     <div class="information">미팅 유형 : 오프라인</div>
                     <div class="team-list">
                         <img src="https://source.unsplash.com/random/300x420">
@@ -201,9 +109,14 @@
       `;
             // 생성한 카드를 contentBox1에 추가
             $('.contentBox1').append(card);
-            addHoverEffect(`.content-card${index}`, '#212121', '#ffffff', '#ffffff', '#212121');
-            (index === 1) ? index++ : index=1;
+            if(index===1){addHoverEffect(`.content-card1`, '#212121', '#ffffff', '#ffffff', '#212121');}
+            else {addHoverEffect(`.content-card2`, '#212121', '#ffffff', '#212121', '#ffffff');}
+
+
+            index===1?index++:index=1;
         });
+        updateBodyHeight();
+        page.pageNo++;
     }
 
     // JavaScript 코드
@@ -228,19 +141,34 @@
                 headers: {
                     'content-type': 'application/json'
                 },
-                body: JSON.stringify({ equipmentId: 1 ,pageNo: 1,amount: 3})
-            })
+                body: JSON.stringify({ equipmentId: 1, pageNo: page.pageNo,amount:page.amount})
+            });
             const users = await response.json();
-            console.log(users);
+            console.log(users.users);
 
             // 가져온 데이터를 가지고 동적으로 카드 생성
             createCards(users.users);
+
         } catch (error) {
             console.error('데이터를 가져오는 중 에러 발생:', error);
         }
     }
 
     initSwiperWithData();
+    function updateBodyHeight() {
+        // 현재 문서의 전체 높이를 가져와서 body의 높이로 설정
+        const documentHeight = $(document).height();
+        document.body.style.height = documentHeight + 'px';
+        document.querySelector('.emptyBox1').style.height = documentHeight+'px';
+    }
+    const $buttons = document.querySelector('.bg-1');
+    let $buttonArray = Array.from($buttons.children);
+    for(let i=0;i<$buttonArray.length;i++){
+        $buttonArray[i].addEventListener('click',()=>{
+            console.log(i);
+            // window.location.href = 'https://example.com';
+        })
+    }
 </script>
 
 </body>
