@@ -78,5 +78,10 @@
         where user_id=#{userId}
     </update>
 
+    <update id="updateIntroduceText">
+        update user
+        set introduce_text = #{introduceText}
+        where user_id = #{userId}
+    </update>
 
 </mapper>

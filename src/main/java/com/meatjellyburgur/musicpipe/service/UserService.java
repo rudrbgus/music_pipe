@@ -7,6 +7,7 @@ import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
+import com.meatjellyburgur.musicpipe.entity.PersonalAbility;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.repository.PersonalAbilityMapper;
 import com.meatjellyburgur.musicpipe.repository.UserMapper;
@@ -118,6 +119,11 @@ public class UserService {
         for(int i:userIdByEquipmentId){
             User userByUserId = userMapper.findUserByUserId(i);
             log.info("user: {}", userByUserId);
+            List<Integer> equipmentList = new ArrayList<>();
+            List<PersonalAbility> personalAbilityList = personalAbilityMapper.findPersonalAbilityList(userByUserId.getUserId());
+            personalAbilityList.forEach(personalAbility -> {
+                equipmentList.add(personalAbility.getEquipmentId());
+            });
             if(userByUserId!=null){
                 FindUserResponseDTO build = FindUserResponseDTO.builder()
                         .teamId(userByUserId.getTeamId())
@@ -128,14 +134,25 @@ public class UserService {
                         .nickname(userByUserId.getNickname())
                         .email(userByUserId.getEmail())
                         .userProfileImagePath(userByUserId.getProfileImagePath())
+                        .introduceText(userByUserId.getIntroduceText())
+                        .equipmentList(equipmentList)
                         .build();
                 users.add(build);
             }
         }
-        if(userIdByEquipmentId.size()<page.getAmount()){
-            log.warn("악기 리스트보다 가져오는 양이 많습니다");
-        }
         int fromIndex = (page.getPageNo()-1) * page.getAmount();
+        if(userIdByEquipmentId.size()<fromIndex+ page.getAmount()){
+            log.warn("악기 리스트보다 가져오는 양이 많습니다");
+            // 자료 없는데 요구 할 때
+            if(userIdByEquipmentId.size()<fromIndex){
+                return null;
+            }
+            List<FindUserResponseDTO> findUserResponseDTOS = users.subList(fromIndex, userIdByEquipmentId.size());
+            HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+            objectObjectHashMap.put("users", findUserResponseDTOS);
+            objectObjectHashMap.put("pageInfo",pageMaker);
+            return objectObjectHashMap;
+        }
         List<FindUserResponseDTO> findUserResponseDTO = users.subList(fromIndex, fromIndex + page.getAmount());
         HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
         objectObjectHashMap.put("users", findUserResponseDTO);
@@ -174,5 +191,12 @@ public class UserService {
             log.info("SignInUserResponseDTO가 널입니다 {}", dto);
         }
         return userMapper.changeProfileImagePath(dto.getUserId(), savedPath);
+    }
+
+    public void modifyUserIntroduceText(String introduceText, HttpSession session) {
+        SignInUserResponseDTO dto = (SignInUserResponseDTO) session.getAttribute(LOGIN_KEY);
+        boolean b = userMapper.updateIntroduceText(introduceText, dto.getUserId());
+        if(b)log.info("유저 자기소개 수정 성공!!!");
+
     }
 }

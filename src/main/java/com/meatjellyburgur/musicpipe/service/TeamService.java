@@ -3,6 +3,7 @@ package com.meatjellyburgur.musicpipe.service;
 import com.meatjellyburgur.musicpipe.common.Page;
 import com.meatjellyburgur.musicpipe.common.PageMaker;
 import com.meatjellyburgur.musicpipe.dto.request.TeamRegisterRequestDTO;
+import com.meatjellyburgur.musicpipe.dto.request.TeamRegisterRequestJsonDTO;
 import com.meatjellyburgur.musicpipe.dto.response.TeamDetailResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.TeamListResponseDTO;
 import com.meatjellyburgur.musicpipe.entity.*;
@@ -65,9 +66,9 @@ public class TeamService {
                 .build();
     }
 
-    public void createTeam(TeamRegisterRequestDTO dto) {
+    public void createTeam(TeamRegisterRequestDTO dto, TeamRegisterRequestJsonDTO dto2) {
         //팀 생성하는 서비스
-        //1. 일단 기본 권한은 CHIEF(팀장)으로
+        //1. 일단 기본 권한은 master(팀장)으로
         teamMapper.save(dto.getTeamName());
         //처음 부터 첫행만 가져와서 team_id 다시 얻기
         int teamId = teamMapper.findLastRowTeamInfo();
@@ -81,8 +82,9 @@ public class TeamService {
 //        PersonalAbility personalAbility = personalAbilityMapper.findOne(userId);
 
         TeamMemberInfo teamMemberInfo = TeamMemberInfo.builder()
-                .role(String.valueOf(Auth.CHIEF))
+                .role(dto2.getRole())
                 .teamId(teamId)
+                .equipmentId(dto2.getInstrumentId())
                 .userId(userId)
                 .build();
 
