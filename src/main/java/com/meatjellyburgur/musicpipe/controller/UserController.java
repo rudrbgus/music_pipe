@@ -5,10 +5,7 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.meatjellyburgur.musicpipe.common.Page;
 import com.meatjellyburgur.musicpipe.common.PageMaker;
 import com.meatjellyburgur.musicpipe.common.Search;
-import com.meatjellyburgur.musicpipe.dto.request.ListRequestDTO;
-import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
-import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
-import com.meatjellyburgur.musicpipe.dto.request.UserInstrumentRequestDTO;
+import com.meatjellyburgur.musicpipe.dto.request.*;
 import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.UserProfileResponseDTO;
@@ -227,7 +224,9 @@ public class UserController {
     @GetMapping("/profile")
     public String showProfile(String email,HttpSession session, Model model) {
         log.debug("user/profile POST!!!");
-        User user = userService.getUser(email);
+        log.info("email {}",email);
+        SignInUserResponseDTO sininDTO =(SignInUserResponseDTO) session.getAttribute(LOGIN_KEY);
+        User user = userService.getUser(sininDTO.getEmail());
         log.info("user{}",user);
         String teamName=null;
         if(user.getTeamId()!=0){
@@ -235,6 +234,7 @@ public class UserController {
             teamName = teamService.findTeamName(user.getTeamId());
 
         }
+
         //userid 기반으로 personal_ablity 테이블에 값이 있는지 없는지 알아내기
         List<PersonalAbility> allEquipmentByUserId = personalAbilityService.findAllEquipmentByUserId(user.getUserId());
 
@@ -249,6 +249,7 @@ public class UserController {
                 .build();
         model.addAttribute("user", dto);
         System.out.println("dto = " + dto);
+//        return "redirect:/user/profile?email="+email;
         return "/profile/profile";
     }
 

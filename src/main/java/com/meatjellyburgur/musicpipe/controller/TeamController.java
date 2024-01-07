@@ -6,6 +6,7 @@ import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.TeamListResponseDTO;
 import com.meatjellyburgur.musicpipe.repository.TeamMapper;
 import com.meatjellyburgur.musicpipe.service.TeamService;
+import com.meatjellyburgur.musicpipe.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
@@ -24,6 +25,7 @@ import static com.meatjellyburgur.musicpipe.util.SignInUtils.LOGIN_KEY;
 @RequiredArgsConstructor
 public class TeamController {
     private  final TeamService teamService;
+    private final UserService userService;
 
     /*
      * 서비스 필요함.

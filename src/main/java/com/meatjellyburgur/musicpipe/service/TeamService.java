@@ -78,12 +78,11 @@ public class TeamService {
         //team_id update 하기
         userMapper.updateTeamId(userId, teamId);
         // equipment_id -> user_id 기반 악기 가져오기
-        PersonalAbility personalAbility = personalAbilityMapper.findOne(userId);
+//        PersonalAbility personalAbility = personalAbilityMapper.findOne(userId);
 
         TeamMemberInfo teamMemberInfo = TeamMemberInfo.builder()
                 .role(String.valueOf(Auth.CHIEF))
                 .teamId(teamId)
-                .equipmentId(personalAbility.getEquipmentId())
                 .userId(userId)
                 .build();
 
