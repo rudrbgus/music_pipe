@@ -5,10 +5,7 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.meatjellyburgur.musicpipe.common.Page;
 import com.meatjellyburgur.musicpipe.common.PageMaker;
 import com.meatjellyburgur.musicpipe.common.Search;
-import com.meatjellyburgur.musicpipe.dto.request.ListRequestDTO;
-import com.meatjellyburgur.musicpipe.dto.request.SignInRequestDTO;
-import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
-import com.meatjellyburgur.musicpipe.dto.request.UserInstrumentRequestDTO;
+import com.meatjellyburgur.musicpipe.dto.request.*;
 import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.UserProfileResponseDTO;
@@ -261,6 +258,14 @@ public class UserController {
         System.out.println("파일 저장: " + flag);
 
         return "redirect:/";
+    }
+    // 유저에 자기소개 넣기
+    @PostMapping("/introduce")
+    public String modifyUserIntroduceText(@RequestBody UserIntroduceRequestDTO introduceText, HttpSession session){
+        userService.modifyUserIntroduceText(introduceText.getIntroduceText(), session);
+        System.out.println("/user/introduce Post!!!");
+        System.out.println(introduceText);
+        return null;
     }
 
     // 유저에 악기 넣기 -> 비동기

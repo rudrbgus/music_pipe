@@ -185,9 +185,7 @@
             width: 150px;
         }
 
-        .profile-input{
-            display: none;
-        }
+
 
     </style>
 
@@ -218,7 +216,7 @@
                     <button type="submit" class="profile-introduce-text-button" id="introduceModifyBtn">수정하기</button>
                 </c:if>
                 <div class="profile-introduce-text">자기소개 : ${user.introduceText}</div>
-                <input class="profile-input" type="text" >
+                <input class="profile-input" type="text" style="display: none">
                 <div class="profile_email">이메일 : ${user.email} </div>
                 <div class="profile_team">소속 팀
                     <c:if test="${user.team_id!=0}">
@@ -426,12 +424,22 @@
     const $button = document.getElementById('introduceModifyBtn');
     const $inputIntroduce = document.querySelector(".profile-input");
     $button.onclick = e => {
-        if($button.innerText=='수정하기') {
+        if($button.innerText==='수정하기') {
             console.log(e.target);
             $inputIntroduce.style.display = "flex";
             $button.innerText = '완료';
-
-        }else{
+        }else if($button.innerText==='완료'){
+            fetch("/user/introduce", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    introduceText: $inputIntroduce.value
+                })
+            })
+            console.log("완료 버튼 누름");
+            $inputIntroduce.style.display = "none";
 
 
         }

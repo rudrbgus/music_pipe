@@ -175,4 +175,11 @@ public class UserService {
         }
         return userMapper.changeProfileImagePath(dto.getUserId(), savedPath);
     }
+
+    public void modifyUserIntroduceText(String introduceText, HttpSession session) {
+        SignInUserResponseDTO dto = (SignInUserResponseDTO) session.getAttribute(LOGIN_KEY);
+        boolean b = userMapper.updateIntroduceText(introduceText, dto.getUserId());
+        if(b)log.info("유저 자기소개 수정 성공!!!");
+
+    }
 }

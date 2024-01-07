@@ -31,5 +31,5 @@ public interface UserMapper {
     boolean changeProfileImagePath(int userId, String path);
 
 
-
+    boolean updateIntroduceText(String introduceText, int userId);
 }
