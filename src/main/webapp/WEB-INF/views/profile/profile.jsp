@@ -274,6 +274,7 @@
         <form action="/team/register" name="createTeam" method="post" id="createTeamForm">
             <h3>팀생성</h3>
             <div class="teamNameContainer">
+                <input hidden name="email" value="${user.email}">
                 팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName"/>
             </div>
 

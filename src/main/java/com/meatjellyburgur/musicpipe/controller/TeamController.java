@@ -81,7 +81,7 @@ public class TeamController {
         dto.setUserId(userId);
         dto.setTeamName(teamName);
         teamService.createTeam(dto);
-        return "redirect:/user/profile";
+        return "redirect:/user/profile?email="+login.getEmail();
 
     }
 

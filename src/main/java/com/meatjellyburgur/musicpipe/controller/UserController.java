@@ -226,7 +226,7 @@ public class UserController {
         log.debug("user/profile POST!!!");
         log.info("email {}",email);
         SignInUserResponseDTO sininDTO =(SignInUserResponseDTO) session.getAttribute(LOGIN_KEY);
-        User user = userService.getUser(sininDTO.getEmail());
+        User user = userService.getUser(email);
         log.info("user{}",user);
         String teamName=null;
         if(user.getTeamId()!=0){
