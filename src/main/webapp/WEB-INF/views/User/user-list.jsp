@@ -82,7 +82,7 @@
     // 데이터를 기반으로 카드를 동적으로 생성하는 함수
     function createCards(users) {
         // $('.contentBox1').empty();
-
+        console.log("씨발롬아"+users);
         users.forEach(function (user) {
             const { nickname, age, sex, regDate, teamId ,email,userProfileImagePath} = user;
             let card = `

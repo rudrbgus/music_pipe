@@ -194,7 +194,6 @@ public class UserController {
             model.addAttribute("instrument", 8);
         }
 
-
         return "/User/user-list";
     }
 
