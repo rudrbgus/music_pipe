@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -14,4 +16,5 @@ public class PersonalAbilityService {
     public PersonalAbility findEquipmentIdByUserId(int userId) {
         return personalAbilityMapper.findOne(userId);
     }
+    public List<PersonalAbility> findAllEquipmentByUserId(int userId){return personalAbilityMapper.findPersonalAbilityList(userId);}
 }

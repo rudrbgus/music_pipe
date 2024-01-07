@@ -21,21 +21,27 @@ public class InstrumentService {
         int duplicate = mapper.isDuplicate(userId);
         log.info("duplicate {}",duplicate);
 
-        //중복이면 수정 메서드로 이동
-        if(duplicate!=0){
-//            modifyPersonalAbility(userId, dto);
-            PersonalAbility build = PersonalAbility.builder()
-                    .userId(userId)
-                    .equipmentId(dto.getInstrumentId())
-                    .build();
-            mapper.update(build);
-        }else{
-            boolean save = mapper.save(PersonalAbility.builder()
-                    .userId(userId)
-                    .equipmentId(dto.getInstrumentId())
-                    .build());
-            return save;
-        }
+//        //중복이면 수정 메서드로 이동
+//        if(duplicate!=0){
+////            modifyPersonalAbility(userId, dto);
+//            PersonalAbility build = PersonalAbility.builder()
+//                    .userId(userId)
+//                    .equipmentId(dto.getInstrumentId())
+//                    .build();
+//            mapper.update(build);
+//        }else{
+//            boolean save = mapper.save(PersonalAbility.builder()
+//                    .userId(userId)
+//                    .equipmentId(dto.getInstrumentId())
+//                    .build());
+//            return save;
+//        }
+
+        boolean save = mapper.save(PersonalAbility.builder()
+                .userId(userId)
+                .equipmentId(dto.getInstrumentId())
+                .build());
+
 
 
         return false;
@@ -48,7 +54,6 @@ public class InstrumentService {
     public boolean removePersonalAbility(int userId, UserInstrumentRequestDTO dto){
 
         return mapper.remove(PersonalAbility.builder()
-                .ability("123")
                 .userId(userId)
                 .equipmentId(dto.getInstrumentId())
                 .build());
