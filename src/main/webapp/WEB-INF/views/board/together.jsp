@@ -329,8 +329,8 @@
             <span id="title"> 구인 페이지 </span>
             <div class="card_container">
                 <c:forEach var="b" items="${bList}">
-                    <a href="/board/delete">
-                        <div class="card">
+                    <a href="#">
+                        <div class="card" data-bno="${b.boardId}">
                             <div class="profile_view_box">
                                 <div style="background-image: url('${b.profileImagePath}');" class="profile_img">
                                 </div>
