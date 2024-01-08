@@ -110,6 +110,7 @@
         .main_body_container  .select_container {
             width: 82%;
             height: 100%;
+            position: relative;
         }
 
         /* 검색 프로필*/
@@ -140,7 +141,7 @@
             height: 280px;
             box-shadow: 2px 2px 5px #888888;
             background: #fff;
-            margin-top: 3%;
+            margin-top: 7%;
         }
         .main_body_container  .select_profile .card_container p{
             font-size: 2rem;
@@ -216,8 +217,8 @@
         }
 
         .main_body_container .select_profile .card_container .card .profile_instrument img {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             background: #fff;
             margin: 2%;
         }
@@ -267,6 +268,14 @@
             font-size: 1.4rem;
         }
 
+        #title{
+            font-size: 3rem;
+            font-family: 'DNFBitBitv2';
+            position: absolute;
+            top: 20px;
+            left: 35%;
+        }
+
 
     </style>
 
@@ -300,7 +309,7 @@
         </a>
         <div class="select_profile">
             <!-- 검색 프로필 -->
-
+            <span id="title"> 구인 페이지 </span>
             <div class="card_container">
                 <c:forEach var="b" items="${bList}">
                     <a href="/board/delete">
