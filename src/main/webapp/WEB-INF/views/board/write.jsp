@@ -22,10 +22,10 @@
     <script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
     <style>
 
-        /*body{*/
-        /*    background-image: url("/assets/img/bg_3.png");*/
-        /*    background-size: cover;*/
-        /*}*/
+        body{
+            background-image: url("/assets/img/bg_3.png");
+            background-size: cover;
+        }
 
         .form-container {
             width: 1200px;

@@ -35,7 +35,7 @@
             position: relative;
         }
         /* 바디 */
-        .container {
+        .detail_container {
             width: 100%;
             height: 100vh;
             margin-top: 120px;
@@ -44,7 +44,7 @@
 
 
         /* 메인 컨테이너 */
-        .container .team_main_container {
+        .detail_container .team_main_container {
             /* border: 1px solid #000; */
             width: 100%;
             height: 85%;
@@ -52,36 +52,36 @@
             justify-content: space-around;
         }
         /* 팀 프로필 컨테이너 */
-        .container .team_main_container .team_profile_container{
+        .detail_container .team_main_container .team_profile_container{
             width: 20%;
             padding-top: 120px;
             /* border: 1px solid #000; */
         }
-        .container .team_main_container .team_profile_container .profile_img{
+        .detail_container .team_main_container .team_profile_container .profile_img{
             width: 100%;
             height: 500px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        .container .team_main_container .team_profile_container .profile_img img{
+        .detail_container .team_main_container .team_profile_container .profile_img img{
             width: 350px;
             height: 300px;
             border-radius: 50%;
             box-shadow: 5px 4px 10px #444444;
         }
         /* 팀 모집 컨테이너 */
-        .container .team_main_container .team_introduction_container{
+        .detail_container .team_main_container .team_introduction_container{
             width: 41%;
             padding-top: 120px;
             /* border: 1px solid #000; */
         }
-        .container .team_main_container .team_introduction_container .team_top_box{
+        .detail_container .team_main_container .team_introduction_container .team_top_box{
             width: 100%;
             height: 20%;
             display: flex;
         }
-        .container .team_main_container .team_introduction_container .team_name{
+        .detail_container .team_main_container .team_introduction_container .team_name{
             width: 70%;
             display: flex;
             justify-content: center;
@@ -91,41 +91,41 @@
             font-weight: 700;
         }
         /* 온라인 오프라인 표시 */
-        .container .team_main_container .team_introduction_container .on_and_off_line{
+        .detail_container .team_main_container .team_introduction_container .on_and_off_line{
             width: 25%;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        .container .team_main_container .team_introduction_container .on_and_off_line .icon{
+        .detail_container .team_main_container .team_introduction_container .on_and_off_line .icon{
             width: 30px;
             height: 30px;
             border-radius: 50%;
             margin-right: 10px;
             box-shadow: 2px 2px 3px #727272;
         }
-        .container .team_main_container .team_introduction_container .on_and_off_line .on_line{
+        .detail_container .team_main_container .team_introduction_container .on_and_off_line .on_line{
             background: #ff3030;
         }
-        .container .team_main_container .team_introduction_container .on_and_off_line .off_line{
+        .detail_container .team_main_container .team_introduction_container .on_and_off_line .off_line{
             background: #3c3c3c;
         }
 
 
-        .container .team_main_container .team_introduction_container .on_and_off_line .text{
+        .detail_container .team_main_container .team_introduction_container .on_and_off_line .text{
             font-size: 1.5rem;
         }
-        .container .team_main_container .team_main_box{
+        .detail_container .team_main_container .team_main_box{
             width: 90%;
             height: 50%;
             /* border: 1px solid #000; */
             padding-left: 70px;
         }
-        .container .team_main_container .team_main_box span{
+        .detail_container .team_main_container .team_main_box span{
             width: 10%;
             font-size: 1.3rem;
         }
-        .container .team_main_container .team_main_box .text{
+        .detail_container .team_main_container .team_main_box .text{
             width: 90%;
             min-height: 60%;
             margin-top: 30px;
@@ -134,20 +134,20 @@
             border: 1px solid #bbb;
             border-radius: 15px;
         }
-        .container .team_main_container .team_footer_box{
+        .detail_container .team_main_container .team_footer_box{
             width: 90%;
             height: 29%;
             /* border: 1px solid #000; */
             padding-left: 70px;
         }
-        .container .team_main_container .team_footer_box .instrument_container{
+        .detail_container .team_main_container .team_footer_box .instrument_container{
             width: 90%;
             height: 100%;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
-        .container .team_main_container .team_footer_box .instrument_container .instrument{
+        .detail_container .team_main_container .team_footer_box .instrument_container .instrument{
             width: 80px;
             height: 80px;
             border: 1px solid #ddd;
@@ -163,25 +163,25 @@
             background: rgb(255, 0, 0,0.6);
         }
         /* 맴버 컨테이너  */
-        .container .team_main_container .team_member{
+        .detail_container .team_main_container .team_member{
             width: 31%;
             padding-top: 120px;
             /* border: 1px solid #000; */
         }
-        .container .team_main_container .team_member .member_box{
+        .detail_container .team_main_container .team_member .member_box{
             /* border: 1px solid #000; */
             width: 100%;
             height: 80%;
             margin-top: 100px;
         }
-        .container .team_main_container .team_member .member_box span{
+        .detail_container .team_main_container .team_member .member_box span{
             font-size: 2rem;
             display: flex;
             justify-content: center;
             align-items: center;
             margin-bottom: 5%;
         }
-        .container .team_main_container .team_member .member_box .member_list{
+        .detail_container .team_main_container .team_member .member_box .member_list{
             width: 95%;
             height: 87%;
             border: 10px solid #ff1da1;
@@ -190,7 +190,7 @@
             overflow: scroll;
             overflow: auto;
         }
-        .container .team_main_container .team_member .member_box .member_list li .member_profile_box{
+        .detail_container .team_main_container .team_member .member_box .member_list li .member_profile_box{
             margin-top: 30px;
             width: 95%;
             height: 100px;
@@ -201,22 +201,22 @@
             list-style: none;
             justify-content: space-between;
         }
-        .container .team_main_container .team_member .member_box .member_list li .member_profile_box img{
+        .detail_container .team_main_container .team_member .member_box .member_list li .member_profile_box img{
             width: 80px;
             height: 75px;
             margin: 10px;
             border-radius: 50%;
             border: 1px solid #ccc;
         }
-        .container .team_main_container .team_member .member_box .member_list li .member_profile_box .member_text_box{
+        .detail_container .team_main_container .team_member .member_box .member_list li .member_profile_box .member_text_box{
             width: 55%;
             font-size: 1.1rem;
             /* border: 1px solid #000; */
         }
-        .container .team_main_container .team_member .member_box .member_list li .member_profile_box .member_text_box .member_nickname{
+        .detail_container .team_main_container .team_member .member_box .member_list li .member_profile_box .member_text_box .member_nickname{
             margin-bottom: 10px;
         }
-        .container .team_main_container .team_member .member_box .member_list li .member_profile_box .member_instrument{
+        .detail_container .team_main_container .team_member .member_box .member_list li .member_profile_box .member_instrument{
             width: 80px;
             height: 75px;
             margin: 10px;
@@ -228,14 +228,14 @@
 
 
         /* 풋터 컨테이너 */
-        .container .team_footer_container{
+        .detail_container .team_footer_container{
             height: 14%;
             /* border: 1px solid #000; */
             display: flex;
             justify-content: left;
             align-items: center;
         }
-        .container .team_footer_container button{
+        .detail_container .team_footer_container button{
             width: 10%;
             height: 40%;
             font-size: 2rem;
@@ -249,8 +249,7 @@
     </style>
 </head>
 <body>
-<div class="header"><h1>해더</h1></div>
-<div class="container">
+<div class="detail_container">
 
 
     <div class="team_main_container">
