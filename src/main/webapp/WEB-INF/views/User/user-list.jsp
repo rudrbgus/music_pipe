@@ -25,14 +25,14 @@
 <body class="list_body">
 <%@include file="../include/header.jsp"%>
 <div class="header-list">
-    <div class="box bg-1">
-        <button class="button button--winona button--border-thin button--round-s" data-text="guitar"><span><img src="/assets/img/icon/icon-guitar.png" alt="tq"></span></button>
-        <button class="button button--winona button--border-thin button--round-s" data-text="Create New"><span><img src="/assets/img/icon/icon-piano.png" alt="tq"></span></button>
-        <button class="button button--winona button--border-thin button--round-s" data-text="Publish"><span><img src="/assets/img/icon/icon-drum.png" alt="tq"></span></button>
-        <button class="button button--winona button--border-thin button--round-s" data-text="Publish"><span><img src="/assets/img/icon/icon-microphone.png" alt="tq"></span></button>
-        <button class="button button--winona button--border-thin button--round-s" data-text="Publish"><span><img src="/assets/img/icon/icon-violin.png" alt="tq"></span></button>
-        <button class="button button--winona button--border-thin button--round-s" data-text="Publish"><span><img src="/assets/img/icon/icon-flute.png" alt="tq"></span></button>
-        <button class="button button--winona button--border-thin button--round-s" data-text="Publish"><span><img src="/assets/img/icon/icon-harp.png" alt="tq"></span></button>
+    <div class="box bg-1 asdf" id="search">
+        <button  class="button button--winona button--border-thin button--round-s piano" data-text="piano"><span><img src="/assets/img/icon/icon-guitar.png" alt="tq"></span></button>
+        <button class="button button--winona button--border-thin button--round-s drum" data-text="drum"><span><img src="/assets/img/icon/icon-piano.png" alt="tq"></span></button>
+        <button class="button button--winona button--border-thin button--round-s keyboard" data-text="keyboard"><span><img src="/assets/img/icon/icon-drum.png" alt="tq"></span></button>
+        <button class="button button--winona button--border-thin button--round-s acu" data-text="acu"><span><img src="/assets/img/icon/icon-microphone.png" alt="tq"></span></button>
+        <button class="button button--winona button--border-thin button--round-s elc" data-text="elc"><span><img src="/assets/img/icon/icon-violin.png" alt="tq"></span></button>
+        <button class="button button--winona button--border-thin button--round-s base vocal" data-text="vocal"><span><img src="/assets/img/icon/icon-flute.png" alt="tq"></span></button>
+        <button class="button button--winona button--border-thin button--round-s guitar" data-text="guitar"><span><img src="/assets/img/icon/icon-harp.png" alt="tq"></span></button>
     </div>
 </div>
 <div class="listBox1">
@@ -43,7 +43,11 @@
     <div class="emptyBox2"></div>
 </div>
 <%--    <a href="#" class="top-btn"><img src='/assets/img/pic01.jpg'></a>--%>
-<a href="#" class="page-top">TOP</a>
+<a href="#" class="page-top">TOP↑</a>
+<form action="/user/list/instrument" method="POST" style="display: none">
+    <input class="inputvalues" name="keyword">
+    <button type="submit" class="submit-button"></button>
+</form>
 </body>
 <script>
     let page = {pageNo:1,amount:3};
@@ -51,7 +55,7 @@
     let isDate=true;
     const $body = document.querySelector('.list_body');
     $(window).scroll(async function () {
-        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 10 && isDate) {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() -1 && isDate) {
             console.log(page.pageNo);
             try {
                 // 서버에서 데이터를 가져옴
@@ -70,7 +74,7 @@
             } catch (error) {
                 console.log('asdf');
                 isDate=false;
-                $endBox=`<div class="endBox"> tqlkf...</div>`
+                $endBox=`<div class="endBox"> 더 이상 유저 리스트가 없습니다.</div>`
                 $('.contentBox1').append($endBox);
             }
 
@@ -78,16 +82,49 @@
         }
     });
 
+    const $list = document.querySelector('.asdf');
+    const $button123 = document.querySelector(".submit-button")
+    const $input123 = document.querySelector('.inputvalues');
+    $list.onclick = e =>{
+        if(e.target.classList.contains("piano")){
+            $input123.value = "피아노"
+            $button123.click();
+        }
+        if(e.target.classList.contains("drum")){
+            $input123.value = "드럼"
+            $button123.click();
+        }        if(e.target.classList.contains("keyboard")){
+            $input123.value = "키보드"
+            $button123.click();
+        } if(e.target.classList.contains("acu")){
+            $input123.value = "어쿠스틱"
+            $button123.click();
+        }       if(e.target.classList.contains("elc")){
+            $input123.value = "일렉"
+            $button123.click();
+        }        if(e.target.classList.contains("base")){
+            $input123.value = "베이스"
+            $button123.click();
+        }        if(e.target.classList.contains("vocal")){
+            $input123.value = "보컬"
+            $button123.click();
+        }        if(e.target.classList.contains("guitar")){
+            $input123.value = "기타"
+            $button123.click();
+        }
+    }
+    console.log($list.classList);
+
     let a= 0;
     // 데이터를 기반으로 카드를 동적으로 생성하는 함수
     function createCards(users) {
         // $('.contentBox1').empty();
-        console.log("씨발롬아"+users);
+        // console.log("씨발롬아"+users);
         users.forEach(function (user) {
-            const { nickname, age, sex, regDate, teamId ,email,userProfileImagePath,introduceText,equipmentList} = user;
+            const { nickname, age, sex, regDate, teamId ,email,userProfileImagePath,introduceText,equipmentList,teamName} = user;
 
 
-            let list= ['보컬','기타','피아노','드럼','섹소폰','트럼펫','플루트','베이스'];
+            let list= ['보컬','피아노','보컬','피아노','섹소폰','트럼펫','플루트','기타'];
             let tagName;
 
 
@@ -95,12 +132,12 @@
         <div class="content">
             <div class="slider\${index} slider"></div>
             <a href="/user/profile?email=\${email}" class="content-card\${index} content-card">
-                <img src="https://source.unsplash.com/random/300x420">
+                <img src="/local\${userProfileImagePath}">
                 <div class="content-text">
                     <div class="tag tag\${a}">
                     </div>
-                    <div class="title">\${nickname}<div>\${introduceText}</div></div>
-                    <div class="information">미팅 유형 : 오프라인</div>
+                    <div class="title">\${nickname}<div class="introText">자기소개 : \${introduceText}</div></div>
+                    <div class="information">소속 팀 : \${teamName}</div>
                 </div>
             </a>
         </div>
@@ -122,6 +159,7 @@
 
 
             index===1?index++:index=1;
+
         });
         updateBodyHeight();
         page.pageNo++;
@@ -188,13 +226,9 @@
         document.querySelector('.emptyBox1').style.height = documentHeight+'px';
     }
     const $buttons = document.querySelector('.bg-1');
-    let $buttonArray = Array.from($buttons.children);
-    for(let i=0;i<$buttonArray.length;i++){
-        $buttonArray[i].addEventListener('click',()=>{
-            console.log(i);
-            // window.location.href = 'https://example.com';
-        })
-    }
+
+
+
 </script>
 
 </body>

@@ -2378,5 +2378,9 @@ input, select, textarea {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border: black;
+	font-weight: 600;
+}
+.fit .name{
 
 }

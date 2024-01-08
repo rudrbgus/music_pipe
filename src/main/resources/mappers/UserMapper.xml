@@ -18,14 +18,14 @@
         ,#{email},#{sex})
     </insert>
 
-    <select id="findUser" resultType="user">
+    <select id="findUser" resultType="com.meatjellyburgur.musicpipe.entity.User">
         SELECT
             user_id, password, nickname, age, email,sex, regdate, team_id, session_id, limit_time, profile_image_path, introduce_text
         FROM user
         WHERE email = #{email}
     </select>
 
-    <select id="findUserByUserId" resultType="user">
+    <select id="findUserByUserId" resultType="com.meatjellyburgur.musicpipe.entity.User">
         SELECT
             user_id, password, nickname, age, email,sex, regdate, team_id, session_id, limit_time, profile_image_path, introduce_text
         FROM user
@@ -46,7 +46,7 @@
         </if>
     </select>
 
-    <select id="findUseByTeamId" resultType="user">
+    <select id="findUseByTeamId" resultType="com.meatjellyburgur.musicpipe.entity.User">
         SELECT
             user_id, password, nickname,age, email,sex,regdate, team_id, session_id, limit_time, profile_image_path, introduce_text
         FROM user
@@ -59,7 +59,7 @@
         WHERE user_id = #{userId}
     </update>
 
-    <select id="findUserByCookie" resultType="user">
+    <select id="findUserByCookie" resultType="com.meatjellyburgur.musicpipe.entity.User">
         SELECT
         user_id, password, nickname,age, email,sex,regdate, team_id, session_id, limit_time, profile_image_path, introduce_text
         FROM user
@@ -84,4 +84,10 @@
         where user_id = #{userId}
     </update>
 
+    <select id="findAllUser" resultType="user">
+        select
+        user_id, password, nickname,age, email,sex,regdate, team_id, session_id, limit_time, profile_image_path, introduce_text
+        from user
+        order by regdate DESC
+    </select>
 </mapper>

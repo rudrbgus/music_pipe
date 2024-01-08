@@ -8,8 +8,10 @@ import com.meatjellyburgur.musicpipe.common.Search;
 import com.meatjellyburgur.musicpipe.dto.request.*;
 import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
+import com.meatjellyburgur.musicpipe.dto.response.TeamResponseUserDTO;
 import com.meatjellyburgur.musicpipe.dto.response.UserProfileResponseDTO;
 import com.meatjellyburgur.musicpipe.entity.PersonalAbility;
+import com.meatjellyburgur.musicpipe.entity.TeamMemberInfo;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.service.*;
 import com.meatjellyburgur.musicpipe.util.SignInUtils;
@@ -193,7 +195,9 @@ public class UserController {
         }else if (keyword.equals("기타")) {
             model.addAttribute("instrument", 8);
         }
-
+        if(keyword.equals("0")){
+            model.addAttribute("instrument", 0);
+        }
         return "/User/user-list";
     }
 
@@ -230,7 +234,7 @@ public class UserController {
         if(user.getTeamId()!=0){
             //0이아니면 팀이 있다는 소리니까 팀을 찾아서 반환해야함.
             teamName = teamService.findTeamName(user.getTeamId());
-
+            log.info("팀 있음");
         }
 
         //userid 기반으로 personal_ablity 테이블에 값이 있는지 없는지 알아내기
@@ -265,9 +269,9 @@ public class UserController {
     // 유저에 자기소개 넣기
     @PostMapping("/introduce")
     public String modifyUserIntroduceText(@RequestBody UserIntroduceRequestDTO introduceText, HttpSession session){
-        userService.modifyUserIntroduceText(introduceText.getIntroduceText(), session);
         System.out.println("/user/introduce Post!!!");
         System.out.println(introduceText);
+        userService.modifyUserIntroduceText(introduceText.getIntroduceText(), session);
         return null;
     }
 
@@ -296,5 +300,15 @@ public class UserController {
         return ResponseEntity.ok().body(personalAbilityList);
 
     }
+
+
+    // 유저의 팀이 있으면 그 팀을 가져와서 역할을 확인해서 리더면 요청이 온 것을 보내줌
+    @PostMapping("/getTeamRequest")
+    public ResponseEntity<?> getTeamRequest(@RequestBody UserTeamRequestDTO dto, HttpSession session){
+        int teamId = dto.getTeamId();
+        List<TeamResponseUserDTO> teamInfo = userService.getTeamInfo(teamId, session);
+        return ResponseEntity.ok().body(teamInfo);
+    }
+    
 
 }

@@ -68,51 +68,14 @@
         <!-- Work -->
         <article id="work" class="panel">
             <div class="header">
-                <h2>Work</h2>
+                <h2>팀원 찾기</h2>
             </div>
             <p>
-                Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit.
-                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-                luctus elit eget interdum.
+                자신에게 맞는 팀원을 찾아보세요!
             </p>
             <section>
                 <div class="row">
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="assets/img/pic01.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="assets/img/pic02.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="assets/img/pic03.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="assets/img/pic04.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="assets/img/pic05.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="assets/img/pic06.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="assets/img/pic07.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="assets/img/pic08.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="assets/img/pic09.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="assets/img/pic10.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="assets/img/pic11.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="assets/img/pic12.jpg" alt=""></a>
-                    </div>
+
                 </div>
             </section>
         </article>
@@ -163,27 +126,54 @@
         <div class="swiper">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-card">
-                        <c:forEach var="b" items="${bList}">
-                        <div class="swiper-slide" data-hash="slide1">
-                            <div class="swiper-card">
-                                <div class="container">
-                                    <div class="box">
-                                        <div class="box__img">
-                                            <img src="https://source.unsplash.com/random/300x420" alt="">
-                                        </div>
-                                        <div class="box__details">
-                                            <h2>Here's the details</h2>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eius ea sit voluptate distinctio atque illo cumque incidunt fuga odio omnis in ad, iusto veritatis debitis, voluptatum corrupti voluptas?</p>
-                                            <a href="#" class="cta">Click here...</a>
-                                        </div>
+                                                        <div class="swiper-slide" data-hash="slide1">
+                                                <div class="swiper-card">
+                                                    <div class="container">
+                                                        <div class="box">
+                                                            <div class="box__img">
+                                                                <img src="https://source.unsplash.com/random/300x420" alt="">
+                                                            </div>
+                                                            <div class="box__details">
+                                                                <h2>Here's the details</h2>
+                                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eius ea sit voluptate distinctio atque illo cumque incidunt fuga odio omnis in ad, iusto veritatis debitis, voluptatum corrupti voluptas?</p>
+                                                                <a href="#" class="cta">Click here...</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                    <div class="swiper-slide" data-hash="slide1">
+                        <div class="swiper-card">
+                            <div class="container">
+                                <div class="box">
+                                    <div class="box__img">
+                                        <img src="https://source.unsplash.com/random/300x420" alt="">
+                                    </div>
+                                    <div class="box__details">
+                                        <h2>Here's the details</h2>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eius ea sit voluptate distinctio atque illo cumque incidunt fuga odio omnis in ad, iusto veritatis debitis, voluptatum corrupti voluptas?</p>
+                                        <a href="#" class="cta">Click here...</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </c:forEach>
                     </div>
-
+                    <div class="swiper-slide" data-hash="slide1">
+                        <div class="swiper-card">
+                            <div class="container">
+                                <div class="box">
+                                    <div class="box__img">
+                                        <img src="https://source.unsplash.com/random/300x420" alt="">
+                                    </div>
+                                    <div class="box__details">
+                                        <h2>Here's the details</h2>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eius ea sit voluptate distinctio atque illo cumque incidunt fuga odio omnis in ad, iusto veritatis debitis, voluptatum corrupti voluptas?</p>
+                                        <a href="#" class="cta">Click here...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -206,24 +196,10 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
-<script>
-        const $fa_home = document.querySelector(".fa-home");
-        const $body=document.getElementsByTagName("body");
-        const firstColor = "#F29E38";
-        document.addEventListener("DOMContentLoaded", function() {
-            e.preventDefault();
-            $fa_home.addEventListener("click", function() {
-                // Get the first color from the gradient
-
-
-                // Set the new background color
-                document.body.style.background = `linear-gradient(to right, ${firstColor} 0%, ${firstColor} 100%)`;
-            });
-        });
-</script>
 <script type="module">
     import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
 
+    const page= {pageNo:1,amount:12};
     // 비동기 데이터를 가져오고 Swiper를 초기화하는 함수
     async function initSwiperWithData() {
         try {
@@ -233,15 +209,14 @@
                 headers: {
                     'content-type': 'application/json'
                 },
-                body: JSON.stringify({ equipmentId: 1 })
+                body: JSON.stringify({ equipmentId: 1 ,pageNo: page.pageNo,amount: page.amount})
             });
-            const users = await response.json();
+            const users = await response.json()
+            console.log(users.users);
 
             // 가져온 데이터를 가지고 동적으로 카드 생성
-            createCards(users);
+            createCards(users.users);
 
-            // Swiper를 초기화
-            initSwiper();
         } catch (error) {
             console.error('데이터를 가져오는 중 에러 발생:', error);
         }
@@ -249,26 +224,32 @@
     let i=1;
     // 데이터를 기반으로 카드를 동적으로 생성하는 함수
     function createCards(users) {
-        $('.swiper-wrapper').empty();
+        // $('.swiper-wrapper').empty();
 
         users.forEach(function (user) {
-            const { nickname, age, sex, regDate, teamId } = user;
+            const { nickname, userProfileImagePath ,email} = user;
             var card = `
-
+                   <div class="col-4 col-6-medium col-12-small">
+                        <a href="/user/profile?email=\${email}" class="image fit"><img src="/local\${userProfileImagePath}" alt=""></a>
+<div class="name">\${nickname}</div>
+                    </div>
       `;
             // 생성한 카드를 swiper-wrapper에 추가
-            $('.swiper-wrapper').append(card);
+            $('.row').append(card);
             i++;
         });
     }
 
+    document.addEventListener('DOMContentLoaded', function() {
+        initSwiper();
+    });
     // Swiper 초기화 함수
     function initSwiper() {
         const swiper = new Swiper('.swiper-container', {
             direction: 'horizontal',
             loop: true,
             slidesPerView: 2,
-            spaceBetween: 100,
+            spaceBetween: 60,
         });
     }
 

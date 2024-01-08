@@ -27,12 +27,40 @@
         }
         .request-team{
             width: 60%;
-            height: 30vh;
+            height: fit-content;
             border: 1.5px deepskyblue solid;
             border-radius: 20px;
             margin: 110px auto 0;
             background: aliceblue;
             filter: drop-shadow(1px 1px 10px rgba(69, 137, 211, 0.96));
+        }
+        .request-team .text123{
+            text-align: center;
+            font-size: 2.5rem;
+        }
+        .request-team .request-form{
+            display: flex;
+            flex-direction: column;
+        }
+        .request-team .request-form .request-form-detail{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .request-team .request-form .request-form-detail .name{
+            font-size: 2rem;
+        }
+        .request-team .request-form .request-form-detail .profile-image{
+            width: 150px;
+            height: 150px;
+            border: 1px black solid;
+            border-radius: 70%;
+            overflow: hidden;
+        }
+        .request-team .request-form .request-form-detail .profile-image img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* 프로필 컨테이너*/
@@ -232,6 +260,7 @@
         }
 
 
+
     </style>
 
 </head>
@@ -243,10 +272,10 @@
             <!-- 프로필 사진 -->
             <div class="upload-box">
                 <c:if test="${user.profileImagePath == null}">
-                    <img class="inputImage" src="/assets/img/profile.png" alt="프사">
+                    <img class="inputImageNone" src="/assets/img/profile.png" alt="프사">
                 </c:if>
                 <c:if test="${user.profileImagePath != null}">
-                    <img class="inputImage" src="/local${user.profileImagePath}" alt="가져온 프사">
+                    <img class="inputImageNone" src="/local${user.profileImagePath}" alt="가져온 프사">
                 </c:if>
             </div>
             <form action="/user/addProfileImage" method="post" enctype="multipart/form-data">
@@ -263,12 +292,12 @@
                 <div class="profile-introduce-text">자기소개 : ${user.introduceText}</div>
                 <input class="profile-input" type="text" style="display: none">
                 <div class="profile_email">이메일 : ${user.email} </div>
-                <div class="profile_team">소속 팀
+                <div class="profile_team">소속 팀 :
                     <c:if test="${user.team_id!=0}">
-                        <span id="userTeamName"></span>
+                        <span id="userTeamName">${user.teamName}</span>
                         <button id="teamCreateFormBtn" style="display: none" class="creative_team_btn">팀 생성</button>
                     </c:if>
-                    <c:if test="${user.team_id==0}">
+                    <c:if test="${user.team_id==0 || login.nickname == user.nickname}">
                         <span  id="userTeamName"></span>
                         <button id="teamCreateFormBtn" class="creative_team_btn">팀 생성</button>
                     </c:if>
@@ -315,11 +344,14 @@
 <%-- 팀 요청 리스트 --%>
 <%-- 자신이 크루의 리더면 요청한 사람들의 요청이 뜸 --%>
 <div class="request-team">
-    <div>요청 리스트!!!!!!!!!!!!!!!!!!!!!</div>
+    <div class="text123">요청 리스트!!!!!!!!!!!!!!!!!!!!!</div>
     <div class="request-form">
-        <div class="name">1</div>
-        <div class="profile-image"><img src="" alt="">1</div>
-        <div class="instrument"><img src="" alt="">1</div>
+        <div class="request-form-detail">
+            <div class="name">1</div>
+            <div class="profile-image"><img src="" alt="">1</div>
+            <div class="instrument"><img src="" alt="">1</div>
+            <div class="introduce-text">인삿말</div>
+        </div>
     </div>
 </div>
 
@@ -364,7 +396,7 @@
 </div>
 
 </body>
-<script defer>
+<script>
     const $teamNameTag=document.getElementById('userTeamName');
     console.log($teamNameTag)
 
@@ -372,8 +404,7 @@
     const $box = document.querySelector('.upload-box');
     const $input = document.getElementById('img-input');
     const $instrumentImageBox = document.querySelector('.profile_instrument_list');
-
-    //비동기로 유저 악기 가져오기
+    console.log($box.querySelector('.inputImage'));//비동기로 유저 악기 가져오기
     function getInstrument() {
         fetch("/user/getInstrument", {
             method: "POST",
@@ -425,7 +456,7 @@
         })
     }
     if ("${login.nickname}" === "${user.nickname}") {
-        console.log("나 실행함 이프")
+        console.log("주인이 들어 왔습니다");
         $box.onclick = e => {
             $input.click();
         };
@@ -508,7 +539,8 @@
                 }
             }
         }
-    }else{
+    }
+    else{
         getInstrument();
     }
 
@@ -527,7 +559,7 @@
 
         // 첨부파일이 등록되는 순간 img태그에 이미지를 세팅
         reader.onloadend = e => {
-            const $img = $box.querySelector('.inputImage');
+            const $img = $box.querySelector('.inputImageNone');
             $img.setAttribute('src', reader.result);
             const $submitButton = document.querySelector('.submit-button');
             $submitButton.style.display = "flex";
@@ -549,6 +581,7 @@
     const $button = document.getElementById('introduceModifyBtn');
     const $inputIntroduce = document.querySelector(".profile-input");
     $button.onclick = e => {
+        console.log(e);
         if ($button.innerText === '수정하기') {
             console.log(e.target);
             $inputIntroduce.style.display = "flex";
@@ -605,38 +638,47 @@
                 renderTeamInfo(dtoList)
             })
         $teamCreateFormModal.style.display='none';
-
-
-
     }
-
-
-
-
-
-
 
 
     //팀 이름 랜더링하는 함수
     function renderTeamInfo({teamName, instrumentId, role}) {
-
         $teamNameTag.innerText=teamName;
         $teamNameTag.style.display='flex';
         $teamCreateFormBtn.style.display='none';
-
     }
 
+    //팀 멤버 요청 받는 함수
+    function getTeamRequest(){
+        fetch("/user/getTeamRequest",{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                teamId: "${user.team_id}"
+            })
+        }).then(res=>{
+            console.log(res);
+            return res.json();
+        }).then(result=>{
+            console.log(result);
+            result.forEach(res => {
+                const $requestForm = document.querySelector('.request-form');
+                $requestForm.innerHTML += `<div class="request-form-detail">
+            <div class="name">\${res.nickname}</div>
+            <div class="profile-image"><img src="/local\${res.userProfileImagePath}" alt=""></div>
+            <div class="instrument ${res.equipmentId}"><img src="" alt="">1</div>
+            <div class="introduce-text">\${res.userIntroduce}</div>
+        </div>`
+            })
+            })
 
+
+    }
 
     (() => {
         getInstrument();
         getTeamRequest();
     })();
-
-
-
-
-
 </script>
 
 
