@@ -307,7 +307,6 @@
                         <span id="userTeamName"></span>
                         <button id="teamCreateFormBtn" class="creative_team_btn">팀 생성</button>
                     </c:if>
-
                 </div>
             </c:if>
         </div>
@@ -349,18 +348,19 @@
 
 <%-- 팀 요청 리스트 --%>
 <%-- 자신이 크루의 리더면 요청한 사람들의 요청이 뜸 --%>
-<div class="request-team">
-    <div class="text123">요청 리스트!!!!!!!!!!!!!!!!!!!!!</div>
-    <div class="request-form">
-        <div class="request-form-detail">
-            <div class="name">1</div>
-            <div class="profile-image"><img src="" alt="">1</div>
-            <div class="instrument"><img src="" alt="">1</div>
-            <div class="introduce-text">인삿말</div>
+<c:if test="${login.nickname == user.nickname}">
+    <div class="request-team">
+        <div class="text123">요청 리스트!!!!!!!!!!!!!!!!!!!!!</div>
+        <div class="request-form">
+            <div class="request-form-detail">
+                <div class="name">1</div>
+                <div class="profile-image"><img src="" alt="">1</div>
+                <div class="instrument"><img src="" alt="">1</div>
+                <div class="introduce-text">인삿말</div>
+            </div>
         </div>
     </div>
-</div>
-
+</c:if>
 
 <div class="modal" id="modal">
     <div class="modal_container">
@@ -687,7 +687,9 @@
             <div class="introduce-text">\${res.userIntroduce}</div>
         </div>`
                 })
-            }})}
+            }
+        })
+    }
 
     (() => {
         getInstrument();
