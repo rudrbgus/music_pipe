@@ -21,31 +21,24 @@
             color: inherit;
             text-decoration: none;
         }
-        .header {
-            border: 1px solid #000;
-            width: 100%;
-            height: 120px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 3rem;
-            /* position: absolute; */
-        }
 
         /* 전체 body */
-        .container {
+        body .main_body_container {
             /* border: 1px solid #000; */
-            /* margin-top: 120px; */
+
             /* background: #eeeeee; */
             height: 100vh;
             padding: 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
+            margin: 0px;
+            margin-top: 120px;
         }
 
         /* 신규 프로필 */
-        .container .new_porfile {
+        .main_body_container  .new_porfile {
             border: 1px solid #d0d0d0;
             border-radius: 20px;
             width: 17%;
@@ -53,15 +46,21 @@
             display: flex;
             align-items: center;
             flex-direction: column;
+            overflow: scroll;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
-        .container .new_porfile span {
+        .main_body_container  .new_porfile::-webkit-scrollbar{
+            display:none;
+        }
+        .main_body_container  .new_porfile span {
             font-size: 2rem;
             margin-top: 20px;
             margin-bottom: 40px;
         }
 
         /* 신규 프로필 카드 */
-        .container .new_porfile .new_card {
+        .main_body_container  .new_porfile .new_card {
             border: 1px solid #eee;
             border-radius: 30px;
             width: 80%;
@@ -94,6 +93,12 @@
             align-items: center;
             padding-right: 10%;
             padding-top: 5px;
+            overflow: scroll;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .new_porfile .new_card .text .instrument::-webkit-scrollbar{
+            display:none;
         }
         .new_porfile .new_card .text .instrument img {
             width: 30px;
@@ -102,13 +107,13 @@
             margin-right: 5%;
         }
 
-        .container .select_container {
+        .main_body_container  .select_container {
             width: 82%;
             height: 100%;
         }
 
         /* 검색 프로필*/
-        .container .select_container .select_profile {
+        .main_body_container  .select_container .select_profile {
             /* background: orangered; */
             /* border: 1px solid #000; */
             width: 100%;
@@ -117,9 +122,10 @@
             flex-wrap: wrap;
         }
 
-        .container .select_profile .card_container {
+        .main_body_container  .select_profile .card_container {
             width: 100%;
             display: flex;
+            justify-content: space-around;
             margin-top: 5%;
             margin-left: 7%;
             height: 300px;
@@ -127,28 +133,29 @@
         }
 
         /* 검색 프로필 카드 */
-        .container .select_profile .card_container .card {
+        .main_body_container  .select_profile .card_container .card {
             border: 1px solid #eee;
             border-radius: 40px;
             width: 350px;
             height: 280px;
             box-shadow: 2px 2px 5px #888888;
             background: #fff;
+            margin-top: 3%;
         }
-        .container .select_profile .card_container p{
+        .main_body_container  .select_profile .card_container p{
             font-size: 2rem;
             color: #fff;
             opacity: 1;
             font-weight: 700;
         }
 
-        .container .select_profile .card_container .card .profile_view_box {
+        .main_body_container  .select_profile .card_container .card .profile_view_box {
             width: 100%;
             height: 70%;
             display: flex;
         }
 
-        .container
+        .main_body_container
         .select_profile
         .card_container
         .card
@@ -163,7 +170,7 @@
             box-shadow: 1px 1px 2px #444444;
         }
 
-        .container
+        .main_body_container
         .select_profile
         .card_container
         .card
@@ -173,7 +180,7 @@
             width: 100%;
             display: flex;
         }
-        .container
+        .main_body_container
         .select_profile
         .card_container
         .card
@@ -184,13 +191,19 @@
             font-size: 2rem;
             font-family: 'DNFBitBitv2';
         }
-        .container .select_profile .card_container .card .profile_instrument {
+        .main_body_container .select_profile .card_container .card .profile_instrument {
             display: flex;
             justify-content: space-around;
             align-items: center;
+            overflow: scroll;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .main_body_container .select_profile .card_container .card .profile_instrument::-webkit-scrollbar{
+            display:none;
         }
 
-        .container .select_profile .card_container .card .profile_instrument img {
+        .main_body_container .select_profile .card_container .card .profile_instrument img {
             width: 40px;
             height: 40px;
             background: #fff;
@@ -200,12 +213,12 @@
 
 
         /* 페이지 이동버튼 영역 */
-        .container .select_container .page_navigation{
+        .main_body_container .select_container .page_navigation{
             width: 100%;
             height: 14%;
         }
 
-        .container .select_container .page_navigation .pagination{
+        .main_body_container  .select_container .page_navigation .pagination{
             height: 100%;
             display: flex;
             list-style:none;
@@ -214,7 +227,7 @@
 
         }
 
-        .container .select_container .page_navigation .pagination .page-item{
+        .main_body_container  .select_container .page_navigation .pagination .page-item{
             /* border: 1px solid #000; */
             width: 3rem;
             font-size: 1.5rem;
@@ -224,6 +237,23 @@
             align-items: center;
         }
 
+        #writeButton{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #writeButton div{
+            width: 120px;
+            height: 60px;
+            margin-left: 1100px;
+            border: 1px solid #333333;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'DNFBitBitv2';
+            font-size: 1.4rem;
+        }
 
 
     </style>
@@ -232,7 +262,7 @@
 
 <body>
 <%@include file="../include/header.jsp"%>
-<div class="container">
+<div class="main_body_container ">
     <div class="new_porfile">
         <span>신규 글</span>
         <c:forEach var="b" items="${bList}">
@@ -251,68 +281,72 @@
     </div>
 
     <div class="select_container">
+        <a href="/board/write" id="writeButton">
+            <div>
+                새 글 쓰기
+            </div>
+        </a>
         <div class="select_profile">
             <!-- 검색 프로필 -->
 
             <div class="card_container">
                 <c:forEach var="b" items="${bList}">
-                    <div class="card">
-                        <div class="profile_view_box">
-                            <div style="background-image: url('${b.profileImagePath}');" class="profile_img">
+                    <a href="/board/delete">
+                        <div class="card">
+                            <div class="profile_view_box">
+                                <div style="background-image: url('${b.profileImagePath}');" class="profile_img">
+                                </div>
+                                <div class="profile_text_box">
+                                    <div class="nickname">${b.nickName}</div>
+                                    <div class="on_and_off_line">${b.onoff}</div>
+                                </div>
                             </div>
-                            <div class="profile_text_box">
-                                <div class="nickname">${b.nickName}</div>
-                                <div class="on_and_off_line">${b.onoff}</div>
+                            <div class="profile_instrument">
+                                <c:forEach var="e" items="${b.recruit_equipment}">
+                                    <img src="/assets/img/${InstrumentImageUtil.instrumentImage(e)}.png">
+                                </c:forEach>
                             </div>
                         </div>
-                        <div class="profile_instrument">
-                            <c:forEach var="e" items="${b.recruit_equipment}">
-                                <img src="/assets/img/${InstrumentImageUtil.instrumentImage(e)}.png">
-                            </c:forEach>
-                        </div>
-                    </div>
+                    </a>
                 </c:forEach>
             </div>
-
-
-            <nav class="page_navigation">
-                <ul class="pagination">
-                    <c:if test="${maker.page.pageNo != 1}">
-                        <li class="page-item"><a class="page-link"
-                                                 href="/board/list?pageNo=1&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&lt;&lt;</a>
-                        </li>
-                    </c:if>
-
-                    <c:if test="${maker.prev}">
-                        <li class="page-item"><a class="page-link"
-                                                 href="/board/list?pageNo=${maker.begin - 1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">prev</a>
-                        </li>
-                    </c:if>
-
-                    <c:forEach var="i" begin="${maker.begin}" end="${maker.end}" step="1">
-                        <li data-page-num="${i}" class="page-item">
-                            <a class="page-link"
-                               href="/board/list?pageNo=${i}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">${i}</a>
-                        </li>
-                    </c:forEach>
-
-
-                    <c:if test="${maker.next}">
-                        <li class="page-item"><a class="page-link"
-                                                 href="/board/list?pageNo=${maker.end + 1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">next</a>
-                        </li>
-                    </c:if>
-
-                    <c:if test="${maker.page.pageNo != maker.finalPage}">
-                        <li class="page-item"><a class="page-link"
-                                                 href="/board/list?pageNo=${maker.finalPage}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&gt;&gt;</a>
-                        </li>
-                    </c:if>
-
-                </ul>
-            </nav>
-
         </div>
+        <nav class="page_navigation">
+            <ul class="pagination">
+                <c:if test="${maker.page.pageNo != 1}">
+                    <li class="page-item"><a class="page-link"
+                                             href="/board/list?pageNo=1&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&lt;&lt;</a>
+                    </li>
+                </c:if>
+
+                <c:if test="${maker.prev}">
+                    <li class="page-item"><a class="page-link"
+                                             href="/board/list?pageNo=${maker.begin - 1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">prev</a>
+                    </li>
+                </c:if>
+
+                <c:forEach var="i" begin="${maker.begin}" end="${maker.end}" step="1">
+                    <li data-page-num="${i}" class="page-item">
+                        <a class="page-link"
+                           href="/board/list?pageNo=${i}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">${i}</a>
+                    </li>
+                </c:forEach>
+
+
+                <c:if test="${maker.next}">
+                    <li class="page-item"><a class="page-link"
+                                             href="/board/list?pageNo=${maker.end + 1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">next</a>
+                    </li>
+                </c:if>
+
+                <c:if test="${maker.page.pageNo != maker.finalPage}">
+                    <li class="page-item"><a class="page-link"
+                                             href="/board/list?pageNo=${maker.finalPage}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&gt;&gt;</a>
+                    </li>
+                </c:if>
+
+            </ul>
+        </nav>
     </div>
 </div>
 </body>
@@ -331,12 +365,6 @@
         });
     });
 
-    $(document).ready(function() {
-        $(".card").click(function() {
-            Event.preventDefault();
-            window.location.href = "/detail";
-        });
-    });
 </script>
 
 </html>
