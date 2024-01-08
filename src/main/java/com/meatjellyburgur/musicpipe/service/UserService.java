@@ -124,7 +124,10 @@ public class UserService {
             User userByUserId = userMapper.findUserByUserId(i);
             // 팀찾고
             Team oneTeamById = teamMapper.findOneTeamById(userByUserId.getTeamId());
-
+            String teamName = "";
+            if (oneTeamById !=null){
+                teamName = oneTeamById.getTeamName();
+            }
             log.info("user: {}", userByUserId);
             List<Integer> equipmentList = new ArrayList<>();
             List<PersonalAbility> personalAbilityList = personalAbilityMapper.findPersonalAbilityList(userByUserId.getUserId());
@@ -143,7 +146,7 @@ public class UserService {
                         .userProfileImagePath(userByUserId.getProfileImagePath())
                         .introduceText(userByUserId.getIntroduceText())
                         .equipmentList(equipmentList)
-                        .teamName(oneTeamById.getTeamName())
+                        .teamName(teamName)
                         .build();
                 users.add(build);
             }

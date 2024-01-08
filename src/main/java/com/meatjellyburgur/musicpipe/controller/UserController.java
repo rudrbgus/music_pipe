@@ -230,7 +230,7 @@ public class UserController {
         if(user.getTeamId()!=0){
             //0이아니면 팀이 있다는 소리니까 팀을 찾아서 반환해야함.
             teamName = teamService.findTeamName(user.getTeamId());
-
+            log.info("팀 있음");
         }
 
         //userid 기반으로 personal_ablity 테이블에 값이 있는지 없는지 알아내기
