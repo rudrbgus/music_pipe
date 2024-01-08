@@ -22,6 +22,10 @@
     <script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
     <style>
 
+        /*body{*/
+        /*    background-image: url("/assets/img/bg_3.png");*/
+        /*    background-size: cover;*/
+        /*}*/
 
         .form-container {
             width: 1200px;
@@ -32,6 +36,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 4px;
             font-size: 18px;
+            background: #ffffff;
         }
         .form-container h1 {
             font-size: 40px;

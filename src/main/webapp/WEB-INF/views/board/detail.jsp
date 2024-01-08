@@ -34,23 +34,11 @@
         body {
             position: relative;
         }
-        .header {
-            border: 1px solid #000;
-            width: 100%;
-            height: 120px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 3rem;
-            position: absolute;
-            /* position: absolute; */
-        }
-
-
         /* 바디 */
         .container {
             width: 100%;
             height: 100vh;
+            margin-top: 120px;
             /* border: 1px solid #000; */
         }
 
