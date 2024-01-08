@@ -301,7 +301,7 @@
                 <div class="profile_team">소속 팀 :
                     <c:if test="${user.team_id!=0}">
                         <span id="userTeamName">${user.teamName}</span>
-                        <button id="teamCreateFormBtn" style="display: none" class="creative_team_btn">팀 생성</button>
+                        <button  id="teamCreateFormBtn" style="display:none" class="creative_team_btn">팀 생성</button>
                     </c:if>
                     <c:if test="${user.team_id==0 && login.nickname == user.nickname}">
                         <span id="userTeamName"></span>

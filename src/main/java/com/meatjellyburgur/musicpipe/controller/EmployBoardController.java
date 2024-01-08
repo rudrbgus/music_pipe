@@ -86,6 +86,7 @@ public class EmployBoardController {
     @GetMapping("/detail")
     public String detail(int bno,@ModelAttribute("s") Search search, Model model) {
         System.out.println("/board/detail : GET");
+        log.info("bno={}",bno);
         //보드 내용 정보
         BoardDetailResponseDTO detail = employBoardService.getDetail(bno);
         User user = userService.findOneUserByUserId(detail.getUserId());

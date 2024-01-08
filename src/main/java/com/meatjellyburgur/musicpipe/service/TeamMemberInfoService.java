@@ -23,6 +23,7 @@ public class TeamMemberInfoService {
         // 이 리스트가 돌때마다 이름 찾아와서 매핑해서 반납
         List<TeamMemberInfoResponseDTO> collect = new ArrayList<>();
         List<TeamMemberInfo> allTeamMember = teamMemberInfoMapper.findAllTeamMember(teamId);
+        log.info("allteamMember {}",allTeamMember);
         allTeamMember.forEach(member->{
             User user = userMapper.findUserByUserId(member.getUserId());
             String nickname = user.getNickname();
