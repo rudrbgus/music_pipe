@@ -303,7 +303,7 @@
                         <span id="userTeamName">${user.teamName}</span>
                         <button id="teamCreateFormBtn" style="display: none" class="creative_team_btn">팀 생성</button>
                     </c:if>
-                    <c:if test="${user.team_id==0 || login.nickname == user.nickname}">
+                    <c:if test="${user.team_id==0 && login.nickname == user.nickname}">
                         <span id="userTeamName"></span>
                         <button id="teamCreateFormBtn" class="creative_team_btn">팀 생성</button>
                     </c:if>
@@ -353,6 +353,10 @@
         <div class="text123">요청 리스트!!!!!!!!!!!!!!!!!!!!!</div>
         <div class="request-form">
             <div class="request-form-detail">
+                <div class="name">이름</div>
+                <div class="profile-image"><img src="" alt="">1</div>
+                <div class="instrument"><img src="" alt="">악기</div>
+                <div class="introduce-text">인삿말</div>
             </div>
         </div>
     </div>
