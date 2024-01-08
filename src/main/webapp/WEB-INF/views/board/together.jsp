@@ -27,6 +27,10 @@
             color: inherit;
             text-decoration: none;
         }
+        body{
+            background-image: url("/assets/img/bg_1.png");
+            background-size: cover;
+        }
 
         /* 전체 body */
         body .main_body_container {
@@ -45,6 +49,7 @@
 
         /* 신규 프로필 */
         .main_body_container  .new_porfile {
+            /*background: #ffffff;*/
             border: 1px solid #d0d0d0;
             border-radius: 20px;
             width: 17%;
@@ -67,6 +72,7 @@
 
         /* 신규 프로필 카드 */
         .main_body_container  .new_porfile .new_card {
+            background: #ffffff;
             border: 1px solid #eee;
             border-radius: 30px;
             width: 80%;
@@ -146,12 +152,13 @@
             width: 350px;
             height: 280px;
             box-shadow: 2px 2px 5px #888888;
-            background: #fff;
+            /*background: #d08b24;*/
+            background-image: url("/assets/img/board_card.png");
             margin-top: 7%;
         }
         .main_body_container  .select_profile .card_container p{
             font-size: 2rem;
-            color: #fff;
+            /*color: #fff;*/
             opacity: 1;
             font-weight: 700;
         }
@@ -225,7 +232,7 @@
         .main_body_container .select_profile .card_container .card .profile_instrument img {
             width: 35px;
             height: 35px;
-            background: #fff;
+            /*background: #fff;*/
             margin: 2%;
         }
 
@@ -254,6 +261,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background: #3c3c3c;
+            color: #eeeeee;
         }
 
         #writeButton{
@@ -342,33 +351,33 @@
         <nav class="page_navigation">
             <ul class="pagination">
                 <c:if test="${maker.page.pageNo != 1}">
-                    <li class="page-item"><a class="page-link"
+                    <li class="page-item"><a style="background: #3c3c3c;  border-radius: 10px; color: #eeeeee; text-decoration: none;border: none;" class="page-link"
                                              href="/board/list?pageNo=1&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&lt;&lt;</a>
                     </li>
                 </c:if>
 
                 <c:if test="${maker.prev}">
-                    <li class="page-item"><a class="page-link"
+                    <li class="page-item"><a style="background: #3c3c3c;  border-radius: 10px; color: #eeeeee; text-decoration: none;border: none;" class="page-link"
                                              href="/board/list?pageNo=${maker.begin - 1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">prev</a>
                     </li>
                 </c:if>
 
                 <c:forEach var="i" begin="${maker.begin}" end="${maker.end}" step="1">
                     <li data-page-num="${i}" class="page-item">
-                        <a class="page-link"
+                        <a style="background: #3c3c3c;  border-radius: 10px;  color: #eeeeee; text-decoration: none;border: none;" class="page-link"
                            href="/board/list?pageNo=${i}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">${i}</a>
                     </li>
                 </c:forEach>
 
 
                 <c:if test="${maker.next}">
-                    <li class="page-item"><a class="page-link"
+                    <li style="background: #3c3c3c;  border-radius: 10px;  color: #eeeeee; text-decoration: none;border: none;" class="page-item"><a class="page-link"
                                              href="/board/list?pageNo=${maker.end + 1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">next</a>
                     </li>
                 </c:if>
 
                 <c:if test="${maker.page.pageNo != maker.finalPage}">
-                    <li class="page-item"><a class="page-link"
+                    <li class="page-item"><a style="background: #3c3c3c; border-radius: 10px; color: #eeeeee; text-decoration: none;border: none;" ="page-link"
                                              href="/board/list?pageNo=${maker.finalPage}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&gt;&gt;</a>
                     </li>
                 </c:if>
