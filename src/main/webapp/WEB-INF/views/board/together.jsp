@@ -329,9 +329,15 @@
             <span id="title"> 구인 페이지 </span>
             <div class="card_container">
                 <c:forEach var="b" items="${bList}">
-                    <div class="card"  data-bno="${b.boardId}">
-                        <div class="profile_view_box">
-                            <div style="background-image: url('${b.profileImagePath}');" class="profile_img">
+                    <a href="/board/delete">
+                        <div class="card">
+                            <div class="profile_view_box">
+                                <div style="background-image: url('${b.profileImagePath}');" class="profile_img">
+                                </div>
+                                <div class="profile_text_box">
+                                    <div class="nickname">${b.nickName}</div>
+                                    <div class="on_and_off_line">${b.onoff}</div>
+                                </div>
                             </div>
                             <div class="profile_instrument">
                                 <c:forEach var="e" items="${b.recruit_equipment}">
@@ -380,6 +386,7 @@
             </ul>
         </nav>
     </div>
+</div>
 </div>
 </body>
 <script>
