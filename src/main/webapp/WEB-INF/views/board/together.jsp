@@ -179,6 +179,7 @@
             /* border: 1px solid #000; */
             width: 100%;
             display: flex;
+            position: relative;
         }
         .main_body_container
         .select_profile
@@ -198,9 +199,9 @@
         .profile_view_box
         .profile_text_box
         .on_and_off_line {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute;
+            top: 140px;
+            right: 45px;
         }
         .main_body_container .select_profile .card_container .card .profile_instrument {
             display: flex;
