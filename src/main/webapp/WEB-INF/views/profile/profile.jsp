@@ -265,11 +265,11 @@
                 <div class="profile_email">이메일 : ${user.email} </div>
                 <div class="profile_team">소속 팀
                     <c:if test="${user.team_id!=0}">
-                        <span id="userTeamName"></span>
+                        <span name="${user.team_id}" id="userTeamName">${user.teamName}</span>
                         <button id="teamCreateFormBtn" style="display: none" class="creative_team_btn">팀 생성</button>
                     </c:if>
                     <c:if test="${user.team_id==0}">
-                        <span  id="userTeamName"></span>
+                        <span id="userTeamName"></span>
                         <button id="teamCreateFormBtn" class="creative_team_btn">팀 생성</button>
                     </c:if>
 
@@ -600,7 +600,7 @@
                 role : "master"
             })
         })
-            .then(dto=> dto.json())
+            .then(reponseDto=> reponseDto.json())
             .then(dtoList=>{
                 renderTeamInfo(dtoList)
             })
@@ -612,16 +612,22 @@
 
 
 
+    // 팀 이름 클릭하면 화면 넘어가게
+    $teamNameTag.onclick=e=>{
+        const teamId=e.target.attributes.name.value;
+        window.location.href='/team/detail?teamId='+teamId;
+    }
 
 
 
 
 
     //팀 이름 랜더링하는 함수
-    function renderTeamInfo({teamName, instrumentId, role}) {
+    function renderTeamInfo({teamName, instrumentId, role,teamId}) {
 
         $teamNameTag.innerText=teamName;
-        $teamNameTag.style.display='flex';
+        $teamNameTag.setAttribute('name',teamId);
+        $teamNameTag.style.display='inline';
         $teamCreateFormBtn.style.display='none';
 
     }

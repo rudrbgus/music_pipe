@@ -6,6 +6,8 @@ import com.meatjellyburgur.musicpipe.dto.request.TeamRegisterRequestJsonDTO;
 import com.meatjellyburgur.musicpipe.dto.request.UserInstrumentRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.TeamListResponseDTO;
+import com.meatjellyburgur.musicpipe.dto.response.TeamRegisterResponseDTO;
+import com.meatjellyburgur.musicpipe.entity.Team;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.repository.TeamMapper;
 import com.meatjellyburgur.musicpipe.service.TeamService;
@@ -123,16 +125,25 @@ public class TeamController {
         SignInUserResponseDTO login = (SignInUserResponseDTO) session.getAttribute("login");
         int userId = login.getUserId();
 
+        //팀 저장
         TeamRegisterRequestDTO teamRegisterRequestDTO = new TeamRegisterRequestDTO();
         teamRegisterRequestDTO.setTeamName(dto.getTeamName());
         teamRegisterRequestDTO.setUserId(userId);
         teamService.createTeam(teamRegisterRequestDTO,dto);
+        int teamId = teamService.findTeamLastRow();
+
+        TeamRegisterResponseDTO reponseDto = TeamRegisterResponseDTO.builder()
+                .teamName(dto.getTeamName())
+                .instrumentId(dto.getInstrumentId())
+                .role(dto.getRole())
+                .teamId(teamId)
+                .build();
 
 
         return ResponseEntity
                 .ok()
 //                .headers(headers)
-                .body(dto);
+                .body(reponseDto);
 
 
     }

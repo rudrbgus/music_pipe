@@ -100,4 +100,9 @@ public class TeamService {
         Team team = teamMapper.findOneTeamById(teamId);
         return team.getTeamName();
     }
+
+    public int findTeamLastRow() {
+        return teamMapper.findLastRowTeamInfo();
+
+    }
 }
