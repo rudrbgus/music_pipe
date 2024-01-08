@@ -46,6 +46,9 @@ public class UserService {
     private final PersonalAbilityMapper personalAbilityMapper;
     private final TeamMemberInfoMapper teamMemberInfoMapper;
     private final PasswordEncoder encoder;
+    public User findOneUserByUserId(int userId){
+         return userMapper.findUserByUserId(userId);
+    }
 
     // 이메일 주면 해당하는 유저 보내줌
     public User getUser(String email) {
