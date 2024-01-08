@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html lang="ko">
+<body lang="ko">
 
 <head>
     <%@ include file="../include/static-head.jsp" %>
