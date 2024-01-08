@@ -163,6 +163,7 @@
                 transform: rotateZ(360deg);
             }
         }
+        }
 
         /*모달 페이지 꾸미는 부분*/
         .modal {

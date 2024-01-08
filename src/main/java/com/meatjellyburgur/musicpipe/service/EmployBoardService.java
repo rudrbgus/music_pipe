@@ -37,11 +37,20 @@ public class EmployBoardService {
         for (EmployBoard board : employBoardMapper.findAll(page)) {
             BoardListResponseDTO boardListResponseDTO = new BoardListResponseDTO(board);
             int boardId = boardListResponseDTO.getBoardId();
+            //보드 아이디에서 user 찾아서 user닉네임 보내기
+            EmployBoard oneboard = employBoardMapper.findOne(boardId);
+            int userId = oneboard.getUserId();
+            User user = userMapper.findUserByUserId(userId);
+            String nickname = user.getNickname();
+            String profileImagePath = user.getProfileImagePath();
 
             //need_equipment 테이블에 해당 보드 아이디가 있으면 포장해서 보내기...!
             List<Integer> allEquipmentIdByBoardId = needEquipmentMapper.findAllEquipmentIdByBoardId(boardId);
 
             boardListResponseDTO.setRecruit_equipment(allEquipmentIdByBoardId);
+
+            boardListResponseDTO.setNickName(nickname);
+            boardListResponseDTO.setProfileImagePath(profileImagePath);
 
             log.info("Listdto{}",boardListResponseDTO.getRecruit_equipment());
 
