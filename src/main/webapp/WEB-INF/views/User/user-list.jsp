@@ -43,7 +43,7 @@
     <div class="emptyBox2"></div>
 </div>
 <%--    <a href="#" class="top-btn"><img src='/assets/img/pic01.jpg'></a>--%>
-<a href="#" class="page-top">TOP</a>
+<a href="#" class="page-top">TOP↑</a>
 <form action="/user/list/instrument" method="POST" style="display: none">
     <input class="inputvalues" name="keyword">
     <button type="submit" class="submit-button"></button>
