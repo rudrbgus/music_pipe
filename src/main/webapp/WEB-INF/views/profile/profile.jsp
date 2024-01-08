@@ -250,7 +250,7 @@
                     <img class="inputImage" src="/assets/img/profile.png" alt="프사">
                 </c:if>
                 <c:if test="${user.profileImagePath != null}">
-                    <img class="inputImage" src="/local${user.profileImagePath}" alt="가져온 프사">
+                    <img class="inputImageNone" src="/local${user.profileImagePath}" alt="가져온 프사">
                 </c:if>
             </div>
             <form action="/user/addProfileImage" method="post" enctype="multipart/form-data">
@@ -272,7 +272,7 @@
                         <span id="userTeamName">${user.teamName}</span>
                         <button id="teamCreateFormBtn" style="display: none" class="creative_team_btn">팀 생성</button>
                     </c:if>
-                    <c:if test="${user.team_id==0} || ${login.nickname==user.nickname}">
+                    <c:if test="${user.team_id==0 || login.nickname == user.nickname}">
                         <span  id="userTeamName"></span>
                         <button id="teamCreateFormBtn" class="creative_team_btn">팀 생성</button>
                     </c:if>
@@ -368,7 +368,7 @@
 </div>
 
 </body>
-<script defer>
+<script>
     const $teamNameTag=document.getElementById('userTeamName');
     console.log($teamNameTag)
 
@@ -428,7 +428,7 @@
         })
     }
     if ("${login.nickname}" === "${user.nickname}") {
-        console.log("나 실행함 이프")
+        console.log("주인이 들어 왔습니다");
         $box.onclick = e => {
             $input.click();
         };
@@ -511,7 +511,8 @@
                 }
             }
         }
-    }else{
+    }
+    else{
         getInstrument();
     }
 
@@ -552,6 +553,7 @@
     const $button = document.getElementById('introduceModifyBtn');
     const $inputIntroduce = document.querySelector(".profile-input");
     $button.onclick = e => {
+        console.log(e);
         if ($button.innerText === '수정하기') {
             console.log(e.target);
             $inputIntroduce.style.display = "flex";
@@ -613,30 +615,23 @@
 
     //팀 이름 랜더링하는 함수
     function renderTeamInfo({teamName, instrumentId, role}) {
-
         $teamNameTag.innerText=teamName;
         $teamNameTag.style.display='flex';
         $teamCreateFormBtn.style.display='none';
-
     }
 
     // 팀 멤버 요청 받는 함수
-    function getTeamRequest(){
-        fetch("/user/team-request", {
-            
-        }).then()
-
-    }
+    // function getTeamRequest(){
+    //     fetch("/user/team-request", {
+    //
+    //     }).then()
+    //
+    // }
 
     (() => {
         getInstrument();
-        getTeamRequest();
+        //getTeamRequest();
     })();
-
-
-
-
-
 </script>
 
 
