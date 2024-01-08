@@ -55,7 +55,7 @@
     let isDate=true;
     const $body = document.querySelector('.list_body');
     $(window).scroll(async function () {
-        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 10 && isDate) {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() -1 && isDate) {
             console.log(page.pageNo);
             try {
                 // 서버에서 데이터를 가져옴
@@ -74,7 +74,7 @@
             } catch (error) {
                 console.log('asdf');
                 isDate=false;
-                $endBox=`<div class="endBox"> tqlkf...</div>`
+                $endBox=`<div class="endBox"> 더 이상 유저 리스트가 없습니다.</div>`
                 $('.contentBox1').append($endBox);
             }
 

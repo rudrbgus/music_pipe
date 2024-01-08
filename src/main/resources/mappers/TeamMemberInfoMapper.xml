@@ -15,11 +15,19 @@
         where team_id=#{teamId}
     </select>
 
+    <select id="findOne" resultType="teammemberinfo">
+        select *
+        from team_member_info
+        where user_id = #{userId}
+    </select>
+
+
     <insert id="saveTeamMember">
         insert into team_member_info
         (team_id,role,equipment_id,user_id)
         values (#{teamId},#{role},#{equipmentId},#{userId})
     </insert>
+
 
 
 

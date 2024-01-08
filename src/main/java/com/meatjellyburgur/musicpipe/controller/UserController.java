@@ -8,8 +8,10 @@ import com.meatjellyburgur.musicpipe.common.Search;
 import com.meatjellyburgur.musicpipe.dto.request.*;
 import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
+import com.meatjellyburgur.musicpipe.dto.response.TeamResponseUserDTO;
 import com.meatjellyburgur.musicpipe.dto.response.UserProfileResponseDTO;
 import com.meatjellyburgur.musicpipe.entity.PersonalAbility;
+import com.meatjellyburgur.musicpipe.entity.TeamMemberInfo;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.service.*;
 import com.meatjellyburgur.musicpipe.util.SignInUtils;
@@ -301,6 +303,12 @@ public class UserController {
 
 
     // 유저의 팀이 있으면 그 팀을 가져와서 역할을 확인해서 리더면 요청이 온 것을 보내줌
+    @PostMapping("/getTeamRequest")
+    public ResponseEntity<?> getTeamRequest(@RequestBody UserTeamRequestDTO dto, HttpSession session){
+        int teamId = dto.getTeamId();
+        List<TeamResponseUserDTO> teamInfo = userService.getTeamInfo(teamId, session);
+        return ResponseEntity.ok().body(teamInfo);
+    }
     
 
 }

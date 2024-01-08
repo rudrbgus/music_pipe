@@ -27,7 +27,7 @@
         }
         .request-team{
             width: 60%;
-            height: 30vh;
+            height: fit-content;
             border: 1.5px deepskyblue solid;
             border-radius: 20px;
             margin: 110px auto 0;
@@ -37,6 +37,30 @@
         .request-team .text123{
             text-align: center;
             font-size: 2.5rem;
+        }
+        .request-team .request-form{
+            display: flex;
+            flex-direction: column;
+        }
+        .request-team .request-form .request-form-detail{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .request-team .request-form .request-form-detail .name{
+            font-size: 2rem;
+        }
+        .request-team .request-form .request-form-detail .profile-image{
+            width: 150px;
+            height: 150px;
+            border: 1px black solid;
+            border-radius: 70%;
+            overflow: hidden;
+        }
+        .request-team .request-form .request-form-detail .profile-image img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* 프로필 컨테이너*/
@@ -236,6 +260,7 @@
         }
 
 
+
     </style>
 
 </head>
@@ -321,9 +346,12 @@
 <div class="request-team">
     <div class="text123">요청 리스트!!!!!!!!!!!!!!!!!!!!!</div>
     <div class="request-form">
-        <div class="name">1</div>
-        <div class="profile-image"><img src="" alt="">1</div>
-        <div class="instrument"><img src="" alt="">1</div>
+        <div class="request-form-detail">
+            <div class="name">1</div>
+            <div class="profile-image"><img src="" alt="">1</div>
+            <div class="instrument"><img src="" alt="">1</div>
+            <div class="introduce-text">인삿말</div>
+        </div>
     </div>
 </div>
 
@@ -620,17 +648,36 @@
         $teamCreateFormBtn.style.display='none';
     }
 
-    // 팀 멤버 요청 받는 함수
-    // function getTeamRequest(){
-    //     fetch("/user/team-request", {
-    //
-    //     }).then()
-    //
-    // }
+    //팀 멤버 요청 받는 함수
+    function getTeamRequest(){
+        fetch("/user/getTeamRequest",{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                teamId: "${user.team_id}"
+            })
+        }).then(res=>{
+            console.log(res);
+            return res.json();
+        }).then(result=>{
+            console.log(result);
+            result.forEach(res => {
+                const $requestForm = document.querySelector('.request-form');
+                $requestForm.innerHTML += `<div class="request-form-detail">
+            <div class="name">\${res.nickname}</div>
+            <div class="profile-image"><img src="/local\${res.userProfileImagePath}" alt=""></div>
+            <div class="instrument ${res.equipmentId}"><img src="" alt="">1</div>
+            <div class="introduce-text">\${res.userIntroduce}</div>
+        </div>`
+            })
+            })
+
+
+    }
 
     (() => {
         getInstrument();
-        //getTeamRequest();
+        getTeamRequest();
     })();
 </script>
 
