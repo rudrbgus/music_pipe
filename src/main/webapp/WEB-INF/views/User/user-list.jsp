@@ -95,7 +95,7 @@
         <div class="content">
             <div class="slider\${index} slider"></div>
             <a href="/user/profile?email=\${email}" class="content-card\${index} content-card">
-                <img src="https://source.unsplash.com/random/300x420">
+                <img src="/local\${userProfileImagePath}">
                 <div class="content-text">
                     <div class="tag tag\${a}">
                     </div>

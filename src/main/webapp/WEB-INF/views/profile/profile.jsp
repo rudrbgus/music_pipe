@@ -34,6 +34,10 @@
             background: aliceblue;
             filter: drop-shadow(1px 1px 10px rgba(69, 137, 211, 0.96));
         }
+        .request-team .text123{
+            text-align: center;
+            font-size: 2.5rem;
+        }
 
         /* 프로필 컨테이너*/
         .profile_main_container .profile_container {
@@ -315,7 +319,7 @@
 <%-- 팀 요청 리스트 --%>
 <%-- 자신이 크루의 리더면 요청한 사람들의 요청이 뜸 --%>
 <div class="request-team">
-    <div>요청 리스트!!!!!!!!!!!!!!!!!!!!!</div>
+    <div class="text123">요청 리스트!!!!!!!!!!!!!!!!!!!!!</div>
     <div class="request-form">
         <div class="name">1</div>
         <div class="profile-image"><img src="" alt="">1</div>
@@ -611,12 +615,6 @@
     }
 
 
-
-
-
-
-
-
     //팀 이름 랜더링하는 함수
     function renderTeamInfo({teamName, instrumentId, role}) {
 
@@ -626,7 +624,13 @@
 
     }
 
+    // 팀 멤버 요청 받는 함수
+    function getTeamRequest(){
+        fetch("/user/team-request", {
 
+        }).then()
+
+    }
 
     (() => {
         getInstrument();

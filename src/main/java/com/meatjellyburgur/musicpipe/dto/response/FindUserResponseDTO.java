@@ -21,4 +21,5 @@ public class FindUserResponseDTO {
     private String userProfileImagePath;
     private String introduceText;
     private List<Integer> equipmentList;
+    private String teamName;
 }

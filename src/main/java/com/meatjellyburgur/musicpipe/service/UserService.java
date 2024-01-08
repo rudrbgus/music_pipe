@@ -8,8 +8,10 @@ import com.meatjellyburgur.musicpipe.dto.request.SignUpRequestDTO;
 import com.meatjellyburgur.musicpipe.dto.response.FindUserResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
 import com.meatjellyburgur.musicpipe.entity.PersonalAbility;
+import com.meatjellyburgur.musicpipe.entity.Team;
 import com.meatjellyburgur.musicpipe.entity.User;
 import com.meatjellyburgur.musicpipe.repository.PersonalAbilityMapper;
+import com.meatjellyburgur.musicpipe.repository.TeamMapper;
 import com.meatjellyburgur.musicpipe.repository.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +37,7 @@ import static com.meatjellyburgur.musicpipe.util.SignInUtils.*;
 @RequiredArgsConstructor
 public class UserService {
     private final UserMapper userMapper;
+    private final TeamMapper teamMapper;
     private final PersonalAbilityMapper personalAbilityMapper;
     private final PasswordEncoder encoder;
 
@@ -114,10 +117,14 @@ public class UserService {
     public HashMap<Object, Object> findAllUserByInstrumentId(int equipmentId, Page page) {
         List<Integer> userIdByEquipmentId = personalAbilityMapper.findUserIdByEquipmentId(equipmentId);
         log.info(""+userIdByEquipmentId);
+
         List<FindUserResponseDTO> users = new ArrayList<>();
         PageMaker pageMaker = new PageMaker(page, userIdByEquipmentId.size());
         for(int i:userIdByEquipmentId){
             User userByUserId = userMapper.findUserByUserId(i);
+            // 팀찾고
+            Team oneTeamById = teamMapper.findOneTeamById(userByUserId.getTeamId());
+
             log.info("user: {}", userByUserId);
             List<Integer> equipmentList = new ArrayList<>();
             List<PersonalAbility> personalAbilityList = personalAbilityMapper.findPersonalAbilityList(userByUserId.getUserId());
@@ -136,6 +143,7 @@ public class UserService {
                         .userProfileImagePath(userByUserId.getProfileImagePath())
                         .introduceText(userByUserId.getIntroduceText())
                         .equipmentList(equipmentList)
+                        .teamName(oneTeamById.getTeamName())
                         .build();
                 users.add(build);
             }
