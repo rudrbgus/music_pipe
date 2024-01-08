@@ -33,6 +33,11 @@
         /* 메인가서 사라질 곳 */
         body {
             position: relative;
+            margin-top: 120px;
+            background-image: url("../img/bg_4.png");
+            background-repeat: repeat, no-repeat;
+            background-size: auto, 100% 100%;
+            background-attachment: fixed;
         }
         /* 바디 */
         .detail_container {
@@ -124,6 +129,7 @@
         .detail_container .team_main_container .team_main_box span{
             width: 10%;
             font-size: 1.3rem;
+            color: #222222;
         }
         .detail_container .team_main_container .team_main_box .text{
             width: 90%;
@@ -133,6 +139,7 @@
             padding: 10px;
             border: 1px solid #bbb;
             border-radius: 15px;
+            background: rgb(255, 255, 255,0.7);
         }
         .detail_container .team_main_container .team_footer_box{
             width: 90%;
@@ -154,6 +161,7 @@
             border-radius: 10px;
             background-size: contain;
             cursor: pointer;
+            background: rgb(255, 255, 255,0.7);
         }
         .instrument-radio {
             display: none;
@@ -180,6 +188,7 @@
             justify-content: center;
             align-items: center;
             margin-bottom: 5%;
+            font-weight: 700;
         }
         .detail_container .team_main_container .team_member .member_box .member_list{
             width: 95%;
@@ -189,6 +198,7 @@
             list-style:none;
             overflow: scroll;
             overflow: auto;
+            background: rgb(255, 255, 255,0.7);
         }
         .detail_container .team_main_container .team_member .member_box .member_list li .member_profile_box{
             margin-top: 30px;
@@ -242,7 +252,7 @@
             font-family: 'KOTRAHOPE';
             margin-left: 7%;
             margin-bottom: 18%;
-            background: #fff;
+            background: rgb(255, 255, 255,0.7);
             border-radius: 5px;
         }
 
