@@ -609,9 +609,6 @@
                 renderTeamInfo(dtoList)
             })
         $teamCreateFormModal.style.display='none';
-
-
-
     }
 
 
@@ -627,7 +624,7 @@
     // 팀 멤버 요청 받는 함수
     function getTeamRequest(){
         fetch("/user/team-request", {
-
+            
         }).then()
 
     }
