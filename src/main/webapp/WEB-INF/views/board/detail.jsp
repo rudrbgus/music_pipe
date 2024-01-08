@@ -201,6 +201,11 @@
             list-style:none;
             overflow: scroll;
             overflow: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .container .team_main_container .team_member .member_box .member_list::-webkit-scrollbar{
+            display:none;
         }
         .container .team_main_container .team_member .member_box .member_list li .member_profile_box{
             margin-top: 30px;
