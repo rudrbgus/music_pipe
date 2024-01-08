@@ -25,6 +25,11 @@ public class BoardListResponseDTO {
     private String content;//내용
     private int viewCount; // 조회수
     private String regDateTime; // 작성일자시간
+    @Setter
+    private String nickName;//유저 닉네임
+    @Setter
+    private String profileImagePath;
+
     //모집악기..모음집...
     @Setter
     private List<Integer> recruit_equipment;

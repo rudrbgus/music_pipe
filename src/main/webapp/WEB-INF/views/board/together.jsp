@@ -234,14 +234,14 @@
 <div class="container">
     <div class="new_porfile">
         <span>신규 글</span>
-        <c:forEach var="teamData" items="${teamDataList}">
+        <c:forEach var="b" items="${bList}">
             <div class="new_card">
-                <div style="background-image: url('${teamData.teamProfileimage}');" class="profile_img"></div>
+                <div style="background-image: url('${b.profileImagePath}');" class="profile_img"></div>
                 <div class="text">
-                    <div class="nickname">${teamData.teamName}</div>
+                    <div class="nickname">${b.nickName}</div>
                     <div class="instrument">
-                        <c:forEach var="e" items="${recruit_equipment}">
-                            <img src="${InstrumentImageUtil.instrumentImage(e)}">
+                        <c:forEach var="e" items="${b.recruit_equipment}">
+                            <img src="/assets/img/${InstrumentImageUtil.instrumentImage(e)}.png">
                         </c:forEach>
                     </div>
                 </div>
@@ -254,19 +254,19 @@
             <!-- 검색 프로필 -->
 
             <div class="card_container">
-                <c:forEach var="teamData" items="${teamDataList}">
+                <c:forEach var="b" items="${bList}">
                     <div class="card">
                         <div class="profile_view_box">
-                            <div style="background-image: url('${teamData.teamProfileimage}');" class="profile_img">
+                            <div style="background-image: url('${b.profileImagePath}');" class="profile_img">
                             </div>
                             <div class="profile_text_box">
-                                <div class="nickname">${teamData.teamName}</div>
-                                <div class="on_and_off_line">${teamData.online ? '온라인' : '오프라인'}</div>
+                                <div class="nickname">${b.nickName}</div>
+                                <div class="on_and_off_line">${b.onoff}</div>
                             </div>
                         </div>
                         <div class="profile_instrument">
-                            <c:forEach var="e" items="${recruit_equipment}">
-                                <div class="img" style="background-image: url('${InstrumentImageUtil.instrumentImage(e)}');"></div>
+                            <c:forEach var="e" items="${b.recruit_equipment}">
+                                <div class="img" style="background-image: url('/assets/img/${InstrumentImageUtil.instrumentImage(e)}.png');"></div>
                             </c:forEach>
                         </div>
                     </div>
@@ -316,11 +316,11 @@
         });
     });
 
-    $(document).ready(function() {
-        $(".card").click(function() {
-            window.location.href = "/detail";
-        });
-    });
+    // $(document).ready(function() {
+    //     $(".card").click(function() {
+    //         window.location.href = "/detail";
+    //     });
+    // });
 </script>
 
 </html>
