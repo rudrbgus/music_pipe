@@ -118,11 +118,12 @@
         }
 
         .container .select_profile .card_container {
+            width: 100%;
             display: flex;
             margin-top: 5%;
             margin-left: 7%;
             height: 300px;
-            position: relative;
+            flex-wrap: wrap;
         }
 
         /* 검색 프로필 카드 */
@@ -266,7 +267,7 @@
                         </div>
                         <div class="profile_instrument">
                             <c:forEach var="e" items="${b.recruit_equipment}">
-                                <div class="img" style="background-image: url('/assets/img/${InstrumentImageUtil.instrumentImage(e)}.png');"></div>
+                                <img src="/assets/img/${InstrumentImageUtil.instrumentImage(e)}.png">
                             </c:forEach>
                         </div>
                     </div>
@@ -276,23 +277,41 @@
 
             <nav class="page_navigation">
                 <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link"href="#"><<</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link"href="#"><</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">></a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">>></a>
-                    </li>
+                    <c:if test="${maker.page.pageNo != 1}">
+                        <li class="page-item"><a class="page-link"
+                                                 href="/board/list?pageNo=1&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&lt;&lt;</a>
+                        </li>
+                    </c:if>
+
+                    <c:if test="${maker.prev}">
+                        <li class="page-item"><a class="page-link"
+                                                 href="/board/list?pageNo=${maker.begin - 1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">prev</a>
+                        </li>
+                    </c:if>
+
+                    <c:forEach var="i" begin="${maker.begin}" end="${maker.end}" step="1">
+                        <li data-page-num="${i}" class="page-item">
+                            <a class="page-link"
+                               href="/board/list?pageNo=${i}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">${i}</a>
+                        </li>
+                    </c:forEach>
+
+
+                    <c:if test="${maker.next}">
+                        <li class="page-item"><a class="page-link"
+                                                 href="/board/list?pageNo=${maker.end + 1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">next</a>
+                        </li>
+                    </c:if>
+
+                    <c:if test="${maker.page.pageNo != maker.finalPage}">
+                        <li class="page-item"><a class="page-link"
+                                                 href="/board/list?pageNo=${maker.finalPage}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&gt;&gt;</a>
+                        </li>
+                    </c:if>
+
                 </ul>
             </nav>
+
         </div>
     </div>
 </div>
@@ -302,25 +321,22 @@
         var instrumentContainer = document.querySelector('.new_porfile .new_card .text .instrument');
 
         instrumentContainer.addEventListener('wheel', function (event) {
-            // 가로 스크롤을 마우스 휠로 처리
             instrumentContainer.scrollLeft += event.deltaY;
-
-            // 가로 스크롤의 끝에서 더 이상 스크롤되지 않도록 설정 (옵션)
             if (instrumentContainer.scrollLeft <= 0) {
                 instrumentContainer.scrollLeft = 0;
             } else if (instrumentContainer.scrollLeft >= (instrumentContainer.scrollWidth - instrumentContainer.clientWidth)) {
                 instrumentContainer.scrollLeft = instrumentContainer.scrollWidth - instrumentContainer.clientWidth;
             }
 
-            event.preventDefault(); // 기본 스크롤 이벤트 방지
         });
     });
 
-    // $(document).ready(function() {
-    //     $(".card").click(function() {
-    //         window.location.href = "/detail";
-    //     });
-    // });
+    $(document).ready(function() {
+        $(".card").click(function() {
+            Event.preventDefault();
+            window.location.href = "/detail";
+        });
+    });
 </script>
 
 </html>

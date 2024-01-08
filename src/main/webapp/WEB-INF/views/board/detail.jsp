@@ -340,6 +340,23 @@
 </div>
 <script>
 
+    $(document).ready(function() {
+        $("button").click(function() {
+            var selectedInstrument = $("input[name='instrument']:checked").val();
+
+            $.ajax({
+                type: "POST",
+                url: "/board/delete",
+                data: { instrument: selectedInstrument },
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
 </script>
 </body>
 </html>
