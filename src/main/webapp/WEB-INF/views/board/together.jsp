@@ -133,21 +133,6 @@
             height: 280px;
             box-shadow: 2px 2px 5px #888888;
             background: #fff;
-            z-index: 1;
-        }
-        .container .select_profile .card_container .card:hover{
-            z-index: -10;
-        }
-
-        .container .select_profile .card_container .card_modal{
-            width: 100%;
-            height: 94%;
-            border-radius: 40px;
-            position: absolute;
-            background: rgb(0, 0, 0,0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
         .container .select_profile .card_container p{
             font-size: 2rem;
