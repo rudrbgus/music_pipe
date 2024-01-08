@@ -1,6 +1,5 @@
 package com.meatjellyburgur.musicpipe.service;
 
-import com.meatjellyburgur.musicpipe.dto.response.BoardListResponseDTO;
 import com.meatjellyburgur.musicpipe.dto.response.TeamMemberInfoResponseDTO;
 import com.meatjellyburgur.musicpipe.entity.TeamMemberInfo;
 import com.meatjellyburgur.musicpipe.entity.User;
@@ -43,5 +42,11 @@ public class TeamMemberInfoService {
         });
 
        return  collect;
+    }
+
+    public boolean modify(String agreeName, int userId) {
+        log.info(""+userId);
+        boolean flag = teamMemberInfoMapper.modify(userId);
+        return flag;
     }
 }

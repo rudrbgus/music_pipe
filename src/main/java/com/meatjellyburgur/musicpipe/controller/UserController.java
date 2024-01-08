@@ -45,6 +45,7 @@ public class UserController {
     private final InstrumentService instrumentService;
     private final TeamService teamService;
     private final PersonalAbilityService personalAbilityService;
+    private final TeamMemberInfoService teamMemberInfoService;
 
 
     @Value("${file.upload.root-path}")
@@ -309,6 +310,15 @@ public class UserController {
         List<TeamResponseUserDTO> teamInfo = userService.getTeamInfo(teamId, session);
         return ResponseEntity.ok().body(teamInfo);
     }
-    
+
+    // 유저 동의 버튼
+    @PostMapping("/agree")
+    public ResponseEntity<?> agree(@RequestBody AgreeRequestDTO dto){
+        log.info("가져온 이름: "+ dto.getAgreeName());
+        log.info("가져온 아아디: "+ dto.getUserId());
+        boolean modify = teamMemberInfoService.modify(dto.getAgreeName(), dto.getUserId());
+        log.info(""+modify);
+        return null;
+    }
 
 }

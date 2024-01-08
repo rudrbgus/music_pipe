@@ -28,6 +28,12 @@
         values (#{teamId},#{role},#{equipmentId},#{userId})
     </insert>
 
+    <update id="modify">
+        UPDATE team_member_info
+        SET license = 1
+        WHERE user_id = #{userId}
+    </update>
+
 
 
 

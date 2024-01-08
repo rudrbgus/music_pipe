@@ -14,4 +14,5 @@ public class TeamResponseUserDTO {
     private int equipmentId;
     private String userProfileImagePath;
     private String userIntroduce;
+    private int userId;
 }

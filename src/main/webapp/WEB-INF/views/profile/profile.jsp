@@ -44,6 +44,9 @@
         .request-team .request-form {
             display: flex;
             flex-direction: column;
+            width: 90%;
+            margin: 40px auto;
+            border: 1px cornflowerblue solid;
         }
 
         .request-team .request-form .request-form-detail {
@@ -54,20 +57,53 @@
 
         .request-team .request-form .request-form-detail .name {
             font-size: 2rem;
+            text-align: center;
+            flex: 1;
         }
 
         .request-team .request-form .request-form-detail .profile-image {
-            width: 150px;
-            height: 150px;
+
+            height: 100px;
             border: 1px black solid;
             border-radius: 70%;
             overflow: hidden;
+            flex: 1;
         }
 
         .request-team .request-form .request-form-detail .profile-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .request-team .request-form .request-form-detail .instrument {
+            flex: 1;
+            height: 100px;
+        }
+
+        .request-team .request-form .request-form-detail .instrument img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .request-team .request-form .request-form-detail .introduce-text {
+            font-size: 1.5rem;
+            flex: 3;
+        }
+
+        .request-team .request-form .request-form-detail .agree {
+            background: green;
+            font-size: 2rem;
+            color: black;
+            flex: 1;
+        }
+
+        .request-team .request-form .request-form-detail .deny {
+            font-size: 2rem;
+            background: red;
+            color: black;
+            flex: 1;
         }
 
         /* 프로필 컨테이너*/
@@ -301,7 +337,7 @@
                 <div class="profile_team">소속 팀 :
                     <c:if test="${user.team_id!=0}">
                         <span id="userTeamName">${user.teamName}</span>
-                        <button  id="teamCreateFormBtn" style="display:none" class="creative_team_btn">팀 생성</button>
+                        <button id="teamCreateFormBtn" style="display:none" class="creative_team_btn">팀 생성</button>
                     </c:if>
                     <c:if test="${user.team_id==0 && login.nickname == user.nickname}">
                         <span id="userTeamName"></span>
@@ -353,10 +389,12 @@
         <div class="text123">요청 리스트!!!!!!!!!!!!!!!!!!!!!</div>
         <div class="request-form">
             <div class="request-form-detail">
-                <div class="name">이름</div>
-                <div class="profile-image"><img src="" alt="">1</div>
-                <div class="instrument"><img src="" alt="">악기</div>
-                <div class="introduce-text">인삿말</div>
+<%--                <div class="name">이름</div>--%>
+<%--                <div class="profile-image"><img src="" alt="">1</div>--%>
+<%--                <div class="instrument"><img src="" alt="악기이미지"></div>--%>
+<%--                <div class="introduce-text">인삿말</div>--%>
+<%--                <button type="submit" class="agree">수락</button>--%>
+<%--                <button type="submit" class="deny">거절</button>--%>
             </div>
         </div>
     </div>
@@ -673,7 +711,6 @@
                 teamId: "${user.team_id}"
             })
         }).then(res => {
-            console.log(res);
             return res.json();
         }).then(result => {
             console.log(result);
@@ -681,15 +718,38 @@
                 result.forEach(res => {
                     const $requestForm = document.querySelector('.request-form');
                     $requestForm.innerHTML += `<div class="request-form-detail">
-            <div class="name">\${res.nickname}</div>
+            <div class="name" value=\${res.userId}>\${res.nickname}</div>
             <div class="profile-image"><img src="/local\${res.userProfileImagePath}" alt=""></div>
-            <div class="instrument ${res.equipmentId}"><img src="" alt="">1</div>
+            <div class="instrument ${res.equipmentId}"><img src="/assets/img/drum.png" alt="">1</div>
             <div class="introduce-text">\${res.userIntroduce}</div>
-        </div>`
+            <button type="submit" class="agree">수락</button>
+            <button type="submit" class="deny">거절</button>
+        </div>`;
+                    const $agreeButton = document.querySelector(".agree");
+                    const $denyButton = document.querySelector(".deny");
+                    $agreeButton.onclick = e =>{
+                        e.preventDefault();
+                        const $name = e.target.parentNode.querySelector(".name");
+                        const text = $name.innerText;
+                        const id = $name.getAttribute("value");
+                        console.log(text);
+                        console.log(id);
+                        fetch("/user/agree", {
+                            method: "POST",
+                            headers: {"Content-Type": "application/json"},
+                            body: JSON.stringify({
+                                agreeName: text,
+                                userId: id
+                            })
+                        }).then(res => {
+                            console.log(res);
+                        })
+                    }
                 })
             }
         })
     }
+
 
     (() => {
         getInstrument();
