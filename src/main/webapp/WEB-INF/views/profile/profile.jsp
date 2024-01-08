@@ -163,7 +163,7 @@
                 transform: rotateZ(360deg);
             }
         }
-        }
+
 
         /*모달 페이지 꾸미는 부분*/
         .modal {
@@ -242,10 +242,10 @@
         <div class="profile_image_box">
             <!-- 프로필 사진 -->
             <div class="upload-box">
-                <c:if test="${login == null || user.profileImagePath == null}">
-                    <img src="/assets/img/profile.png" alt="프사">
+                <c:if test="${user.profileImagePath == null}">
+                    <img class="inputImage" src="/assets/img/profile.png" alt="프사">
                 </c:if>
-                <c:if test="${login != null && user.profileImagePath != null}">
+                <c:if test="${user.profileImagePath != null}">
                     <img class="inputImage" src="/local${user.profileImagePath}" alt="가져온 프사">
                 </c:if>
             </div>
