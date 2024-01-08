@@ -256,7 +256,7 @@
 
             <div class="card_container">
                 <c:forEach var="b" items="${bList}">
-                    <div class="card">
+                    <div class="card"  data-bno="${b.boardId}">
                         <div class="profile_view_box">
                             <div style="background-image: url('${b.profileImagePath}');" class="profile_img">
                             </div>
