@@ -290,6 +290,7 @@
             top: 20px;
             left: 35%;
             font-weight: 700;
+            color: #fff2e0;
         }
 
 
