@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.Cookie;
@@ -264,7 +265,9 @@ public class UserService {
     }
 
     public void modifyUserIntroduceText(String introduceText, HttpSession session) {
+        System.out.println("자기소개 텍스트: " + introduceText);
         SignInUserResponseDTO dto = (SignInUserResponseDTO) session.getAttribute(LOGIN_KEY);
+        System.out.println(dto.getUserId());
         boolean b = userMapper.updateIntroduceText(introduceText, dto.getUserId());
         if(b)log.info("유저 자기소개 수정 성공!!!");
 

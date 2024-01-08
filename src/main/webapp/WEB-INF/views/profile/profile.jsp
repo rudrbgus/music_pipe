@@ -376,8 +376,7 @@
     const $box = document.querySelector('.upload-box');
     const $input = document.getElementById('img-input');
     const $instrumentImageBox = document.querySelector('.profile_instrument_list');
-
-    //비동기로 유저 악기 가져오기
+    console.log($box.querySelector('.inputImage'));//비동기로 유저 악기 가져오기
     function getInstrument() {
         fetch("/user/getInstrument", {
             method: "POST",
@@ -531,7 +530,7 @@
 
         // 첨부파일이 등록되는 순간 img태그에 이미지를 세팅
         reader.onloadend = e => {
-            const $img = $box.querySelector('.inputImage');
+            const $img = $box.querySelector('.inputImageNone');
             $img.setAttribute('src', reader.result);
             const $submitButton = document.querySelector('.submit-button');
             $submitButton.style.display = "flex";
