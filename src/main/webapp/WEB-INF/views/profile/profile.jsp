@@ -247,7 +247,7 @@
             <!-- 프로필 사진 -->
             <div class="upload-box">
                 <c:if test="${user.profileImagePath == null}">
-                    <img class="inputImage" src="/assets/img/profile.png" alt="프사">
+                    <img class="inputImageNone" src="/assets/img/profile.png" alt="프사">
                 </c:if>
                 <c:if test="${user.profileImagePath != null}">
                     <img class="inputImageNone" src="/local${user.profileImagePath}" alt="가져온 프사">
