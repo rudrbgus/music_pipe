@@ -17,6 +17,12 @@
             src: url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')
             format('opentype');
         }
+        @font-face {
+            font-family: 'Hahmlet-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/Hahmlet-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
         a {
             color: inherit;
             text-decoration: none;
@@ -269,11 +275,12 @@
         }
 
         #title{
-            font-size: 3rem;
-            font-family: 'DNFBitBitv2';
+            font-size: 3.5rem;
+            font-family: 'Hahmlet-Regular';
             position: absolute;
             top: 20px;
             left: 35%;
+            font-weight: 700;
         }
 
 
