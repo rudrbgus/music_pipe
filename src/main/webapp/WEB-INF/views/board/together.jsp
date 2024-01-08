@@ -191,6 +191,17 @@
             font-size: 2rem;
             font-family: 'DNFBitBitv2';
         }
+        .main_body_container
+        .select_profile
+        .card_container
+        .card
+        .profile_view_box
+        .profile_text_box
+        .on_and_off_line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         .main_body_container .select_profile .card_container .card .profile_instrument {
             display: flex;
             justify-content: space-around;
@@ -241,11 +252,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-left: 1100px;
         }
         #writeButton div{
             width: 120px;
             height: 60px;
-            margin-left: 1100px;
             border: 1px solid #333333;
             border-radius: 10px;
             display: flex;
