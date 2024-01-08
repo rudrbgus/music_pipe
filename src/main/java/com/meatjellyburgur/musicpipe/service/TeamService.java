@@ -91,9 +91,6 @@ public class TeamService {
         log.info("teamMemberinfo{}", teamMemberInfo);
         teamMemberInfoMapper.saveTeamMember(teamMemberInfo);
 
-
-
-
     }
 
     public String findTeamName(int teamId){

@@ -46,8 +46,9 @@ public class UserService {
     private final PersonalAbilityMapper personalAbilityMapper;
     private final TeamMemberInfoMapper teamMemberInfoMapper;
     private final PasswordEncoder encoder;
-    public User findOneUserByUserId(int userId){
-         return userMapper.findUserByUserId(userId);
+
+    public User findOneUserByUserId(int userId) {
+        return userMapper.findUserByUserId(userId);
     }
 
     // 이메일 주면 해당하는 유저 보내줌
@@ -286,21 +287,25 @@ public class UserService {
         TeamMemberInfo one = teamMemberInfoMapper.findOne(attribute.getUserId());
         List<TeamResponseUserDTO> noLicenseUserList = new ArrayList<>();
         // 팀의 리더면
-        if (one.getRole().equals("master")) {
-            // 해당 하는 팀의 팀 멤버
-            List<TeamMemberInfo> allTeamMember = teamMemberInfoMapper.findAllTeamMember(teamId);
-            allTeamMember.forEach(teamMemberInfo -> {
-                if (teamMemberInfo.getLicense() == 0) {
-                    User user = userMapper.findUserByUserId(teamMemberInfo.getUserId());
-                    TeamResponseUserDTO dto = TeamResponseUserDTO.builder()
-                            .userProfileImagePath(user.getProfileImagePath())
-                            .userIntroduce(user.getIntroduceText())
-                            .nickname(user.getNickname())
-                            .equipmentId(teamMemberInfo.getEquipmentId())
-                            .build();
-                    noLicenseUserList.add(dto);
-                }
-            });
+        if (one != null) {
+            if (one.getRole().equals("master")) {
+                // 해당 하는 팀의 팀 멤버
+                List<TeamMemberInfo> allTeamMember = teamMemberInfoMapper.findAllTeamMember(teamId);
+                allTeamMember.forEach(teamMemberInfo -> {
+                    if (teamMemberInfo.getLicense() == 0) {
+                        User user = userMapper.findUserByUserId(teamMemberInfo.getUserId());
+                        TeamResponseUserDTO dto = TeamResponseUserDTO.builder()
+                                .userProfileImagePath(user.getProfileImagePath())
+                                .userIntroduce(user.getIntroduceText())
+                                .nickname(user.getNickname())
+                                .equipmentId(teamMemberInfo.getEquipmentId())
+                                .build();
+                        noLicenseUserList.add(dto);
+                    }
+                });
+            } else {
+                return null;
+            }
         }
         return noLicenseUserList;
 

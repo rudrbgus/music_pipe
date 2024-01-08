@@ -25,7 +25,8 @@
             background: aliceblue;
             filter: drop-shadow(1px 1px 10px rgba(69, 137, 211, 0.96));
         }
-        .request-team{
+
+        .request-team {
             width: 60%;
             height: fit-content;
             border: 1.5px deepskyblue solid;
@@ -34,30 +35,36 @@
             background: aliceblue;
             filter: drop-shadow(1px 1px 10px rgba(69, 137, 211, 0.96));
         }
-        .request-team .text123{
+
+        .request-team .text123 {
             text-align: center;
             font-size: 2.5rem;
         }
-        .request-team .request-form{
+
+        .request-team .request-form {
             display: flex;
             flex-direction: column;
         }
-        .request-team .request-form .request-form-detail{
+
+        .request-team .request-form .request-form-detail {
             display: flex;
             flex-direction: row;
             align-items: center;
         }
-        .request-team .request-form .request-form-detail .name{
+
+        .request-team .request-form .request-form-detail .name {
             font-size: 2rem;
         }
-        .request-team .request-form .request-form-detail .profile-image{
+
+        .request-team .request-form .request-form-detail .profile-image {
             width: 150px;
             height: 150px;
             border: 1px black solid;
             border-radius: 70%;
             overflow: hidden;
         }
-        .request-team .request-form .request-form-detail .profile-image img{
+
+        .request-team .request-form .request-form-detail .profile-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -260,7 +267,6 @@
         }
 
 
-
     </style>
 
 </head>
@@ -298,7 +304,7 @@
                         <button id="teamCreateFormBtn" style="display: none" class="creative_team_btn">팀 생성</button>
                     </c:if>
                     <c:if test="${user.team_id==0 || login.nickname == user.nickname}">
-                        <span  id="userTeamName"></span>
+                        <span id="userTeamName"></span>
                         <button id="teamCreateFormBtn" class="creative_team_btn">팀 생성</button>
                     </c:if>
 
@@ -397,7 +403,7 @@
 
 </body>
 <script>
-    const $teamNameTag=document.getElementById('userTeamName');
+    const $teamNameTag = document.getElementById('userTeamName');
     console.log($teamNameTag)
 
 
@@ -430,7 +436,8 @@
             })
         })
     }
-    function getTeamRequest(){
+
+    function getTeamRequest() {
         fetch("/user/getInstrument", {
             method: "POST",
             headers: {
@@ -455,6 +462,7 @@
             })
         })
     }
+
     if ("${login.nickname}" === "${user.nickname}") {
         console.log("주인이 들어 왔습니다");
         $box.onclick = e => {
@@ -539,8 +547,7 @@
                 }
             }
         }
-    }
-    else{
+    } else {
         getInstrument();
     }
 
@@ -628,65 +635,59 @@
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                teamName:  $teamName.value,
+                teamName: $teamName.value,
                 instrumentId: $clickedInstrument.querySelector("img").name,
-                role : "master"
+                role: "master"
             })
         })
-            .then(reponseDto=> reponseDto.json())
-            .then(dtoList=>{
+            .then(reponseDto => reponseDto.json())
+            .then(dtoList => {
                 renderTeamInfo(dtoList)
             })
-        $teamCreateFormModal.style.display='none';
+        $teamCreateFormModal.style.display = 'none';
     }
-
 
 
     // 팀 이름 클릭하면 화면 넘어가게
-    $teamNameTag.onclick=e=>{
-        const teamId=e.target.attributes.name.value;
-        window.location.href='/team/detail?teamId='+teamId;
+    $teamNameTag.onclick = e => {
+        const teamId = e.target.attributes.name.value;
+        window.location.href = '/team/detail?teamId=' + teamId;
     }
-
-
-
 
 
     //팀 이름 랜더링하는 함수
-    function renderTeamInfo({teamName, instrumentId, role,teamId}) {
+    function renderTeamInfo({teamName, instrumentId, role, teamId}) {
 
-        $teamNameTag.innerText=teamName;
-        $teamNameTag.setAttribute('name',teamId);
-        $teamNameTag.style.display='inline';
-        $teamCreateFormBtn.style.display='none';
+        $teamNameTag.innerText = teamName;
+        $teamNameTag.setAttribute('name', teamId);
+        $teamNameTag.style.display = 'inline';
+        $teamCreateFormBtn.style.display = 'none';
     }
 
     //팀 멤버 요청 받는 함수
-    function getTeamRequest(){
-        fetch("/user/getTeamRequest",{
+    function getTeamRequest() {
+        fetch("/user/getTeamRequest", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
                 teamId: "${user.team_id}"
             })
-        }).then(res=>{
+        }).then(res => {
             console.log(res);
             return res.json();
-        }).then(result=>{
+        }).then(result => {
             console.log(result);
-            result.forEach(res => {
-                const $requestForm = document.querySelector('.request-form');
-                $requestForm.innerHTML += `<div class="request-form-detail">
+            if (result !== null) {
+                result.forEach(res => {
+                    const $requestForm = document.querySelector('.request-form');
+                    $requestForm.innerHTML += `<div class="request-form-detail">
             <div class="name">\${res.nickname}</div>
             <div class="profile-image"><img src="/local\${res.userProfileImagePath}" alt=""></div>
             <div class="instrument ${res.equipmentId}"><img src="" alt="">1</div>
             <div class="introduce-text">\${res.userIntroduce}</div>
         </div>`
-            })
-            })
-
-
-    }
+                })
+            }})}
 
     (() => {
         getInstrument();
