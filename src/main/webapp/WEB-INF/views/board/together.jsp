@@ -378,7 +378,7 @@
                 </c:if>
 
                 <c:if test="${maker.page.pageNo != maker.finalPage}">
-                    <li class="page-item"><a style="background: #3c3c3c; border-radius: 10px; color: #eeeeee; text-decoration: none;border: none;" ="page-link"
+                    <li class="page-item"><a style="background: #3c3c3c; border-radius: 10px; color: #eeeeee; text-decoration: none;border: none;" class="page-link"
                                              href="/board/list?pageNo=${maker.finalPage}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&gt;&gt;</a>
                     </li>
                 </c:if>
