@@ -77,7 +77,7 @@
             border-radius: 30px;
             width: 80%;
             height: 70px;
-            box-shadow: 2px 2px 5px #00ff22;
+            box-shadow: 2px 2px 5px #949494;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -87,7 +87,7 @@
             width: 60px;
             height: 60px;
             margin: 5px;
-            margin-left: 15px;
+            margin-left: 17px;
             border-radius: 50%;
             box-shadow: 1px 1px 2px #444444;
         }
@@ -97,7 +97,7 @@
         }
         .new_porfile .new_card .text .nickname {
             width: 70%;
-            height: 20px;
+            height: 24px;
             border-bottom: 1px solid #000;
         }
         .new_porfile .new_card .text .instrument {
@@ -116,7 +116,7 @@
             width: 30px;
             height: 30px;
             background: #fff;
-            margin-right: 5%;
+            margin-right: 6.5%;
         }
 
         .main_body_container  .select_container {
