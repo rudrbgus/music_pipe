@@ -267,40 +267,40 @@
 
     <div class="team_main_container">
         <div class="team_profile_container">
-            <c:forEach var="teamData" items="${teamDataList}">
+<%--            <c:forEach var="b" items="${bList}">--%>
 
-                <div class="profile_img">
-                    <img src="/${teamData.teamProfileimage}" alt="">
-                </div>
-            </c:forEach>
+<%--                <div class="profile_img">--%>
+<%--                    <img src="/${teamData.teamProfileimage}" alt="">--%>
+<%--                </div>--%>
+<%--            </c:forEach>--%>
 
         </div>
 
         <div class="team_introduction_container">
-            <c:forEach var="teamData" items="${teamDataList}">
+
                 <div class="team_top_box">
                     <div class="team_name">
-                            ${teamData.teamName}
+                            ${teamInfoDTO.teamName}
                     </div>
                     <div class="on_and_off_line">
-                        <div class="icon ${teamData.online ? 'on_line' : 'off_line'}"></div>
-                        <div class="text">${teamData.online ? '온라인' : '오프라인'}</div>
+<%--                        <div class="icon ${b.onoff ? 'on_line' : 'off_line'}"></div>--%>
+<%--                        <div class="text">${b.onoff}</div>--%>
                     </div>
                 </div>
                 <div class="team_main_box">
                     <span> 모집 사항 </span>
                     <div class="text">
-                        자격요건: ${teamData.requirements}
+                        자격요건: ${detail.content}
                         등등
                     </div>
                 </div>
-            </c:forEach>
+
             <div class="team_footer_box">
                 <div class="instrument_container">
 
-                    <c:forEach var="e" items="${recruit_equipment}">
+                    <c:forEach var="e" items="${allNeedEquipment}">
                         <input type="radio" id="bassGuitar" name="instrument" class="instrument-radio" style="display: none">
-                        <label for="bassGuitar" class="instrument" style="background-image: url('${InstrumentImageUtil.instrumentImage(e)}');"></label>
+                        <label for="bassGuitar" class="instrument" style="background-image: url('/assets/img/${InstrumentImageUtil.instrumentImage(e)}.png');"></label>
                     </c:forEach>
 
                 </div>
@@ -313,15 +313,15 @@
                 <span> 소속 맴버 </span>
                 <ul class="member_list">
 
-                    <c:forEach var="member" items="${members}">
+                    <c:forEach var="member" items="${teamMemberInfo}">
                         <li>
                             <div class="member_profile_box">
-                                <img src="<c:out value="${member.profileImageUrl}" />" alt="">
+                                <img src="<c:out value="${member.profileImagePath}" />" alt="">
                                 <div class="member_text_box">
-                                    <div class="member_nickname">닉네임 : <c:out value="${member.nickname}" /></div>
+                                    <div class="member_nickname">닉네임 : <c:out value="${member.nickName}" /></div>
                                     <div class="member_email">이메일 : <c:out value="${member.email}" /></div>
                                 </div>
-                                <img class="member_instrument" src="<c:out value="${member.instrumentImageUrl}" />" alt="" class="instrument">
+                                <img class="member_instrument" src="<c:out value="/assets/img/${InstrumentImageUtil.instrumentImage(member.equipmentId)}.png" />" alt="" class="instrument">
                             </div>
                         </li>
                     </c:forEach>

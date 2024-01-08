@@ -15,6 +15,10 @@
         where team_id=#{teamId}
     </select>
 
+    <
+
+
+
     <insert id="saveTeamMember">
         insert into team_member_info
         (team_id,role,equipment_id,user_id)

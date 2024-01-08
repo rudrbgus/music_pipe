@@ -6,10 +6,9 @@ import com.meatjellyburgur.musicpipe.common.Search;
 import com.meatjellyburgur.musicpipe.dto.request.BoardWriteEquipmentRequsetDTO;
 import com.meatjellyburgur.musicpipe.dto.request.BoardWriteRequestDTO;
 
-import com.meatjellyburgur.musicpipe.dto.response.BoardDetailResponseDTO;
-import com.meatjellyburgur.musicpipe.dto.response.BoardListResponseDTO;
-import com.meatjellyburgur.musicpipe.dto.response.SignInUserResponseDTO;
-import com.meatjellyburgur.musicpipe.service.EmployBoardService;
+import com.meatjellyburgur.musicpipe.dto.response.*;
+import com.meatjellyburgur.musicpipe.entity.User;
+import com.meatjellyburgur.musicpipe.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -25,6 +24,10 @@ import java.util.List;
 @Slf4j
 public class EmployBoardController {
     private final EmployBoardService employBoardService;
+    private final TeamService teamService;
+    private final UserService userService;
+    private final TeamMemberInfoService teamMemberInfoService;
+    private final NeedEquipmentService needEquipmentService;
 
     //1. 목록조회 요청 (/boardlist/list :GET)
     // 검색 필터 조건
@@ -83,8 +86,34 @@ public class EmployBoardController {
     @GetMapping("/detail")
     public String detail(int bno,@ModelAttribute("s") Search search, Model model) {
         System.out.println("/board/detail : GET");
+        //보드 내용 정보
         BoardDetailResponseDTO detail = employBoardService.getDetail(bno);
-        model.addAttribute("b", detail);
+        User user = userService.findOneUserByUserId(detail.getUserId());
+
+        /////
+        int teamId = user.getTeamId();
+        String teamName = teamService.findTeamName(user.getTeamId());
+        //팀이름 정보
+        TeamDetailResponseDTO teamInfoDTO = TeamDetailResponseDTO.builder().teamId(teamId).teamName(teamName).build();
+        /////
+        //모든 팀원 정보
+        List<TeamMemberInfoResponseDTO> allTeamMember = teamMemberInfoService.findTeamMemberByTeamId(teamId);
+        //여기서 불러와야하는 것
+        //팀이름-v
+        //제목 ,내용 -V
+        //해당팀멤버 정보-v
+        //모집악기-V
+        //보드아이디이용해서-> 유저아이디-v
+        //팀아이디 이용해서-> 팀이름 -> 팀멤버정보 -> 악기 감싸기-v
+
+        List<Integer> allNeedEquipment = needEquipmentService.findAllNeedEquipment(bno);
+
+
+        model.addAttribute("boardDetail", detail);
+        model.addAttribute("teamInfo", teamInfoDTO);
+        model.addAttribute("teamMemberInfo", allTeamMember);
+        model.addAttribute("needEquipment", allNeedEquipment);
+
 
         return "board/detail";
     }

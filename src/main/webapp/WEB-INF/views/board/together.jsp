@@ -317,6 +317,12 @@
 </div>
 </body>
 <script>
+
+
+
+
+
+
     document.addEventListener('DOMContentLoaded', function () {
         var instrumentContainer = document.querySelector('.new_porfile .new_card .text .instrument');
 
@@ -331,12 +337,67 @@
         });
     });
 
-    $(document).ready(function() {
-        $(".card").click(function() {
-            Event.preventDefault();
-            window.location.href = "/detail";
-        });
+
+
+
+    const $cardContainer = document.querySelector('.card_container');
+
+    //================= 삭제버튼 스크립트 =================//
+    const modal = document.getElementById('modal'); // 모달창 얻기
+    const confirmDelete = document.getElementById('confirmDelete'); // 모달 삭제 확인버튼
+    const cancelDelete = document.getElementById('cancelDelete'); // 모달 삭제 취소 버튼
+
+    $cardContainer.addEventListener('click', e => {
+        // 삭제 버튼을 눌렀다면~
+        if (e.target.matches('.card-btn-group *')) {
+            console.log('삭제버튼 클릭');
+            modal.style.display = 'flex'; // 모달 창 띄움
+
+            const $delBtn = e.target.closest('.del-btn');
+            const deleteLocation = $delBtn.dataset.href;
+
+            // 확인 버튼 이벤트
+            confirmDelete.onclick = e => {
+                // 삭제 처리 로직
+                window.location.href = deleteLocation;
+
+                modal.style.display = 'none'; // 모달 창 닫기
+            };
+
+
+            // 취소 버튼 이벤트
+            cancelDelete.onclick = e => {
+                modal.style.display = 'none'; // 모달 창 닫기
+            };
+        } else { // 삭제 버튼 제외한 부분은 글 상세조회 요청
+
+            // section태그에 붙은 글번호 읽기
+            const bno = e.target.closest('div.card').dataset.bno;
+            // 요청 보내기
+            window.location.href = '/board/detail?bno=' + bno + '&pageNo=${s.pageNo}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}';
+        }
     });
+
+    // 전역 이벤트로 모달창 닫기
+    window.addEventListener('click', e => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+
+
+
+
+    
+    <%--$(document).ready(function() {--%>
+    <%--    $(".card").click(function() {--%>
+    <%--        Event.preventDefault();--%>
+    <%--        const bno = e.target.closest('.card').dataset.bno;--%>
+    <%--        // 요청 보내기--%>
+    <%--        window.location.href = '/board/detail?bno=' + bno + '&pageNo=${s.pageNo}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}';--%>
+    <%--    });--%>
+    <%--});--%>
 </script>
 
 </html>
