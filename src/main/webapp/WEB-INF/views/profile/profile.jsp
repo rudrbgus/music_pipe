@@ -353,10 +353,6 @@
         <div class="text123">요청 리스트!!!!!!!!!!!!!!!!!!!!!</div>
         <div class="request-form">
             <div class="request-form-detail">
-                <div class="name">1</div>
-                <div class="profile-image"><img src="" alt="">1</div>
-                <div class="instrument"><img src="" alt="">1</div>
-                <div class="introduce-text">인삿말</div>
             </div>
         </div>
     </div>
