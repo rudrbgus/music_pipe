@@ -60,7 +60,7 @@
                     headers: {
                         'content-type': 'application/json'
                     },
-                    body: JSON.stringify({ equipmentId: 1, pageNo: page.pageNo, amount: 3 })
+                    body: JSON.stringify({ equipmentId: ${instrument}, pageNo: page.pageNo, amount: 3 })
                 });
                 const users = await response.json();
 
@@ -152,7 +152,7 @@
                 headers: {
                     'content-type': 'application/json'
                 },
-                body: JSON.stringify({ equipmentId: 1, pageNo: page.pageNo,amount:page.amount})
+                body: JSON.stringify({ equipmentId: ${instrument}, pageNo: page.pageNo,amount:page.amount})
             });
             const users = await response.json();
             console.log(users.users);
