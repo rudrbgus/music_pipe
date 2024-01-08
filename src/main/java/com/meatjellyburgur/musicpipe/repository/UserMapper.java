@@ -20,6 +20,8 @@ public interface UserMapper {
 
     User findUser(String email);
 
+    List<User> findAllUser();
+
     User findUserByUserId(int userId);
 
     User findUserByCookie(String sessionId);

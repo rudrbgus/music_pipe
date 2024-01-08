@@ -115,10 +115,70 @@ public class UserService {
     }
 
     public HashMap<Object, Object> findAllUserByInstrumentId(int equipmentId, Page page) {
-        List<Integer> userIdByEquipmentId = personalAbilityMapper.findUserIdByEquipmentId(equipmentId);
-        log.info(""+userIdByEquipmentId);
-
+        // 전체 조회
         List<FindUserResponseDTO> users = new ArrayList<>();
+        if(equipmentId==0){
+            // 유저 0 입니다 찍기
+            log.info("전체 조회 입니다.");
+            // 유저 다 찾아오고
+            List<User> allUser = userMapper.findAllUser();
+            log.info("allUser: {}", allUser.size());
+            PageMaker pageMaker = new PageMaker(page, users.size());
+
+            // 하나씩 꺼내서
+            allUser.forEach(user -> {
+                List<Integer> equipmentList = new ArrayList<>();
+                // 팀찾고
+                Team oneTeamById = teamMapper.findOneTeamById(user.getTeamId());
+                String teamName = "";
+                if (oneTeamById !=null){
+                    teamName = oneTeamById.getTeamName();
+                }
+                // 악기 리스트
+                List<PersonalAbility> personalAbilityList = personalAbilityMapper.findPersonalAbilityList(user.getUserId());
+                personalAbilityList.forEach(personalAbility -> {
+                    equipmentList.add(personalAbility.getEquipmentId());
+                });
+                FindUserResponseDTO dto = FindUserResponseDTO.builder()
+                        .teamId(user.getTeamId())
+                        .email(user.getEmail())
+                        .sex(user.getSex())
+                        .regDate(user.getRegdate())
+                        .age(user.getAge())
+                        .nickname(user.getNickname())
+                        .email(user.getEmail())
+                        .userProfileImagePath(user.getProfileImagePath())
+                        .introduceText(user.getIntroduceText())
+                        .equipmentList(equipmentList)
+                        .teamName(teamName)
+                        .build();
+                users.add(dto);
+            });
+            int fromIndex = (page.getPageNo()-1) * page.getAmount();
+            if(users.size()<fromIndex+ page.getAmount()){
+                log.warn("악기 리스트보다 가져오는 양이 많습니다");
+                // 자료 없는데 요구 할 때
+                if(users.size()<fromIndex){
+                    return null;
+                }
+                List<FindUserResponseDTO> findUserResponseDTOS = users.subList(fromIndex, users.size());
+                HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+                objectObjectHashMap.put("users", findUserResponseDTOS);
+                objectObjectHashMap.put("pageInfo",pageMaker);
+                return objectObjectHashMap;
+            }
+            List<FindUserResponseDTO> findUserResponseDTO = users.subList(fromIndex, fromIndex + page.getAmount());
+            HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+            objectObjectHashMap.put("users", findUserResponseDTO);
+            objectObjectHashMap.put("pageInfo",pageMaker);
+            log.info("users: {}", findUserResponseDTO);
+            log.info("users.size(): {}", findUserResponseDTO.size());
+            return objectObjectHashMap;
+        }
+
+        // 악기 부분 조회
+        List<Integer> userIdByEquipmentId = personalAbilityMapper.findUserIdByEquipmentId(equipmentId);
+
         PageMaker pageMaker = new PageMaker(page, userIdByEquipmentId.size());
         for(int i:userIdByEquipmentId){
             User userByUserId = userMapper.findUserByUserId(i);
@@ -128,7 +188,6 @@ public class UserService {
             if (oneTeamById !=null){
                 teamName = oneTeamById.getTeamName();
             }
-            log.info("user: {}", userByUserId);
             List<Integer> equipmentList = new ArrayList<>();
             List<PersonalAbility> personalAbilityList = personalAbilityMapper.findPersonalAbilityList(userByUserId.getUserId());
             personalAbilityList.forEach(personalAbility -> {

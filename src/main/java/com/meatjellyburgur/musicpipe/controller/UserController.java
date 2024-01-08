@@ -193,7 +193,9 @@ public class UserController {
         }else if (keyword.equals("기타")) {
             model.addAttribute("instrument", 8);
         }
-
+        if(keyword.equals("0")){
+            model.addAttribute("instrument", 0);
+        }
         return "/User/user-list";
     }
 

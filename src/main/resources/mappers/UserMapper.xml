@@ -84,4 +84,10 @@
         where user_id = #{userId}
     </update>
 
+    <select id="findAllUser" resultType="user">
+        select
+        user_id, password, nickname,age, email,sex,regdate, team_id, session_id, limit_time, profile_image_path, introduce_text
+        from user
+        order by regdate DESC
+    </select>
 </mapper>
