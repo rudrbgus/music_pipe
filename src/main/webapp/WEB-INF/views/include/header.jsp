@@ -322,8 +322,6 @@
             } else if (s === "team") {
                 $form.method = "GET"
                 $form.action = "/board/list"
-
-
             }
         }
 

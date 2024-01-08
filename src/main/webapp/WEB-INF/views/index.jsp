@@ -163,27 +163,54 @@
         <div class="swiper">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-card">
-                        <c:forEach var="b" items="${bList}">
-                        <div class="swiper-slide" data-hash="slide1">
-                            <div class="swiper-card">
-                                <div class="container">
-                                    <div class="box">
-                                        <div class="box__img">
-                                            <img src="https://source.unsplash.com/random/300x420" alt="">
-                                        </div>
-                                        <div class="box__details">
-                                            <h2>Here's the details</h2>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eius ea sit voluptate distinctio atque illo cumque incidunt fuga odio omnis in ad, iusto veritatis debitis, voluptatum corrupti voluptas?</p>
-                                            <a href="#" class="cta">Click here...</a>
-                                        </div>
+                                                        <div class="swiper-slide" data-hash="slide1">
+                                                <div class="swiper-card">
+                                                    <div class="container">
+                                                        <div class="box">
+                                                            <div class="box__img">
+                                                                <img src="https://source.unsplash.com/random/300x420" alt="">
+                                                            </div>
+                                                            <div class="box__details">
+                                                                <h2>Here's the details</h2>
+                                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eius ea sit voluptate distinctio atque illo cumque incidunt fuga odio omnis in ad, iusto veritatis debitis, voluptatum corrupti voluptas?</p>
+                                                                <a href="#" class="cta">Click here...</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                    <div class="swiper-slide" data-hash="slide1">
+                        <div class="swiper-card">
+                            <div class="container">
+                                <div class="box">
+                                    <div class="box__img">
+                                        <img src="https://source.unsplash.com/random/300x420" alt="">
+                                    </div>
+                                    <div class="box__details">
+                                        <h2>Here's the details</h2>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eius ea sit voluptate distinctio atque illo cumque incidunt fuga odio omnis in ad, iusto veritatis debitis, voluptatum corrupti voluptas?</p>
+                                        <a href="#" class="cta">Click here...</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </c:forEach>
                     </div>
-
+                    <div class="swiper-slide" data-hash="slide1">
+                        <div class="swiper-card">
+                            <div class="container">
+                                <div class="box">
+                                    <div class="box__img">
+                                        <img src="https://source.unsplash.com/random/300x420" alt="">
+                                    </div>
+                                    <div class="box__details">
+                                        <h2>Here's the details</h2>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eius ea sit voluptate distinctio atque illo cumque incidunt fuga odio omnis in ad, iusto veritatis debitis, voluptatum corrupti voluptas?</p>
+                                        <a href="#" class="cta">Click here...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -207,68 +234,89 @@
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
 <script>
-        const $fa_home = document.querySelector(".fa-home");
-        const $body=document.getElementsByTagName("body");
-        const firstColor = "#F29E38";
-        document.addEventListener("DOMContentLoaded", function() {
-            e.preventDefault();
-            $fa_home.addEventListener("click", function() {
-                // Get the first color from the gradient
+<%--        const $fa_home = document.querySelector(".fa-home");--%>
+<%--        const $body=document.getElementsByTagName("body");--%>
+<%--        const firstColor = "#F29E38";--%>
+<%--        document.addEventListener("DOMContentLoaded", function() {--%>
+<%--            e.preventDefault();--%>
+<%--            $fa_home.addEventListener("click", function() {--%>
+<%--                // Get the first color from the gradient--%>
 
 
-                // Set the new background color
-                document.body.style.background = `linear-gradient(to right, ${firstColor} 0%, ${firstColor} 100%)`;
-            });
-        });
-</script>
-<script type="module">
-    import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
+<%--                // Set the new background color--%>
+<%--                document.body.style.background = `linear-gradient(to right, ${firstColor} 0%, ${firstColor} 100%)`;--%>
+<%--            });--%>
+<%--        });--%>
+<%--</script>--%>
+<%--<script type="module">--%>
+<%--    import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';--%>
 
-    // 비동기 데이터를 가져오고 Swiper를 초기화하는 함수
-    async function initSwiperWithData() {
-        try {
-            // 서버에서 데이터를 가져옴
-            const response = await fetch("/user/list", {
-                method: "POST",
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify({ equipmentId: 1 })
-            });
-            const users = await response.json();
+<%--    const page= {pageNo:1,amount:6};--%>
+<%--    // 비동기 데이터를 가져오고 Swiper를 초기화하는 함수--%>
+<%--    async function initSwiperWithData() {--%>
+<%--        try {--%>
+<%--            // 서버에서 데이터를 가져옴--%>
+<%--            const response = await fetch("/user/list", {--%>
+<%--                method: "POST",--%>
+<%--                headers: {--%>
+<%--                    'content-type': 'application/json'--%>
+<%--                },--%>
+<%--                body: JSON.stringify({ equipmentId: 1 ,pageNo: page.pageNo,amount: page.amount})--%>
+<%--            });--%>
+<%--            const users = await response.json()--%>
+<%--            console.log(users.users);--%>
 
-            // 가져온 데이터를 가지고 동적으로 카드 생성
-            createCards(users);
+<%--            // 가져온 데이터를 가지고 동적으로 카드 생성--%>
+<%--            createCards(users.users);--%>
 
-            // Swiper를 초기화
-            initSwiper();
-        } catch (error) {
-            console.error('데이터를 가져오는 중 에러 발생:', error);
-        }
-    }
-    let i=1;
-    // 데이터를 기반으로 카드를 동적으로 생성하는 함수
-    function createCards(users) {
-        $('.swiper-wrapper').empty();
+<%--            // Swiper를 초기화--%>
+<%--            initSwiper();--%>
+<%--        } catch (error) {--%>
+<%--            console.error('데이터를 가져오는 중 에러 발생:', error);--%>
+<%--        }--%>
+<%--    }--%>
+<%--    let i=1;--%>
+<%--    // 데이터를 기반으로 카드를 동적으로 생성하는 함수--%>
+<%--    function createCards(users) {--%>
+<%--        // $('.swiper-wrapper').empty();--%>
 
-        users.forEach(function (user) {
-            const { nickname, age, sex, regDate, teamId } = user;
-            var card = `
+<%--        users.forEach(function (user) {--%>
+<%--            const { nickname, age, sex, regDate, teamId } = user;--%>
+<%--            var card = `--%>
+<%--                                    <div class="swiper-slide" data-hash="slide1">--%>
+<%--                            <div class="swiper-card">--%>
+<%--                                <div class="container">--%>
+<%--                                    <div class="box">--%>
+<%--                                        <div class="box__img">--%>
+<%--                                            <img src="https://source.unsplash.com/random/300x420" alt="">--%>
+<%--                                        </div>--%>
+<%--                                        <div class="box__details">--%>
+<%--                                            <h2>Here's the details</h2>--%>
+<%--                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eius ea sit voluptate distinctio atque illo cumque incidunt fuga odio omnis in ad, iusto veritatis debitis, voluptatum corrupti voluptas?</p>--%>
+<%--                                            <a href="#" class="cta">Click here...</a>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
-      `;
-            // 생성한 카드를 swiper-wrapper에 추가
-            $('.swiper-wrapper').append(card);
-            i++;
-        });
-    }
+<%--      `;--%>
+<%--            // 생성한 카드를 swiper-wrapper에 추가--%>
+<%--            $('.swiper-wrapper').append(card);--%>
+<%--            i++;--%>
+<%--        });--%>
+<%--    }--%>
 
+    document.addEventListener('DOMContentLoaded', function() {
+        initSwiper();
+    });
     // Swiper 초기화 함수
     function initSwiper() {
         const swiper = new Swiper('.swiper-container', {
             direction: 'horizontal',
             loop: true,
             slidesPerView: 2,
-            spaceBetween: 100,
+            spaceBetween: 60,
         });
     }
 

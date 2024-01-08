@@ -98,4 +98,17 @@ class UserMapperTest {
         assertFalse(flag);
     }
 
+    @Test
+    @DisplayName("유저의 자기소개를 바꿀 수 있다")
+    void userIntroducemodifyTest() {
+        //given
+        int userId = 1;
+        String introduceText="123";
+
+        //when
+        boolean b = mapper.updateIntroduceText(introduceText, userId);
+        //then
+        assertTrue(b);
+    }
+
 }

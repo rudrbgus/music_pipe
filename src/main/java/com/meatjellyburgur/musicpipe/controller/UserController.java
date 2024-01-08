@@ -265,9 +265,9 @@ public class UserController {
     // 유저에 자기소개 넣기
     @PostMapping("/introduce")
     public String modifyUserIntroduceText(@RequestBody UserIntroduceRequestDTO introduceText, HttpSession session){
-        userService.modifyUserIntroduceText(introduceText.getIntroduceText(), session);
         System.out.println("/user/introduce Post!!!");
         System.out.println(introduceText);
+        userService.modifyUserIntroduceText(introduceText.getIntroduceText(), session);
         return null;
     }
 
