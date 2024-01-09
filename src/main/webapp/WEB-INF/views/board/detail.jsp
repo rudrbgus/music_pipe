@@ -34,7 +34,7 @@
         body {
             position: relative;
             margin-top: 120px;
-            background-image: url("../img/bg_4.png");
+            background-image: url("/assets/img/bg_4.png");
             background-repeat: repeat, no-repeat;
             background-size: auto, 100% 100%;
             background-attachment: fixed;
