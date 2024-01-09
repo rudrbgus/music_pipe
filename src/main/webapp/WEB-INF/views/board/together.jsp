@@ -335,7 +335,7 @@
                                 <div style="background-image: url('${b.profileImagePath}');" class="profile_img">
                                 </div>
                                 <div class="profile_text_box">
-                                    <div class="nickname">${b.nickName}</div>
+                                    <div class="nickname">${b.title}</div>
                                     <div class="on_and_off_line">${b.onoff}</div>
                                 </div>
                             </div>
