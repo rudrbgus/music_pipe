@@ -29,9 +29,9 @@
         <button  class="button button--winona button--border-thin button--round-s piano" data-text="piano"><span><img src="/assets/img/icon/icon-guitar.png" alt="tq"></span></button>
         <button class="button button--winona button--border-thin button--round-s drum" data-text="drum"><span><img src="/assets/img/icon/icon-piano.png" alt="tq"></span></button>
         <button class="button button--winona button--border-thin button--round-s keyboard" data-text="keyboard"><span><img src="/assets/img/icon/icon-drum.png" alt="tq"></span></button>
-        <button class="button button--winona button--border-thin button--round-s acu" data-text="acu"><span><img src="/assets/img/icon/icon-microphone.png" alt="tq"></span></button>
+        <button class="button button--winona button--border-thin button--round-s acu" data-text="acu"><span><img src="/assets/img/icon/icon-flute.png" alt="tq"></span></button>
         <button class="button button--winona button--border-thin button--round-s elc" data-text="elc"><span><img src="/assets/img/icon/icon-violin.png" alt="tq"></span></button>
-        <button class="button button--winona button--border-thin button--round-s base vocal" data-text="vocal"><span><img src="/assets/img/icon/icon-flute.png" alt="tq"></span></button>
+        <button class="button button--winona button--border-thin button--round-s base vocal" data-text="vocal"><span><img src="/assets/img/icon/icon-microphone.png" alt="tq"></span></button>
         <button class="button button--winona button--border-thin button--round-s guitar" data-text="guitar"><span><img src="/assets/img/icon/icon-harp.png" alt="tq"></span></button>
     </div>
 </div>
