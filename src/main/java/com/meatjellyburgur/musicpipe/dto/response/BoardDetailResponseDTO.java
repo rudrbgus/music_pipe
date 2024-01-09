@@ -14,6 +14,7 @@ public class BoardDetailResponseDTO {
     private final String title;
     private final String content;
     private final int userId;
+    
 //    private final  String regDate;
 //    private  String nickname;
 
