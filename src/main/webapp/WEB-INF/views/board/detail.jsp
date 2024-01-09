@@ -265,7 +265,7 @@
     <div class="team_main_container">
         <div class="team_profile_container">
                             <div class="profile_img">
-                                <img src="/assets/img/team_profile.png" alt="">
+                                <img src="/assets/img/team_profile2.png" alt="">
                             </div>
 <%--            <c:forEach var="b" items="${bList}">--%>
 
