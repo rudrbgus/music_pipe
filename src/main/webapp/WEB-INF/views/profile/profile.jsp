@@ -51,20 +51,23 @@
         .request-team .text123 {
             text-align: center;
             font-size: 2.5rem;
+            color: black;
         }
 
         .request-team .request-form {
             display: flex;
             flex-direction: column;
-            width: 90%;
-            margin: 40px auto;
             border: 1px cornflowerblue solid;
+            color: black;
         }
 
         .request-team .request-form .request-form-detail {
+            width: 90%;
             display: flex;
+            margin: 20px auto;
             flex-direction: row;
             align-items: center;
+            color: black;
         }
 
         .request-team .request-form .request-form-detail .name {
@@ -94,7 +97,6 @@
         }
 
         .request-team .request-form .request-form-detail .instrument img {
-            width: 100%;
             height: 100%;
             object-fit: cover;
         }
@@ -106,13 +108,17 @@
 
         .request-team .request-form .request-form-detail .agree {
             background: green;
+            text-align: center;
             font-size: 2rem;
+            display: flex;
             color: black;
             flex: 1;
         }
 
         .request-team .request-form .request-form-detail .deny {
             font-size: 2rem;
+            display: flex;
+            text-align: center;
             background: red;
             color: black;
             flex: 1;
@@ -932,7 +938,7 @@
                     $requestForm.innerHTML += `<div class="request-form-detail">
             <div class="name" value=\${res.userId}>\${res.nickname}</div>
             <div class="profile-image"><img src="/local\${res.userProfileImagePath}" alt=""></div>
-            <div class="instrument ${res.equipmentId}"><img src="/assets/img/drum.png" alt="">1</div>
+            <div class="instrument ${res.equipmentId}"><img src="/assets/img/drum.png" alt=""></div>
             <div class="introduce-text">\${res.userIntroduce}</div>
             <button type="submit" class="agree">수락</button>
             <button type="submit" class="deny">거절</button>

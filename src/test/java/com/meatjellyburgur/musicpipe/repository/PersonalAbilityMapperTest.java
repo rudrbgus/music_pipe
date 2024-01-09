@@ -26,10 +26,9 @@ class PersonalAbilityMapperTest {
         //given
 
         //when
-        for (int i = 0; i < 10; i++) {
+        for (int i = 39; i < 139; i++) {
             PersonalAbility build = PersonalAbility.builder()
                     .userId(i)
-                    .ability("고수")
                     .equipmentId(1)
                     .build();
             mapper.save(build);

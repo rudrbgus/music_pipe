@@ -38,9 +38,9 @@ class UserMapperTest {
     }
 
     @Test
-    @DisplayName("User 10개를 넣으면 10개가 조회된다")
+    @DisplayName("User 100개를 넣으면 114개가 조회된다")
     void saveAllTest(){
-        for (int i = 0; i < 10; i++) {
+        for (int i = 100; i < 200; i++) {
             User male = User.builder()
                     .sex("Male")
                     .age(i)
@@ -50,7 +50,7 @@ class UserMapperTest {
                     .build();
             mapper.save(male);
         }
-        assertEquals(10, mapper.findUseByTeamId(0).size());
+        assertEquals(114, mapper.findUseByTeamId(0).size());
     }
 
 
