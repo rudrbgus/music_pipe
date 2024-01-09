@@ -230,7 +230,7 @@
             const { nickname, userProfileImagePath ,email} = user;
             var card = `
                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="/user/profile?email=\${email}" class="image fit"><img src="/local\${userProfileImagePath}" alt=""></a>
+                        <a href="/user/profile?email=\${email}" class="image fit"><img src="/local\${userProfileImagePath}" onerror="this.onerror=null; this.src='/assets/img/profile.png'"></a>
 <div class="name">\${nickname}</div>
                     </div>
       `;

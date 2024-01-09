@@ -12,7 +12,19 @@
 
         body {
             /*background: rgba(86, 232, 226, 0.87);*/
+            /*background: #8B4513 url('https://picsum.photos/id/413/1920/1080') center/cover;*/
+
             font-family: 'Jua', sans-serif;
+        }
+        .backGround{
+            display: none;
+            top: 0;
+            position: absolute;
+            border-radius: 20px;
+            background: #8B4513 url('https://picsum.photos/id/413/1920/1080') center/cover;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
 
         /*엄마*/
@@ -130,6 +142,8 @@
 
         .profile_image_box .profile_nickname {
             margin-top: 20px;
+            color: black;
+            font-weight: 700;
         }
 
         .profile_image_box .submit-button {
@@ -149,6 +163,8 @@
             justify-content: center;
             font-size: 2rem;
             flex: 7;
+            color: black;
+            font-weight: 700;
         }
 
         .profile_text div {
@@ -203,29 +219,47 @@
         /*모달 페이지 꾸미는 부분*/
         .modal {
             position: absolute;
-            top: 30%;
+            top: 20%;
             left: 30%;
-
-            width: 50%;
-            height: 50%;
-
+            width: 45%;
+            height: 65%;
             display: none;
-
-            background-color: rgba(0, 0, 0, 0.4);
-
+            /*background-color: rgba(0, 0, 0, 0.4);*/
+            align-items: center;
+            justify-content: center;
         }
 
         .modal .present-instrument-list {
-            display: flex;
-            flex-flow: row wrap;
             width: 100%;
             height: auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .modal .present-instrument-list a:nth-child(n+5) {
+            flex: 1;
         }
 
         .modal .present-instrument-list a {
             cursor: pointer;
-            width: auto;
+            /*width: auto;*/
             flex: 1;
+            position: relative;
+            display: inline-block;
+            flex-direction: column;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            padding: 0.7rem;
+            /*height: 150px;*/
+            background-color: #00000052;
+            transition: 0.2s ease-in-out;
+            margin-bottom: 50px;
+        }
+        .modal .present-instrument-list a:hover {
+            transform: translateY(20px);
+            cursor: pointer;
         }
 
         .modal .present-instrument-list a.click {
@@ -233,7 +267,7 @@
         }
 
         .modal .present-instrument-list img {
-            width: 125px;
+            width: 50px;
             object-fit: cover;
         }
 
@@ -242,6 +276,7 @@
         }
 
         .modal .createTeamBtn123 {
+            flex: 2;
             width: fit-content;
             font-size: 2rem;
             text-align: center;
@@ -265,15 +300,177 @@
             align-items: center;
             width: 150px;
         }
+        .request-form-detail{
+            width: 90vw;
+            margin: 0 auto;
+            display: flex;
+            gap: 3px;
+        }
+        .modal_container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+        }
+        #createTeamForm{
+            width: 100%;
+            height: 100%;}
+        body {
+            color: white;
+            font: 100 100%/1.6 "Heebo", sans-serif;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .visually-hidden {
+            clip: rect(0 0 0 0);
+            clip-path: inset(50%);
+            height: 1px;
+            overflow: hidden;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+        }
+
+        .flex {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .scene {
+            height: 100%;
+            position: relative;
+            width: 100%;
+        }
+
+        .card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.075);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 15px;
+            box-shadow: 0 10px 35px 0 rgba(139, 69, 19, 0.65);
+            color: white;
+            /*max-width: 300px;*/
+            overflow: hidden;
+            padding: 20px 30px 50px 30px;
+            position: relative;
+            text-align: center;
+            z-index: 1;
+            width: 70%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card__heading {
+            font-size: 1.35rem;
+            font-weight: 200;
+            margin-bottom: 15px;
+        }
+
+        .card__figure {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card__heading span{
+            color: black;
+            font-weight: 700;
+        }
+
+        .card__image {
+            border-radius: 50%;
+            max-width: 100%;
+            margin: 50px 10px 80px 10px;
+        }
+
+        .card__input {
+            background: rgba(255, 255, 255, 0.075);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+            box-sizing: border-box;
+            color: white;
+            display: block;
+            font-size: 1rem;
+            letter-spacing: 0.15rem;
+            padding: 10px;
+            width: 100%;
+
+            #createTeamForm:focus,
+            #createTeamForm:active {
+                background: rgba(255, 255, 255, 0.08);
+                border: 1px solid rgba(255, 255, 255, 0.75);
+                outline: none;
+            }
+        }
+
+        .card__button {
+            background: rgba(255, 255, 255, 0.65);
+            border: none;
+            border-radius: 3px;
+            color: #362100;
+            margin: 15px auto 0 auto;
+            padding: 8px 20px;
+
+            #createTeamForm:focus,
+            #createTeamForm:active {
+                background: rgba(255, 255, 255, 0.75);
+                outline: none;
+            }
+        }
+        .teamTitle{
+            color: black;
+            /*font-weight: 700;*/
+            /*font-size: 36px;*/
+            flex: 2;
+            font-size: 1.35rem;
+            font-weight: 200;
+        }
+        .teamNameContainer{
+            font-size: 1.35rem;
+            font-weight: 200;
+            flex: 2;
+            margin: 20px;
+        }
+        .teamName {
+            background: rgba(255, 255, 255, 0.075);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+            box-sizing: border-box;
+            color: white;
+            /*display: block;*/
+            font-size: 1rem;
+            letter-spacing: 0.15rem;
+            padding: 10px;
+            width: 75%;
+
+            .teamName:focus,
+            .teamName:active {
+                background: rgba(255, 255, 255, 0.08);
+                border: 1px solid rgba(255, 255, 255, 0.75);
+                outline: none;
+            }
+        }
+        .instrument{
+            margin-right: 10px;
+        }
+
+
 
 
     </style>
 
 </head>
 <body>
+<div class="backGround"></div>
 <%@include file="../include/header.jsp" %>
 <div class="profile_main_container">
     <div class="profile_container">
+
         <div class="profile_image_box">
             <!-- 프로필 사진 -->
             <div class="upload-box">
@@ -365,38 +562,49 @@
 <div class="modal" id="modal">
     <div class="modal_container">
         <form action="/team/register" name="createTeam" method="post" id="createTeamForm">
-            <h3>팀생성</h3>
-            <div class="teamNameContainer">
-                <input hidden name="email" value="${user.email}">
-                팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName"/>
+            <div class="scene flex">
+                <section class="card">
+                    <figure class="card__figure">
+                        <img class="card__image" src="https://picsum.photos/id/454/200/200" alt="A female hand holding a camera"/>
+                        <figcaption>
+                    <h3 class="teamTitle">팀 생성</h3>
+                    <div class="teamNameContainer">
+<%--                        <input hidden name="email" value="${user.email}">--%>
+                        팀명 : <input name="teamName" type="text" class="teamName" placeholder="teamName" id="teamName"/>
+                    </div></figcaption>
+
+                    <div class="present-instrument-list">
+
+                        <a class="instrument1 none instrument">
+                            <img class="instrument1 img" src="/assets/img/guitar2.png" name="1">
+                        </a>
+                        <a class="instrument2 none instrument">
+                            <img class="instrument2 img" src="/assets/img/drum.png" name="2">
+                        </a>
+                        <a class="instrument3 none instrument">
+                            <img class="instrument3 img" src="/assets/img/vocal.png" name="3">
+                        </a>
+                        <a class="instrument4 none instrument">
+                            <img class="instrument4 img" src="/assets/img/keyboard.png" name="4">
+                        </a>
+                        <a class="instrument5 none instrument">
+                            <img class="instrument5 img" src="/assets/img/saxophone.png" name="5">
+                        </a>
+                        <a class="instrument6 none instrument">
+                            <img class="instrument6 img" src="/assets/img/trumpet.png" name="6">
+                        </a>
+                        <a class="instrument7 none instrument">
+                            <img class="instrument7 img" src="/assets/img/flute.png" name="7">
+                        </a>
+                        <a class="instrument8 none instrument">
+                            <img class="instrument8 img" src="/assets/img/bass-guitar.png" name="8">
+                        </a>
+                    </div>
+                            <div class="createTeamBtn123">팀 생성</div>
+                </section>
             </div>
-            <div class="present-instrument-list">
-                <a class="instrument1 none">
-                    <img class="instrument1 img" src="/assets/img/guitar2.png" name="1">
-                </a>
-                <a class="instrument2 none">
-                    <img class="instrument2 img" src="/assets/img/drum.png" name="2">
-                </a>
-                <a class="instrument3 none">
-                    <img class="instrument3 img" src="/assets/img/vocal.png" name="3">
-                </a>
-                <a class="instrument4 none">
-                    <img class="instrument4 img" src="/assets/img/keyboard.png" name="4">
-                </a>
-                <a class="instrument5 none">
-                    <img class="instrument5 img" src="/assets/img/saxophone.png" name="5">
-                </a>
-                <a class="instrument6 none">
-                    <img class="instrument6 img" src="/assets/img/trumpet.png" name="6">
-                </a>
-                <a class="instrument7 none">
-                    <img class="instrument7 img" src="/assets/img/flute.png" name="7">
-                </a>
-                <a class="instrument8 none">
-                    <img class="instrument8 img" src="/assets/img/bass-guitar.png" name="8">
-                </a>
-            </div>
-            <div class="createTeamBtn123">팀 생성</div>
+
+
         </form>
     </div>
 </div>
@@ -576,10 +784,13 @@
     //팀 생성 폼 버튼 열기 버튼
     const $teamCreateFormBtn = document.getElementById('teamCreateFormBtn');
     const $teamCreateFormModal = document.getElementById('modal');
+    const $backGround = document.querySelector('.backGround');
     $teamCreateFormBtn.onclick = e => {
         console.log(e.target);
         getInstrument();
         $teamCreateFormModal.style.display = 'flex';
+        $backGround.style.display='flex';
+        document.body.style.overflow = 'hidden';
     };
 
 
@@ -644,7 +855,9 @@
             .then(dtoList => {
                 renderTeamInfo(dtoList)
             })
-        $teamCreateFormModal.style.display = 'none';
+        $teamCreateFormModal.style.display='none';
+        $backGround.style.display='none';
+        document.body.style.overflow = 'visible';
     }
 
 
@@ -656,12 +869,11 @@
 
 
     //팀 이름 랜더링하는 함수
-    function renderTeamInfo({teamName, instrumentId, role, teamId}) {
-
-        $teamNameTag.innerText = teamName;
-        $teamNameTag.setAttribute('name', teamId);
-        $teamNameTag.style.display = 'inline';
-        $teamCreateFormBtn.style.display = 'none';
+    function renderTeamInfo({teamName, instrumentId, role,teamId}) {
+        $teamNameTag.innerText=teamName;
+        $teamNameTag.setAttribute('name',teamId);
+        $teamNameTag.style.display='inline';
+        $teamCreateFormBtn.style.display='none';
     }
 
     //팀 멤버 요청 받는 함수

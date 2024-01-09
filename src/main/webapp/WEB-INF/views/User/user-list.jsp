@@ -132,7 +132,10 @@
         <div class="content">
             <div class="slider\${index} slider"></div>
             <a href="/user/profile?email=\${email}" class="content-card\${index} content-card">
-                <img src="/local\${userProfileImagePath}">
+                <img id="proImg" src="/local\${userProfileImagePath}" onerror="this.onerror=null; this.src='/assets/img/profile.png'">
+
+
+
                 <div class="content-text">
                     <div class="tag tag\${a}">
                     </div>
@@ -163,6 +166,13 @@
         });
         updateBodyHeight();
         page.pageNo++;
+    }
+    function handleImageError() {
+        let image = document.getElementById('proImg');
+        // 이미지 로딩 오류 시 대체 이미지로 교체
+        image.src = "/assets/img/profile.png";
+        // 대체 이미지의 대체 텍스트 설정
+        image.alt = "Default Image";
     }
 
     // JavaScript 코드
