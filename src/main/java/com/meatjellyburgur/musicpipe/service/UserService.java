@@ -289,16 +289,21 @@ public class UserService {
         // 팀의 리더면
         if (one != null) {
             if (one.getRole().equals("master")) {
+                log.info("팀의 리더");
+                System.out.println("teamId: "+ teamId);
                 // 해당 하는 팀의 팀 멤버
                 List<TeamMemberInfo> allTeamMember = teamMemberInfoMapper.findAllTeamMember(teamId);
+                log.info(allTeamMember.toString());
                 allTeamMember.forEach(teamMemberInfo -> {
                     if (teamMemberInfo.getLicense() == 0) {
                         User user = userMapper.findUserByUserId(teamMemberInfo.getUserId());
+                        log.info("123"+user.toString());
                         TeamResponseUserDTO dto = TeamResponseUserDTO.builder()
                                 .userProfileImagePath(user.getProfileImagePath())
                                 .userIntroduce(user.getIntroduceText())
                                 .nickname(user.getNickname())
                                 .equipmentId(teamMemberInfo.getEquipmentId())
+                                .userId(user.getUserId())
                                 .build();
                         noLicenseUserList.add(dto);
                     }

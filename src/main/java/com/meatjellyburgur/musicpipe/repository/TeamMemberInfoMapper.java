@@ -12,4 +12,7 @@ public interface TeamMemberInfoMapper {
     List<TeamMemberInfo> findAllTeamMember(int teamId);
 
     TeamMemberInfo findOne(int userId);
+
+    boolean modify(int userId);
+
 }
