@@ -89,6 +89,7 @@ public class EmployBoardController {
         log.info("bno={}",bno);
         //보드 내용 정보
         BoardDetailResponseDTO detail = employBoardService.getDetail(bno);
+        log.info("detail {}",detail);
         User user = userService.findOneUserByUserId(detail.getUserId());
 
         /////
@@ -110,7 +111,7 @@ public class EmployBoardController {
         List<Integer> allNeedEquipment = needEquipmentService.findAllNeedEquipment(bno);
 
 
-        model.addAttribute("boardDetail", detail);
+        model.addAttribute("detail", detail);
         model.addAttribute("teamInfo", teamInfoDTO);
         model.addAttribute("teamMemberInfo", allTeamMember);
         model.addAttribute("needEquipment", allNeedEquipment);

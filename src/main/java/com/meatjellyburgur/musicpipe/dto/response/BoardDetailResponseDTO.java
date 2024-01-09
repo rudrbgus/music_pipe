@@ -14,7 +14,7 @@ public class BoardDetailResponseDTO {
     private final String title;
     private final String content;
     private final int userId;
-    
+    private final int onOff;
 //    private final  String regDate;
 //    private  String nickname;
 
@@ -24,6 +24,7 @@ public class BoardDetailResponseDTO {
         this.title=board.getTitle();
         this.content=board.getContent();
         this.userId=board.getUserId();
+        this.onOff= board.getOnOff();
 //        this.regDate=BoardListResponseDTO.makePrettierDateString(board.getRegdate());
 //        this.nickname= user.getNickname();
     }
