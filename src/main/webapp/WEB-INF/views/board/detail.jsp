@@ -264,6 +264,9 @@
 
     <div class="team_main_container">
         <div class="team_profile_container">
+                            <div class="profile_img">
+                                <img src="/assets/img/team_profile.png" alt="">
+                            </div>
 <%--            <c:forEach var="b" items="${bList}">--%>
 
 <%--                <div class="profile_img">--%>
@@ -280,6 +283,17 @@
                             ${teamInfoDTO.teamName}
                     </div>
                     <div class="on_and_off_line">
+                        <c:if test="${detail.onOff==1}">
+                            <div class="icon on_line"></div>
+                            <div class="text">온라인</div>
+
+                        </c:if>
+
+                        <c:if test="${detail.onOff==0}">
+                            <div class="icon off_line"></div>
+                            <div class="text">오프라인</div>
+
+                        </c:if>
 <%--                        <div class="icon ${b.onoff ? 'on_line' : 'off_line'}"></div>--%>
 <%--                        <div class="text">${b.onoff}</div>--%>
                     </div>
