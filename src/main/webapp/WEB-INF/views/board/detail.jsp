@@ -280,7 +280,7 @@
 
                 <div class="team_top_box">
                     <div class="team_name">
-                            ${teamInfoDTO.teamName}
+                            ${teamInfo.teamName}
                     </div>
                     <div class="on_and_off_line">
                         <c:if test="${detail.onOff==1}">
