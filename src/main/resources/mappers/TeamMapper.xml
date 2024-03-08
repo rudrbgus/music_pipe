@@ -2,20 +2,64 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.meatjellyburgur.musicpipe.repository.UserMapper">
+<mapper namespace="com.meatjellyburgur.musicpipe.repository.TeamMapper">
 
 
 <!--    //        insert  into  user-->
 <!--    //                (password, nickname, age, email, sex)-->
 <!--    //        values ("111","aaa",13,"aaa@naver.ocm","Female");-->
 
+<!--   1.팀 목록 조회-->
+    <select id="findAllTeam" resultType="team">
+        select team_id,team_name from team
+    </select>
+
+
+    <!--    2. 팀 단일 조회-->
+    <select id="findTeamByKeyword" resultType="team">
+        select *
+        from team
+        <if test="type=='team_name'">
+            where team_name like concat('%',#{keyWord},'%')
+        </if>
+        <if test="type=='team_id'">
+            where team_id=#{keyWord}
+        </if>
+    </select>
     <insert id="save">
-        INSERT INTO user
-        (password, nickname, age, email, sex)
-        VALUES
-        (#{password},#{nickname},#{age}
-        ,#{email},#{sex})
+        insert into team
+        (team_name)
+        VALUES (#{teamName})
     </insert>
+
+<!--    <select id="findTeamByName" resultType="team">-->
+<!--        select team_id,team_name-->
+<!--        from team-->
+<!--        where team_name like concat('%',#{teamName},'%')-->
+
+<!--    </select>-->
+
+    <select id="findOneTeamById" resultType="team">
+        select team_id,team_name
+        from team
+        where team_id=#{teamId}
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*)
+        from team
+    </select>
+
+    <select id="findLastRowTeamInfo" resultType="int">
+        SELECT team.team_id FROM team
+        order by team_id desc
+        LIMIT 1;
+    </select>
+
+
+
+
+
 
 
 

@@ -1,9 +1,12 @@
 package com.meatjellyburgur.musicpipe.repository;
 
 
+import com.meatjellyburgur.musicpipe.dto.request.AutoLoginDTO;
 import com.meatjellyburgur.musicpipe.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 
 @Mapper
@@ -11,19 +14,24 @@ public interface UserMapper {
     //회원 가입
     boolean save(User user);
 
-    //로그인 양식 요청
-    User findUser(String email);
-    //로그인 검증 요청
+    // team_id 업데이트
+    void updateTeamId(int userId,int teamId);
+    void saveAutoLogin(AutoLoginDTO dto);
 
-    /**
-     // 중복체크(email, nickname)
-     * @param type -중복을 검사할 내용 email ,nickname
-     *
-     * @param keyword- 중복검사 입력값 ex abc@gmail.com
-     * @return- 중복이면 true 아니면 false
-     */
+    User findUser(String email);
+
+    List<User> findAllUser();
+
+    User findUserByUserId(int userId);
+
+    User findUserByCookie(String sessionId);
 
     boolean isDuplicate(@Param("type") String type, @Param("keyword") String keyword);
 
+    List<User> findUseByTeamId(int teamId);
 
+    boolean changeProfileImagePath(int userId, String path);
+
+
+    boolean updateIntroduceText(String introduceText, int userId);
 }

@@ -1,0 +1,92 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.meatjellyburgur.musicpipe.repository.EmployBoardMapper">
+
+
+    <select id="findAll" resultType="employboard">
+        select * from employ_board
+        <if test="type == 'position'">
+
+            INNER JOIN need_equipment ON  need_equipment.board_id=employ_board.board_id
+            INNER JOIN equipment ON equipment.equipment_id=#{keyword}
+            where need_equipment.position_id=#{keyword}
+        </if>
+        <if test="type == 'team'">
+            INNER JOIN need_equipment ON  need_equipment.board_id=employ_board.board_id
+            INNER JOIN equipment ON equipment.equipment_id=need_equipment.equipment_id
+            where equipment_name like CONCAT('%',#{keyword},'%')
+            or INSTR(#{keyword},equipment_name) > 0
+        </if>
+
+        order by employ_board.board_id desc
+        limit #{pageStart},#{amount}
+    </select>
+<!--    INSERT INTO music_pipe_db.employ_board (user_id, place, on_off, title, content, view_count, reg_date) VALUES (null, null, null, null, null, DEFAULT, DEFAULT)-->
+    <insert id="save">
+        insert into employ_board
+        (user_id, place, on_off, title, content)
+        VALUES (#{userId},#{place},#{onOff}, #{title}, #{content})
+    </insert>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM employ_board
+        <if test="type == 'positon'">
+            select E.board_id,E.on_off,E.place
+            from employ_board E
+            inner  join need_equipment N
+            on N.position_id=#{keyword} and N.board_id=E.board_id
+            inner  join position P
+            on P.position_id=#{keyword}
+
+        </if>
+        <if test="type == 'team'">
+            INNER JOIN need_equipment ON  need_equipment.board_id=employ_board.board_id
+            INNER JOIN equipment ON equipment.equipment_id=need_equipment.equipment_id
+            where equipment_name like CONCAT('%',#{keyword},'%')
+            or INSTR(#{keyword},equipment_name) > 0
+        </if>
+<!--        <if test="type == 'content'">-->
+<!--            where content like concat('%',#{keyword},'%')-->
+
+<!--        </if>-->
+<!--        <if test="type == 'tc'">-->
+<!--            where title like concat('%',#{keyword},'%')-->
+<!--            or content like concat('%',#{keyword},'%')-->
+
+<!--        </if>-->
+
+    </select>
+    <select id="findOne" resultType="employboard">
+        select
+        E.board_id, E.user_id,
+        E.place,E.on_off,
+        E.title,E.content,
+        E.view_count,E.reg_date
+        from employ_board E
+        join user U
+        on E.user_id=U.user_id
+        where E.board_id=#{boardId}
+
+    </select>
+
+<!--    updateViewCount-->
+<update id="updateViewCount">
+    update employ_board
+    set view_count= view_count+1
+    where board_id=#{boardId}
+</update>
+
+    <delete id="deleteByNo">
+        delete from employ_board
+        where board_id=#{boardId}
+    </delete>
+    <select id="findLastRowBoard" resultType="employboard">
+        select *
+        from employ_board
+        order by board_id desc limit 1;
+    </select>
+
+
+</mapper>

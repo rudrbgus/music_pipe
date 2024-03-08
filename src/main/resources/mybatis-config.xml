@@ -12,11 +12,26 @@
 
     <typeAliases>
         <typeAlias type="com.meatjellyburgur.musicpipe.entity.User" alias="user" />
+        <typeAlias type="com.meatjellyburgur.musicpipe.entity.Team" alias="team" />
+        <typeAlias type="com.meatjellyburgur.musicpipe.entity.EmployBoard" alias="employboard" />
+        <typeAlias type="com.meatjellyburgur.musicpipe.entity.Equipment" alias="equipment" />
+        <typeAlias type="com.meatjellyburgur.musicpipe.entity.NeedEquipment" alias="needequipment" />
+        <typeAlias type="com.meatjellyburgur.musicpipe.entity.PersonalAbility" alias="personalability" />
+        <typeAlias type="com.meatjellyburgur.musicpipe.entity.Position" alias="position" />
+        <typeAlias type="com.meatjellyburgur.musicpipe.entity.SubmitBoard" alias="submitboard" />
+        <typeAlias type="com.meatjellyburgur.musicpipe.entity.TeamMemberInfo" alias="teammemberinfo" />
     </typeAliases>
 
     <!--   sqld을 적어둔 xml 파일의 위치를 설정-->
     <mappers>
         <mapper resource="mappers/UserMapper.xml"/>
-
+        <mapper resource="mappers/TeamMapper.xml"/>
+        <mapper resource="mappers/EmployBoardMapper.xml"/>
+<!--        <mapper resource="mappers/EquipmentMapper.xml"/>-->
+        <mapper resource="mappers/NeedEquipmentMapper.xml"/>
+        <mapper resource="mappers/PersonalAbilityMapper.xml"/>
+<!--        <mapper resource="mappers/PositionMapper.xml"/>-->
+<!--        <mapper resource="mappers/SubmitBoardMapper.xml"/>-->
+        <mapper resource="mappers/TeamMemberInfoMapper.xml"/>
     </mappers>
 </configuration>

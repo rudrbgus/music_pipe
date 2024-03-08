@@ -18,30 +18,76 @@
         ,#{email},#{sex})
     </insert>
 
-    <select id="findMember" resultType="user">
-        select
-        user_id, password, nickname,age, email,sex,regdate, team_id
-        where email = #{email}
-
+    <select id="findUser" resultType="com.meatjellyburgur.musicpipe.entity.User">
+        SELECT
+            user_id, password, nickname, age, email,sex, regdate, team_id, session_id, limit_time, profile_image_path, introduce_text
+        FROM user
+        WHERE email = #{email}
     </select>
 
+    <select id="findUserByUserId" resultType="com.meatjellyburgur.musicpipe.entity.User">
+        SELECT
+            user_id, password, nickname, age, email,sex, regdate, team_id, session_id, limit_time, profile_image_path, introduce_text
+        FROM user
+        WHERE user_id = #{userId}
+    </select>
+
+
+
     <select id="isDuplicate" resultType="boolean">
-
         select count(*)
-        from tbl_member
-
+        from user
         <if test="type == 'nickname'">
             where nickname=#{keyword}
         </if>
 
-
         <if test="type== 'email'">
             where email=#{keyword}
         </if>
-
     </select>
 
+    <select id="findUseByTeamId" resultType="com.meatjellyburgur.musicpipe.entity.User">
+        SELECT
+            user_id, password, nickname,age, email,sex,regdate, team_id, session_id, limit_time, profile_image_path, introduce_text
+        FROM user
+        WHERE team_id = #{teamId}
+    </select>
 
+    <update id="saveAutoLogin">
+        UPDATE user
+        SET session_id =#{sessionId}, limit_time = #{limitTime}
+        WHERE user_id = #{userId}
+    </update>
 
+    <select id="findUserByCookie" resultType="com.meatjellyburgur.musicpipe.entity.User">
+        SELECT
+        user_id, password, nickname,age, email,sex,regdate, team_id, session_id, limit_time, profile_image_path, introduce_text
+        FROM user
+        WHERE session_id = #{sessionId}
+    </select>
 
+    <update id="changeProfileImagePath">
+        update user
+        SET profile_image_path = #{path}
+        WHERE user_id = #{userId}
+    </update>
+
+    <update id="updateTeamId">
+        update user
+        set team_id=#{teamId}
+        where user_id=#{userId}
+    </update>
+
+    <update id="updateIntroduceText">
+        update user
+        set introduce_text = #{introduceText}
+        where user_id = #{userId}
+    </update>
+
+    <select id="findAllUser" resultType="user">
+        select
+        user_id, password, nickname,age, email,sex,regdate, team_id, session_id, limit_time, profile_image_path, introduce_text
+        from user
+        order by regdate DESC
+    </select>
 </mapper>

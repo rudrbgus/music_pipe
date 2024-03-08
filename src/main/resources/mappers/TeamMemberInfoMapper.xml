@@ -2,20 +2,38 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.meatjellyburgur.musicpipe.repository.UserMapper">
+<mapper namespace="com.meatjellyburgur.musicpipe.repository.TeamMemberInfoMapper">
 
 
 <!--    //        insert  into  user-->
 <!--    //                (password, nickname, age, email, sex)-->
 <!--    //        values ("111","aaa",13,"aaa@naver.ocm","Female");-->
 
-    <insert id="save">
-        INSERT INTO user
-        (password, nickname, age, email, sex)
-        VALUES
-        (#{password},#{nickname},#{age}
-        ,#{email},#{sex})
+    <select id="findAllTeamMember" resultType="teammemberinfo">
+        select *
+        from team_member_info
+        where team_id=#{teamId}
+    </select>
+
+    <select id="findOne" resultType="teammemberinfo">
+        select *
+        from team_member_info
+        where user_id = #{userId}
+    </select>
+
+
+    <insert id="saveTeamMember">
+        insert into team_member_info
+        (team_id,role,equipment_id,user_id)
+        values (#{teamId},#{role},#{equipmentId},#{userId})
     </insert>
+
+    <update id="modify">
+        UPDATE team_member_info
+        SET license = 1
+        WHERE user_id = #{userId}
+    </update>
+
 
 
 

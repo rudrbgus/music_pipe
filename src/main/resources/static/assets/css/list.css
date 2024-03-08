@@ -1,0 +1,277 @@
+@import url("fontawesome-all.min.css");
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400|Raleway:300);
+
+a{
+    text-decoration: none;
+}
+/*
+	Astral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+.list_body{
+    margin-top: 120px;
+    background-image: url("../img/sheet.jpg");
+    background-repeat:  no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.bg-1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9f9f9;
+}
+.button {
+    float: left;
+    min-width: 150px;
+    max-width: 250px;
+    display: block;
+    margin: 1em;
+    padding: 1em 2em;
+    border: none;
+    background: none;
+    color: inherit;
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+    -webkit-backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+}
+.button:focus {
+    outline: none;
+}
+.button > span {
+    vertical-align: middle;
+}
+/* Text color adjustments (we could stick to the "inherit" but that does not work well in Safari) */
+.bg-1 .button {
+    color: #37474f;
+    border-color: #37474f;
+}
+/* Sizes */
+.button--size-s {
+    font-size: 14px;
+}
+
+/* Typography and Roundedness */
+.button--text-upper {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.button--text-thin {
+    font-weight: 300;
+}
+
+.button--round-s {
+    border-radius: 5px;
+}
+
+/* Borders */
+.button--border-thin {
+    /*border: 1px solid;*/
+}
+/* Individual button styles */
+
+/* Winona */
+.button--winona {
+    overflow: hidden;
+    padding: 0;
+    -webkit-transition: border-color 0.3s, background-color 0.3s;
+    transition: border-color 0.3s, background-color 0.3s;
+    -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--winona::after {
+    content: attr(data-text);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    color: #3f51b5;
+    -webkit-transform: translate3d(0, 25%, 0);
+    transform: translate3d(0, 25%, 0);
+}
+.button--winona > span {
+    display: block;
+}
+.button--winona.button--inverted {
+    color: #7986cb;
+}
+.button--winona.button--inverted:after {
+    color: #fff;
+}
+.button--winona::after,
+.button--winona > span {
+    padding: 1em 2em;
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
+    -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--winona:hover {
+    border-color: #3f51b5;
+    background-color: rgba(63, 81, 181, 0.1);
+}
+.button--winona.button--inverted:hover {
+    border-color: #21333C;
+    background-color: #21333C;
+}
+.button--winona:hover::after {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+.button--winona:hover > span {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -25%, 0);
+    transform: translate3d(0, -25%, 0);
+}
+/*해더 냠냠*/
+.list_body .listBox1{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+
+}
+.list_body .listBox1 .contentBox1{
+    /*background-color: #F4F4F4;*/
+    background-color: black;
+    height: 500px;
+    width: 60%;
+    border-radius: 0 24px 24px 0;
+}
+
+.list_body .listBox1 .contentBox1 .content{
+    padding: 20px;
+    position: relative;
+}
+.list_body .listBox1 .contentBox1 .content:first-child{
+}
+.list_body .listBox1 .contentBox1 .content:nth-child(odd){
+    background-color: white;
+}
+.list_body .listBox1 .contentBox1 .content:nth-child(even) {
+    background-color: #212121;
+}
+.list_body .listBox1 .contentBox1 .content .content-card{
+    border-radius: 24px;
+    display: flex;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 20px black;
+
+}
+.list_body .listBox1 .contentBox1 .content .content-card img{
+    width: 320px!important;
+    height: 240px!important;
+    border-radius: 16px;
+    text-decoration-line: none;
+}
+.list_body .listBox1 .contentBox1 .content .content-card .content-text{
+    margin: auto 10px;
+    padding-left: 25px;
+    flex: 1;
+    /*background: #E2E2E2;*/
+    border-radius: 24px;
+
+}
+.list_body .listBox1 .contentBox1 .content .content-card .content-text .tag{
+    display: flex;
+}
+.list_body .listBox1 .contentBox1 .content .content-card .content-text .tag .tagName{
+    /*letter-spacing: -4px;*/
+    font-size: 18px;
+    line-height: 18px;
+    padding: 16px 26px;
+    border-radius: 24px;
+    background-color: #f4f4f4;
+    color: #666060;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    text-align: center;
+    margin-right: 15px;
+
+}
+.list_body .listBox1 .contentBox1 .content .content-card .content-text .title{
+    font-size: 24px;
+    line-height: 40px;
+    font-weight: 600;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 10px;
+}
+.slider {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0; /* 초기 길이를 0%로 설정 */
+    height: 100%;
+    transition: width 0.6s ease-in-out; /* 슬라이딩 애니메이션 추가 */
+}
+.slider1 {
+    background-color: #606060;
+}
+.slider2 {
+    background-color: #FFFAFA;
+}
+
+.content:hover .slider {
+    width: 100%; /* 마우스 호버 시 길이를 100%로 변경 */
+}
+.list_body .listBox1 .contentBox1 .content .content-card1 .content-text .title{
+    color: #383535;
+}
+.list_body .listBox1 .contentBox1 .content .content-card2 .content-text .title{
+    color: #f4f4f4;
+}
+.list_body .listBox1 .contentBox1 .content .content-card .content-text .information{
+    color: #999696;
+    display: flex;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 10px;
+    font-size: 16px;
+}
+.list_body .listBox1 .contentBox1 .content .content-card .content-text .team-list img{
+    width: 60px!important;
+    height: 60px!important;
+    object-fit: cover;
+    position: relative;
+    flex-shrink: 0;
+    border-radius: 24px;
+}
+.list_body .listBox1 .emptyBox1{
+    height: 100vh;
+    width: 20%;}
+.list_body .listBox1 .emptyBox2{
+    height: 100vh;
+    width: 20%;
+}
+/*버튼*/
+.page-top {
+    position: fixed;
+    bottom: 100px;
+    right: calc(10% - 150px);
+    width: 200px;
+    height: 200px;
+    border: 1px solid #eee;
+    border-radius: 50%;
+    background-image: url("../img/images.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+    vertical-align: bottom;
+    text-align: center;
+    line-height: 450px;
+    font-size: 36px;
+    color: black;
+}
